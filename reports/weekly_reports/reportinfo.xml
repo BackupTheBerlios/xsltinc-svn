@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<reportinfo>
+    
+    <school>École Polytechnique de l'Université de Nantes</school>
+    <department>Informatique</department>
+    <promotion>SILR 2006</promotion>
+    
+    <schoolyears>2005 - 2006</schoolyears> 
+
+    
+    <projecttitle>Bureau numérique : transformations incrémentales</projecttitle>
+    
+    <team>
+    <tutors>
+      <tutor>
+        <firstname>Nicolas</firstname>
+        <lastname>Normand</lastname>
+        <email>Nicolas.Normand@polytech.univ-nantes.fr</email>
+      </tutor>
+      <tutor>
+        <firstname>Rémi</firstname>
+        <lastname>Lehn</lastname>
+        <email>Remi.Lehn@polytech.univ-nantes.fr</email>
+      </tutor>
+      <tutor>
+        <firstname>Jérôme</firstname>
+        <lastname>David</lastname>
+        <email>Jerome.Davi@polytech.univ-nantes.fr</email>
+      </tutor>
+    </tutors>
+  
+    <students>
+      <student>
+        <firstname>Cédric</firstname>
+        <lastname>Brun</lastname>
+        <email>Cedric.Brun@polytech.univ-nantes.fr</email>
+      </student>
+      <student>
+        <firstname>Mikaël</firstname>
+        <lastname>Barbero</lastname>
+        <email>Mikael.Barbero@polytech.univ-nantes.fr</email>
+      </student>
+    </students>
+    </team>
+    
+</reportinfo>

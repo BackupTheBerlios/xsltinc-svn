@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="39" startdate="2005/26/09" stopdate="2005/10/02">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+
+<donelist>
+  <done>
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done    
+  </done>
+  <done>
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done
+    done done done done done done done done    
+  </done>
+  </donelist>
+  <todolist>
+  <todo>
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  todo todo todo todo todo todo todo
+  </todo>
+  </todolist>
+	<issues>
+		<issue>
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+			issue issue issue issue issue issue issue issue
+		</issue>
+	</issues>
+
+</weekly_report>
