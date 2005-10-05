@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="40" startdate="03/10/2005" stopdate="09/10/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+		Recherche bibliographique à la B.U. de sciences. Emprunt de 3 livres sur XSLT.
+		Ils formeront une bonne base pour la présentation historique et technique de XSLT.
+	</done>
+  <done>
+    Création d'un système de publication des fiches de suivi de projets à l'aide
+    d'un format XML personnalisé et de feuilles de transformation XSLT ad-hoc vers
+    XSL-FO et PDF.
+  </done>
+ 	</donelist>
+  
+<!-- 
+  <todolist>
+  <todo>
+  	todo todo todo todo todo todo todo todo todo todo
+  	todo todo todo todo todo todo todo todo todo todo
+  </todo>
+  <todo>
+  	todo todo todo todo todo todo todo todo todo todo
+  	todo todo todo todo todo todo todo todo todo todo
+  </todo>  
+  </todolist>
+ -->
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

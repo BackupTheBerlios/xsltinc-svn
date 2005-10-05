@@ -146,7 +146,7 @@ xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	</fo:block>
 				
 	<xsl:for-each select="done">
-		<fo:block text-align="justify" font-size="12pt" font-weight="normal">
+		<fo:block text-align="justify" font-size="12pt" space-after.optimum="10pt" font-weight="normal">
 			<xsl:value-of select="current()"/>
 		</fo:block>	
 	</xsl:for-each> 
@@ -162,7 +162,7 @@ xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	</fo:block>
 				
 	<xsl:for-each select="issue">
-		<fo:block text-align="justify" font-size="12pt" font-weight="normal">
+		<fo:block text-align="justify" font-size="12pt" space-after.optimum="10pt" font-weight="normal">
 			<xsl:value-of select="current()"/>
 		</fo:block>	
 	</xsl:for-each>  
@@ -178,7 +178,7 @@ xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	</fo:block>
 				
 	<xsl:for-each select="todo">
-		<fo:block text-align="justify" font-size="12pt" font-weight="normal">
+		<fo:block text-align="justify" font-size="12pt" space-after.optimum="10pt" font-weight="normal">
 			<xsl:value-of select="current()"/>
 		</fo:block>	
 	</xsl:for-each> 

@@ -1,65 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<weekly_report week="39" startdate="2005/26/09" stopdate="2005/10/02">
+<weekly_report week="39" startdate="26/09/2005" stopdate="02/10/2005">
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
 
 <donelist>
   <done>
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done    
+    Prise en main du sujet.    
   </done>
   <done>
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done
-    done done done done done done done done    
+  	Création du projet xsltinc sur le site developer.berlios.de. Il nous permettra
+  	d'avoir un repository SubVersion commun, d'un wiki et d'autres services utiles au
+  	développement du projet.
+  </done>  
+  <done>
+		Premières recherches grossières sur le sujet. Quelques travaux intéressants trouvés 
+		sont disponibles sur le site web du projet : http://xsltinc.berlios.de/docs-extra/
+  </done>
+  <done>
+  	Lecture du chapitre 6 (Transformation incrémentale) de la thèse de Lionel Villard.
+  	Un résumé avec les idées clés sera bientôt disponible.
+  </done>
+  <done>
+  	Écriture d'un tutoriel pour compiler xsltproc (et donc libxslt) de manière à avoir 
+  	les informations de débuggages. Disponible sur le wiki du projet : 
+  	http://openfacts.berlios.de/index-en.phtml?title=XSLT+Incremental+Proc
+  </done>
+  <done>
+  	Écriture d'un petit jeu de test afin de démarrer sur l'étude des modèles d'éxecution
+  	de différents moteurs xslt. Dispo sur http://xsltinc.berlios.de/testset/.
+  </done>
+  <done>
+  	Réalisation de la trace de l'execution de xsltproc avec callgrind et KCacheGrind.
+  	Résultat dispo sur http://xsltinc.berlios.de/testset_results/.
   </done>
   </donelist>
+  
   <todolist>
   <todo>
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
-  todo todo todo todo todo todo todo
+		Suite à la réunion du mercredi 28 septembre, les tâches suivantes ont été définies
+		comme prioritaires :
+  </todo>
+  <todo>
+  	Analyser le traitement d'un programme (arbre) XSLT. Quels sont les fonctions de la libxslt
+  	appelées par chaque (?) instruction XSLT. Quelles est la répresentation interne d'une
+  	feuille de transformation ?
+  </todo>
+  <todo>
+  	Réaliser la trace ordonnée de l'éxecution d'une transformation XSLT (graphe d'appel
+  	des fonctions de la libxslt). Nécessite une étude approfondie de GDB afin de l'utiliser efficacement.
+  </todo>
+  <todo>
+  	Trouver une solution pour afficher le contexte d'éxecution lors d'une transformation avec
+  	xsltproc.
+  </todo>
+  <todo>
+  	Prospecter afin de voir si d'autres solutions que xsltproc sont possibles.
   </todo>
   </todolist>
+	
+<!-- 
 	<issues>
-		<issue>
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-			issue issue issue issue issue issue issue issue
-		</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
 	</issues>
+ -->
 
 </weekly_report>
