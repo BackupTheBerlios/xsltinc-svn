@@ -115,7 +115,7 @@ xmlns:fo="http://www.w3.org/1999/XSL/Format">
 		<xsl:sort select="lastname"/>
 		<xsl:sort select="firstname"/>
 		<fo:block>
-			<xsl:value-of select="firstname"/> <xsl:value-of select="lastname"/>
+			<xsl:value-of select="firstname"/><xsl:text> </xsl:text><xsl:value-of select="lastname"/>
 		</fo:block>
 		<fo:block space-before.maximum="0pt" space-after.optimum="6pt">
 			&lt;<fo:inline font-size="9pt" color="blue" text-decoration="underline"><xsl:value-of select="email"/></fo:inline>&gt;
@@ -128,7 +128,7 @@ xmlns:fo="http://www.w3.org/1999/XSL/Format">
 		<xsl:sort select="lastname"/>
 		<xsl:sort select="firstname"/>	
 		<fo:block>
-			<xsl:value-of select="firstname"/> <xsl:value-of select="lastname"/>
+			<xsl:value-of select="firstname"/><xsl:text> </xsl:text><xsl:value-of select="lastname"/>
 		</fo:block>
 		<fo:block space-before.maximum="0pt" space-after.optimum="6pt">
 			&lt;<fo:inline font-size="9pt" color="blue" text-decoration="underline"><xsl:value-of select="email"/></fo:inline>&gt;
