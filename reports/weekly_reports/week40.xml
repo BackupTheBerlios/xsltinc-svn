@@ -13,6 +13,13 @@
     d'un format XML personnalisé et de feuilles de transformation XSLT ad-hoc vers
     XSL-FO et PDF.
   </done>
+<done>
+Étude de différentes implémentations de XSLT en particulier xsltproc basé sur la libxml et le module 4suite python.
+Comparaisons de performances, de qualité en terme de code et vérification des implémentations sur des exemples simple.
+</done>
+<done>
+Création de trace d'execution d'une transformation XSL avec python. Identification des opérations changeant le contexte. Réalisation d'une méthode de traitement de trace d'execution personalisée.
+</done>
  	</donelist>
   
 <!-- 
