@@ -1,0 +1,23 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="rech_doc">
+	<title>Recherche documentaire</title>
+	
+	<para>
+		Dans ce chapitre nous allons détailler les différents aspects techniques et
+		technologiques ayant trait à notre projet. Nous nous efforcerons à expliquer
+		chaque point complexe et chaque acronyme. En cas d'oubli pour les acronymes, 
+		nous invitons le lecteur à se référer à la section <xref linkend="glossary" 
+		xrefstyle="select: title page"/>.
+	</para>
+	
+	<section>
+		<title>XSLT</title>
+		<para>
+			blablalbal
+		</para>
+	</section>
+
+</chapter>

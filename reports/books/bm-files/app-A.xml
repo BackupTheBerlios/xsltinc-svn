@@ -1,0 +1,22 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<appendix id="app-a">
+	<title>Demonstration Appendix</title>
+		
+	<para>
+	This appendix demonstrates an appendix in a book. It has the same broad 
+	content model as a chapter.
+	</para>
+		
+	<section>
+		<title>Demonstration Appendix section title</title>
+			
+		<para>
+		This appendix demonstrates an appendix in a book. It has the same broad 
+		content model as a chapter.
+		</para>
+			
+	</section>
+</appendix>

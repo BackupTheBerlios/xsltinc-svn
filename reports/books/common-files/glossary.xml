@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<glossary id="glossary">
+	
+	<glossentry>
+		<glossterm>API</glossterm>
+		<glossdef><para>
+			Application Program Interface. Biliothèque de fonctions pour un langage de
+			programmation ou une plate-forme donnée.
+		</para></glossdef>
+	</glossentry>	
+		
+	<glossentry>
+		<glossterm>W3C</glossterm>
+		<glossdef><para>
+			World Wide Web Consortium. Consortium de référence édictant la plupart des 
+			recommendations pour la non balkanisation du Web. Leurs principaux travaux 
+			sont  : XHTML, XML, CSS, SOAP, WSDL etc.
+		</para></glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>XML</glossterm>
+		<glossdef><para>
+			eXtensible Markup Language. Initialement un langage de description de 
+			données à balisage.
+		</para></glossdef>
+	</glossentry>
+		
+</glossary>

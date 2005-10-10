@@ -1,0 +1,147 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE bibliography PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<bibliography>
+	<title>Bibliographie</title>
+
+	<bibliodiv>
+		<title>Livres</title>
+			
+		<biblioentry id="ama2002">
+			<abbrev>AMA2002</abbrev>
+			<title>Comprendre XSLT</title>
+			<authorgroup>
+				<author><firstname>Bernd</firstname><surname>Amann</surname></author>
+				<author><firstname>Philippe</firstname><surname>Rigaux</surname></author>
+			</authorgroup>
+			<copyright>
+				<year>2002</year>
+				<holder>Édition O'Reilly</holder>
+			</copyright>
+			<isbn>2-84177-148-2</isbn>
+			<publisher>
+				<publishername>Édition O'Reilly</publishername>
+			</publisher>	
+		</biblioentry>
+
+		<biblioentry id="dri2002">
+			<abbrev>DRI2002</abbrev>
+			<title>XSLT fondamental</title>
+			<authorgroup>
+				<author><firstname>Philippe</firstname><surname>Drix</surname></author>
+			</authorgroup>
+			<copyright>
+				<year>2002</year>
+				<holder>Édition Eyrolles</holder>
+			</copyright>
+			<isbn>2-212-11082-0</isbn>
+			<publisher>
+				<publishername>Édition Eyrolles</publishername>
+			</publisher>	
+		</biblioentry>
+	
+		<biblioentry id="hol2002">
+			<abbrev>HOL2002</abbrev>
+			<title>XSLT par la pratique</title>
+			<authorgroup>
+				<author><firstname>Steven</firstname><surname>Holzner</surname></author>
+			</authorgroup>
+			<copyright>
+				<year>2002</year>
+				<holder>Édition Eyrolles</holder>
+			</copyright>
+			<isbn>2-212-11040-5</isbn>
+			<publisher>
+				<publishername>Édition Eyrolles</publishername>
+			</publisher>	
+		</biblioentry>	
+	
+	</bibliodiv>	
+
+	<!-- Fin de la section bibliographie livre -->
+
+	<bibliodiv>
+		<title>Conférences</title>
+
+<!-- 
+		<biblioentry id="ase01">
+			<abbrev>ASE01</abbrev>
+			<authorgroup>
+				<author><firstname>Bézivin</firstname><surname>J.</surname></author>
+				<author><firstname>Gerbé</firstname><surname>O.</surname></author>
+			</authorgroup>
+			<title>Towards a Precise Definition of the OMG/MDA Framework</title>
+			<confgroup>
+				<confdates>novembre 2001</confdates>
+				<conftitle>Proceeding of the Conference on Autonomous Software Engineering</conftitle>
+				<confnum>ASE '01</confnum>
+				<address><city>San Diego</city>, <state>CA</state>, <country>Etats-Unis</country></address>
+			</confgroup>
+		</biblioentry>
+ -->
+	
+	</bibliodiv>
+
+	<!-- Fin de la section bibliographie conférences -->
+	
+	<bibliodiv>
+		<title>Thèses</title>
+
+<!-- 
+		<biblioentry id="breton2002">
+			<abbrev>Breton2002</abbrev>
+			<authorgroup>
+				<author><firstname>Breton</firstname><surname>Erwan</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>24 juin 2002</confdates>
+				<conftitle>Thèse de doctorat</conftitle>
+				<confnum></confnum>
+				<address>Nantes</address>
+			</confgroup>
+			<affiliation>Université de Nantes</affiliation>
+			<title>Contribution à la représentation de processus par des techniques de méta-modélisation</title>
+			<bibliomisc>Disponible sur : <ulink url="http://www.sciences.univ-nantes.fr/lina/atl/publications/pub2002/Thesis and presentation, Erwan Breton/" /></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="marvie2002">
+			<abbrev>Marvie2002</abbrev>
+			<authorgroup>
+				<author><firstname>Marvie</firstname><surname>Raphaël</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>09 décembre 2002</confdates>
+				<conftitle>Thèse de doctorat</conftitle>
+				<confnum></confnum>
+				<address>Lille I</address>
+				<confsponsor>Laboratoire d'Informatique Fondamentale de Lille</confsponsor>
+			</confgroup>
+			<affiliation>Université des sciences et technologie de Lille</affiliation>
+			<title>Séparation des préoccupations et méta-modélisation pour environnements de manipulation d'architectures logicielles à base de composants</title>
+			<bibliomisc>Disponible sur : <ulink url="http://www.lifl.fr/~marvie/">http://www.lifl.fr/~marvie/</ulink></bibliomisc>
+		</biblioentry>
+ -->
+	
+	</bibliodiv>
+
+	<!-- Fin de la section bibliographie thèse -->
+
+	<bibliodiv>
+		<title>Sites Internet</title>
+			
+<!-- 
+		<biblioentry id="xmlfrxml">
+			<abbrev>XMLfrXml</abbrev>
+			<author><firstname>Eric</firstname><surname>Guyot</surname></author>
+			<title>XML pour la presse</title>
+			<subtitle>Article vulgarisant le XML</subtitle>
+			<bibliomisc><ulink url="http://xmlfr.org/documentations/articles/030704-0002">http://xmlfr.org/documentations/articles/030704-0002</ulink></bibliomisc>
+		</biblioentry>
+ -->
+
+	</bibliodiv>
+
+	<!-- Fin de la section bibliographie internet -->
+
+</bibliography>
