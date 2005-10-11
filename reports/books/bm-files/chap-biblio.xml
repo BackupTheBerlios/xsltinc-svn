@@ -10,14 +10,50 @@
 		technologiques ayant trait à notre projet. Nous nous efforcerons à expliquer
 		chaque point complexe et chaque acronyme. En cas d'oubli pour les acronymes, 
 		nous invitons le lecteur à se référer à la section <xref linkend="glossary" 
-		xrefstyle="select: title page"/>.
+		xrefstyle="select: title page "/>.
 	</para>
 	
 	<section>
-		<title>XSLT</title>
-		<para>
-			blablalbal
-		</para>
+		<title>Les technologies du W3C</title>
+	
+		<section>
+			<title>eXtensible Markup Language, XML</title>
+			<para>
+				À l'heure où l'on parle de plus en plus d'intégration et d'interopérabilité,
+				le XML, eXtensible Markup Language, a su s'imposer dans les systèmes
+				d'information. XML est un langage de description de données et permet ainsi
+				de définir un langage commun dans la tour de Babel de l'informatique, 
+				notamment grâce aux schémas.
+			</para>
+			<para>
+				Défini par le W3C<footnote><para>World Wide Web Consortium</para></footnote>,
+				le XML permet de définir ses propres formats de données. C'est pour cela
+				que l'on considère plutôt le XML comme un méta-langage permettant de définir
+				des nouveaux langages, ou vocabulaires. Les développeurs peuvent alors 
+				stocker des informations en toute liberté. De cette dernière aurait pu 
+				naître une confusion encore plus grande qu'elle ne l'était déjà, mais des
+				langages permettant de décrire la structure d'un document XML ont été 
+				repris, comme les DTDs (Document Type Definition) ou créé de toute pièce
+				comme le XML Schema. Ainsi, des applications hétérogènes peuvent communiquer
+				avec un format parfaitement adapté aux données qu'elles échangent en se 
+				mettant d'accord sur le langage utilisé.
+			</para>
+		</section>
+	
+		<section>
+			<title>XPath</title>
+			<para>
+				blablalbal
+			</para>
+		</section>
+		
+		<section>
+			<title>XSLT</title>
+			<para>
+				blabalbal
+			</para>
+		</section>
+		
 	</section>
 
 </chapter>
