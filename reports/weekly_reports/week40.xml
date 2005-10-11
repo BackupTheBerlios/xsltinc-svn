@@ -13,19 +13,23 @@
     d'un format XML personnalisé et de feuilles de transformation XSLT ad-hoc vers
     XSL-FO et PDF.
   </done>
+         <done>
+        Codage d'un plugin d'export en docbook pour le logiciel KDissert.
+</done>
+
 	<done>
 	Étude de différentes implémentations de XSLT en particulier xsltproc basé sur la libxml et le module 4suite python.
 	Comparaisons de performances, de qualité en terme de code et vérification des implémentations sur des exemples simple.
 	</done>
 	<done>
-	Création de trace d'execution d'une transformation XSL avec python. Identification des opérations changeant le contexte. Réalisation d'une méthode de traitement de trace d'execution personalisée.
+	Création de trace d'execution d'une transformation XSL avec python. Identification des opérations changeant le contexte. Réalisation d'une méthode de traitement de trace d'execution personnalisée.
 	</done>
 	<done>
 	Mise en place de l'environnement Docbook pour la rédaction des rapports. Environ 1000 lignes 
 	XSLT on été rédigées pour obtenir une classe propre pour polytech.
 	</done>
 	<done>
-	Début de rédaction de la bilbiographie avec une présentation de XML et XSLT.
+	Début de rédaction de la bibliographie avec une présentation de XML,XSLT et XPath.
 	</done>
  	</donelist>
   
@@ -38,6 +42,9 @@
 	Étudier quelques documents sur la théorie de la compilation incrémentale et
 	just-in-time.
   </todo>  
+<todo>
+Rédaction d'un document de synthèse présentant les différentes solutions technologiques étudiées.
+</todo>
   </todolist>
 	
 <!-- 
