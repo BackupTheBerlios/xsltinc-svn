@@ -1109,7 +1109,7 @@
     <t:titlepage-before t:side="verso">
     </t:titlepage-before>
   </t:titlepage>
--->
+
   <t:titlepage t:element="list.of.examples" t:wrapper="fo:block">
     <t:titlepage-content t:side="recto">
       <title
@@ -1139,7 +1139,7 @@
     <t:titlepage-before t:side="verso">
     </t:titlepage-before>
   </t:titlepage>
-
+-->
   <t:titlepage t:element="list.of.equations" t:wrapper="fo:block">
     <t:titlepage-content t:side="recto">
       <title

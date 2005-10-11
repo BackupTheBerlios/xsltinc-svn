@@ -34,7 +34,7 @@
 	<xsl:param name="headers.on.blank.pages" select="1"></xsl:param>
 	<xsl:param name="footers.on.blank.pages" select="1"></xsl:param>
 
-  <xsl:param name="insert.xref.page.number">1</xsl:param>
+  <xsl:param name="insert.xref.page.number">0</xsl:param>
 
   <xsl:attribute-set name="section.title.level1.properties">
   	<xsl:attribute name="font-size">14pt</xsl:attribute>
@@ -68,6 +68,42 @@
   	<xsl:attribute name="wrap-option">wrap</xsl:attribute>
   	<xsl:attribute name="hyphenation-character">↩</xsl:attribute>
 	</xsl:attribute-set>
+	
+	<xsl:attribute-set name="formal.title.properties">
+  	<xsl:attribute name="font-weight">bold</xsl:attribute>
+	  <xsl:attribute name="font-size">10pt</xsl:attribute>
+	  <xsl:attribute name="text-align">center</xsl:attribute>
+	  <xsl:attribute name="hyphenate">false</xsl:attribute>
+	  <xsl:attribute name="space-after.minimum">0.4em</xsl:attribute>
+	  <xsl:attribute name="space-after.optimum">0.6em</xsl:attribute>
+	  <xsl:attribute name="space-after.maximum">0.8em</xsl:attribute>
+	</xsl:attribute-set>	
+	
+	<xsl:attribute-set name="verbatim.properties">
+		<xsl:attribute name="background-color">#e0e0e0</xsl:attribute>
+  	<xsl:attribute name="border">0.5pt solid black</xsl:attribute>
+  	<xsl:attribute name="padding">0.1cm</xsl:attribute>
+	</xsl:attribute-set>
+	
+	<xsl:attribute-set name="figure.properties">
+		<!--<xsl:attribute name="background-color">#e0e0e0</xsl:attribute>-->
+  	<xsl:attribute name="border">0.5pt solid black</xsl:attribute>
+  	<xsl:attribute name="padding">0.1cm</xsl:attribute>
+	</xsl:attribute-set>	
+
+	<xsl:attribute-set name="table.properties">
+		<!--<xsl:attribute name="background-color">#e0e0e0</xsl:attribute>-->
+  	<xsl:attribute name="border">0.5pt solid black</xsl:attribute>
+  	<xsl:attribute name="padding">0.1cm</xsl:attribute>
+	</xsl:attribute-set>	
+	
+	<xsl:param name="formal.title.placement">
+		figure after
+		example after
+		equation after
+		table after
+		procedure after
+	</xsl:param>
 		
 <!-- ============================== Chapter ======================= -->
 
@@ -198,6 +234,22 @@
 	  font-family="{$title.fontset}">
 		<xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'ListofFigures'"/>
+		</xsl:call-template>
+	</fo:block>
+
+	<fo:block space-after="1cm" space-before="0.65cm">
+		<fo:leader leader-pattern="rule" leader-length="16cm" rule-thickness="0.5pt"/>
+	</fo:block>
+</xsl:template>
+
+<!-- ============================== list.of.examples ======================= -->
+
+<xsl:template name="list.of.examples.titlepage">
+	<fo:block space-before="6.25cm" space-after="0cm" font-variant="small-caps" 
+		text-align="center" font-size="24.8832pt" font-weight="bold"
+	  font-family="{$title.fontset}">
+		<xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'ListofExamples'"/>
 		</xsl:call-template>
 	</fo:block>
 
