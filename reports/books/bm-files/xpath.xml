@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" >
+ <book lang="fr">
+<bookinfo><title>
+recherche biblio
+</title>
+<authorgroup>
+<author>
+<firstname>Cédric
+</firstname>
+<surname>
+Brun
+</surname>
+</author>
+</authorgroup>
+</bookinfo>
+
+<toc></toc>
+<chapter id="XPath" ><title>
+XPath</title>
+<section id="Introduction" ><title>
+Introduction</title>
+<section id="Historique" ><title>
+Historique</title>
+<para>XPath est un standard du W3C défini en 1999. Il a été créée dans le but d&apos;avoir une syntaxe commune pour XPointer et les transformations XSLT.</para>
+<para></para>
+<para>Son nom vient du fait que les expressions XPath sont semblables aux &quot;chemins&quot; que l&apos;on distingue dans les URL par exemple.</para>
+
+</section>
+
+<section id="Objectif" ><title>
+Objectif</title>
+<para>&quot;XPath permet la sélection d&apos;un ensemble de noeuds dans un arbre XML. On obtient alors un sous arbre de l&apos;arbre source. </para>
+<para></para>
+<para>XPath fourni également quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.</para>
+<para>En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore &quot;matching&quot;, pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
+<para></para>
+
+</section>
+
+
+</section>
+
+<section id="Modèle_conceptuel" ><title>
+Modèle conceptuel</title>
+<para></para>
+<para></para>
+<section id="7_types_de_noeuds" ><title>
+7 types de noeuds</title>
+<para>XPath opère sur des données XML arborescentes. Cet arbre est composé de noeuds, on en distingue 7 types:</para>
+<itemizedlist>
+<listitem><para>
+Les noeuds racines</para></listitem>
+<listitem><para>
+Les noeuds d&apos;éléments</para></listitem>
+<listitem><para>
+Les noeuds de texte</para></listitem>
+<listitem><para>
+Les noeuds d&apos;attributs</para></listitem>
+<listitem><para>
+Les noeuds d&apos;espaces de nommage</para></listitem>
+<listitem><para>
+Les noeuds d&apos;instructions de traitement</para></listitem>
+<listitem><para>
+Les noeuds de commentaires</para></listitem>
+</itemizedlist>
+<para></para>
+<para>Ainsi dans l&apos;exemple suivant :</para>
+<para><programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;&lt;bookstore&gt;&lt;book&gt;&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;&lt;author&gt;J K. Rowling&lt;/author&gt;&lt;year&gt;2005&lt;/year&gt;&lt;price&gt;29.99&lt;/price&gt;&lt;/book&gt;&lt;/bookstore&gt;</programlisting></para>
+<para>Le noeud racine est &quot;&lt;bookstore&gt;&quot;, &quot;&lt;author&gt;J K. Rowling&lt;/author&gt;&quot; est un noeud d&apos;élément et &quot;lang=&quot;en&quot;&quot; un noeud d&apos;attribut.</para>
+<para></para>
+
+</section>
+
+<section id="Relations_entre_les_noeuds" ><title>
+Relations entre les noeuds</title>
+<para>On distingue également plusieurs types de relation entre les noeuds.</para>
+<itemizedlist>
+<listitem><para>
+Parents : chaque noeud élément ou d&apos;attribut à un parent.</para></listitem>
+<listitem><para>
+Children : les noeuds d&apos;élément peuvent avoir aucun, un ou plus d&apos;un enfant.</para></listitem>
+<listitem><para>
+Siblings : les noeuds qui ont le mème parent</para></listitem>
+<listitem><para>
+Ancestors : le parent du noeud, son parent, etc etc..</para></listitem>
+<listitem><para>
+Descendants : l&apos;enfant, son enfant, etc etc..</para></listitem>
+<listitem><para>
+</para></listitem>
+</itemizedlist>
+
+</section>
+
+<section id="Expressions" ><title>
+Expressions</title>
+<para>Une expression peut être composé de plusieurs sous-expression, chacune pouvant être de type:</para>
+<itemizedlist>
+<listitem><para>
+les appels de fonction.</para></listitem>
+<listitem><para>
+les ensembles de noeuds : lorsque l&apos;on indique un chemin au sein d&apos;une expression celui-ci est évalué comme l&apos;ensemble des noeuds correspondants.</para></listitem>
+<listitem><para>
+les booléens : qui peuvent être &quot;vrai&quot; ou &quot;faux&quot;, ils peuvent être le résultat de l&apos;évaluation d&apos;un opérateur.</para></listitem>
+<listitem><para>
+les nombres </para></listitem>
+<listitem><para>
+les chaînes de caractères</para></listitem>
+<listitem><para>
+les structures lexicales : parenthèses et regroupements de termes.</para></listitem>
+</itemizedlist>
+
+</section>
+
+
+</section>
+
+<section id="Fonctionnement" ><title>
+Fonctionnement</title>
+<para>Le principe de XPath est le suivant : on définit un sous ensemble de l&apos;arbre par la concaténation d&apos;un chemin auquel on peut associer un prédicat. </para>
+<para>Ce principe de base peut ensuite être utilisé autant de fois que nécessaire afin de sélectionner les données désirées.</para>
+<para></para>
+<section id="Un_chemin" ><title>
+Un chemin</title>
+<para>Il s&apos;agit de l&apos;élément de syntaxe le plus important. Tout noeud d&apos;un arbre XML peut être identifié de manière unique à l&apos;aide d&apos;un chemin. Il peut alors être très verbeux.</para>
+<para>Un chemin est composé d&apos;une ou plusieurs étapes séparées par un &apos;/&apos;.</para>
+<para></para>
+<para>Un chemin peut être qualifié d&apos;absolu ou de relatif. Le fonctionnement est le même que dans le cadre des système de fichiers sous Unix. </para>
+<para>Par exemple, le noeud suivant <programlisting>child::chapter/descendant::para</programlisting> sélectionne l&apos;élément &quot;para&quot; descendant de l&apos;élément &quot;chapter&quot; fils du noeud courant.</para>
+<para>Un chemin relatif est constitué d&apos;une ou plusieurs étapes séparées par &apos;/&apos; . Chaque étape sélectionne  un ensemble de noeud par rapport au contexte d&apos;évaluation du chemin. Ce contexte change à chaque fois et correspond au dernier ensemble de noeuds sélectionné.</para>
+<para></para>
+<para>Un chemin absolu commence par &apos;/&apos; qui peut être suivi ou non par une suite d&apos;étapes. Le &apos;/&apos; représente le noeud racine du document source.</para>
+<para>Par exemple <programlisting>/chapter</programlisting> qui sélectionne les chapitres dont le parent est la racine du document</para>
+
+</section>
+
+<section id="Une_étape" ><title>
+Une étape</title>
+<para>L&apos;étape est l&apos;élément fondamental du chemin ,elle est composée de trois parties :</para>
+<itemizedlist>
+<listitem><para>
+un axe : qui définit le type de relation entre les noeuds sélectionnés par l&apos;étape et le noeud courant.</para></listitem>
+<listitem><para>
+un test de noeud : qui spécifie le type de noeud que l&apos;on souhaite sélectionner.</para></listitem>
+<listitem><para>
+aucun, un ou plusieurs prédicats qui utilisent des expressions arbitraires afin de raffiner la sélection des noeuds.</para></listitem>
+</itemizedlist>
+<para>La syntaxe d&apos;une étape est donc tout d&apos;abord le nom de l&apos;axe, suivi du test de noeud, tous deux séparés par &apos;::&apos;, ce dernier suivi des prédicats entre crochets &apos;[]&apos;.</para>
+<para>Voici un exemple :</para>
+<para><programlisting>child::para[position()=1]</programlisting></para>
+<para>L&apos;ensemble de noeuds sélectionnés par une étape est donc l&apos;ensemble de noeuds généré par l&apos;axe associé au test de noeud qui serait par la suite filtré par le ou les prédicats.</para>
+<para></para>
+
+</section>
+
+<section id="Un_axe" ><title>
+Un axe</title>
+<para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds.</para>
+<para>On identifie les axes suivant :</para>
+<itemizedlist>
+<listitem><para>
+ancestor : les ancêtres du noeud courant, autrement dit son parent, le parent de son parent et ainsi de suite jusqu&apos;à la racine du document.</para></listitem>
+<listitem><para>
+ancestor-or-self : les ancêtres auquel ont ajoute le noeud courant.</para></listitem>
+<listitem><para>
+attribute : tous les attributs du noeud courant.</para></listitem>
+<listitem><para>
+child : les noeuds dont le noeud courant est le noeud père.</para></listitem>
+<listitem><para>
+descendant : tous les descendants du noeud courant.</para></listitem>
+<listitem><para>
+descendant-or-self : les descendants auxquels on ajoute le noeud courant.</para></listitem>
+<listitem><para>
+following : tous les noeuds que l&apos;on trouve après la fermeture du noeud courant.</para></listitem>
+<listitem><para>
+following-sibling : les noeuds ayant le même parent que le noeud courant et le suivant.</para></listitem>
+<listitem><para>
+namespace : tous les noeuds d&apos;espace de nommage du noeud courant.</para></listitem>
+<listitem><para>
+parent : le parent du noeud courant.</para></listitem>
+<listitem><para>
+preceding : tous les noeuds que l&apos;on trouve avant le noeud courant.</para></listitem>
+<listitem><para>
+preceding-sibling :  les noeuds ayant le même parent que le noeud courant et le précédant.</para></listitem>
+<listitem><para>
+self : le noeud courant.</para></listitem>
+<listitem><para>
+</para></listitem>
+</itemizedlist>
+
+</section>
+
+<section id="Les_tests_de_noeuds" ><title>
+Les tests de noeuds</title>
+<para>Le test de noeud spécifie le type du noeud et le nom des noeuds obtenus par l&apos;étape de localisation.</para>
+
+</section>
+
+<section id="Les_prédicats" ><title>
+Les prédicats</title>
+<para>Un prédicat filtre un ensemble de noeud selon l&apos;axe spécifié afin de produire un nouvel ensemble de noeud. Pour chaque noeud l&apos;expression du prédicat est évaluée, si l&apos;évaluation renvoie &quot;vrai&quot; alors le noeud est gardé dans l&apos;ensemble résultant, dans le cas contraire il est rejeté.</para>
+<para></para>
+<para>Si le résultat de l&apos;évaluation est un nombre alors l&apos;expression sera considérée comme &apos;vrai&apos; si le nombre obtenu est le même que la position courante dans l&apos;arbre, à &apos;faux&apos; autrement.</para>
+<para></para>
+
+</section>
+
+<section id="La_syntaxe_réduite" ><title>
+La syntaxe réduite</title>
+<para>Il existe une syntaxe réduite afin de limiter la verbosité de XPath.</para>
+<para></para>
+<para>Le raccourcis le plus important est que l&apos;on peut omettre le &lt;programlisting&gt;child::&lt;/programlisting&gt;  dans une étape, ainsi &lt;programlisting&gt;child::div/child::para&lt;/programlisting&gt; peut aussi être écrit &lt;programlisting&gt;div/para&lt;/programlisting&gt;.</para>
+<para></para>
+<para>De la même façon &lt;programlisting&gt;attribute::&lt;/programlisting&gt; peut être remplacé par &quot;@&quot; ce qui nous donne &lt;programlisting&gt;[@type=&quot;warning&quot;]&lt;/programlisting&gt;</para>
+<para>au lieu de &lt;programlisting&gt;child::para[attribute::type=&quot;warning&quot;]&lt;/programlisting&gt;.</para>
+<para></para>
+<para>L&apos;expression &apos;//&apos; est un raccourcis pour l&apos;axe &lt;programlisting&gt;descendant-or-self::node()&lt;/programlisting&gt;</para>
+<para>De la même façon &quot;..&quot; est un raccourci pour l&apos;axe &lt;programlisting&gt;parent::node()&lt;/programlisting&gt;.</para>
+<para></para>
+<para></para>
+
+</section>
+
+
+</section>
+
+</chapter>
+<chapter id="Plateformes_technologiques_étudiées" ><title>
+Plateformes technologiques étudiées</title>
+<section id="Critères_étudiés" ><title>
+Critères étudiés</title>
+<para>Les critères permettant l&apos;évaluation d&apos;une plateforme technologique sont les suivants :</para>
+<itemizedlist>
+<listitem><para>
+Qualité du code</para></listitem>
+<listitem><para>
+Extensibilité</para></listitem>
+<listitem><para>
+Robustesse</para></listitem>
+<listitem><para>
+Conformité</para></listitem>
+<listitem><para>
+Licence</para></listitem>
+</itemizedlist>
+<para></para>
+<para>L&apos;évaluation de la qualité du code est forcément assez subjective, mais on s&apos;est attaché à vérifié que ce dernier semblant clair, c&apos;est à dire qu&apos;on comprends rapidement son fonctionnement global, et bien sûr qu&apos;il est documenté.</para>
+<para></para>
+<para>L&apos;extensibilité est évalué par la possibilité ou non d&apos;enrichir le comportement classique du programme et dans quelle mesure cette extension peut éviter de trop s&apos; immiscer dans le code d&apos;origine.</para>
+<para></para>
+<para>La robustesse d&apos;un programme est directement proportionnelle à son degré d&apos;utilisation ainsi qu&apos;à son âge, ainsi les programmes reconnus et utilisés dans de nombreux projets pourront être qualifiés comme stable tandis que des programmes jeunes, encore &quot;expérimentaux&quot; ne le seront pas.</para>
+<para>La conformité d&apos;un programme de traitement Xslt est testée sur des exemples de traitements sur des données relativement importantes, telles que des rapports au format docbook traités avec les feuilles de style (quelques peut alambiquées) de Norman Walsh.  Le résultat sera comparé avec celui de référence, ici on considèrera que le résultat de référence est celui du programme xsltproc. Par la même occasion on pourra tester les performances. </para>
+<para>Enfin la licence, il s&apos;agit d&apos;augmenter un programme, de l&apos;enrichir, par conséquent il faut tout d&apos;abord en avoir l&apos;autorisation. De plus on cherchera à évaluer par ce biais les possibilités de ré-utilisation du programme modifié dans d&apos;autres projets.</para>
+
+</section>
+
+<section id="LibXslt_et_xsltproc" ><title>
+LibXslt et xsltproc</title>
+<para>&quot;xsltproc&quot; est probablement le programme le plus répandu lorsqu&apos;il s&apos;agit de traiter via XSLT sur les plateformes venant du monde Unix. Le programme utilise la  bibliothèque de fonctions &quot;libxslt&quot; elle même reposant largement sur &quot;libxml&quot;: réalisée en langage C, elle est extrêmement robuste et est utilisée dans de nombreux projets. Elle fait partie du projet GNOME.</para>
+<para>La qualité du code source est satisfaisante, les fonctions sont  quasiment toutes documentées. </para>
+<para>La licence du projet n&apos;est pas la licence GPL ou même LGPL, elle est encore moins restrictive et permet de réutiliser ce projet sous n&apos;importe quelles conditions.</para>
+<para>Du fait du langage C, l&apos;extensibilité de cette librairie est toutefois limitée, on peut assez difficilement inculquer un nouveau comportement sans avoir à modifier de nombreuses parties du code source.</para>
+
+</section>
+
+<section id="PyXml" ><title>
+PyXml</title>
+<para>PyXml est un module Python permettant le traitement de données de type XML. A terme ce module devrait augmenter le module de la distribution standard de python. Il offre entre autres des API telles que Dom, Sax ou encore minidom.</para>
+<para>Ce module dispose d&apos;un sous-module de traitement Xslt, cependant ce dernier n&apos;est en réalité qu&apos;une colle logicielle (&quot;binding&quot;) vers la libxslt en langage C.</para>
+<para>Cependant dans les dernières versions de PyXml on trouve une implémentation native en Python du support Xslt. Le résultat est encore très instable et incomplet. Cette fonctionnalité est à l&apos;heure qu&apos;il est qualifiée d&apos; expérimentale et ne devrait donc pas être utilisée.</para>
+
+</section>
+
+<section id="4Xslt_de_4Suite" ><title>
+4Xslt de 4Suite</title>
+<para>4suite est un module de traitement XML, qui à l&apos;instar de PyXml est en Python. Il propose de nombreuses API qui vont du support dom, sax et minidom à celui de relax-ng ou du RDF.</para>
+<para>Contrairement à l&apos;implémentation de PyXml, ici tout est réalisé de manière native en Python, sans colle logicielle.</para>
+<para>La qualité du code source est très bonne, toutes les classes sont documentées et de nombreux test unitaires ont été réalisés. Le fonctionnement de 4suite et de 4Xslt en particulier est donc assez immédiat à saisir.</para>
+<para>La robustesse du projet est difficile à évaluer, il est disponible depuis maintenant assez longtemps et est utilisé dans quelques autres projets. Il a cependant une audience moindre que la libxslt.</para>
+<para>L&apos;extensibilité est cependant excellente, du fait du langage Python, orienté objet, on peut aisément augmenter le module sans qu&apos;il y ai la moindre modification dans le code source de départ.</para>
+<para>La conformité du parser XSLT est très bonne bien que pas tout à fait similaire au document de référence. De petites différences existent. </para>
+<para>En terme de performances, si l&apos;on retranche le temps de chargement de l&apos;interpréteur Python, les performances sont tout à fais comparables à celles de xsltproc. Cela n&apos;est donné qu&apos;à titre d&apos;indication car aucun protocole de test précis n&apos;a été mis en place.</para>
+<para></para>
+<para>La licence est une licence dérivée de la licence Apache et permet donc une réutilisation du code sous la condition que l&apos;on n&apos;utilise pas les noms réservés du projet, telles que &quot;4suite&quot; ou &quot;4xslt&quot;.</para>
+<para></para>
+
+</section>
+
+<section id="Xalan_et_autres.." ><title>
+Xalan et autres..</title>
+<para>Pourquoi on en veut pas.....</para>
+
+</section>
+
+<section id="Conclusion" ><title>
+Conclusion</title>
+<para>Après avoir évaluer ces solutions notre choix se porte sur le module 4Suite, en effet il présente toutes les qualités nécessaires et le fait qu&apos;il s&apos;agisse d&apos;un langage de haut niveau va nous permettre de nous concentrer sur la problématique du projet sans s&apos;encombrer de trop de problèmes techniques.</para>
+
+</section>
+
+</chapter>
+<chapter id="Vue_globale_du_traitement_incrémental" ><title>
+Vue globale du traitement incrémental</title>
+<para>L&apos;objectif de la transformation incrémentale est de ne changer que les fragments de du document cible qu&apos;il est nécessaire de changer  lorsque le document source est mis à jour et rien d&apos;autre. </para>
+<para></para>
+<para>Au niveau des feuilles de transformation, on peut voir ça comme la sélection de toutes les instructions qu&apos;il faut ré-exécuter. Ainsi ce processus repose principalement sur l&apos;analyse des chemins XPath.</para>
+<para>Pour chacune des instructions ainsi sélectionnée il s&apos;agit dans un premier temps de rétablir son contexte d&apos;exécution, et ce de la manière la plus rapide possible.</para>
+<section id="Expressions_et_motifs" ><title>
+Expressions et motifs</title>
+
+</section>
+
+<section id="Arbre_d'execution" ><title>
+Arbre d&apos;execution</title>
+
+</section>
+
+<section id="Instructions" ><title>
+Instructions</title>
+
+</section>
+
+</chapter>
+<chapter id="Transformation_incrémentale" ><title>
+Transformation incrémentale</title>
+<section id="Règles_de_ré-évaluation" ><title>
+Règles de ré-évaluation</title>
+<section id="Sélécteur_basique" ><title>
+Sélécteur basique</title>
+
+</section>
+
+<section id="Conversion_des_expressions" ><title>
+Conversion des expressions</title>
+
+</section>
+
+<section id="Chemins_sans_prédicats_de_conversion" ><title>
+Chemins sans prédicats de conversion</title>
+
+</section>
+
+<section id="Chemins_avec_prédicats_de_conversion" ><title>
+Chemins avec prédicats de conversion</title>
+
+</section>
+
+
+</section>
+
+<section id="Re-considération_de_l'instanciation" ><title>
+Re-considération de l&apos;instanciation</title>
+<section id="Filtrage" ><title>
+Filtrage</title>
+
+</section>
+
+
+</section>
+
+</chapter>
+<chapter id="Execution_incrémentale" ><title>
+Execution incrémentale</title>
+</chapter>
+<chapter id="Conception" ><title>
+Conception</title>
+<section id="Analyse_de_4Xslt" ><title>
+Analyse de 4Xslt</title>
+<section id="Diagramme_de_classes" ><title>
+Diagramme de classes</title>
+
+</section>
+
+<section id="Fonctionnement_global" ><title>
+Fonctionnement global</title>
+<section id="Les_éléments_XSLT" ><title>
+Les éléments XSLT</title>
+<para>Tous les éléments XSLT sont modélisés par une classe donnée. Ainsi on trouve les classes &quot;NumberElement&quot;, ou encore &quot;ValueOfElement&quot;.</para>
+<para></para>
+<para>Elles héritent toutes de la classe XsltElement qui leur fourni le comportement de base type DOM.</para>
+<para>Cette classe définie de plus une méthode appelée &quot;instantiate&quot;. Cette dernière est appelée au moment de l&apos;instantiation du template sur un contexte donné.</para>
+<para>C&apos;est dans cette méthode que l&apos;on retrouvera l&apos;opération spécifique à l&apos;élément XSLT, ainsi dans la classe &quot;ValueOfElement&quot; on évaluera l&apos;expression données (selon le contexte) et on écrira le resultat de cette évaluation dans la sortie du traitement.</para>
+<para>Une objet de la classe &quot;AttributeElement&quot; va lui chercher à ajouter au noeud courant dans le resultat un attribut et sa valeur.</para>
+<para>Il est utile de préciser que dans cette méthode chaque élément à la responsabilité de lancer la méthode &quot;instantiate&quot; sur ses éléments fils.</para>
+<para></para>
+
+</section>
+
+<section id="Evaluation_des_expressions" ><title>
+Evaluation des expressions</title>
+<para>L&apos;évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise les classes suivantes :</para>
+<para></para>
+
+</section>
+
+<section id="Lecteurs_écrivains" ><title>
+Lecteurs/écrivains</title>
+<para>Les données XML source, à traiter donc, sont amenée par le biais d&apos;objets dit &quot;lecteurs&quot; (Reader).</para>
+
+</section>
+
+
+</section>
+
+<section id="Fonctionnement_sur_un_exemple" ><title>
+Fonctionnement sur un exemple</title>
+
+</section>
+
+
+</section>
+
+</chapter>
+</book>
