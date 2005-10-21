@@ -12,6 +12,11 @@
 	<!-- ===== Main Matter ===== -->
 
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-biblio.xml" />
+
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Vue_globale_du_traitement_incrémental'])" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Transformation_incrémentale'])" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Execution_incrémentale'])" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Conception'])" />
 	
 	<!-- ===== Back Matter ===== -->
 	

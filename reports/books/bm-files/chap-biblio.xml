@@ -151,7 +151,8 @@
 				</para>
 			</listitem>
 			</itemizedlist>
-
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="xpath.xml" xpointer="xpointer(//section[@id='XPath'])" />
+<!--
 			<section>
 				<title>XPath</title>
 				<para>
@@ -161,7 +162,7 @@
 					les développeurs comme un petit langage d'interrogation.
 				</para>
 			</section>
-			
+-->			
 			<section>
 				<title>XSLT</title>
 				<para>
