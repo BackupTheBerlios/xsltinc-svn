@@ -62,12 +62,15 @@
 	<xsl:param name="make.single.year.ranges" select="1"/>
 	<xsl:param name="make.year.ranges" select="1"/>
 	<xsl:param name="ulink.hyphenate" select="'​​​​​​'"/>
-	<!--<xsl:param name="hyphenate.verbatim" select="1"/>-->
+	
+	<!--
+	<xsl:param name="hyphenate.verbatim" select="1"/>
 	
 	<xsl:attribute-set name="monospace.verbatim.properties">
   	<xsl:attribute name="wrap-option">wrap</xsl:attribute>
-  	<xsl:attribute name="hyphenation-character">↩</xsl:attribute>
+  	<xsl:attribute name="hyphenation-character">%</xsl:attribute>
 	</xsl:attribute-set>
+	-->
 	
 	<xsl:attribute-set name="formal.title.properties">
   	<xsl:attribute name="font-weight">bold</xsl:attribute>

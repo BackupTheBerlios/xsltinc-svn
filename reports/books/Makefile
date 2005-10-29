@@ -40,7 +40,7 @@ $(BASENAME_TITLEPAGE_TEMPLATE).xsl: $(BASENAME_TITLEPAGE_TEMPLATE).xml
 	$(XSLT_ENGINE) --output $@ $(XSL_FO) $<
 
 %.pdf: %.fo
-	$(FO_ENGINE) -fo $< -pdf $(DIRNAME_OUTPUT)/$@ | grep -v "not implemented"
+	$(FO_ENGINE) -fo $< -pdf $(DIRNAME_OUTPUT)/$@
 
 clean:
 	@rm -f $(BASENAME_TITLEPAGE_TEMPLATE).xsl
