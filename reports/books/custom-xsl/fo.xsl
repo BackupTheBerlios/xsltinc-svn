@@ -100,6 +100,8 @@
   	<xsl:attribute name="padding">0.1cm</xsl:attribute>
 	</xsl:attribute-set>	
 	
+	<xsl:param name="header.column.widths">0 1 0</xsl:param>
+	
 	<xsl:param name="formal.title.placement">
 		figure after
 		example after
