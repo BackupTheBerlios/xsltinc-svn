@@ -1,5 +1,85 @@
-<chapter id="Recherche_documentaire" ><title>
-Recherche documentaire</title>
+﻿<chapter id="Recherche_documentaire" >
+	<title>Recherche documentaire</title>
+	
+	<para>
+		Dans ce chapitre nous allons détailler les différents aspects techniques et technologiques ayant trait à notre projet. Nous nous efforcerons à expliquer chaque point complexe et chaque acronyme. En cas d'oubli pour les acronymes, nous invitons le lecteur à se référer à la <xref linkend="glossary" xrefstyle="template:section %t page %p"/>.
+	</para>
+	
+	<section>
+		<title>Les technologies du W3C</title>
+	
+		<para>
+			Le W3C<footnote><para>World Wide Web Consortium.</para></footnote> n'est pas un orgnanisme officiel ; il ne peut donc prétendre éditer des normes ou des standards. C'est pourquoi un document final du W3C est appelé <emphasis>Recommendation</emphasis>, terme qui peut sembler un peu bizarre au premier abord. Mais une <emphasis>Recommendation</emphasis> du W3C n'a rien à voir avec un recueil de conseils, et c'est un document qui équivaut de fait à un standard, rédigé dans le style classique des spécifications. Dans toute la suite, nous parlerons néanmoins de standards XML et XSLT, même si ce ne sont pas des standards au sens officiel du terme.
+		</para>
+	
+		<section>
+			<title>eXtensible Markup Language, XML</title>
+			<para>
+				Défini par le W3C, le XML permet de définir ses propres formats de données. C'est pour cela que l'on considère plutôt le XML comme un méta-langage permettant de définir des nouveaux langages, ou dialectes. Les développeurs peuvent alors stocker des informations en toute liberté. De cette dernière aurait pu naître une confusion encore plus grande qu'elle ne l'était déjà, mais des langages permettant de décrire la structure d'un document XML ont été  repris, comme les DTDs (Document Type Definition) ou créé de toute pièce comme le XML Schema. Ainsi, des applications hétérogènes peuvent communiquer avec un format parfaitement adapté aux données qu'elles échangent en se mettant d'accord sur le langage utilisé.
+			</para>
+			<para>
+				Le XML est un langage extensible utilisant des balises. Il n'utilise que du texte brute généralement encodé au format Unicode<footnote><para>Unicode est un standard informatique développé par le Consortium Unicode qui vise à donner à tout caractère de n'importe quel système d'écriture de langue un identifiant numérique, et ce de manière unifiée, quelle que soit la plate-forme informatique ou le logiciel.</para></footnote>. La  structure d'un document XML est hiérarchique et arborescente et est donc aussi facilement interprétable par un humain que par un programme informatique. La particularité qui fais de XML un langage d'échange universel est son dépendance vis-à-vis des plates-formes matérielles, des systèmes d'exploitations, des langages qui l'utilisent et des protocoles qui le transportent. Ce caractère lui a permis de grandement se développer des les technologies web où règne l'hétérogénéité.
+			</para>
+			<para>Le XML est né du SGML (Standard Generalized Markup Language) et HTML (HyperText Markup Language). Il reprit les meilleurs idées de chacun de ces langages. Le SGML, apparu en 1986, était très complet et lourd. Il était destiné aux grands systèmes de gestion documentaires et à l'impression. De plus, cette n'époque n'était pas encore très souciante de la question du multisupport. Le HTML quant à lui est destiné à la publication en ligne sur l'internet. Son système de balisage concerne essentiellement la mise en forme (gras, italique, couleurs...). Le HTML a pour avantage d'être léger et souple mais aussi d'apporter la possibilité de naviguer à l'intérieur et à l'extérieur des documents grâce aux liens et aux ancres.
+			</para>
+			<para>
+				Bien que très utilisés, ces deux langages n'en restaient pas moins très spécialisés, le premier à l'impression, le second à la publication en ligne. Il fallait de ce fait déterminer à l'avance ce que l'on voulait faire d'un document : l'imprimer ou le rendre accessible sur l'internet. Si l'on voulait changer de medium, il fallait réaliser des adaptations lourdes et coûteuses.
+			</para>
+			<para>
+				Aujourd'hui, le multi-support est devenu commun : on imprime dans différents formats en fonction du client, on diffuse sur l'internet et on créé des résumés pour les bases documentaires. Comment faire alors pour ne pas avoir multiplier le fond d'un document tout en ayant plusieurs formes ? XML est né de ce désir de disposer d'un texte structuré sémantiquement qui permette facilement ensuite de le publier sur différents media. La mise en forme en elle-même est réalisée par des feuilles de style CSS (Cascading Style Sheet) ou XSL (eXtensible Stylesheet Language). Cela implique tout de même quelques contraintes, notamment que la sémantique autour des données soit assez poussée pour effectuer de tels traitements. Un exemple [<xref linkend="exHTML" xrefstyle="select:label"/>] vaut mieux qu'un long discours.
+			</para>
+			<example id="exHTML">
+				<title>Un exemple basique en HTML</title>
+				<programlisting><![CDATA[<i>Camelia sinensis</i>]]></programlisting>
+			</example>
+			<para>La balise <![CDATA[<i>]]> met le texte en italique. En XML, on essaierai plutôt de mettre du sens sur ce terme afin de le formatter en conséquence [<xref linkend="exXML1" xrefstyle="select:label"/>], ou mieux encore, en utilisant des attributs [<xref linkend="exXML2" xrefstyle="select:label"/>].
+			</para>
+			<example id="exXML1">
+				<title>Un exemple basique en XML</title>
+				<programlisting><![CDATA[<nom-botanique-latin>
+  Camelia sinensis
+</nom-botanique-latin>]]></programlisting>
+			</example>
+			<example id="exXML2">
+				<title>Un exemple avec des attributs en XML</title>
+				<programlisting><![CDATA[<nom domaine="botanique" langue="latin">
+  Camelia sinensis
+</nom>]]></programlisting>
+			</example>
+			<para>
+				Dans ce dernier exemple, une feuille de style XSL pourra transformer le document XML en HTML en précisant que tous les noms de botanique latin doivent être en italique. D'une part il sera possible de changer <foreignphrase>a posteriori</foreignphrase> cette mise en forme puisqu'elle se base sur la sémantique du document XML et d'autre part de donner un autre aspect (caractères gras et rouge) lors d'une autre transformation, en PDF<footnote><para>Portable Document Format (traduit littéralement par "format portable de documents"), est un format de fichier informatique créé par la société Adobe Systems.</para></footnote>.
+			</para>
+			<para>
+				Il n'est pas question ici d'alourdir le document, de noyer les informations, mais de rajouter de la sémantique plutôt que mettre le terme en simple italique. Il s'agit de pouvoir envisager la forme qu'au moment de la publication et de pouvoir retrouver rapidement des données dans le texte. Ainsi, si le texte doit être traduit dans une autre langue, nous aurons l'avantage de savoir que ce terme est latin et qu'il ne se traduit donc pas.
+			</para>
+		</section>
+	
+		<section>
+			<title>XSL</title>
+			<para>
+				XSL (eXtensible Stylesheet Language) est le langage de description de feuilles de style du W3C associé à XML. Une feuille de style XSL est un fichier qui décrit comment doivent être présentés (c'est-à-dire affichés, imprimés, épelés…) les documents XML basés sur une même DTD ou un même schéma. La spécification est divisée en trois parties :
+			</para>
+			
+			<itemizedlist>
+			<listitem>
+				<para>
+					<emphasis role="strong">XPath</emphasis>, le langage de navigation 
+					dans un document XML.
+				</para>
+			</listitem>			
+			<listitem>
+				<para>
+					<emphasis role="strong">XSLT</emphasis>, le langage de transformation.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<emphasis role="strong">XSL-FO</emphasis>, le vocabulaire XML de mise 
+					en forme (non détaillé dans ce document).
+				</para>
+			</listitem>
+			</itemizedlist>
+			
 <section id="XPath" ><title>
 XPath</title>
 <section id="Introduction" ><title>
@@ -46,7 +126,15 @@ Les noeuds d&apos;instructions de traitement</para></listitem>
 Les noeuds de commentaires</para></listitem>
 </itemizedlist>
 <para>Ainsi dans l&apos;exemple suivant :</para>
-<para><programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;&lt;bookstore&gt;&lt;book&gt;&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;&lt;author&gt;J K. Rowling&lt;/author&gt;&lt;year&gt;2005&lt;/year&gt;&lt;price&gt;29.99&lt;/price&gt;&lt;/book&gt;&lt;/bookstore&gt;</programlisting></para>
+<para><programlisting><![CDATA[<?xml version="1.0" encoding="ISO-8859-1"?>
+<bookstore>
+  <book>
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <year>2005</year>
+    <price>29.99</price>
+  </book>
+</bookstore>]]></programlisting></para>
 <para>Le noeud racine est &quot;&lt;bookstore&gt;&quot;, &quot;&lt;author&gt;J K. Rowling&lt;/author&gt;&quot; est un noeud d&apos;élément et &quot;lang=&quot;en&quot;&quot; un noeud d&apos;attribut.</para>
 
 </section>
@@ -215,9 +303,20 @@ La syntaxe réduite</title>
 
 </section>
 
-
 </section>
 
+			<section>
+				<title>XSLT</title>
+				<para>
+					XSLT (eXtended Stylesheet Language Transformations), défini au sein de la recommandation XSL du W3C, est un langage de transformation XML de type fonctionnel. L'objectif principal est la transformation d'un document XML vers un autre, ou un dialecte XML (XHTML, XSL-FO, HTML, etc.). Cependant, le langage XSLT permet aussi les transformations vers tout autre type de document, au format texte ou dans un format binaire (bien que ceci ne soit pas nativement prévu par la recommandation XSLT). XSLT s'appuie sur XPath (une autre partie de la recommandation XSL) pour désigner une partie d'un arbre XML. XSLT est lui-même un dialecte XML. Un programme XSLT est donc, avant tout, un document XML.
+				</para>
+				<para>
+	 				Le standard XSLT 1.0 est <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath (cf. <xref linkend="exHTML" xrefstyle="select:label"/>)
+				</para>
+			</section>
+	
+		</section>
+	</section>
 
 </section>
 
