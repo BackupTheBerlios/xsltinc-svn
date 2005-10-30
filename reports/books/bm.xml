@@ -11,14 +11,16 @@
 
 	<!-- ===== Main Matter ===== -->
 
-	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-intro.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Introduction.xml" />
 
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Recherche_documentaire.xml"/>
 
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Vue_generale_du_traitement_incremental.xml" />
 
+<!--
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Transformation_incrémentale'])" />
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/xpath.xml" xpointer="xpointer(//chapter[@id='Execution_incrémentale'])" />
+-->
 
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Conception.xml"/>
 	
