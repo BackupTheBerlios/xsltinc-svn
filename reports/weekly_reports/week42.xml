@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="42" startdate="17/10/2005" stopdate="23/10/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+
+	</done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+
+  </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>
