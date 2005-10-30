@@ -166,7 +166,7 @@ self : le noeud courant.</para></listitem>
 </itemizedlist>
 <figure>
 <title>Axe XPath - ancêtres</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="pics/pic-33.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-33.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/xpath-axe.png-->
 <!--pic-33.png-->
 </imageobject></mediaobject> </figure>
@@ -178,7 +178,7 @@ Les tests de noeuds</title>
 <para>Le test de noeud spécifie le type du noeud et le nom des noeuds obtenus par l&apos;étape de localisation.</para>
 <figure>
 <title>XPath - Test de noeud &quot;Person&quot;</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="pics/pic-34.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-34.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/xpath-nodetype.png-->
 <!--pic-34.png-->
 </imageobject></mediaobject> </figure>

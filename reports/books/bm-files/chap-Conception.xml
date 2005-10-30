@@ -6,7 +6,7 @@ Analyse de 4Xslt</title>
 Vue logique</title>
 <figure>
 <title>Diagramme de classe - Les éléments XSLT</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="pics/pic-39.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-39.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/classDiagramElements.png-->
 <!--pic-39.png-->
 </imageobject></mediaobject> </figure>
@@ -17,7 +17,7 @@ Vue logique</title>
 Fonctionnement global</title>
 <figure>
 <title>Diagramme de séquence - Processus d&apos;instantiation</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="pics/pic-40.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-40.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/seqDiagramInstantiate.png-->
 <!--pic-40.png-->
 </imageobject></mediaobject> </figure>
