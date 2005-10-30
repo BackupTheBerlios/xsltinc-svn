@@ -1,0 +1,73 @@
+<chapter id="Vue_generale_du_traitement_incremental" ><title>
+Vue générale du traitement incrémental</title>
+<para>L&apos;objectif de la transformation incrémentale est de ne changer que les fragments de du document cible qu&apos;il est nécessaire de changer  lorsque le document source est mis à jour et rien d&apos;autre. </para>
+<para>Au niveau des feuilles de transformation, on peut voir ça comme la sélection de toutes les instructions qu&apos;il faut ré-exécuter. Ainsi ce processus repose principalement sur l&apos;analyse des chemins XPath.</para>
+<para>Pour chacune des instructions ainsi sélectionnée il s&apos;agit dans un premier temps de rétablir son contexte d&apos;exécution, et ce de la manière la plus rapide possible. Dans cet optique il va falloir définir les données minimales nécessaires à la ré-execution de la transformation.</para>
+<section id="Expressions_et_motifs" ><title>
+Expressions et motifs</title>
+<para>Dans le langage XSLT, un certain nombre d&apos;instructions utilisent des expressions exprimées dans des attributs. Ces expressions sont généralement composées d&apos;une ou plusieurs sous expressions de chemin</para>
+<para>Quand cette expression est évaluée, on obtient un ensemble de noeuds issus du document source.  Ainsi par exemple, l&apos;expression &quot;persons/person&quot; renvoie, lorsqu&apos;elle est évaluée, un ensemble de noeuds &quot;person&quot; qui ont tous comme parent un noeud de type &quot;persons&quot;.</para>
+<para>L&apos;évaluation de telles expressions dépend d&apos;un contexte statique mais aussi d&apos;un contexte dynamique. Dans le cas de la transformation incrémentale, il n&apos;est nécessaire de restaurer que le contexte dynamique à chaque fois que l&apos;on exécute une instruction. Ce contexte dépend de l&apos;état du processeur au moment où l&apos;expression est évaluée, il est composé de :</para>
+<itemizedlist>
+<listitem><para>
+la valeur courante de toutes les variables présentes dans la portée de l&apos;expression</para></listitem>
+<listitem><para>
+le noeud courant, c&apos;est le noeud du document source qui est en train d&apos;être traité.</para></listitem>
+<listitem><para>
+la liste des noeuds courants, nécessaire lorsqu&apos;une instruction &quot;apply-templates&quot; ou &quot;for-each&quot; est utilisée pour traiter une liste de noeuds.</para></listitem>
+<listitem><para>
+la position courante qui indique la position du noeud courant dans la liste des noeuds courants.</para></listitem>
+</itemizedlist>
+<para>La syntaxe des expression est également utilisée afin de définir les &quot;motifs&quot;. Un motif est une expression qui respecte certaines contraintes :</para>
+<itemizedlist>
+<listitem><para>
+son évaluation doit donner un ensemble de noeud pour résultat</para></listitem>
+<listitem><para>
+seuls les axes &quot;child&quot; et &quot;attribute&quot; sont permis</para></listitem>
+</itemizedlist>
+<para>Pendant une session incrémentale, les instruction qu&apos;il faut ré-évaluer sont celles qui utilisent une expression dont la valeur a pu changer. En particulier cela peut arriver lorsqu&apos;un attribut est modifié dans le document source. Dans le cas général la valeur d&apos;une expression peut changer soit parce que son contexte d&apos;évaluation a changé et/ou le résultat des chemins de l&apos;expression ont changés. Par exemple l&apos;instruction</para>
+<para>&lt;programlisting&gt;&lt;xsl:value-of select=”position()”&gt;&lt;/programlisting&gt;</para>
+<para>doit être ré-évaluée lorsque la position du noeud courant change. Cela peut arriver lorsque l&apos;on supprime ou que l&apos;on ajoute une section avant le noeud courant.</para>
+<para>Comme il est indiqué plus tôt, une expression de chemin sélectionne un ensemble de noeuds, dans la plupart des cas, les types de noeuds inclus dans cet ensemble peuvent être déterminés sans connaître le contexte dynamique. Par exemple le résultat d&apos;une expression &quot;article/section&quot; dépend uniquement des éléments de type articles et section. On peut utiliser cette propriété afin de réaliser un premier filtrage qui enlève les instructions n&apos;ayant pas besoin d&apos;être ré-évaluées.</para>
+<para>En fait les noeuds de l&apos;ensemble sélectionné correspondent à un motif particulier. Ce motif est déduit de l&apos;expression de chemin. Lorsque l&apos;on détermine ce motif il est indispensable d&apos;y enlever toute référence à des éléments du contexte dynamique.</para>
+
+</section>
+
+<section id="Instructions" ><title>
+Instructions</title>
+<para>Durant une session de transformation incrémentale, il est nécessaire de restaurer le contexte dynamique afin de ré-exécuter les règles qui prendront alors compte des modifications. Le contexte du document cible doit également être restauré.</para>
+<para>Afin de comprendre comment les différentes instructions XSLT affectent le processus, elles ont été classées en différentes catégories. </para>
+<para>Les instructions globales telles que &quot;attribute-set&quot; ou encore &quot;namespace-alias&quot; sont des paramètres statiques exécutés au début de la transformation et ne dépendent pas du document source.</para>
+<para>Les instructions de modularisation (import, include, etc) définissent comment les feuilles de style sont physiquement organisées, elles ne dépendent donc pas non plus du document source.</para>
+<para>Les instructions de variables (variable, param ..) permettent de définir des variables locales ou des paramètres de templates, les variables sont une part importante du contexte du processeur. </para>
+<para>Les instructions  telles que  &quot;apply-template&quot;,&quot;for-each&quot; ou encore &quot;if&quot; permettent le contrôle de l&apos;exécution de la transformation et en particulier le choix du noeud source que l&apos;on va instancier (instruction apply-templates).</para>
+<para>Les instructions de production (value-of, element, etc) génère des fragments du document source.  Ces instructions réalisent la liaison entre la transformation et le document cible. Elles sont très utiles dans le cadre de la restauration du contexte cible.</para>
+
+</section>
+
+<section id="Arbre_d'execution" ><title>
+Arbre d&apos;execution</title>
+<para>Pendant une transformation les instructions sont exécutées séquentiellement. Ces instruction réalisent des actions et parfois vont entraîner le stockage de certaines données. </para>
+<para>L&apos;arbre d&apos;exécution est une représentation de l&apos;exécution des instructions. De nombreux systèmes ont utilisé des variantes de l&apos;arbre d&apos;exécution principalement dans le cadre de langages à effets de bord. L&apos;objectif de ces systèmes est  de fournir la possibilité de retour arrière dans l&apos;exécution d&apos;un programme, ceci dans le but de faciliter le dé-verminage de ce dernier. L&apos;utilisateur peut arrêter l&apos;exécution du programme, repartir en arrière de quelques étapes, changer des valeurs de variables puis relancer l&apos;exécution de manière incrémentale.</para>
+<para> L&apos; exécution incrémentale repose sur le traçage de l&apos;exécution du programme qui va créer des journaux d&apos;historiques ( une liste de couples (ligne, valeur des variables)). À partir de ces journaux l&apos;état de la mémoire peut être restauré et la ré-exécution est alors possible. Le problème majeur de ces système est le coût en temps machine comme en espace mémoire qui deviennent rapidement prohibitifs.</para>
+<para>Dans le contexte d&apos;une transformation, le problème varie selon plusieurs aspects:</para>
+<itemizedlist>
+<listitem><para>
+L&apos;exécution de la transformation est limitée. La taille de l&apos;historique est alors bien plus faible.</para></listitem>
+<listitem><para>
+Le langage est sans effet de bords, on peut alors se permettre de ne pas stocker tout l&apos;historique. La restauration du contexte dynamique peut alors être facilement et rapidement obtenu.</para></listitem>
+<listitem><para>
+La transformation incrémentale prend place après qu&apos;une transformation complète et entière ai d&apos;abord eue lieu.</para></listitem>
+<listitem><para>
+La modification des feuilles de transformation pendant la session incrémentale est possible ou non.</para></listitem>
+</itemizedlist>
+<para>Quand l&apos;utilisateur commence une session de transformation, l&apos;arbre d&apos;exécution peut être créé dans une premier temps (sans vraiment réaliser l&apos;exécution). Afin de mettre à jour de manière incrémentale le document source ou la feuille de transformation, nous devons d&apos;abord déterminer ce qu&apos;il est nécessaire de stocker dans cet arbre.</para>
+<para>Si l&apos;on stock toutes les évaluation d&apos;expressions, la feuille instantiée pour un noeud source et les liens vers le document cible demande une énorme quantité de mémoire.</para>
+<para>Après une opération d&apos;édition, certaines instructions doivent être ré-exécutées pour un noeud source donné. Si nous supposons que le processeur est capable de déterminer cet ensemble d&apos;instructions, les exécuter nécessite le contexte minimal du processeur ainsi que le contexte cible. Afin de retrouver le contexte minimal du processeur et le contexte cible nous devons parcourir l&apos;arbre d&apos;exécution.</para>
+<para>L&apos;arbre d&apos;exécution est composé de noeuds d&apos;exécution. Les noeuds contiennent la valeur de l&apos;expression qui leur est associée. Par exemple le noeud &apos;apply-templates&quot; a comme fils directs des noeuds de type &quot;template&quot; Ces derniers sont liés à des noeuds du document source. Ainsi, à partir du noeud &apos;apply-template&apos; on peut retrouver les noeuds sources qui compose la liste des noeuds présente dans le contexte.</para>
+<para>Les noeuds de production contiennent des données liées au document cible. Ces données servirons à restaurer le contexte cible. Par exemple, l&apos;instruction &quot;element&quot; à un lien vers l&apos;élément qu&apos;elle génère. Pour un producteur de caractère, tel qu&apos;une instruction &quot;value-of&quot; seul le nombre de caractères générés doit être stocké. </para>
+<para>La structure de donnée présentée ici permet d&apos;avoir à tout instant d&apos;une session de transformation incrémentale les contextes sources ou cibles.Il faut tout de même ajouter quelques traitements supplémentaires afin de restaurer les valeurs de variables.</para>
+
+</section>
+
+</chapter>
