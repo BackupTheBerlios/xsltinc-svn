@@ -130,25 +130,24 @@
 	<!-- Fin de la section bibliographie conférences -->
 	
 	<bibliodiv>
-		<title>Thèses</title>
+		<title>Thèses et articles</title>
 
-<!-- 
-		<biblioentry id="breton2002">
-			<abbrev>Breton2002</abbrev>
+
+		<biblioentry id="ped2003">
+			<abbrev>PED2003</abbrev>
 			<authorgroup>
-				<author><firstname>Breton</firstname><surname>Erwan</surname></author>
+				<author><firstname>Pédauque</firstname><surname>Roger T.</surname></author>
 			</authorgroup>
 			<confgroup>
-				<confdates>24 juin 2002</confdates>
-				<conftitle>Thèse de doctorat</conftitle>
-				<confnum></confnum>
-				<address>Nantes</address>
+				<confdates>8 juillet 2003</confdates>
+				<conftitle>Working Paper</conftitle>
 			</confgroup>
-			<affiliation>Université de Nantes</affiliation>
-			<title>Contribution à la représentation de processus par des techniques de méta-modélisation</title>
-			<bibliomisc>Disponible sur : <ulink url="http://www.sciences.univ-nantes.fr/lina/atl/publications/pub2002/Thesis and presentation, Erwan Breton/" /></bibliomisc>
+			<affiliation>STIC-CNRS</affiliation>
+			<title>Document : forme, signe et médium, les re-formulations du numérique</title>
+			<bibliomisc>Disponible sur : <ulink url="http://archivesic.ccsd.cnrs.fr/sic_00000511.html" /></bibliomisc>
 		</biblioentry>
-
+		
+<!-- 
 		<biblioentry id="marvie2002">
 			<abbrev>Marvie2002</abbrev>
 			<authorgroup>

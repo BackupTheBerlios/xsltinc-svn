@@ -1,9 +1,43 @@
-﻿<chapter id="Recherche_documentaire" >
-	<title>Recherche documentaire</title>
+﻿<chapter id="Du_document_traditionnel_au_XML" >
+	<title>Du document traditionnel au XML</title>
 	
 	<para>
 		Dans ce chapitre nous allons détailler les différents aspects techniques et technologiques ayant trait à notre projet. Nous nous efforcerons à expliquer chaque point complexe et chaque acronyme. En cas d'oubli pour les acronymes, nous invitons le lecteur à se référer à la <xref linkend="glossary" xrefstyle="template:section %t page %p"/>.
 	</para>
+	
+	<section>
+		<title>Notion de documents</title>
+		
+		<para>
+			Dans son acception courante, un document est généralement défini comme le support physique d'une information. Ceci est une description naïve d'un document mais elle permet de poser de bonnes question. Lorsque nous evoquons la notion de document, parlons nous du support, du contenu ou de la forme ? De récents travaux pluridisciplinaire <xref linkend="ped2003"/> ont tenté de définir plus précisément cette notion selon trois axes qui correspondent chacun à un domaine de l'étude de documents : 
+		</para>
+		
+		<itemizedlist>
+			<listitem>
+				<para>
+					<emphasis role="strong">Le document comme forme</emphasis> concerne les approches qui considèrent le document comme un objet, materiel ou non et qui en étudient la structure pour mieux l'analyser, l'utiliser ou le manipuler.
+				</para>
+			</listitem>			
+			<listitem>
+				<para>
+					<emphasis role="strong">Le document comme signe</emphasis> concerne les personnes prenant le document comme porteur de sens et doté d'une intentionnalité.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<emphasis role="strong">Le document comme medium</emphasis> ; cette dimension pose la question du statut du document dans les relations sociales. 
+				</para>
+			</listitem>
+			</itemizedlist>
+			
+			<para>
+				Il est évident que nous n'allons pas expliquer chacun de ces axes. Le dernier en particulier concerne surtout les sciences humaines et est hors de propos dans ce rapport. Le premier est indéniablement lié à notre sujet puisque nous allons passer notre temps à manipuler des documents dans leur forme et c'est donc cet axe ci que nous allons approfondir.
+			</para>
+			
+			<section>
+				<title></title>
+			</section>
+	</section>
 	
 	<section>
 		<title>Les technologies du W3C</title>

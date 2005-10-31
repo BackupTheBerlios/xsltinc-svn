@@ -61,10 +61,10 @@ transformation déjà appliquée en tirant partie de son exécution précédente
 			<title>Optimisation de l'expérience utilisateur</title>
 			
 			<para>
-				Dans le contexte de traitements de documents textuels, il est bien souvent interressant et tentant de modifier le document cible que le document source. Par exemple, changer la mise en page d'un document HTML est plus tentante que de modifier la feuille de transformation qui l'a générée à partir d'un document DocBook.
+				Dans le contexte de traitements de documents textuels, il est bien souvent interressant et tentant de modifier le document cible que le document source. Par exemple, changer la mise en page d'un document HTML est plus tentante que de modifier le document DocBook, par exemple, à partir duquel il a été généré.
 			</para>
 			<para>
-				Les langages de transformations de document XML comme XSLT ne prennent pas en compte cette dimension et cela peut se révéler frustrant. Notre but sera de fournir un processeur qui, dans les cas déterministes, repercutera les changements du document cible dans le document source.
+				Les langages de transformations de documents XML comme XSLT ne prennent pas en compte cette dimension et cela peut se révéler frustrant. Notre but sera de fournir un processeur qui, dans les cas déterministes, repercutera les changements du document cible dans le document source.
 			</para>
 		</section>
 
