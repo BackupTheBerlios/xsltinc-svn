@@ -1,0 +1,40 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<chapter id="Transformations_XML" >
+	<title>Transformations XML</title>
+	<!-- cf. these Geneves -->
+	<para>
+	
+	</para>
+	
+	<section>
+		<title>Problématique</title>
+		<para>
+		<!-- traitement de document -> plusieurs formes pour un fond (editorial, Airbus, NASDAQ...) -->
+		</para>
+	</section>
+	
+	<section>
+		<title>Principe</title>
+		<para>
+		<!-- 
+		- D'un arbre à un autre arbre 
+		- Differentes classes de transfo :
+			- en bloc, classique comme XSLT
+			- en streaming
+			- incrementale
+			- inversible ? ad-hoc ou generique ? possible ou pas ?
+		-->
+		</para>
+	</section>	
+	
+	<section>
+		<title>Exemple</title>
+		<para>
+		
+		</para>
+	</section>
+	
+</chapter>
