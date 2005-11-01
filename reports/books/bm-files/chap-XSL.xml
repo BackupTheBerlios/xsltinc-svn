@@ -265,7 +265,7 @@ La syntaxe réduite</title>
 				XSLT (eXtended Stylesheet Language Transformations), défini au sein de la recommandation XSL du W3C, est un langage de transformation XML de type fonctionnel. L'objectif principal est la transformation d'un document XML vers un autre, ou un dialecte XML (XHTML, XSL-FO, HTML, etc.). Cependant, le langage XSLT permet aussi les transformations vers tout autre type de document, au format texte ou dans un format binaire (bien que ceci ne soit pas nativement prévu par la recommandation XSLT). XSLT s'appuie sur XPath (une autre partie de la recommandation XSL) pour désigner une partie d'un arbre XML. XSLT est lui-même un dialecte XML. Un programme XSLT est donc, avant tout, un document XML.
 			</para>
 			<para>
-	 			Le standard XSLT 1.0 est <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath (cf. <xref linkend="exHTML" xrefstyle="select:label"/>)
+	 			Le standard XSLT 1.0 est <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath (cf. <!--<xref linkend="" xrefstyle="select:label"/>-->)
 			</para>
 		</section>
 

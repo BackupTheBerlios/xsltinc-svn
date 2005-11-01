@@ -6,14 +6,20 @@
 	<title>Du document traditionnel au XML</title>
 	
 	<para>
-		Dans ce chapitre nous allons détailler les différents aspects techniques et technologiques ayant trait à notre projet. Nous nous efforcerons à expliquer chaque point complexe et chaque acronyme. En cas d'oubli pour les acronymes, nous invitons le lecteur à se référer à la <xref linkend="glossary" xrefstyle="template:section %t page %p"/>.
+		Dans ce premier chapitre nous allons rappeler la notion de document puisqu'elle constitue notre base de travail. En effet, les transformations que nous voulons rendre incrémentales s'appliquent à des documents XML et nous avons jugé opportun d'en faire une étude un peu détaché du contexte informatique et ainsi dégagé nos problématiques.
 	</para>
+	
+	<para>
+		Nos allons donc d'abord aborder la notion de documents dans sa vision pluridisciplinaire ainsi que son évolution. A partir de ce cadrage de la notion de documents, nous étudierons la technologie pivot de notre travail, à savoir le XML.
+	</para>
+	
+	<!-- <xref linkend="glossary" xrefstyle="template:section %t page %p"/> -->
 	
 	<section>
 		<title>Notion de documents</title>
 		
 		<para>
-			Dans son acception courante, un document est généralement défini comme le support physique d'une information. Ceci est une description naïve d'un document mais elle permet de poser de bonnes question. Lorsque nous evoquons la notion de document, parlons nous du support, du contenu ou de la forme ? De récents travaux pluridisciplinaire <xref linkend="ped2003"/> ont tenté de définir plus précisément cette notion selon trois axes qui correspondent chacun à un domaine de l'étude de documents : 
+			Dans son acception courante, un document est généralement défini comme le support physique d'une information. Ceci est une description naïve d'un document mais elle permet de poser de bonnes questions. Lorsque nous évoquons la notion de document, parlons nous du support, du contenu ou de la forme ? Il hérite étymologiquement du latin <foreignphrase>documentum</foreignphrase> qui signifie <quote>qui sert à instruire</quote>. Aujourd'huin, cette définition n'est plus suffisante et de récents travaux pluridisciplinaire <xref linkend="ped2003"/> ont tenté de définir plus précisément cette notion selon trois axes qui correspondent chacun à un domaine de l'étude de documents : 
 		</para>
 		
 		<itemizedlist>
@@ -39,58 +45,231 @@
 			</para>
 			
 			<section>
-				<title></title>
+				<title>Le document comme forme</title>
+				<para>
+					Tout d'abord entendons nous sur le terme de <quote>forme</quote>. Il peut en effet prêté à confusion. Il est ici employé dans le sens de <quote>contour</quote>, c'est à dire dont on connait les limites. L'approche est donc de considérer le document comme un objet ou une inscription sur un objet et qui est régie par des règles qui le constituent. Dans cette vision, le document est un objet de communication soumis à des règles et qui matérialise un contrat de leture entre un producteur et un lecteur. Appliqué au domaine informatique, cette vue à été définie comme suit <xref linkend="qui1987"/> <xref linkend="roi1999"/> :
+				</para>
+				
+				<blockquote>
+					<para>
+						<quote><emphasis>Le document désigne un ensemble cohérent et fini, d'informations plus ou moins structurées, perceptibles, à usage défini et représenté sur un support concret.</emphasis></quote>
+					</para>
+				</blockquote>
+				
+				<para>
+					Insistons sur deux points de cette définition. Tout d'abord la notion d'<quote>usage défini</quote> d'un document et de cohérence. Ceci implique qu'un document est défini dans un cadre, obéissent à des contraintes et peuvent-être regroupé en familles appelées <emphasis>modèles</emphasis>. Ensuite, l'aspect de perceptibilité d'un document, s'inscrivant dans le contrat lecture cité plus haut est l'autre point à souligner. En effet, la perception d'un document s'effectue par une représentation visuelle et graphique de celui-ci. Ceci sous-entend qu'il y une différence entre le contenu sémantique et la restitution des dits documents. Il y a donc possibilité de remplir le contrat entre le lecteur et le producteur de différentes manières et ceci passe par la variété des représentations possibles : textuelle, sonore, tactile (braille) etc.
+				</para>
+				
+				<para>
+					La notion de document un peu plus claire ou tout du moins élaguée, nous allons maintenant montrer comment la vision de la forme des documents a évoluée afin de saisir d'en saisir plus d'aspects. 
+				</para>
 			</section>
+			
+			<section>
+				<title>Évolution de la vision des documents</title>
+				
+				<section>
+					<title>Document linéaire</title>
+					<para>
+						La première définition du document pourrait-être représenté par l'équation : document traditionnel = support + inscription. Dans ce cas, le document est vu comme des processus sériels. L'accent est mis sur un support manipulable sur lequel est fixé une trace interprétable. Il était donc logique de le représenter par un modèle linéaire qui définit ainsi un document comme un flux de données. Les limites de ce modèle apparaissent très vite puisqu'il est impossible de séparer sémantique et représentation. Des travaux sur ce problème ont été éffectué dans le domaine du génie documentaire afin de définir un modèle plus adapté et maintenant bien connu : le document structuré.
+					</para>
+				</section>
+				<section>
+					<title>Document structuré</title>
+					<para>
+						La notion de document structuré est bien connue de nos jours et les premières définitions datent du début des années 80 <xref linkend="gol1981"/>. Elle met en avant une deuxième équation : document = structure + données. Au delà de cette équation, la notion de structure introduit deux concepts fondamentaux : la <emphasis>structure logique</emphasis> du document et ce qui définit cette structure, le <emphasis>modèle de document</emphasis>.
+					</para>
+					<formalpara>
+						<title>Structure logique</title>
+						<para>
+							Un document est un structure algébrique hiérarchique composé d'un ensemble d'<emphasis>éléments</emphasis>. Ces éléments sont donc reliés par des relations hiérarchiques. De plus chacun de ces éléments peut-être caractérisé par un ou plusieurs attributs.
+						</para>
+						<para>
+							Cette hiérarchisation donne du sens aux éléments par leur position dans la hiérarchie mais aussi par leur contenu (leurs sous-éléments).
+						</para>
+					</formalpara>
+					<formalpara>
+						<title>Modèle de document</title>
+						<para>
+							Elle définit avec précision quelles sont les relations qui peuvent exister entre les éléments et quels attributs peuvent ou doivent leur être affectés. Les documents qui obéissent à un même modèle sont regroupés dans une même famille ou classe de document. Par conséquent, un modèle de document décrit un type de document et donne donc du sens à la hiérarchie d'éléments de ce type.
+						</para>
+					</formalpara>
+					<para>
+						Les documents structurés mettent donc en avant une <emphasis role="strong">séparation nette entre le contenu et la présentation</emphasis>. En effet, extraire la structure d'un document oblige à mettre de coté sa présentation et de la remonter au niveau des modèles de document. Ainsi, des règles de présentation peuvent être associées aux types d'éléments définis dans le modèle. Elles spécifient des propriétés comme 
+la police, la couleur, l’espacement etc.
+					</para>
+				</section>
+				<section>
+					<title>Document structuré hypermédia</title>
+					<para>
+						Alors que les documents structuré ne permet que des relations de type hiérarchiques, les documents structurés hypermédia rajoute la possiblité de définir des liens inter-documents que l'on définit sous le nom d'hypertexte.
+					</para>
+					<para>
+						La sémantique associé aux liens hypertextes est variée. Les sens les plus courants sont la désignation, l'exploration (comme une table des matières) et la transclusion<footnote><para>A l'origine cité dans le projet Xanadu de Ted Nelson, ce terme explique la possibilité d'inclure certaines sections ou ressources d'un autre document par référence. Un exemple actuel est une assertion XInclude caratérisé par un XPointer.</para></footnote>. 
+					</para>
+				</section>				
+				<section>
+					<title>Document balisé extensible</title>
+					<para>
+						Les derniers travaux dans le domaine du génie documentaire et du stockage numérique de l'information ont aboutis sur une normalisation pour la conception de documents structurés : eXtensible Markup Language (XML).  Il repose sur les concepts de documents structurés présentés précédemment avec en plus une optique d’uniformisation, d’interopérabilité, d’indépendance de la plateforme, d’extensibilité et de l’internationalisation de la notion de document. Cette norme sera référencée tout au long de ce mémoire et fait l’objet de la section suivante. 
+					</para>
+				</section>								
+			</section>
+			
 	</section>
 	
 	<section>
-		<title>Les technologies du W3C</title>
-	
-		<para>
-			Le W3C<footnote><para>World Wide Web Consortium.</para></footnote> n'est pas un orgnanisme officiel ; il ne peut donc prétendre éditer des normes ou des standards. C'est pourquoi un document final du W3C est appelé <emphasis>Recommendation</emphasis>, terme qui peut sembler un peu bizarre au premier abord. Mais une <emphasis>Recommendation</emphasis> du W3C n'a rien à voir avec un recueil de conseils, et c'est un document qui équivaut de fait à un standard, rédigé dans le style classique des spécifications. Dans toute la suite, nous parlerons néanmoins de standards XML et XSLT, même si ce ne sont pas des standards au sens officiel du terme.
-		</para>
+		<title>eXtensible Markup Language, XML</title>
 	
 		<section>
-			<title>eXtensible Markup Language, XML</title>
+			<title>Note au sujet du W3C</title>
 			<para>
-				Défini par le W3C, le XML permet de définir ses propres formats de données. C'est pour cela que l'on considère plutôt le XML comme un méta-langage permettant de définir des nouveaux langages, ou dialectes. Les développeurs peuvent alors stocker des informations en toute liberté. De cette dernière aurait pu naître une confusion encore plus grande qu'elle ne l'était déjà, mais des langages permettant de décrire la structure d'un document XML ont été  repris, comme les DTDs (Document Type Definition) ou créé de toute pièce comme le XML Schema. Ainsi, des applications hétérogènes peuvent communiquer avec un format parfaitement adapté aux données qu'elles échangent en se mettant d'accord sur le langage utilisé.
+				Le W3C<footnote><para>World Wide Web Consortium.</para></footnote> n'est pas un orgnanisme officiel ; il ne peut donc prétendre éditer des normes ou des standards. C'est pourquoi un document final du W3C est appelé <emphasis>Recommendation</emphasis>, terme qui peut sembler un peu bizarre au premier abord. Mais une <emphasis>Recommendation</emphasis> du W3C n'a rien à voir avec un recueil de conseils, et c'est un document qui équivaut de fait à un standard, rédigé dans le style classique des spécifications. Dans toute la suite, nous parlerons néanmoins de standards XML et XSLT, même si ce ne sont pas des standards au sens officiel du terme.
 			</para>
-			<para>
-				Le XML est un langage extensible utilisant des balises. Il n'utilise que du texte brute généralement encodé au format Unicode<footnote><para>Unicode est un standard informatique développé par le Consortium Unicode qui vise à donner à tout caractère de n'importe quel système d'écriture de langue un identifiant numérique, et ce de manière unifiée, quelle que soit la plate-forme informatique ou le logiciel.</para></footnote>. La  structure d'un document XML est hiérarchique et arborescente et est donc aussi facilement interprétable par un humain que par un programme informatique. La particularité qui fais de XML un langage d'échange universel est son dépendance vis-à-vis des plates-formes matérielles, des systèmes d'exploitations, des langages qui l'utilisent et des protocoles qui le transportent. Ce caractère lui a permis de grandement se développer des les technologies web où règne l'hétérogénéité.
-			</para>
+		</section>
+	
+		<section>
+			<title>Historique et objectifs</title>
 			<para>Le XML est né du SGML (Standard Generalized Markup Language) et HTML (HyperText Markup Language). Il reprit les meilleurs idées de chacun de ces langages. Le SGML, apparu en 1986, était très complet et lourd. Il était destiné aux grands systèmes de gestion documentaires et à l'impression. De plus, cette n'époque n'était pas encore très souciante de la question du multisupport. Le HTML quant à lui est destiné à la publication en ligne sur l'internet. Son système de balisage concerne essentiellement la mise en forme (gras, italique, couleurs...). Le HTML a pour avantage d'être léger et souple mais aussi d'apporter la possibilité de naviguer à l'intérieur et à l'extérieur des documents grâce aux liens et aux ancres.
 			</para>
 			<para>
 				Bien que très utilisés, ces deux langages n'en restaient pas moins très spécialisés, le premier à l'impression, le second à la publication en ligne. Il fallait de ce fait déterminer à l'avance ce que l'on voulait faire d'un document : l'imprimer ou le rendre accessible sur l'internet. Si l'on voulait changer de medium, il fallait réaliser des adaptations lourdes et coûteuses.
+			</para>			
+			<para>
+				Ainsi XML a été concu. Voici les dix objectifs poursuivis pour XML, tels qu'ils figurent dans les spécifications officielles de XML, publiées sur le site du W3C :
+			</para>
+			<orderedlist>
+				<listitem>XML doit être directement utilisable sur Internet. XML a été conçu à l'origine pour le stockage et la fourniture d'informations sur le Web.</listitem>
+				<listitem>XML doit prendre en charge une grande variété d'applications Bien que son but premier ait été de délivrer des informations sur le Web via des programmes de type serveur et navigateur, XML est conçu également pour être utilisé par d'autres types de programmes.</listitem>
+				<listitem>XML doit être compatible avec SGML</listitem>
+				<listitem>Il doit être facile d'écrire des programmes pour le traitement des documents XML.</listitem>
+				<listitem>Le nombre de caractéristiques optionnelles dans XML doit être maintenu à un minimum absolu, l'idéal étant zéro</listitem>
+				<listitem>Les documents XML doivent être lisibles et clairs.</listitem>
+				<listitem>XML doit faire l'objet d'un développement rapide.</listitem>
+				<listitem>La conception de XML doit être formelle et concise.</listitem>
+				<listitem>Les documents XML doivent être faciles à créer.</listitem>
+				<listitem>La concision du marquage XML n'a qu'une importance minime</listitem>
+			</orderedlist>
+		</section>
+		
+		<section>
+			<title>Syntaxe et vue arborescente</title>
+			<para>
+				Le XML est un langage extensible utilisant des balises. Voyons en détail sa syntaxe à partir d'un exemple [<xref linkend="simpleXML" xrefstyle="select:label"/>].
+			</para>
+			
+			<example id="simpleXML">
+				<title>Un document simple en XML</title>
+				<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?> 
+2.  <annuaire> 
+3.    <personne catégorie="jedi"> 
+4.      <nom>Luke Skywalker</nom> 
+5.      <description>Un héro</description> 
+6.      <email>luke.skywalker@sw.foo</email>
+7.    </personne> 
+8.    <personne catégorie="sith"> 
+9.      <nom>Darth Maul</nom> 
+10      <description>Un apprenti du futur Empereur</description> 
+11.     <email>dm@sw.foo</email>
+12.    </personne>
+13.  </annuaire>]]></programlisting>
+			</example>
+			
+			<para>
+				Un document XML commence par un prologue composé notamment de la déclaration 
+<emphasis><![CDATA[<?xml?>]]></emphasis>. Celle-ci doit contenir le numéro de version du format XML utilisé dans le document. L’attribut encoding permet de préciser le codage de caractères utilisé pour ce document. XML utilise par défaut les jeux de caractères définis par la norme Unicode<footnote><para>Unicode est un standard informatique développé par le Consortium Unicode qui vise à donner à tout caractère de n'importe quel système d'écriture de langue un identifiant numérique, et ce de manière unifiée, quelle que soit la plate-forme informatique ou le logiciel.</para></footnote>. Ensuite, le document contient l’arbre d’éléments. Le premier élément correspond à la racine de l’arbre. Dans notre exemple c’est l’élément annuaire. Les noms d’éléments sont encadrés par des chevrons (<![CDATA[<>]]>). La balise ouvrante peut contenir des attributs spécifiés par un nom suivi de sa valeur spécifiée entre guillemets. 
+			</para>
+			
+			<para>
+				La  structure d'un document XML est hiérarchique et arborescente et est donc aussi facilement interprétable par un humain que par un programme informatique. Ainsi, il est facile de représenter visuellement un document XML sous forme d'arbre [<xref linkend="structArboXML" xrefstyle="select:label"/>]
+			</para>
+			<figure id="structArboXML">
+      	<title>Vue arborescente d'un document XML</title>
+        <mediaobject><imageobject><imagedata format="PNG" fileref="images/structArboXML.png"/></imageobject></mediaobject>
+      </figure>
+		</section>
+				
+		<section>
+			<title>Modèle de document XML</title>
+			<para>
+				Défini par le W3C, le XML permet de définir ses propres formats de données. C'est pour cela que l'on considère plutôt le XML comme un méta-langage permettant de définir des nouveaux langages, ou dialectes. Les développeurs peuvent alors stocker des informations en toute liberté. De cette dernière aurait pu naître une confusion encore plus grande qu'elle ne l'était déjà, mais des langages permettant de décrire la structure d'un document XML ont été  repris, comme les DTDs (Document Type Definition) ou créé de toute pièce comme le XML Schema ou Relax-NG. Ainsi, des applications hétérogènes peuvent communiquer avec un format parfaitement adapté aux données qu'elles échangent en se mettant d'accord sur le langage utilisé.
 			</para>
 			<para>
-				Aujourd'hui, le multi-support est devenu commun : on imprime dans différents formats en fonction du client, on diffuse sur l'internet et on créé des résumés pour les bases documentaires. Comment faire alors pour ne pas avoir multiplier le fond d'un document tout en ayant plusieurs formes ? XML est né de ce désir de disposer d'un texte structuré sémantiquement qui permette facilement ensuite de le publier sur différents media. La mise en forme en elle-même est réalisée par des feuilles de style CSS (Cascading Style Sheet) ou XSL (eXtensible Stylesheet Language). Cela implique tout de même quelques contraintes, notamment que la sémantique autour des données soit assez poussée pour effectuer de tels traitements. Un exemple [<xref linkend="exHTML" xrefstyle="select:label"/>] vaut mieux qu'un long discours.
+			  De part cette définition de schéma (au sens général du terme) XML apporte une notion essentielle, et qui n’existait pas dans SGML ; c'est la définition de deux niveaux de validité, à travers les propriétés de document bien-formé et de document valide. 
 			</para>
-			<example id="exHTML">
-				<title>Un exemple basique en HTML</title>
-				<programlisting><![CDATA[<i>Camelia sinensis</i>]]></programlisting>
-			</example>
-			<para>La balise <![CDATA[<i>]]> met le texte en italique. En XML, on essaierai plutôt de mettre du sens sur ce terme afin de le formatter en conséquence [<xref linkend="exXML1" xrefstyle="select:label"/>], ou mieux encore, en utilisant des attributs [<xref linkend="exXML2" xrefstyle="select:label"/>].
-			</para>
-			<example id="exXML1">
-				<title>Un exemple basique en XML</title>
-				<programlisting><![CDATA[<nom-botanique-latin>
-  Camelia sinensis
-</nom-botanique-latin>]]></programlisting>
-			</example>
-			<example id="exXML2">
-				<title>Un exemple avec des attributs en XML</title>
-				<programlisting><![CDATA[<nom domaine="botanique" langue="latin">
-  Camelia sinensis
-</nom>]]></programlisting>
-			</example>
+			<formalpara>
+				<title>Document bien formé</title>
+				<para>
+			 		Un document XML est bien-formé s’il respecte notamment les règles suivantes : 
+			 	</para>
+				<itemizedlist>
+					<listitem>il existe une balise englobant toutes les balises du document,</listitem>
+					<listitem>toute balise ouverte doit être refermée (à <![CDATA[<balise>]]> doit être associé <![CDATA[</balise>]]>),</listitem>
+					<listitem>lorsqu’un élément est vide, les balises peuvent être simplifiées : <![CDATA[<balise></balise>]]> est identique à <![CDATA[<balise/>]]>,</listitem>
+					<listitem>Si un élément contient d’autres éléments alors appelés éléments fils, les balises correspondantes doivent être fermées avant la fermeture de celles de leur parent. Par exemple, <![CDATA[<r><p><a>]]>texte<![CDATA[</p></a></r>]]> n’est pas un document bien formé car la balise <![CDATA[<a>]]> devrait être fermée avant <![CDATA[</p>]]>.</listitem>
+					<listitem>Les valeurs des attributs doivent être entourées d’une paire de guillemets ou d’apostrophes.</listitem>
+				</itemizedlist>
+				<para>
+					Ces règles simples permettent d’interpréter le document sous une forme arborescente  pour lui appliquer des traitements. 
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Document valide</title>
+				<para>
+					Un document XML est valide par rapport à un modèle s’il se conforme aux exigences de structure décrites dans le schéma du modèle. Un document valide est évidemment bien-formé. 
+				</para>
+			</formalpara>
 			<para>
-				Dans ce dernier exemple, une feuille de style XSL pourra transformer le document XML en HTML en précisant que tous les noms de botanique latin doivent être en italique. D'une part il sera possible de changer <foreignphrase>a posteriori</foreignphrase> cette mise en forme puisqu'elle se base sur la sémantique du document XML et d'autre part de donner un autre aspect (caractères gras et rouge) lors d'une autre transformation, en PDF<footnote><para>Portable Document Format (traduit littéralement par "format portable de documents"), est un format de fichier informatique créé par la société Adobe Systems.</para></footnote>.
-			</para>
-			<para>
-				Il n'est pas question ici d'alourdir le document, de noyer les informations, mais de rajouter de la sémantique plutôt que mettre le terme en simple italique. Il s'agit de pouvoir envisager la forme qu'au moment de la publication et de pouvoir retrouver rapidement des données dans le texte. Ainsi, si le texte doit être traduit dans une autre langue, nous aurons l'avantage de savoir que ce terme est latin et qu'il ne se traduit donc pas.
+				Un point intéressant avec ces deux niveaux de validité est qu’il devient possible de traiter un document dès lors qu’il est bien formé, sans toutefois faire l’hypothèse beaucoup plus forte qu’il soit valide par rapport à un modèle. 
 			</para>
 		</section>
+
+		<section>
+			<title>Exemple de dialectes</title>
+			<para>
+			Un dialecte XML est un langage dérivé de la norme XML du W3C. Un document d'un dialecte XML est un document XML bien formé et qui est valide par rapport à une grammaire de description, qui peut être fournie soit sous la forme d'une DTD, un schéma XML, ou toute autre forme de langage de description de format de document. Un certain nombre de dialectes standard se sont imposés dont voici une petite liste des plus connus (non exhaustive) :
+			</para>
+			<itemizedlist>
+					<listitem><emphasis>Langage de description de format de document XML</emphasis> : XML Schema, Relax NG, Schematron</listitem>
+					<listitem><emphasis>Langage de représentation graphique vectorielle</emphasis> : SVG</listitem>
+					<listitem><emphasis>Langage de représentation de formules mathématiques</emphasis> : MathML</listitem>
+					<listitem><emphasis>Langage de représentation de document hypertexte</emphasis> : XHTML</listitem>
+					<listitem><emphasis>Langage de traitement de formulaires</emphasis> : XFORM</listitem>
+					<listitem><emphasis>Langage de communication dédié aux services</emphasis> : SOAP, WSDL</listitem>
+			</itemizedlist>
+		</section>
+		
+		<section>
+			<title>Interfaces de traitement XML</title>
+			<para>
+				L’avènement de XML s’est accompagné d’une multitude d’analyseurs syntaxiques. Afin que les analyseurs soient vus comme des composants réutilisables par les applications, ils reposent sur deux standards qui définissent le mode de production du résultat de l’analyse via une interface. Ces standards sont indépendants des analyseurs, ils peuvent et sont utilisés par d’autres applications. Les deux interfaces de traitements principales sont DOM et SAX
+			</para>
+			<section>
+				<title>Document Object Model, DOM</title>
+				<para>
+					DOM permet de construire un arbre logique contenant les informations issues d'un document. Il est donc nécessaire de parcourir et de mémoriser l'intégralité du document avant de pouvoir effectuer les traitements voulus. Pour cette raison, les programmes utilisant DOM ont souvent une empreinte mémoire volumineuse en cours de traitement. À l'inverse, à partir d'un arbre DOM donné, il est possible de générer des documents dans le langage de balisage voulu, qui pourront à leur tour être manipulés par l'interface DOM.
+				</para>
+				<para>
+					DOM est essentiellement utilisé pour traiter et générer des documents XML, même si on préfère souvent SAX pour des traitements ne nécessitant pas d'écrire des documents XML.
+				</para>
+			</section>
+			
+			<section>
+				<title>Simple API for XML, SAX</title>
+				<para>
+					SAX est une interface d'accès de type séquentiel à un document XML. SAX fournit un mécanisme pour lire un document XML, il ne permet cependant pas d'en générer. 
+				</para>
+				<para>
+					Un lecteur XML qui utilise SAX gère les documents XML comme des flux unique de données. The flux est unidirectionnel, c'est à dire que des données précédement lues ne peuvent-être relues sans retour au début du flux.
+				</para>
+				<para>
+					Les rumeurs font que SAX est souvent considéré comme permettant de traiter les documents XML de manière plus efficiente que DOM. Cela est du au fait que les lecteurs SAX ont une empreinte mémoire ridiculement petite comparée aux arbres DOM complets.
+				</para>
+				<para>
+					Techniquement, SAX est implémenté selon un modèle de génération d'évènements sur lequel il est possible de greffer des méthode de rappels qui sont invoquées par le lecteur lors de son parcours du document XML.
+				</para>
+			</section>
+		</section>		
 	</section>
 
 </chapter>

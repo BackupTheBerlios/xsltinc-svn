@@ -131,7 +131,18 @@
 	
 	<bibliodiv>
 		<title>Thèses et articles</title>
-
+		<biblioentry id="gol1981">
+			<abbrev>GOL1981</abbrev>
+			<authorgroup>
+				<author><firstname>Goldfarb</firstname><surname>C. F.</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>juin 1981</confdates>
+				<conftitle></conftitle>
+			</confgroup>
+			<affiliation>SIGPLAN Notices of the ACM</affiliation>
+			<title>A generalized approach to document markup</title>
+		</biblioentry>
 
 		<biblioentry id="ped2003">
 			<abbrev>PED2003</abbrev>
@@ -145,6 +156,33 @@
 			<affiliation>STIC-CNRS</affiliation>
 			<title>Document : forme, signe et médium, les re-formulations du numérique</title>
 			<bibliomisc>Disponible sur : <ulink url="http://archivesic.ccsd.cnrs.fr/sic_00000511.html" /></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="qui1987">
+			<abbrev>QUI1987</abbrev>
+			<authorgroup>
+				<author><firstname>Quint</firstname><surname>Vincent</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>mai 87</confdates>
+				<conftitle>Thèse d'État</conftitle>
+			</confgroup>
+			<affiliation>Université Scientifique, Technologique et Médicale de Grenoble</affiliation>
+			<title>Une approche de l'édition structurée des documents</title>
+		</biblioentry>
+
+		<biblioentry id="roi1999">
+			<abbrev>ROI1999</abbrev>
+			<authorgroup>
+				<author><firstname>Roisin</firstname><surname>Cécile</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>septembre 1999</confdates>
+				<conftitle>Habilitation à diriger des 
+recherches, spécialité informatique</conftitle>
+			</confgroup>
+			<affiliation>Institut National Polytechnique</affiliation>
+			<title>Documents multimédia structurés</title>
 		</biblioentry>
 		
 <!-- 
