@@ -35,17 +35,16 @@ XPath</title>
 Introduction</title>
 <section id="Historique" ><title>
 Historique</title>
-<para>XPath est un standard du W3C défini en 1999. Il a été créée dans le but d'avoir une syntaxe commune pour XPointer et les transformations XSLT.</para>
-<para>Son nom vient du fait que les expressions XPath sont semblables aux "chemins" que l'on distingue dans les URL par exemple.</para>
+<para>XPath est un standard du W3C défini en 1999. Il a été créée dans le but d'avoir une syntaxe commune pour XPointer et les transformations XSLT.
+Son nom vient du fait que les expressions XPath sont semblables aux "chemins" que l'on distingue dans les URL par exemple.</para>
 
 </section>
 
 <section id="Objectif" ><title>
 Objectif</title>
 <para>"XPath permet la sélection d'un ensemble de noeuds dans un arbre XML. On obtient alors un sous arbre de l'arbre source. </para>
-<para>XPath fourni également quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.</para>
-<para>En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore "matching", pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
-
+<para>XPath fourni également quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.
+En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore "matching", pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
 </section>
 
 
@@ -170,6 +169,7 @@ aucun, un ou plusieurs prédicats qui utilisent des expressions arbitraires afin
 <section id="Un_axe" ><title>
 Un axe</title>
 <para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds.</para>
+
 <para>On identifie les axes suivant :</para>
 <itemizedlist>
 <listitem><para>
@@ -198,10 +198,14 @@ preceding : tous les noeuds que l'on trouve avant le noeud courant.</para></list
 preceding-sibling :  les noeuds ayant le même parent que le noeud courant et le précédant.</para></listitem>
 <listitem><para>
 self : le noeud courant.</para></listitem>
-<listitem><para>
-</para></listitem>
 </itemizedlist>
 <figure>
+<title>Vue d'ensemble des axes XPath</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/AxesXpath.png"/>
+</imageobject></mediaobject> </figure>
+<figure>
+<para>
+La figure suivante montre un exemple concret d'arbre XML, les éléments marqués en rouge sont ceux correspondant à l'axe "ancestors" si le noeud courant est le noeud "Barbero".
 <title>Axe XPath - ancêtres</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-33.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/xpath-axe.png-->
@@ -233,22 +237,21 @@ Les prédicats</title>
 
 <section id="La_syntaxe_reduite" ><title>
 La syntaxe réduite</title>
-<para>Il existe une syntaxe réduite afin de limiter la verbosité de XPath.</para>
-<para>Le raccourcis le plus important est que l'on peut omettre le</para>
-<para> &lt;programlisting&gt;child::&lt;/programlisting&gt;</para>
+<para>Il existe une syntaxe réduite afin de limiter la verbosité de XPath.Le raccourcis le plus important est que l'on peut omettre le</para>
+<programlisting>child::</programlisting>
 <para>dans une étape, ainsi</para>
-<para> &lt;programlisting&gt;child::div/child::para&lt;/programlisting&gt;</para>
+<programlisting>child::div/child::para</programlisting>
 <para>peut aussi être écrit </para>
-<para>&lt;programlisting&gt;div/para&lt;/programlisting&gt;.</para>
+<programlisting>div/para</programlisting>
 <para>De la même façon </para>
-<para>&lt;programlisting&gt;attribute::&lt;/programlisting&gt;</para>
+<programlisting>attribute::</programlisting>
 <para>peut être remplacé par "@" ce qui nous donne</para>
-<para>&lt;programlisting&gt;[@type="warning"]&lt;/programlisting&gt;</para>
+<programlisting>[@type="warning"]</programlisting>
 <para>au lieu de </para>
-<para>&lt;programlisting&gt;child::para[attribute::type="warning"]&lt;/programlisting&gt;</para>
-<para>L'expression '//' est un raccourcis pour l'axe &lt;programlisting&gt;descendant-or-self::node()&lt;/programlisting&gt;</para>
+<programlisting>child::para[attribute::type="warning"]</programlisting>
+<para>L'expression '//' est un raccourcis pour l'axe <programlisting>descendant-or-self::node()</programlisting></para>
 <para>De la même façon ".." est un raccourci pour l'axe </para>
-<para>&lt;programlisting&gt;parent::node()&lt;/programlisting&gt;.</para>
+<programlisting>parent::node()</programlisting>
 
 </section>
 	</section>
