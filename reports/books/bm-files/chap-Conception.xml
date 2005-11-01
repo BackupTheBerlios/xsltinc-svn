@@ -61,6 +61,7 @@ PyXml</title>
 
 <section id="Xalan_et_autres.." ><title>
 Xalan et autres..</title>
+<!-- FIXME FILL in here ! about Xalan !-->
 <para>Pourquoi on en veut pas.....</para>
 
 </section>
@@ -82,17 +83,25 @@ Conclusion</title>
 Analyse de 4Xslt</title>
 <section id="Vue_logique" ><title>
 Vue logique</title>
+<para>
+4suite est un module python divisé en plusieurs sous modules, chacun correspondant à un domaine bien précis des technologies XML. Ce module couvre a peut prêt tout ce que l'on peut souhaiter autour du langage XML.
+</para>
 <figure>
-<title>Diagramme de classe - Les éléments XSLT</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-39.png"/>
-<!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/classDiagramElements.png-->
-<!--pic-39.png-->
-</imageobject></mediaobject> </figure>
+<title>Vue d'ensemble de 4suite</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/4suiteOverview.png"/>
+</imageobject></mediaobject>
+</figure>
+<para>
+Interessons-nous au sous-module Xslt. Son fonctionnement est le suivant: l'utilisateur du module crée un processeur XSLT. Il associe à ce processeur une ou plusieurs feuilles de transformation.Au moment de cette association le module va créer des instances d'éléments XSLT en fonctions des fichiers associés au processeur. Ces instances sont organisées à la manière de DOM. Ensuite l'utilisateur lance l'exécution du processeur sur un fichier XML donné (il peut aussi le faire sur un arbre DOM existant). Ce fichier XML est transformé lui aussi en un arbre DOM d'instances, ensuite le processeur lance le processus d'instanciation des éléments XSLT liés à la racine de la feuille de transformation. Cette instanciation est déclenchée de père en fils, chaque noeud XSLT y exécutant son opération propre, la transformation est effectée. Le resultat est obtenue sous la forme d'un arbre DOM.
+</para>
 
 </section>
 
 <section id="Fonctionnement_global" ><title>
-Fonctionnement global</title>
+Fonctionnement</title>
+<para>
+Le diagramme suivant détaille le processus d'instanciation.
+</para>
 <figure>
 <title>Diagramme de séquence - Processus d'instantiation</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-40.png"/>
@@ -107,24 +116,57 @@ Les éléments XSLT</title>
 <para>C'est dans cette méthode que l'on retrouvera l'opération spécifique à l'élément XSLT, ainsi dans la classe "ValueOfElement" on évaluera l'expression données (selon le contexte) et on écrira le resultat de cette évaluation dans la sortie du traitement.</para>
 <para>Une objet de la classe "AttributeElement" va lui chercher à ajouter au noeud courant dans le resultat un attribut et sa valeur.</para>
 <para>Il est utile de préciser que dans cette méthode chaque élément à la responsabilité de lancer la méthode "instantiate" sur ses éléments fils.</para>
+<figure>
+<title>Diagramme de classe - Les éléments XSLT</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-39.png"/>
+<!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/classDiagramElements.png-->
+<!--pic-39.png-->
+</imageobject></mediaobject> </figure>
+
 
 </section>
 
 <section id="Evaluation_des_expressions" ><title>
 Evaluation des expressions</title>
-<para>L'évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise les classes suivantes :</para>
+<para>L'évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise de nombreuses classes, chacune représentant un atome possible de l'expression. Lorsque cette dernière est évaluée, on récupère une arborescence d'atomes de type différents (Number,String,Choice..)</para>
+<para> Voici une vue d'ensemble de ces classes:</para>
+<figure>
+<title>Diagramme de classe - Les attributs XSLT</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/AttributeInfo.png"/>
+</imageobject></mediaobject>
+</figure>
 
+
+<para> Chacune de ces classes est associées à une autre classe dont le nom est suffixé par "AVT". Ceci signifie "Attribute Value Templates", il s'agit des expressions que l'on peut recontrer entre crochets "{}". Il s'agit en fait d'un raccourci appelant automatiquement l'évaluation d'expression classique, ainsi on peut écrire:
+</para>
+<programlisting>
+<![CDATA[<xsl:tempalte match ="x">
+  <elem attrib="{une-valeur}">
+]]>
+</programlisting>
+<para>
+Où 'une-valeur' peut-être n'importe quelle expression XPath.
+</para>
+<para>
+Chacune des classes héritant de "AttributeInfo" est responsable de sa propre évaluation. Autrement dit elle doit renvoyer la valeur résultant de l'évaluation lors d'un appel à la méthode "evaluate".
+</para>
 </section>
 
-
+<section>
+<title> Modélisation du contexte</title>
+<para>
+Le contexte d'exécution est modélisé par une instance d'une classe "XsltContext", elle même héritant d'une classe "Context" présente dans le module XPath.
+</para>
+<figure>
+<title>Diagramme de classe - Contexte et processeur XSLT</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/ContextAndProcessor.png"/>
+</imageobject></mediaobject>
+</figure>
+<para>
+Ce contexte stocke les informations suivantes: le noeud et la position courante, la taille actuelle du resultat et l'espace de nomage courant du processeur. Le contexte spécifique à XSLT ajoute à ces informations d'autres, spécifiques à l'aspect Xslt, telles que la feuille de transformation courante, le mode de sortie ou encore l'instruction XSLT courante.
+</para>
 </section>
-
-<section id="Fonctionnement_sur_un_exemple" ><title>
-Fonctionnement sur un exemple</title>
-
 </section>
-
-
 </section>
 
 </chapter>
