@@ -14,7 +14,7 @@
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Introduction.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Du_document_traditionnel_au_XML.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Transformation_XML.xml"/>
-	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-XSLT.xml"/>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-XSL.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Traitements_Incrementaux.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-incXSLT.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Transformations_inversibles.xml"/>	

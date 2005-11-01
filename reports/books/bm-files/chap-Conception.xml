@@ -20,25 +20,25 @@ Vue logique</title>
 <section id="Fonctionnement_global" ><title>
 Fonctionnement global</title>
 <figure>
-<title>Diagramme de séquence - Processus d&apos;instantiation</title>
+<title>Diagramme de séquence - Processus d'instantiation</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-40.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/seqDiagramInstantiate.png-->
 <!--pic-40.png-->
 </imageobject></mediaobject> </figure>
 <section id="Les_elements_XSLT" ><title>
 Les éléments XSLT</title>
-<para>Tous les éléments XSLT sont modélisés par une classe donnée. Ainsi on trouve les classes &quot;NumberElement&quot;, ou encore &quot;ValueOfElement&quot;.</para>
+<para>Tous les éléments XSLT sont modélisés par une classe donnée. Ainsi on trouve les classes "NumberElement", ou encore "ValueOfElement".</para>
 <para>Elles héritent toutes de la classe XsltElement qui leur fourni le comportement de base type DOM.</para>
-<para>Cette classe définie de plus une méthode appelée &quot;instantiate&quot;. Cette dernière est appelée au moment de l&apos;instantiation du template sur un contexte donné.</para>
-<para>C&apos;est dans cette méthode que l&apos;on retrouvera l&apos;opération spécifique à l&apos;élément XSLT, ainsi dans la classe &quot;ValueOfElement&quot; on évaluera l&apos;expression données (selon le contexte) et on écrira le resultat de cette évaluation dans la sortie du traitement.</para>
-<para>Une objet de la classe &quot;AttributeElement&quot; va lui chercher à ajouter au noeud courant dans le resultat un attribut et sa valeur.</para>
-<para>Il est utile de préciser que dans cette méthode chaque élément à la responsabilité de lancer la méthode &quot;instantiate&quot; sur ses éléments fils.</para>
+<para>Cette classe définie de plus une méthode appelée "instantiate". Cette dernière est appelée au moment de l'instantiation du template sur un contexte donné.</para>
+<para>C'est dans cette méthode que l'on retrouvera l'opération spécifique à l'élément XSLT, ainsi dans la classe "ValueOfElement" on évaluera l'expression données (selon le contexte) et on écrira le resultat de cette évaluation dans la sortie du traitement.</para>
+<para>Une objet de la classe "AttributeElement" va lui chercher à ajouter au noeud courant dans le resultat un attribut et sa valeur.</para>
+<para>Il est utile de préciser que dans cette méthode chaque élément à la responsabilité de lancer la méthode "instantiate" sur ses éléments fils.</para>
 
 </section>
 
 <section id="Evaluation_des_expressions" ><title>
 Evaluation des expressions</title>
-<para>L&apos;évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise les classes suivantes :</para>
+<para>L'évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise les classes suivantes :</para>
 
 </section>
 
