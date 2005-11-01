@@ -65,7 +65,12 @@ Avec l'évolution de la notion même de document, surgissent de nouvelles probl�
 	<section>
 		<title>Exemple</title>
 		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document précis, ce rapport. L'information est présente dans un document de classe Docbook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique de vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
-<!-- FIXME diagramm with DocbookTree => XHTML tree -->
+               <figure>
+                 <title>Exemple de transformation XML</title>
+                 <mediaobject>
+		     <imageobject><imagedata format="PNG" fileref="images/ExampleXMLTransformation.png"/></imageobject>
+		 </mediaobject>
+                </figure>
 	</section>
 	
 </chapter>

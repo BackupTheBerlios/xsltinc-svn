@@ -173,31 +173,31 @@ Un axe</title>
 <para>On identifie les axes suivant :</para>
 <itemizedlist>
 <listitem><para>
-<em>ancestor</em> : les ancêtres du noeud courant, autrement dit son parent, le parent de son parent et ainsi de suite jusqu'à la racine du document.</para></listitem>
+<emphasize>ancestor</emphasize> : les ancêtres du noeud courant, autrement dit son parent, le parent de son parent et ainsi de suite jusqu'à la racine du document.</para></listitem>
 <listitem><para>
-<em>ancestor-or-self</em> : les ancêtres auquel ont ajoute le noeud courant.</para></listitem>
+<emphasize>ancestor-or-self</emphasize> : les ancêtres auquel ont ajoute le noeud courant.</para></listitem>
 <listitem><para>
-<em>attribute</em> : tous les attributs du noeud courant.</para></listitem>
+<emphasize>attribute</emphasize> : tous les attributs du noeud courant.</para></listitem>
 <listitem><para>
-<em>child </em>: les noeuds dont le noeud courant est le noeud père.</para></listitem>
+<emphasize>child </emphasize>: les noeuds dont le noeud courant est le noeud père.</para></listitem>
 <listitem><para>
-<em>descendant</em> : tous les descendants du noeud courant.</para></listitem>
+<emphasize>descendant</emphasize> : tous les descendants du noeud courant.</para></listitem>
 <listitem><para>
-<em>descendant-or-self</em> : les descendants auxquels on ajoute le noeud courant.</para></listitem>
+<emphasize>descendant-or-self</emphasize> : les descendants auxquels on ajoute le noeud courant.</para></listitem>
 <listitem><para>
-<em>following</em> : tous les noeuds que l'on trouve après la fermeture du noeud courant.</para></listitem>
+<emphasize>following</emphasize> : tous les noeuds que l'on trouve après la fermeture du noeud courant.</para></listitem>
 <listitem><para>
-<em>following-sibling</em> : les noeuds ayant le même parent que le noeud courant et le suivant.</para></listitem>
+<emphasize>following-sibling</emphasize> : les noeuds ayant le même parent que le noeud courant et le suivant.</para></listitem>
 <listitem><para>
-<em>namespace </em>: tous les noeuds d'espace de nommage du noeud courant.</para></listitem>
+<emphasize>namespace </emphasize>: tous les noeuds d'espace de nommage du noeud courant.</para></listitem>
 <listitem><para>
-<em>parent</em> : le parent du noeud courant.</para></listitem>
+<emphasize>parent</emphasize> : le parent du noeud courant.</para></listitem>
 <listitem><para>
-<em>preceding </em>: tous les noeuds que l'on trouve avant le noeud courant.</para></listitem>
+<emphasize>preceding </emphasize>: tous les noeuds que l'on trouve avant le noeud courant.</para></listitem>
 <listitem><para>
-<em>preceding-sibling</em> :  les noeuds ayant le même parent que le noeud courant et le précédant.</para></listitem>
+<emphasize>preceding-sibling</emphasize> :  les noeuds ayant le même parent que le noeud courant et le précédant.</para></listitem>
 <listitem><para>
-<em>self <em>: le noeud courant.</para></listitem>
+<emphasize>self </emphasize>: le noeud courant.</para></listitem>
 </itemizedlist>
 <figure>
 <title>Vue d'ensemble des axes XPath</title>
