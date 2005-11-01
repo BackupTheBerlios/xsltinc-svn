@@ -1,9 +1,83 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
-                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 
-<chapter id="Conception" ><title>
-Conception</title>
+<chapter id="Conception" >
+<title>Conception</title>
+<section id="Plateformes_technologiques_etudiees" ><title>
+Plateformes technologiques étudiées</title>
+<section id="Criteres_etudies" ><title>
+Critères étudiés</title>
+<para>Les critères permettant l&apos;évaluation d&apos;une plateforme technologique sont les suivants :</para>
+<itemizedlist>
+<listitem><para>
+Qualité du code</para></listitem>
+<listitem><para>
+Extensibilité</para></listitem>
+<listitem><para>
+Robustesse</para></listitem>
+<listitem><para>
+Conformité</para></listitem>
+<listitem><para>
+Licence</para></listitem>
+</itemizedlist>
+<para>L&apos;évaluation de la qualité du code est forcément assez subjective, mais on s&apos;est attaché à vérifié que ce dernier semblant clair, c&apos;est à dire qu&apos;on comprends rapidement son fonctionnement global, et bien sûr qu&apos;il est documenté.</para>
+<para>L&apos;extensibilité est évalué par la possibilité ou non d&apos;enrichir le comportement classique du programme et dans quelle mesure cette extension peut éviter de trop s&apos; immiscer dans le code d&apos;origine.</para>
+<para>La robustesse d&apos;un programme est directement proportionnelle à son degré d&apos;utilisation ainsi qu&apos;à son âge, ainsi les programmes reconnus et utilisés dans de nombreux projets pourront être qualifiés comme stable tandis que des programmes jeunes, encore &quot;expérimentaux&quot; ne le seront pas.</para>
+<para>La conformité d&apos;un programme de traitement Xslt est testée sur des exemples de traitements sur des données relativement importantes, telles que des rapports au format docbook traités avec les feuilles de style (quelques peut alambiquées) de Norman Walsh.  Le résultat sera comparé avec celui de référence, ici on considèrera que le résultat de référence est celui du programme xsltproc. Par la même occasion on pourra tester les performances. </para>
+<para>Enfin la licence, il s&apos;agit d&apos;augmenter un programme, de l&apos;enrichir, par conséquent il faut tout d&apos;abord en avoir l&apos;autorisation. De plus on cherchera à évaluer par ce biais les possibilités de ré-utilisation du programme modifié dans d&apos;autres projets.</para>
+
+</section>
+
+<section id="LibXslt_et_xsltproc" ><title>
+LibXslt et xsltproc</title>
+<para>&quot;xsltproc&quot; est probablement le programme le plus répandu lorsqu&apos;il s&apos;agit de traiter via XSLT sur les plateformes venant du monde Unix. Le programme utilise la  bibliothèque de fonctions &quot;libxslt&quot; elle même reposant largement sur &quot;libxml&quot;: réalisée en langage C, elle est extrêmement robuste et est utilisée dans de nombreux projets. Elle fait partie du projet GNOME.</para>
+<para>La qualité du code source est satisfaisante, les fonctions sont  quasiment toutes documentées. </para>
+<para>La licence du projet n&apos;est pas la licence GPL ou même LGPL, elle est encore moins restrictive et permet de réutiliser ce projet sous n&apos;importe quelles conditions.</para>
+<para>Du fait du langage C, l&apos;extensibilité de cette librairie est toutefois limitée, on peut assez difficilement inculquer un nouveau comportement sans avoir à modifier de nombreuses parties du code source.</para>
+
+</section>
+
+<section id="PyXml" ><title>
+PyXml</title>
+<para>PyXml est un module Python permettant le traitement de données de type XML. A terme ce module devrait augmenter le module de la distribution standard de python. Il offre entre autres des API telles que Dom, Sax ou encore minidom.</para>
+<para>Ce module dispose d&apos;un sous-module de traitement Xslt, cependant ce dernier n&apos;est en réalité qu&apos;une colle logicielle (&quot;binding&quot;) vers la libxslt en langage C.</para>
+<para>Cependant dans les dernières versions de PyXml on trouve une implémentation native en Python du support Xslt. Le résultat est encore très instable et incomplet. Cette fonctionnalité est à l&apos;heure qu&apos;il est qualifiée d&apos; expérimentale et ne devrait donc pas être utilisée.</para>
+
+</section>
+
+<section id="4Xslt_de_4Suite" ><title>
+4Xslt de 4Suite</title>
+<para>4suite est un module de traitement XML, qui à l&apos;instar de PyXml est en Python. Il propose de nombreuses API qui vont du support dom, sax et minidom à celui de relax-ng ou du RDF.</para>
+<para>Contrairement à l&apos;implémentation de PyXml, ici tout est réalisé de manière native en Python, sans colle logicielle.</para>
+<para>La qualité du code source est très bonne, toutes les classes sont documentées et de nombreux test unitaires ont été réalisés. Le fonctionnement de 4suite et de 4Xslt en particulier est donc assez immédiat à saisir.</para>
+<para>La robustesse du projet est difficile à évaluer, il est disponible depuis maintenant assez longtemps et est utilisé dans quelques autres projets. Il a cependant une audience moindre que la libxslt.</para>
+<para>L&apos;extensibilité est cependant excellente, du fait du langage Python, orienté objet, on peut aisément augmenter le module sans qu&apos;il y ai la moindre modification dans le code source de départ.</para>
+<para>La conformité du parser XSLT est très bonne bien que pas tout à fait similaire au document de référence. De petites différences existent. </para>
+<para>En terme de performances, si l&apos;on retranche le temps de chargement de l&apos;interpréteur Python, les performances sont tout à fais comparables à celles de xsltproc. Cela n&apos;est donné qu&apos;à titre d&apos;indication car aucun protocole de test précis n&apos;a été mis en place.</para>
+<para>La licence est une licence dérivée de la licence Apache et permet donc une réutilisation du code sous la condition que l&apos;on n&apos;utilise pas les noms réservés du projet, telles que &quot;4suite&quot; ou &quot;4xslt&quot;.</para>
+
+</section>
+
+<section id="Xalan_et_autres.." ><title>
+Xalan et autres..</title>
+<para>Pourquoi on en veut pas.....</para>
+
+</section>
+
+<section id="Conclusion" ><title>
+Conclusion</title>
+<para>Après avoir évaluer ces solutions notre choix se porte sur le module 4Suite, en effet il présente toutes les qualités nécessaires et le fait qu&apos;il s&apos;agisse d&apos;un langage de haut niveau va nous permettre de nous concentrer sur la problématique du projet sans s&apos;encombrer de trop de problèmes techniques.</para>
+
+</section>
+
+</section>
+
+
+
+
+
+
 <section id="Analyse_de_4Xslt" ><title>
 Analyse de 4Xslt</title>
 <section id="Vue_logique" ><title>
