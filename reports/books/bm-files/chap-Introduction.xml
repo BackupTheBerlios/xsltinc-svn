@@ -29,13 +29,13 @@ répandu.
 			<title>Optimisation des performances</title>
 			
 			<para>
-				Aller toujours plus vite, produire toujours plus avec moins. Voici le moteur de notre industrie. Il en est de même en informatique. Étant donnée le succès de XML et sa diffusion de plus en plus large, il devient urgent de trouver des moyens d'optimiser le traitement et notamment les tranformations de documents XML.
+				Aller toujours plus vite, produire toujours plus avec moins. Voici le moteur de notre industrie. Il en est de même en informatique. Étant donné le succès de XML et sa diffusion de plus en plus large, il devient urgent de trouver des moyens d'optimiser le traitement et notamment les tranformations de documents XML.
 			</para>
 			<para>
 				Les langages de transformations comme XLST s'avèrent en effet limité dans leur capacité à traiter des documents avec de très grandes masses d'informations car ils nécessitent de connaître la totalité du document source afin de produire le document cible même si une petite partie du premier était suffisante. C'est la même chose lorsque l'on reçoit un document XML en streaming et que le traitement doit-être effectué avant que la totalité du document ne soit reçu.
 			</para>
 			<para>
-				Le principal facteur limitant du langage XSLT est donc sont orientation traitement par lot, où la totalité du document est transformée d'un coup. Notre soucis à nous est d'obtenir un transformateur dynamique dans lequel les changements dans le document source sont répercutées de manière optimales dans le document cible.
+				Le principal facteur limitant du langage XSLT est donc sont orientation traitement par lot, où la totalité du document est transformée d'un coup. Notre soucis est donc d'obtenir un transformateur dynamique dans lequel les changements dans le document source sont répercutées de manière optimales dans le document cible.
 			</para>
 		</section>
 	
@@ -50,10 +50,10 @@ transformation déjà appliquée en tirant partie de son exécution précédente
 				Prenons l'exemple d'un document XML et d'une transformation s'appliquant à ce document. Cette transformation a déja été appliquée une fois et a donc produit un premier document cible. Une modification intervient dans le document source. Nous avons alors deux stratégies que l'on peut adopter.
 			</para>
 			<para>
-				La première est celle qui est utilisé avec les processeur courants, à savoir on réexécute la totalité de la transformation et on recréé entièrement le document cible. Certe, on est sûr d'obtenir un document cible à jour mais si la modification dans le document source est simple, il y a fort à parier que la différence entre le premier document cible et celui que l'on vient de récréer seront minimes. Nous avons donc fait des calculs redondants et avons perdu du temps par cette méthode.
+				La première est celle qui est utilisée avec les processeurs courants, à savoir on réexécute la totalité de la transformation et on recréé entièrement le document cible. Certe, on est sûr d'obtenir un document cible à jour mais si la modification dans le document source est simple, il y a fort à parier que la différence entre le premier document cible et celui que l'on vient de récréer seront minimes. Nous avons donc fait des calculs redondants et avons perdu du temps par cette méthode.
 			</para>
 			<para>
-				La seconde stratégie consiste à réutiliser le document cible déja créer et de le modifier afin de le rendre cohérent par rapport au document source et à la transformation. Le but est donc ici de répercuter de manière optimale les modifications du document source. Le mot optimal est important car si le temps passé à répercuter ces modifications est supérieur à la réexécution complète de la transformation, mieux vaut prendre cette deuxième solution.
+				La seconde stratégie consiste à réutiliser le document cible déja créé et de le modifier afin de le rendre cohérent par rapport au document source et à la transformation. Le but est donc ici de répercuter de manière optimale les modifications du document source. Le mot optimal est important car si le temps passé à répercuter ces modifications est supérieur à la réexécution complète de la transformation, mieux vaut prendre cette deuxième solution.
 			</para>
 		</section>
 
@@ -61,7 +61,7 @@ transformation déjà appliquée en tirant partie de son exécution précédente
 			<title>Optimisation de l'expérience utilisateur</title>
 			
 			<para>
-				Dans le contexte de traitements de documents textuels, il est bien souvent interressant et tentant de modifier le document cible que le document source. Par exemple, changer la mise en page d'un document HTML est plus tentante que de modifier le document DocBook, par exemple, à partir duquel il a été généré.
+				Dans le contexte de traitements de documents textuels, il est bien souvent interressant et tentant de modifier le document cible plutôt que le document source. Par exemple, changer la mise en page d'un document HTML est plus tentante que de modifier le document DocBook, par exemple, à partir duquel il a été généré.
 			</para>
 			<para>
 				Les langages de transformations de documents XML comme XSLT ne prennent pas en compte cette dimension et cela peut se révéler frustrant. Notre but sera de fournir un processeur qui, dans les cas déterministes, repercutera les changements du document cible dans le document source.
