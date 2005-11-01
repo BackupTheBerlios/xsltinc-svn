@@ -6,19 +6,52 @@
 	<title>Transformations XML</title>
 	<!-- cf. these Geneves -->
 	<para>
-	
+<!-- FIXME biblioref -->
+Ce chapitre présente la transformation de document XML de manière générale, le sujet à été largement couvert dans le document GEN2003, nous en ferons ici une synthèse.	
 	</para>
 	
 	<section>
 		<title>Problématique</title>
 		<para>
+Avec l'évolution de la notion même de document, surgissent de nouvelles problématiques concernant le traitement des documents. Ainsi par exemple les liens hypermédia étendent la notion de document structuré en y rajoutant la possibilité de naviguer, mais alors, quid de la frontière du document ? Comment définir la copie d'un document hypermédia ?
 		<!-- traitement de document -> plusieurs formes pour un fond (editorial, Airbus, NASDAQ...) -->
 		</para>
+	<para>
+	Par exemple, une nouvelle problématique ayant surgit concerne l'évolutivité des documents.En effet XML facilite la création de nouvelles classes de documents adaptées à des problèmes particuliers (MathMl, SVG, SMIL). Se pose donc alors le problème suivant : lorsqu'un modèle de document évolue, comment changer ses instances correspondantes. Autrement dit, comment transformer un document d'une classe vers une nouvelle classe.
+	</para>
+	<para>
+	Une autre problématique concerne l'intéropérabilité, comment permettre la compatibilité de modèle, comment adapter les documents XML issus d'un logiciel à un autre logiciel si ils ont des modèles de documents distincts.
+	</para>
+	<para>
+	Enfin l'une des problématique majeure concerne les problèmes de formatage, d'adaptation et de présentation. En effet il est important de pouvoir obtenir à partir de l'information du document un autre document de présentation lui, (par exemple un document SVG) formaté, adapté au contexte et où seules les informations pertinentes sont affichées.
+	</para>
+	<para>
+	Toutes ces nouvelles questions permettent d'isoler un besoin fondamental : celui de transformer un document XML d'une classe en un document XML d'une autre classe.
+	</para>
 	</section>
 	
 	<section>
 		<title>Principe</title>
 		<para>
+		Les informations contenues dans un document de type XML sont structurées de manière arborescente, ainsi la transformation XML, autrement dit le passage d'un document de type XML à un autre est en réalité une opération qui transforme un arbre en une autre structure arborescente. Le document d'origine est appelé document source, tandis que le document issu de la transformation est appelé document cible.</para>
+               <figure>
+                 <title>Principe de la transformation XML</title>
+                 <mediaobject>
+		     <imageobject><imagedata format="PNG" fileref="images/TransformationXML.png"/></imageobject>
+		 </mediaobject>
+                </figure>
+		<para>
+                On distingue plusieurs classes de transformations: </para>
+		<itemizedlist>
+			<listitem><para>Transformation en bloc: c'est l'approche utilisée par XSLT. On dispose de la totalité de l'arbre source et de règles de transformation qui à chaque fois sélectionnent une partie précise de cet arbre et l'utilise pour générer le document cible.</para>
+			</listitem>
+			<listitem><para>En streaming : on considère alors les données sources XML comme étant infinies, cela est par exemple utilisé dans le cadre de la TV numérique, où l'on diffuse en permanence les informations liées à l'interactivité. La taille totale du flot de données est telle qu'on ne peut envisager de le stocker. Il faut donc réaliser la transformation au fur et à mesure, sans connaître la totalité du document source.</para>
+			</listitem>
+			<listitem><para>Transformation incrémentale : sachant que la plupart des modifications apportées dans un document sont très légères, et qu'elles sont souvent à l'origine de légers résultat dans le document cible, l'approche incrémentale vise à faire en sorte que l'on puisse calculer le nouveau résultat de manière incrémentale, c'est à dire en mettant à jour les parties adéquates de l'ancien résultat, plutôt que de recalculer à partir de zéro.</para>
+			</listitem>
+			<listitem><para>Transformation inversible : une transformation est dite inversible si la transformation inverse existe. Autrement dit, si en modifiant le document cible, on est capable de répercuter ces modifications sur le document source. En règle générale les transformations génériques sont rarement inversibles, certaines approchent ad-hoc fournissent cette fonctionnalité sur des cas très spécifiques.</para>
+			</listitem>
+		</itemizedlist>
 		<!-- 
 		- D'un arbre à un autre arbre 
 		- Differentes classes de transfo :
@@ -27,14 +60,12 @@
 			- incrementale
 			- inversible ? ad-hoc ou generique ? possible ou pas ?
 		-->
-		</para>
 	</section>	
 	
 	<section>
 		<title>Exemple</title>
-		<para>
-		
-		</para>
+		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document précis, ce rapport. L'information est présente dans un document de classe Docbook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique de vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
+<!-- FIXME diagramm with DocbookTree => XHTML tree -->
 	</section>
 	
 </chapter>
