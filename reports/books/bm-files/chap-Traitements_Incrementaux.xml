@@ -32,6 +32,13 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 					<quote><emphasis>Étant donnés un programme f et une opération OP, un programme f’ est appelé une version incrémentale de f par rapport à OP si f’ calcule f (x OP delta(x)) de façon efficace en utilisant f (x).</emphasis></quote>
 				</para>
 			</blockquote>
+			
+      <figure>
+        <title>Calcul incrémental</title><mediaobject>
+        <imageobject><imagedata format="PNG" fileref="images/calculIncr.png"/></imageobject>
+		 </mediaobject>
+      </figure>			
+      
 			<para>
 				Nous rappelons encore une fois ici que le terme efficace prend ici toute son importance, puisque dans un soucis d'optimisation, si la découverte de <phrase role="math">f'</phrase> requiert un cout en temps ou en espace mémoire supérieur à <phrase role="math">f</phrase>, alors c'est inutile.
 			</para>
@@ -43,21 +50,21 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 			De nombreux travaux concernant l’incrémentalité ont été effectués. Un aperçu des différents travaux existants est donné par G. Ramalingam et T. Reps dans une bibliographie classifiée sur le traitement incrémental <xref linkend="ram1993"/>. Les algorithmes incrémentaux sont notamment utilisés pour les environnements de programmation interactifs, pour la compilation de programmes, dans les résolveurs de contraintes, pour la transformation de documents structurés, etc.
 		</para>
 		<para>
-			De ces travaux, ont peut extraire deux types de méthodes afin de rendre incrémentale une oération. Les méthodes générales et le méthodes spécificiques. Les méthodes générales tout d'abord tente, dans un domaine définis, de rendre un programme incrémental quelque soit ses données d'entrées et leurs modifications. Les méthodes spécifiques quant à elles sont plus particulièrement 
+			De ces travaux, ont peut extraire deux types de méthodes afin de rendre incrémentale une oération. Les méthodes générales et le méthodes spécificiques. Les méthodes générales tout d'abord tente, dans un domaine définis, de rendre un programme incrémental quelque soit ses données d'entrées et leurs modifications. Les méthodes spécifiques quant à elles sont plus particulièrement destinées à résoudre un problème donné. Par conséquent, ces méthodes s'interessent souvent à des modifications particulières des données en entrée. Ils peuvent-être qualifié de <foreignphrase>ad-hoc</foreignphrase>.
 		</para>
 	</section>
 	
 	<section>
 		<title>Méthodes générales</title>
 		<para>
-		
+		Les méthodes générales diffèrent sur un certain nombre de points. En premier lieu, pour toute incrémentalisation d'une opération, il est nécessaire de conserver des données supplémentaires ; ainsi la nature et leurs manières de stocker ces données diffèrent. Deuxièmement, trois grandes orientations se dégagent : celle du recalcul sélectif (<foreignphrase>sélective recomputation</foreignphrase>), celle de la différence finie (<foreignphrase>finite differencing</foreignphrase>) et celle de l'évaluation partielle (<foreignphrase>partial evaluation</foreignphrase>).
 		</para>
 	</section>	
 	
 	<section>
 		<title>Méthodes spécifiques au génie documentaire</title>
 		<para>
-		
+			
 		</para>
 	</section>	
 	
