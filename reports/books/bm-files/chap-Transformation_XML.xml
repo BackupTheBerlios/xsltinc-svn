@@ -6,8 +6,7 @@
 	<title>Transformations XML</title>
 	<!-- cf. these Geneves -->
 	<para>
-<!-- FIXME biblioref -->
-Ce chapitre présente la transformation de document XML de manière générale, le sujet à été largement couvert dans le document GEN2003, nous en ferons ici une synthèse.	
+Ce chapitre présente la transformation de document XML de manière générale, le sujet à été largement couvert dans le document de Pierre Genèves <biblioref linkend="GEN2003"/>, nous en ferons ici une synthèse.	
 	</para>
 	
 	<section>
@@ -64,7 +63,7 @@ Avec l'évolution de la notion même de document, surgissent de nouvelles probl�
 	
 	<section>
 		<title>Exemple</title>
-		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document précis, ce rapport. L'information est présente dans un document de classe Docbook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique de vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
+		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document précis, ce rapport. L'information est présente dans un document de classe DocBook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique de vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
                <figure>
                  <title>Exemple de transformation XML</title>
                  <mediaobject>
