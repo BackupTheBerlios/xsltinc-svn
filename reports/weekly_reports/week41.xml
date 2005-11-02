@@ -5,14 +5,25 @@
   
 	<donelist>
 	<done>
-
+	Analyse de différentes plateformes Xslt disponible dans le monde open-source. Rédaction d'une synthèse concernant cette évaluation
 	</done>
+         <done>
+	Mise à jour du plugin Docbook pour Kdissert.
+	</done>
+	<done>
+	Rédaction de la présentation de XPath pour le rapport bibliographique.
+	</done>
+<done>En accord avec les encadrants, la plateforme technologique 4Suite a été choisie.
+</done>
  	</donelist>
   
   <todolist>
   <todo>
-
+Rétro-analyse de 4suite.
   </todo>
+<todo>
+Rapport de bibliographie à compléter.
+</todo>
   </todolist>
 	
 <!-- 

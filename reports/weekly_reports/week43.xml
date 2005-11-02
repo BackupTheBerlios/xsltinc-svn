@@ -5,14 +5,19 @@
   
 	<donelist>
 	<done>
-
+Début de conception du système.
 	</done>
+<done>Étude des possibilités autours de la transformation Xslt inversible.
+</done>
+<done>Rédaction rapport de bibliographie.
+</done>
  	</donelist>
   
   <todolist>
-  <todo>
+  <todo>Finition rapport de bibliographie
 
   </todo>
+  <todo>Préparation de la présentation de soutenance.</todo>
   </todolist>
 	
 <!-- 

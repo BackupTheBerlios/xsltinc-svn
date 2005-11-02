@@ -4,14 +4,21 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
   
 	<donelist>
+<done>
+Étude des transformations incrémentales en générale et de la transformation incrémentale incXslt en particulier.
+</done>
 	<done>
-
+	Analyse de 4suite, création de diagrammes de classe et explication du mécanisme d'instanciation dans 4Xslt.  
 	</done>
+<done>Rédaction rapport de bibliographie.
+</done>
+
  	</donelist>
   
   <todolist>
+  <todo>Étudier la possibilité de transformation inversible ou non.
+  </todo>
   <todo>
-
   </todo>
   </todolist>
 	
