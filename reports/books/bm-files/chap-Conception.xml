@@ -4,6 +4,9 @@
 
 <chapter id="Conception" >
 <title>Conception</title>
+<para>
+Dans ce chapitre nous étudierons les différentes supports technologiques disponibles pour réaliser notre moteur Xslt incrémental, nous détaillerons ensuite l'architecture du support choisi. Enfin nous évoquerons l'intégration nécessaire entre les traitement supplémentaires liés à l'aspect incrémental et le support d'origine.
+</para>
 <section id="Plateformes_technologiques_etudiees" ><title>
 Plateformes technologiques étudiées</title>
 <section id="Criteres_etudies" ><title>
@@ -166,6 +169,154 @@ Le contexte d'exécution est modélisé par une instance d'une classe "XsltConte
 Ce contexte stocke les informations suivantes: le noeud et la position courante, la taille actuelle du resultat et l'espace de nomage courant du processeur. Le contexte spécifique à XSLT ajoute à ces informations d'autres, spécifiques à l'aspect Xslt, telles que la feuille de transformation courante, le mode de sortie ou encore l'instruction XSLT courante.
 </para>
 </section>
+</section>
+</section>
+<section>
+<title>Conception du projet</title>
+<para>
+Notre approche sera similaire à celle utilisée dans IncXslt. L'objectif est de pouvoir rapidement identifier à chaque modification de l'arbre DOM source les rêgles de transformation qui dépendent de lui. On peut réaliser cette liaison de deux manières, la première, utilisée dans IncXslt, consiste à associer à chaque élément XSLT faisant appel à une expression des règles de ré-évaluation. A chaque modification de l'arbre source, ces règles sont parcourues afin de déclencher la ré-évaluation des expressions si nécessaire. On peut tout aussi bien lier directement les éléments DOM source concernés à leurs éléments de transformation, cependant cela nécessite de garder à l'esprit le fait que tout ajout dans l'arbre DOM doit déclencher une recherche des expression dépendantes de ce dernier.</para>
+<para>
+Dans tous les cas il faut donc bien un composant capable d'associer à un noeud XML un noeud XSLT en se basant sur l'expression de ce dernier. Ce composant se basera sur la capacité qu'aura chaque noeud XSLT à fournir les règles de ré-évaluation le concernant. Cette capacité sera à ajouter à l'implémentation actuelle de 4suite.
+</para>
+<para>
+Il s'agit donc d'ajouter aux expressions que l'on retrouve dans les attributs des éléments XSLT, la capacité de renvoyer les règles de ré-évaluation.Ces règles sont aggrégées dans un objet permettant par la suite de donner toutes les instructions XSLT à ré-éxecuter pour, par exemple, un type de noeud modifié. La règle de ré-évaluation n'est en réalité qu'une expression XPath réduite, dans laquelle on ne trouve aucune référence au contexte. Ainsi il suffit qu'un élément modifié "match" ces expressions afin que l'on identifie les règles à ré-éxecuter. On peut donc se reposer en grande partie sur l'implémentation de XPath.
+</para>
+<para>
+Voici le diagramme de classe découlant de ce fonctionnement:
+</para>
+<figure>
+<title>Diagramme de classe - règles de ré-évaluation</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncDiagClassBasic.png"/>
+</imageobject></mediaobject>
+</figure>
+<para>
+Et voici un diagramme de séquence montrant l'exécution d'une session incrémentale.
+</para>
+<figure>
+<title>Diagramme de séquence - instanciation incrémentale</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncDiagSeqBasic.png"/>
+</imageobject></mediaobject>
+</figure>
+<para>
+Un second point important est la modélisation de l'arbre d'execution. Ceci afin de pouvoir restaurer le contexte du document source ainsi que le contexte du document cible le moment venu.
+</para>
+<para> L'arbre d'exécution est composé des instructions XSLT qui ont été instanciées lors de la transformation. On peut rapidement décider d'enlever un certains nombre d'instructions, en particulier celles qui n'ont pas du tout modifiées le contexte.</para>
+<para>
+Durant le traitement effectué par 4suite, un arbre des différents contextes et crée, en effet durant l'instantiation le contexte courant est dupliqué, puis la copie sert au reste de l'instantiation. L'objectif est donc, au lieu de supprimer le contexte à la fin de l'instantiation, de le stocker, associé à l'instance d'élément XSLT qui a opéré. C'est donc de la responsabilité de cet élément XSLT. Il faut également stocker les références vers le document cible, afin de pouvoir modifier ce dernier.
+</para>
+<para>
+À l'instar de IncXslt les instructions XSLT seront donc classifiées en 4 types , instructions "template", instructions de contrôle, de production et de variables. Chaque type correspond à des modifications différentes sur les contextes sources et cibles.
+</para>
+<section><title>Classification des éléments XSLT</title>
+<informaltable frame="all">
+  <tgroup cols="4">            <!-- on décrit le nombre de colonnes -->
+  <thead>                      <!-- on passe au "header" du tableau -->
+    <row>
+      <entry>instruction template</entry>
+      <entry>instruction de contrôle</entry>
+      <entry>instruction de production</entry>
+      <entry>instruction de variables</entry>
+    </row>
+  </thead>
+  <tbody>                      <!-- et on remplit les lignes -->
+    <row>
+      <entry>template</entry>
+      <entry>apply-imports</entry>
+      <entry>attribute</entry>
+      <entry>param</entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>apply-templates</entry>
+      <entry>comment</entry>
+      <entry>variable</entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>call-template</entry>
+      <entry>copy</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>choose</entry>
+      <entry>copy-of</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>for-each</entry>
+      <entry>element</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>if</entry>
+      <entry>processing-instruction</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>sort</entry>
+      <entry>number</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>otherwise</entry>
+      <entry>text</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>when</entry>
+      <entry>value-of</entry>
+      <entry></entry>
+    </row>
+    <row>
+      <entry></entry>
+      <entry>with-param</entry>
+      <entry></entry>
+      <entry></entry>
+    </row>
+  </tbody>
+  </tgroup>
+</informaltable>
+<para>
+Les instructions templates ne font que déclarer une règle, les instructions de contrôles modifient la position de l'instruction courante, les instructions de production modifie le contexte du document cible tandis que les instructions de variables sont les seules à même de modifier les variables du contexte.
+</para>
+<para>
+L'arbre d'exécution est donc un enchainnement d'instances de ces différentes classe d'instructions.
+</para>
+<para>
+Cette classification entre les classes sera ajoutée au sein même des classes de 4Xslt.
+</para>
+<figure>
+<title>Diagramme de classe de 4Xslt après ajout</title>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncClassDiagElements.png"/>
+</imageobject></mediaobject>
+</figure>
+<para>
+La methode "getPatterns" de la classe "XsltIncInstruction" renvoi les expressions XPath simplifiées tandis que la methode "restoreCurrentContexts(ExecFlowTree XsltIncInstruction)" lance la restauration du contexte de la transformation à l'aide de l'arbre d'execution.
+</para>
+</section>
+<section><title>Intégration dans le processus de 4Suite</title>
+<para>
+Les grandes étapes qu'il va falloir ajouter au processus de transformation de 4Xslt sont les suivantes:
+</para>
+<itemizedlist>
+<listitem>
+     <para>Lors de la première transformation il s'agit de construire une structure nous permettant par la suite d'associer à chacune des instruction leur rêgles. Ces règles seront ensuite déclenchées lors d'un changement dans la structure DOM. Il va donc falloir modifier le comportement de toutes les classes d'instructions XSLT, en particulier au moment de l'instantiation.</para>
+</listitem>
+<listitem>
+     <para>
+     Il va par conséquent également falloir augmenter  la structure DOM de 4suite afin qu'elle déclenche la mise à jour.
+     </para>
+</listitem>
+</itemizedlist>
+<para>
+Grâce au langage Python, toute cette intégration pourra se faire de manière dynamique, lors de l'import du module xsltinc ce dernier augmentera automatiquement les classes du module "4suite", ainsi on garde une totale indépendance vis-a-vis du code source de 4suite et de celui des programmes l'utilisant, ils pourront continuer d'évoluer en parallèle sans remettre en cause le moteur incrémental.
+</para>
 </section>
 </section>
 
