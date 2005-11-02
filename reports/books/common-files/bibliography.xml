@@ -169,6 +169,52 @@ Programming Languages</conftitle>
 			<title>Une approche de l'édition structurée des documents</title>
 		</biblioentry>
 
+
+		<biblioentry id="vil2002">
+			<abbrev>VIL2002</abbrev>
+			<authorgroup>
+				<author><firstname>Villard</firstname><surname>Lionel</surname></author>
+			</authorgroup>
+			<affiliation>INPG</affiliation>
+			<title>Modèles de documents pour l’édition et l’adaptation de présentations multimédias</title>
+			<bibliomisc>Disponible sur : <ulink url="http://xsltinc.berlios.de/docs-extra/These_transfo_incré.pdf" /></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="vil2000">
+			<abbrev>VIL2000</abbrev>
+			<authorgroup>
+				<author><firstname>Villard</firstname><surname>Lionel</surname></author>
+			</authorgroup>
+			<affiliation>INPG</affiliation>
+			<title>An Incremental XSLT Transformation Processor for XML
+               Document Manipulation</title>
+		</biblioentry>
+		<biblioentry id="gen2003">
+			<abbrev>GEN2000</abbrev>
+			<authorgroup>
+				<author><firstname>Genèves</firstname><surname>Pierre</surname></author>
+			</authorgroup>
+			<affiliation>Projet Wam</affiliation>
+			<title>Langages de transformation incrémentaux</title>
+		</biblioentry>
+
+		<biblioentry id="fok2005">
+			<abbrev>FOK2005</abbrev>
+			<authorgroup>
+				<author><firstname>Fokoue</firstname><surname>Achille</surname></author>
+			</authorgroup>
+			<title>Extracting Input/Output dependencies from XSLT 2.0 and XQuery 1.0</title>
+		</biblioentry>
+
+		<biblioentry id="kay2003">
+			<abbrev>KAY2005</abbrev>
+			<authorgroup>
+				<author><firstname>Kay</firstname><surname>Michael</surname></author>
+			</authorgroup>
+			<title> XSL transformations (XSLT) version 2.0.</title>
+			<affiliation>W3C</affiliation>
+		</biblioentry>
+
 		<biblioentry id="roi1999">
 			<abbrev>ROI1999</abbrev>
 			<authorgroup>
