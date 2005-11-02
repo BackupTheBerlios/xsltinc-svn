@@ -109,7 +109,10 @@
 		table after
 		procedure after
 	</xsl:param>
-		
+	
+	<xsl:template match="phrase[@role = 'math']">
+  	<xsl:call-template name="inline.italicseq"/>
+	</xsl:template>		
 <!-- ============================== Chapter ======================= -->
 
 <xsl:template name="chapter.title">

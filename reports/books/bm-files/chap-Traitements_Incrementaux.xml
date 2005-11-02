@@ -6,20 +6,44 @@
 	<title>Traitements incrémentaux</title>
 	
 	<para>
-	
+		Dans ce chapitre, nous allons survoler les différentes techniques de traitements incrémentaux qui existent. En effet, dans la problématique d'optimisation des performances dans différents domaine de l'informatique, une solution a souvent été de requérir à des algorithmes dits incrémentaux. Nous énoncerons tout d'abord une définition formelle du traitement incrémental dont nous ressortirons un classement de ces méthodes en catégories. Enfin, nous ferons un tour d'horizon de ces méthodes dans chacune de ces catégories.
 	</para>
 	
 	<section>
 		<title>Définition</title>
 		<para>
-		
+			L'expression d'un traitement incrémental de manière mathématique pourrait être la suivante : il faut calculer une fonction <phrase role="math">f</phrase> sur la donnée d’entrée <phrase role="math">x</phrase> et de maintenir le résultat <phrase role="math">f (x)</phrase> à jour lorsque la donnée d’entrée subit des modifications. Ainsi, un algorithme incrémental pour le calcul de f prend comme données d’entrée : 
 		</para>
+		<itemizedlist>
+			<listitem>la donnée d'entrée <phrase role="math">x</phrase> ;</listitem>
+			<listitem>le résultat du traitement <phrase role="math">f (x)</phrase> ;</listitem>
+			<listitem>éventuellement des informations auxiliaires résultant de l’analyse statique ou dynamique du traitement de l’entrée x ou du résultat <phrase role="math">f (x)</phrase></listitem>
+			<listitem>les modifications <phrase role="math">delta(x)</phrase> de l’entrée.</listitem>
+			</itemizedlist>
+			<para>
+				L’algorithme incrémental calcule le nouveau résultat <phrase role="math">f (x OP delta(x))</phrase> où <phrase role="math">x OP delta(x)</phrase> dénote 
+l’entrée modifiée, et met à jour adéquatement les éventuelles informations auxiliaires.
+			</para>
+			<para>
+				Une définition formelle de ce problème à été donnée par <xref linkend="ram1993"/> :
+			</para>
+			<blockquote>
+				<para>
+					<quote><emphasis>Étant donnés un programme f et une opération OP, un programme f’ est appelé une version incrémentale de f par rapport à OP si f’ calcule f (x OP delta(x)) de façon efficace en utilisant f (x).</emphasis></quote>
+				</para>
+			</blockquote>
+			<para>
+				Nous rappelons encore une fois ici que le terme efficace prend ici toute son importance, puisque dans un soucis d'optimisation, si la découverte de <phrase role="math">f'</phrase> requiert un cout en temps ou en espace mémoire supérieur à <phrase role="math">f</phrase>, alors c'est inutile.
+			</para>
 	</section>
 
 	<section>
 		<title>Catégorisation des travaux sur l'incrémentalité</title>
 		<para>
-		
+			De nombreux travaux concernant l’incrémentalité ont été effectués. Un aperçu des différents travaux existants est donné par G. Ramalingam et T. Reps dans une bibliographie classifiée sur le traitement incrémental <xref linkend="ram1993"/>. Les algorithmes incrémentaux sont notamment utilisés pour les environnements de programmation interactifs, pour la compilation de programmes, dans les résolveurs de contraintes, pour la transformation de documents structurés, etc.
+		</para>
+		<para>
+			De ces travaux, ont peut extraire deux types de méthodes afin de rendre incrémentale une oération. Les méthodes générales et le méthodes spécificiques. Les méthodes générales tout d'abord tente, dans un domaine définis, de rendre un programme incrémental quelque soit ses données d'entrées et leurs modifications. Les méthodes spécifiques quant à elles sont plus particulièrement 
 		</para>
 	</section>
 	

@@ -52,8 +52,6 @@ En plus de ces opérations XPath permet également de définir des règles de fi
 
 <section id="Modele_conceptuel" ><title>
 Modèle conceptuel</title>
-<para></para>
-<para></para>
 <section id="7_types_de_noeuds" ><title>
 7 types de noeuds</title>
 <para>XPath opère sur des données XML arborescentes. Cet arbre est composé de noeuds, on en distingue 7 types:</para>
@@ -83,7 +81,7 @@ Les noeuds de commentaires</para></listitem>
     <price>29.99</price>
   </book>
 </bookstore>]]></programlisting></para>
-<para>Le noeud racine est "&lt;bookstore&gt;", "&lt;author&gt;J K. Rowling&lt;/author&gt;" est un noeud d'élément et "lang="en"" un noeud d'attribut.</para>
+<para>Le noeud racine est <quote>&lt;bookstore&gt;</quote>, <quote>&lt;author&gt;J K. Rowling&lt;/author&gt;</quote> est un noeud d'élément et <quote>lang="en"</quote> un noeud d'attribut.</para>
 
 </section>
 
@@ -107,7 +105,7 @@ Descendants : l'enfant, son enfant, etc etc..</para></listitem>
 
 <section id="Expressions" ><title>
 Expressions</title>
-<para>Une expression peut être composé de plusieurs sous-expression, chacune pouvant être de type:</para>
+<para>Une expression peut être composé de plusieurs sous-expression, chacune pouvant être de type :</para>
 <itemizedlist>
 <listitem><para>
 les appels de fonction.</para></listitem>
@@ -132,7 +130,6 @@ les structures lexicales : parenthèses et regroupements de termes.</para></list
 Fonctionnement</title>
 <para>Le principe de XPath est le suivant : on définit un sous ensemble de l'arbre par la concaténation d'un chemin auquel on peut associer un prédicat. </para>
 <para>Ce principe de base peut ensuite être utilisé autant de fois que nécessaire afin de sélectionner les données désirées.</para>
-<para></para>
 <section id="Un_chemin" ><title>
 Un chemin</title>
 <para>Il s'agit de l'élément de syntaxe le plus important. Tout noeud d'un arbre XML peut être identifié de manière unique à l'aide d'un chemin. Il peut alors être très verbeux.</para>
@@ -228,10 +225,7 @@ Les tests de noeuds</title>
 <section id="Les_predicats" ><title>
 Les prédicats</title>
 <para>Un prédicat filtre un ensemble de noeud selon l'axe spécifié afin de produire un nouvel ensemble de noeud. Pour chaque noeud l'expression du prédicat est évaluée, si l'évaluation renvoie "vrai" alors le noeud est gardé dans l'ensemble résultant, dans le cas contraire il est rejeté.</para>
-<para></para>
 <para>Si le résultat de l'évaluation est un nombre alors l'expression sera considérée comme 'vrai' si le nombre obtenu est le même que la position courante dans l'arbre, à 'faux' autrement.</para>
-<para></para>
-
 </section>
 
 <section id="La_syntaxe_reduite" ><title>
@@ -280,7 +274,7 @@ La syntaxe réduite</title>
 			<section>
 				<title>Fonctionnement interne de XSLT</title>
 				<para>
-				Les feuilles de style XSLT sont donc déclaratives et non procédural. L'algorithme qui définit dans quel ordre les règles sont à appliquer pendant le traitements est décrit ci-dessous bien que beaucoup de détails aient été omis. Tout processeur XSLT doit de se comporter suivant les étapes suivantes :
+				Les feuilles de style XSLT sont donc déclaratives et non procédural. L'algorithme qui est exécuté à chaque application d'une transformation est décrit ci-dessous bien que beaucoup de détails aient été omis. Tout processeur XSLT doit de se comporter suivant les étapes suivantes :
 				</para>
 				<orderedlist>
 					<listitem>
@@ -302,54 +296,35 @@ La syntaxe réduite</title>
 					Linéariser l'arbre résultat conformément aux paramètres donnés à l'instruction <quote>xsl:output</quote>.
 				</listitem>
 			</orderedlist>
+			
+			<figure id="instanciation">
+				<title>Processus d'instanciation XSLT</title>
+			<mediaobject><imageobject><imagedata format="PNG" fileref="images/instanciation.png"/></imageobject></mediaobject>
+			</figure>
+			
 				<para>
 				Le traitement d'un noeud s'effectue selon la procédure suivante :
 				</para>
 				<orderedlist>
 					<listitem>
-						La règle correpondant le plus au noeud courant est localisé. Étant donné que chaque règle est caratérisé par un patron ou <foreignphrase>pattern</foreignphrase>, il est possible de savoir si cette règle correspond au noeud courant. Les règles ont une priorité relative et des règles de précédence pour les imports ce qui permet au processeur de résoudre les conflits.
+						La règle la plus spécifique au noeud courant est localisée. Étant donné que chaque règle est caratérisé par un patron ou <foreignphrase>pattern</foreignphrase>, il est possible de savoir si cette règle correspond au noeud courant. Les règles ont une priorité relative et des règles de précédence pour les imports ce qui permet au processeur de résoudre les conflits.
 				</listitem>
 				<listitem>
 					Instanciation de la règle. Les éléments de l'espace de nommage XSLT (préfixés par xsl: par convention) sont traités comme des instructions et ont une sémantique spéciale. Les autres éléments et noeuds texte sont copié tel qu'il sont dans l'arbre résultat. Les commentaires sont ignorés.
 				</listitem>
 			</orderedlist>
 			<para>
-					Lorsqu'elle est exécutée, l'instruction <quote>xsl:apply-templates</quote> produit une nouvelle liste de noeuds courants pour l'exécution et en modifie donc grandement le contexte comme on peut le voir sur la figure <!-- --> montrant le processus d'instanciation d'une règle. Chaque noeud est identifié par une expression XPath.
+					Lorsqu'elle est exécutée, l'instruction <quote>xsl:apply-templates</quote> produit une nouvelle liste de noeuds courants pour l'exécution et en modifie donc grandement le contexte comme on peut le voir sur la figure [<xref linkend="instanciation" xrefstyle="select:label"/>] montrant le processus d'instanciation d'une règle. Chaque noeud est identifié par une expression XPath.
 				</para>
 			</section>
 			<section>
 				<title>Exemple</title>
 				
-				<example>
-					<title>Une feuille de style XSLT : liste de personnes vers liste HTML</title>
-					<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?>
-2.  <xsl:stylesheet version="1.0"
-3.       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-4.  <xsl:output method="html"/>
-5.  <xsl:template match="/">
-6.   <html>
-7.   <body>
-8.     <h1>Person List</h1>
-9.       <xsl:apply-templates/>
-10.  </body>
-11.  </html>
-12. </xsl:template>
-13.
-14. <xsl:template match="persons">
-15.   <ul><xsl:apply-templates select="person"/></ul>
-16. </xsl:template>
-17.
-18. <xsl:template match="person">
-19.   <li>
-20.     <xsl:value-of select="firstname"/> 
-21.     <xsl:value-of select="lastname"/>
-22.   </li>
-23. </xsl:template>
-24.
-25. </xsl:stylesheet>]]></programlisting>
-				</example>
+				<para>
+					Tombons dans les lieux communs : un exemple vaut mieux qu'un long discours. Regardons donc d'un peu plus près une transformation XSLT. Tout d'abord, prenons un document XML assez simple [<xref linkend="listPersonnesXML" xrefstyle="select:label"/>].
+				</para>
 
-				<example>
+				<example id="listPersonnesXML">
 					<title>Une liste de personnes en XML</title>
 					<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?>
 2.  <persons>
@@ -375,8 +350,54 @@ La syntaxe réduite</title>
 22.   </person>
 23. </persons>]]></programlisting>
 				</example>
+				
+				<para>
+					L'élément racine est <quote>persons</quote> et comprend ensuite un certains nombre de noeuds fils de type <quote>person</quote> (notez le pluriel dans le noeud racine et le singulier dans les noeuds fils). Chaque personne est caractérisé par son prénom et son nom. Aucun attribut n'est spécifié sur les noeuds ce qui permettra d'avoir des patrons XPath simples.
+				</para>
+				
+				<para>
+					Regardons maintenant la feuille de style XSLT que nous allons lui appliquer [<xref linkend="persons2HTML" xrefstyle="select:label"/>]. Elle est composée de trois règles. La première (ligne 5) s'occupe du noeud racine. La seconde (ligne 14) prend en charge les noeuds de type <quote>persons</quote>. On remarque ici que en réalité le noeud racine est un noeud <quote>persons</quote>. Nous verrons un peu plus loin que cela ne pose pas de problème. Enfin, la dernière règle (ligne 18) gère les noeuds <quote>person</quote>.
+				</para>
+				
+				<example id="persons2HTML">
+					<title>Une feuille de style XSLT : liste de personnes vers liste HTML</title>
+					<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?>
+2.  <xsl:stylesheet version="1.0"
+3.       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+4.  <xsl:output method="html"/>
+5.  <xsl:template match="/">
+6.   <html>
+7.   <body>
+8.     <h1>Person List</h1>
+9.     <xsl:apply-templates/>
+10.  </body>
+11.  </html>
+12. </xsl:template>
+13.
+14. <xsl:template match="persons">
+15.   <ul><xsl:apply-templates select="person"/></ul>
+16. </xsl:template>
+17.
+18. <xsl:template match="person">
+19.   <li>
+20.     <xsl:value-of select="firstname"/> 
+21.     <xsl:text> </xsl:text>
+22.     <xsl:value-of select="lastname"/>
+23.   </li>
+24. </xsl:template>
+25.
+26. </xsl:stylesheet>]]></programlisting>
+				</example>
 
-				<example>
+				<para>
+					L'exécution de cette transformation produit le résultat tel qu'il est présenté dans [<xref linkend="resultat_pesons2HTML" xrefstyle="select:label"/>]. Voyons un plus en détails ce qui s'est passé. Nous considérons que l'arbre de transormation et l'arbre source sont construit. Tout d'abord, la première règle est appliqué puisqu'elle a la priorité la plus forte d'après la spécification de la méthode de résolution de conflits dans les règles XSLT. Les noeuds sans le préfixee <quote>xsl:</quote> sont rajoutés dans l'arbre résultat jusqu'à l'instruction <quote>xsl:apply-templates</quote>. Comme dit précédement, elle sélectionne les noeuds fils correspondant au critère XPath de son attribut <quote>select</quote> ou à défaut l'ensemble des noeuds fils du noeuds courant et les place dans la liste de noeuds courants.
+				</para>
+
+				<para>
+					La règle deux (ligne 14) est alors sélectionnée à son tour. Elle ajoute le noeud <quote>ul</quote> à l'arbre résultat et rechange encore la liste des noeuds courants en prenant tout les noeuds fils de <quote>persons</quote> qui ont pour nom <quote>person</quote> (ici tout les noeuds fils). Enfin la troisième règle est appliquée : elle ajoute le noeud <quote>li</quote> à l'arbre résultat ainsi que trois noeuds texte produits par sélection de valeurs de sous-noeuds (instruction <quote>xsl:value-of</quote>) ou créé de toute pièce par le processeur (instruction <quote>xsl:text</quote>).
+				</para>
+
+				<example id="resultat_pesons2HTML">
 					<title>Résultat de la transformation</title>
 					<programlisting><![CDATA[1.  <html><body>
 2.  <h1>Person List</h1>
@@ -389,10 +410,14 @@ La syntaxe réduite</title>
 9.  </ul>
 10. </body></html>]]></programlisting>
 				</example>
-				
-
-				
 			</section>
 		</section>
-
+		
+		<section>
+			<title>Conclusion</title>
+			<para>
+				Nous avons donc étudié de très près la norme XSL et ses deux principales composantes, à savoir XPath et XSLT. Cette étude n'a certe pas été faite de façon formelle, mais nous verrons dans le chapitre <xref linkend="incXSLT" xrefstyle="template:%t page %p"/> une vue un peu plus détaillé et formelle. Dans le chapitre suivant nous allons faire un tour d'horizon des méthodes de traitement incrémental.
+			</para>
+		</section>
+		
 </chapter>
