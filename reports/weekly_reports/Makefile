@@ -13,6 +13,9 @@ all: clean
 %.pdf: %.fo
 	$(FO_ENGINE) -fo $< -pdf $@
 
+biblio: week39.pdf  week40.pdf  week41.pdf  week42.pdf  week43.pdf
+	./pdfmerge -o weekly_reports_biblio.pdf week39.pdf  week40.pdf  week41.pdf  week42.pdf  week43.pdf ; echo "finished"
+
 clean:  
 	@rm -f *.fo *.pdf
 	@find ./ -name "*~" | xargs rm -f

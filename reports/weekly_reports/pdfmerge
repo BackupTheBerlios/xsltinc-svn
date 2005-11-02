@@ -1,0 +1,159 @@
+#! /bin/sh
+
+################################################################
+# Fichier : pdfmerge
+# Auteur : Sebastien Varrette <Sebastien.Varrette@imag.fr>
+# 06 Feb 2004
+#
+# Description : merges  PDF  documents  into a single document
+#  
+################################################################
+# Version du script
+version=0.1
+
+# fichier de sortie par défaut
+output="output.pdf"
+# mode ps : par defaut, ce n'est pas le cas
+extension="pdf"
+
+#################################
+# Affichage du mode d'utilisation
+#################################
+print_usage() {
+    echo "Usage : pdfmerge [-o output.pdf] file1.pdf file2.pdf ... "
+    echo "        pdfmerge [-ps] -d DIRECTORY" 
+    echo "        pdfmerge -ps [-o output.pdf] file1.ps file2.ps ..."    
+    echo "        pdfmerge -h"
+    echo "Available Options : "
+    echo "        -h : affiche l'aide"
+    echo "        -o output.pdf : output document"
+    echo "        -d DIRECTORY : merge all pdf files (resp. ps files if option '-ps' is specified)" 
+    echo "                       that are in DIRECTORY. The files are sorted by the ls command" 
+    echo "        -ps : merge ps files into a single pdf document"
+}
+
+#####################
+# Affichage de l'aide
+#####################
+print_help() {
+    echo "--------------------------------------------------------------------"
+    echo "pdfmerge : merges  PDF  documents  into a single document"
+    echo "           the default output document will be output.pdf" 
+    echo "Author : Sebastien Varrette <Sebastien.Varrette@imag.fr>"
+    echo "Version : $version"
+    print_usage
+    echo "--------------------------------------------------------------------"
+}
+
+
+########################################
+# Teste si la liste de fichier $list
+# contient bien des fichiers d'extension $1 
+# Arguments : 
+#       - extension (ps ou pdf)
+#       - la liste de fichiers
+########################################
+test_extension() {
+    extension=$1
+    shift
+    # TODO : ameliorer le test
+    if [ -z `echo $1 | grep .$extension` ]; then
+	echo "*** incorrect list of files : $*"
+	print_usage
+	exit 1
+    fi
+}
+
+#####################################################
+# Fonction de concatenation des fichiers pdf
+# Arguments : $1 : la liste des fichiers a concatener
+# Precondition : $1 est non vide
+#####################################################
+do_mergepdf() {
+    # on commence a vérifier si on a bien des fichier pdf
+    test_extension pdf $*    
+    echo "*** Start of merge *** " 
+    gs  -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$output -f $*
+}
+
+###########################################################
+# Fonction de concatenation des fichiers ps en 1 fichier ps 
+# Arguments : $1 : la liste des fichiers a concatener
+# Precondition : $1 est non vide
+###########################################################
+do_mergeps() {
+    # on commence a vérifier si on a bien des fichier ps
+    test_extension ps $*    
+    pdffiles=`echo $* | sed 's/.ps/.pdf/g'`
+    while [ $# -ge 1 ]; do
+        # un peu redondant avec gs que d'utiliser ps2pdf mais bon... 
+        # l'essentiel est ds lactel :-) (et tant que ca marche...)
+        # TODO : trouver les option de gs qui permettent de factoriser ça...
+	echo "*** Convert $1 by ps2pdf" 
+	ps2pdf $1
+	shift
+    done
+    do_mergepdf $pdffiles 
+}
+
+############################
+# Fonction de concatenation
+############################
+do_merge() {
+    # y a sans doute moyen avec eval de se ramener a 1 ligne mais j pas temps de chercher
+    # genre do_merge$extension
+    if [ $extension == "pdf" ]; then 
+	do_mergepdf $* 
+    else
+	do_mergeps $*
+    fi
+}
+
+########################################## --- Debut du script --- ##########################################
+
+# parse argument list : error if no argument is specified
+if [ $# -eq 0 ]
+then 
+    print_usage
+fi
+
+# tant qu'il y a des arguments
+while [ $# -ge 1 ]; do
+    case $1 in
+	-h*) 
+	    print_help
+	    exit 1;;
+	-o) 
+	    shift
+	    output=`echo $1`;;
+	-d) shift
+	    #on teste le répertoire; s'agit-il d'une option?
+	    option=`echo $1 | grep -e '^-'`
+	    if [ ! -z $option ]; then
+		echo " $1 : invalide directory; 'pdfmerge -h' for help"
+		exit 1
+	    fi
+	    #le répertoire est-il un chemin?  
+	    chemin=`echo $1 | grep -e '^/'`
+	    if [ -z $chemin ]; then
+		    #echo " pas un chemin -> on ajoute un ./ au début"
+		    chemin="./$1"
+	    fi
+	    cd $chemin
+	    liste_of_files=`ls *.$extension | xargs echo` 
+	    echo "--- Liste of files : $liste_of_files"
+	    do_merge $liste_of_files
+	    exit 1;; 
+	-ps) 
+	    extension="ps";;
+	*) 
+	    do_merge $*
+	    exit 1;;
+    esac    
+    shift
+done
+if [ $# -eq 0 ]; then 
+    print_usage
+    exit 1
+fi
+
