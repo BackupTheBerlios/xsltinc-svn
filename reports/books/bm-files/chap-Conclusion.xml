@@ -5,14 +5,43 @@
 <chapter id="Conclusion" >
 	<title>Conclusion</title>
 	
-	<para>
-	
-	</para>
 	
 	<section>
-		<title></title>
-		<para>
+		<title>Rappel des objectifs</title>
+
+	<para>
+	Ce premier document conclu la phase de recherche bibliographique du projet en synthétisant les différentes problématiques et solutions proposées. Il a traité les besoins de transformation des nouveaux types de documents et les lacunes en termes de performances dans la mise en oeuvres actuelle des système de transformation. 
+Dans la perspective d'améliorer ces questions de performances nous nous sommes fixés comme objectif de contribuer à leur amélioration en permettant les transformations de type Xslt de s'éxécuter de manière incrémentale.
+	</para>
+
+	</section>
+	<section>
+		<title>Démarche de travail et bilan</title>
+		<para>Pour atteindre cet objectif nous avons
 		
+		</para>
+<itemizedlist>
+<listitem><para>Étudiés les concepts fondamentaux du génie documentaire et les problématiques liées aux nouveaux types de documents.
+</para></listitem>
+<listitem><para>
+Effectué l'analyse des différentes solutions de traitements incrémentaux existantes et des implications théoriques de chacunes.
+</para></listitem>
+<listitem><para>
+Recherché la possibilité ou non de rendre reversible une transformation Xslt.
+</para></listitem>
+<listitem><para>Étudié en profondeur du langage de transformation Xslt et de ses composantes associées, telles que XPath.
+</para></listitem>
+<listitem><para>Proposé une solution répondant à la problématique de la transformation Xslt incrémentale et étudié l'intégration possible de cette architecture au sein d'un projet pré-existant.
+</para></listitem>
+<listitem><para>
+</para></listitem>
+</itemizedlist>
+<para>Le premier résultat de ce rapport est donc un "État de l'art" synthétique des transformations incrémentales, des documents XML et des travaux déjà réalisés dans le domaine de Xslt.Le second est une architecture permettant la mise en place d'un tel traitement incrémental.
+</para>
+	</section>
+	<section>
+		<title>Perspectives</title>
+		<para>Fort des connaissances accumulées et synthétisées ici, nous pouvons désormais nous lancer dans la réalisation du prototype qui validera, ou non, la solution proposées.		
 		</para>
 	</section>
 	
