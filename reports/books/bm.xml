@@ -19,6 +19,7 @@
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-incXSLT.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Transformations_inversibles.xml"/>	
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Conception.xml"/>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Plannification.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/chap-Conclusion.xml"/>	
 	
 	<!-- ===== Back Matter ===== -->
