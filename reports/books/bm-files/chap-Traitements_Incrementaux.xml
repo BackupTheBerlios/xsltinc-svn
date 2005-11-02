@@ -24,6 +24,13 @@
 				L’algorithme incrémental calcule le nouveau résultat <phrase role="math">f (x OP delta(x))</phrase> où <phrase role="math">x OP delta(x)</phrase> dénote 
 l’entrée modifiée, et met à jour adéquatement les éventuelles informations auxiliaires.
 			</para>
+			
+      <figure>
+        <title>Calcul incrémental</title><mediaobject>
+        <imageobject><imagedata format="PNG" fileref="images/calculIncr.png"/></imageobject>
+		 </mediaobject>
+      </figure>					
+			
 			<para>
 				Une définition formelle de ce problème à été donnée par <xref linkend="ram1993"/> :
 			</para>
@@ -32,13 +39,7 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 					<quote><emphasis>Étant donnés un programme f et une opération OP, un programme f’ est appelé une version incrémentale de f par rapport à OP si f’ calcule f (x OP delta(x)) de façon efficace en utilisant f (x).</emphasis></quote>
 				</para>
 			</blockquote>
-			
-      <figure>
-        <title>Calcul incrémental</title><mediaobject>
-        <imageobject><imagedata format="PNG" fileref="images/calculIncr.png"/></imageobject>
-		 </mediaobject>
-      </figure>			
-      
+			      
 			<para>
 				Nous rappelons encore une fois ici que le terme efficace prend ici toute son importance, puisque dans un soucis d'optimisation, si la découverte de <phrase role="math">f'</phrase> requiert un cout en temps ou en espace mémoire supérieur à <phrase role="math">f</phrase>, alors c'est inutile.
 			</para>
@@ -59,13 +60,59 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 		<para>
 		Les méthodes générales diffèrent sur un certain nombre de points. En premier lieu, pour toute incrémentalisation d'une opération, il est nécessaire de conserver des données supplémentaires ; ainsi la nature et leurs manières de stocker ces données diffèrent. Deuxièmement, trois grandes orientations se dégagent : celle du recalcul sélectif (<foreignphrase>sélective recomputation</foreignphrase>), celle de la différence finie (<foreignphrase>finite differencing</foreignphrase>) et celle de l'évaluation partielle (<foreignphrase>partial evaluation</foreignphrase>).
 		</para>
+		
+		<section>
+			<title>Méthodes de recalcul sélectif</title>
+			<para>
+				Les méthodes par recalcul sélectif exploite le résultat précédent. Le calcul de <phrase role="math">f’ (x OP delta(x))</phrase> s'effectue en utilisant le résultat du calcul précédent <phrase role="math">f (x)</phrase>. Pour cela il est nécessaire de stocker le résultat <phrase role="math">f (x)</phrase> dans un cache. Les techniques de mises en cache (<foreignphrase>function caching</foreignphrase>) introduite par <xref linkend="mic1968"/> en sont un exemple parlant.  Pugh et Teitelbaum <xref linkend="ped1989"/> ont décrit comment utiliser la technique <quote>function caching</quote> pour l’évaluation incrémentale avec des structures de données. Dans le but d’obtenir des algorithmes incrémentaux efficaces, les structures de données doivent être conçues spécifiquement de manière à ce que les traitements sur des instances similaires du type de donnée aient en commun de nombreux sous-traitements. Une autre difficulté est de conserver la taille du cache raisonnablement limitée sauf dans le cas d'un langage sans effets de bord comme c'est la cas pour XSLT.
+			</para>
+		</section>
+
+		<section>
+			<title>Méthodes par différence finie</title>
+			<para>
+				Les méthodes par différence finie exploite les résultats intermédiaires à l'éxecution d'une transformation. Dans cette approche l’existence d’une fonction de différence <phrase role="math">f_delta</phrase> est prise comme hypothèse. <phrase role="math">f_delta</phrase> est utilisée pour calculer le résultat pour <phrase role="math">x OP delta(x)</phrase> par 
+mise à jour du résultat précédent : <phrase role="math">f (x OP delta(x)) = f (x) OP' f(delta(x))</phrase>. Cette technique a été énoncé par <xref linkend="pai1982"/> et appliqué dans le contexte de programmation avec invariants.
+			</para>
+		</section>
+		
+		<section>
+			<title>Méthode d'évaluation partielle</title>
+			<para>
+				Cette technique s’appuie sur une partie connue et statique de la donnée en entrée. Dans certain cas, la fonction peut être simplifiée en évaluant de façon statique cette partie. Une définition formelle de l’évaluation partielle au moyen des projections est donnée par Sundaresh dans <xref linkend="sun1991"/> et montre comment elle peut être utilisée dans le cadre du traitement incrémental. 
+			</para>
+			<para>
+				Le principe est que le domaine d’entrée d’une fonction peut être partitionné en utilisant un ensemble de projections. Une fois le domaine d’entrée partitionné, les fonctions dites résiduelles correspondant au partitionnement, c’est-à-dire à chaque projection, sont calculées. Ainsi, lorsqu’une partie du domaine d’entrée change, il suffit d’appliquer à la nouvelle partie la fonction résiduelle correspondante. La difficulté principale est de trouver un bon partitionnement du domaine d’entrée.
+			</para>
+		</section>
+		
 	</section>	
 	
 	<section>
 		<title>Méthodes spécifiques au génie documentaire</title>
-		<para>
-			
-		</para>
+		<para>Après les techniques générales, nous allons étudier les techniques spécifiques au génie documentaire. Nous en verrons trois : la traduction incrémentale, le traitement XML au plus tard, et enfin un processeur XSLT incrémental : incXSLT qui sera détaillé dans le chapitre suivant.</para>
+		
+		<section>
+			<title>Traduction incrémentale</title>
+			<para>
+			Il s’agit d’un algorithme incrémental de traduction d’arbre. Habituellement, lorsqu’un utilisateur saisit une chaîne de caractères, un parsing est effectué pour reconnaître cette chaîne. Ce parsing peut d’ailleurs lui même être incrémental. Les travaux de Lindén <xref linkend="lin1994"/> concernent la traduction incrémentale, c’est à dire, étant donné une grammaire d’entrée et une de sortie, traduire la chaîne saisie par l’utilisateur contrainte par une grammaire d’entrée en une chaîne contrainte par une autre grammaire de sortie. Cette traduction est effectuée de manière incrémentale et réagit donc à chaque modification de la chaîne d’entrée.
+			</para>
+		</section>
+		
+		<section>
+			<title>Traitement au plus tard</title>
+			<para>
+			 Les travaux sur le traitement au plus tard des structures XML <xref linkend="nog2002"/> commencent par une étude fine du parsing qui est le premier traitement qui doit nécessairement être rendu au plus tard avant d’aborder des problèmes comme la transformation. Une des difficultés est que DOM rend la tache du parsing au plus tard difficile car son interface (et d’une manière générale aussi les feuilles XSLT, etc.) impliquent une connaissance totale de l’arbre source même si seules des parties de celui-ci sont effectivement nécessaires.
+			</para>
+		</section>
+		
+		<section>
+			<title>Une methode ad-hoc à XSLT : incXSLT</title>
+			<para>
+				Un processeur XSLT incrémental a déjà été réalisé par Lionel Villard et Nabil Layaïda. De par son adéquation à notre projet et l'étude approndie que nous en avons fait, nous lui avons consacré le chapitre suivant tout en sachant qu'il s'intègre ici, en tant que méthode ad-hoc de programme incrémental.
+			</para>
+		</section>
+		
 	</section>	
 	
 </chapter>

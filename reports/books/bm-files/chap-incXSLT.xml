@@ -6,7 +6,7 @@
 	<title>Une transformation XSLT incrémentale : incXSLT</title>
 <section><title>Présentation</title>
 <para>
-incXSLT est un processeur XSLT incrémental conçu par Lionel Villard et Na- bil Layaïda. La conception de ce processeur incrémental repose sur la modélisation du contexte d’exécution de XSLT et l’étude ﬁne du langage de sélection XPath.
+incXSLT est un processeur XSLT incrémental conçu par Lionel Villard et Nabil Layaïda. La conception de ce processeur incrémental repose sur la modélisation du contexte d’exécution de XSLT et l’étude fine du langage de sélection XPath.
 <!-- FIXME bilioref -->
 </para>
 <para> Lors d'une mise à jour du document source, les principes mis en oeuvre dans le processeur incXSLT sont les suivants : il détecte dans un premier temps les expressions XPath qui ont besoin d'être ré-évaluées, il élabore ensuite un graphe de dépendance afin d'identifier le sous-ensemble de règles de transformation qu'il est nécessaire de réappliquer, il restaure les contexte du document cible et du document source puis il peut enfin appliquer les règles sélectionnées auparavant.

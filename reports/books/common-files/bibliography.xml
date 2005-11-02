@@ -118,10 +118,27 @@
 				<confdates>janvier 1993</confdates>
 				<conftitle>20th Annual ACM Symposium on Principles of 
 Programming Languages</conftitle>
-				<confnum>ACM</confnum>
 				<address><city>New York</city></address>
 			</confgroup>
+			<affiliation>ACM</affiliation>
 		</biblioentry>
+	
+		<biblioentry id="ped1989">
+			<abbrev>PUG1989</abbrev>
+			<authorgroup>
+				<author><firstname>Pugh</firstname><surname>W.</surname></author>
+				<author><firstname>Teitelbaum</firstname><surname>T.</surname></author>				
+			</authorgroup>
+			<confgroup>
+				<confdates>janvier 1989</confdates>
+				<conftitle>16th Annual ACM Symposium on Principles of 
+Programming Languages</conftitle>
+				<address><city>New York</city></address>
+			</confgroup>
+			<affiliation>ACM</affiliation>
+			<title>Incremental computation via function caching</title>
+		</biblioentry>
+.	
 	
 	</bibliodiv>
 
@@ -142,6 +159,60 @@ Programming Languages</conftitle>
 			<title>A generalized approach to document markup</title>
 		</biblioentry>
 
+		<biblioentry id="lin1994">
+			<abbrev>LIN1994</abbrev>
+			<authorgroup>
+				<author><firstname>Lindén</firstname><surname>Greger</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>5 février 1994</confdates>
+				<conftitle>Computing Thesis</conftitle>
+			</confgroup>
+			<affiliation>Université d’Helsinki</affiliation>
+			<title>Incremental updates in structured documents</title>
+		</biblioentry>
+
+		<biblioentry id="mic1968">
+			<abbrev>MIC1968</abbrev>
+			<authorgroup>
+				<author><firstname>Michie</firstname><surname>D.</surname></author>
+			</authorgroup>
+			<confgroup>
+				<confdates>1968</confdates>
+			</confgroup>
+			<affiliation>Nature</affiliation>
+			<title>Memo functions and machine learning</title>
+		</biblioentry>
+		
+		<biblioentry id="nog2002">
+			<abbrev>NOG2002</abbrev>
+			<authorgroup>
+				<author><firstname>Noga</firstname><surname>Markus L.</surname></author>
+				<author><firstname>Schott</firstname><surname>Steffen</surname></author>
+				<author><firstname>Löwe</firstname><surname>Welf</surname></author>				
+			</authorgroup>
+			<confgroup>
+				<confdates>8 et 9 novembre 2002</confdates>
+				<conftitle>DocEng’02</conftitle>
+				<address>McLean, Virginia, USA</address>
+			</confgroup>
+			<title>Lazy XML Processing</title>
+		</biblioentry>
+
+		<biblioentry id="pai1982">
+			<abbrev>PAI1982</abbrev>
+			<authorgroup>
+				<author><firstname>Paige</firstname><surname>R.</surname></author>
+				<author><firstname>Koenig</firstname><surname>S.</surname></author>				
+			</authorgroup>
+			<confgroup>
+				<confdates>juillet 1982</confdates>
+				<conftitle>Trans. on Program. Lang. Syst.</conftitle>
+			</confgroup>
+			<affiliation>ACM</affiliation>
+			<title>Finite differencing of computable expressions</title>
+		</biblioentry>
+		
 		<biblioentry id="ped2003">
 			<abbrev>PED2003</abbrev>
 			<authorgroup>
@@ -229,24 +300,22 @@ recherches, spécialité informatique</conftitle>
 			<title>Documents multimédia structurés</title>
 		</biblioentry>
 		
-<!-- 
-		<biblioentry id="marvie2002">
-			<abbrev>Marvie2002</abbrev>
+		<biblioentry id="sun1991">
+			<abbrev>SUN1991</abbrev>
 			<authorgroup>
-				<author><firstname>Marvie</firstname><surname>Raphaël</surname></author>
+				<author><firstname>Sundaresh</firstname><surname>R. S.</surname></author>
+				<author><firstname>Hudak</firstname><surname>P.</surname></author>
 			</authorgroup>
 			<confgroup>
-				<confdates>09 décembre 2002</confdates>
-				<conftitle>Thèse de doctorat</conftitle>
+				<confdates>janvier 1991</confdates>
+				<conftitle>18th Annual ACM Symposium on Principles 
+of Programming Languages</conftitle>
 				<confnum></confnum>
-				<address>Lille I</address>
-				<confsponsor>Laboratoire d'Informatique Fondamentale de Lille</confsponsor>
+				<address>New York</address>
+				<confsponsor>ACM</confsponsor>
 			</confgroup>
-			<affiliation>Université des sciences et technologie de Lille</affiliation>
-			<title>Séparation des préoccupations et méta-modélisation pour environnements de manipulation d'architectures logicielles à base de composants</title>
-			<bibliomisc>Disponible sur : <ulink url="http://www.lifl.fr/~marvie/">http://www.lifl.fr/~marvie/</ulink></bibliomisc>
+			<title>Incremental computation via partial evaluation</title>
 		</biblioentry>
- -->
 	
 	</bibliodiv>
 
