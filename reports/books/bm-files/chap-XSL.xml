@@ -101,8 +101,6 @@ Siblings : les noeuds qui ont le mème parent</para></listitem>
 Ancestors : le parent du noeud, son parent, etc etc..</para></listitem>
 <listitem><para>
 Descendants : l'enfant, son enfant, etc etc..</para></listitem>
-<listitem><para>
-</para></listitem>
 </itemizedlist>
 
 </section>
@@ -267,6 +265,134 @@ La syntaxe réduite</title>
 			<para>
 	 			Le standard XSLT 1.0 est <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath (cf. <!--<xref linkend="" xrefstyle="select:label"/>-->)
 			</para>
+			<section>
+				<title>Le langage XSLT</title>
+				<para>
+					Le langage XSLT est de type déclaratif, c'est à dire que, contrairement aux langages impératifs qui sont des séquences d'actions à effectuer, une feuille XSLT est composée d'un ensemble de règles nommées <foreignphrase>templates</foreignphrase>. Chacune d'elle spécifie ce qui doit être rajouté dans l'arbre résultat lorsque le processeur XSLT trouve un noeud, suivant un algorithme définie, qui correspond aux conditions de cette règles. De plus, XSLT est un langage sans effet de bord, c'est à dire qu'aucune procédure ne modifie un quelconque état ou valeur en dehors de sa valeur de retour.
+				</para>
+				<para>
+					La spécifications XSLT définie une transformation avec les notions d'arbre source et résultat afin d'éviter d'enfermer les implémentations dans des interfaces spécifiques et dans des problèmes de mémoires, réseau et d'entrée-sortie. Par exemple, la spécification n'oblige pas que l'arbre source proviennent d'un fichier XML puisqu'il peut-être plus efficace pour le processeur de lire directement dans un objet DOM en mémoire ou n'importe quelle autre représentation spécifique à son implémentation. De même, la sortie peut-être dans un langage qui n'a pas été imaginé par les créateurs de XSLT. Cependant, le traitement XSLT commence souvent par la lecture d'un document XML sérialisé et le transforme en arbre source et termine par écrire l'arbre résultat dans un document XML sérialisé lui aussi. Le document de sortie peut-être du XML mais aussi du HTML, RTF, TeX, CSV, texte plein ou n'importe quel format que le processeur XSLT est capable de produire.
+				</para>
+				<para>
+					XSLT se base sur le langage XPath pour identifier les sous-ensembles dans l'arbre source mais aussi pour effectuer des calcul. XPath fournit un certain nombre de fonctions que XSLT augmente aussi de son coté.
+				</para>
+			</section>
+			<section>
+				<title>Fonctionnement interne de XSLT</title>
+				<para>
+				Les feuilles de style XSLT sont donc déclaratives et non procédural. L'algorithme qui définit dans quel ordre les règles sont à appliquer pendant le traitements est décrit ci-dessous bien que beaucoup de détails aient été omis. Tout processeur XSLT doit de se comporter suivant les étapes suivantes :
+				</para>
+				<orderedlist>
+					<listitem>
+					Lecture de la feuille de style XSLT avec un lecteur XML et la convertir en un arbre de noeuds (que nous nommerons l'abre de transformation), en accord avec le modèle de donnée XPath. Les erreurs de syntaxe détectables au moment de la compilation sont détectées lors de cette phase. Les feuilles de style pouvant-être modulaires, donc toutes les transclusions (dans le cadre de XSLT, les instructions xsl:include ou xsl:import) doivent aussi être gérées durant cette phase afin d'importer les règles et autres éléments de niveau supérieur des autres feuilles de style dans l'arbre de transformation.
+				</listitem>
+				<listitem>
+					Lecture du XML d'entrée avec un lecteur XML adapté et le convertir en un arbre de noeuds (que nous nommerons l'arbre source), encore une fois en accord avec le modèle de donnée XPath. La feuille de style XSLT peut référencer d'autres sources XML via la commande document() mais elles sont typiquement évaluées lors de l'exécution puisque leurs localisations sont peut-être dépendantes de calcul restant à effectuer.
+				</listitem>
+				<listitem>
+					Suppresion des noeuds contenant uniquement dans caractères d'espacement dans l'arbre de transformation (exception faite de ceux qui sont descendants d'éléments xsl:text) et l'arbre source (si l'instruction xsl:strip-space est présente). 
+				</listitem>
+				<listitem>
+					Ajout dans l'abre de transformation de trois règles prédéfinie qui fournissent un comportement par défaut pour tout type de noeud qui peut être rencontré pendant le traitement. Une règle est fournie pour traiter le noeud racine et tout élément noeud ; elle incite le processeur XSLT à poursuivre le traitement de chaque noeud fils. Une autre règle gère les noeuds texte et les noeuds attribut ; elle dit au processeur de copier cela dans un noeud de l'arbre résultat. Enfin, une troisième est chargée de traiter les noeuds commentaires ou les noeuds d'instruction de traitement ; c'est une règle sans effet. Les règles explicitement fournies dans la feuille de style écraseront tout ou partie de ces règles. Si la feuille de style ne contient aucune règle explicite, les règles par défaut feront un parcours récursif de l'arbre source et seul les noeuds texte seront copiés dans l'arbre résultat.
+				</listitem>
+				<listitem>
+					Traiter le noeud racine de l'abre source. La procédure pour le traitement des noeud est décrit un peu plus bas.
+				</listitem>
+				<listitem>
+					Linéariser l'arbre résultat conformément aux paramètres donnés à l'instruction <quote>xsl:output</quote>.
+				</listitem>
+			</orderedlist>
+				<para>
+				Le traitement d'un noeud s'effectue selon la procédure suivante :
+				</para>
+				<orderedlist>
+					<listitem>
+						La règle correpondant le plus au noeud courant est localisé. Étant donné que chaque règle est caratérisé par un patron ou <foreignphrase>pattern</foreignphrase>, il est possible de savoir si cette règle correspond au noeud courant. Les règles ont une priorité relative et des règles de précédence pour les imports ce qui permet au processeur de résoudre les conflits.
+				</listitem>
+				<listitem>
+					Instanciation de la règle. Les éléments de l'espace de nommage XSLT (préfixés par xsl: par convention) sont traités comme des instructions et ont une sémantique spéciale. Les autres éléments et noeuds texte sont copié tel qu'il sont dans l'arbre résultat. Les commentaires sont ignorés.
+				</listitem>
+			</orderedlist>
+			<para>
+					Lorsqu'elle est exécutée, l'instruction <quote>xsl:apply-templates</quote> produit une nouvelle liste de noeuds courants pour l'exécution et en modifie donc grandement le contexte comme on peut le voir sur la figure <!-- --> montrant le processus d'instanciation d'une règle. Chaque noeud est identifié par une expression XPath.
+				</para>
+			</section>
+			<section>
+				<title>Exemple</title>
+				
+				<example>
+					<title>Une feuille de style XSLT : liste de personnes vers liste HTML</title>
+					<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?>
+2.  <xsl:stylesheet version="1.0"
+3.       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+4.  <xsl:output method="html"/>
+5.  <xsl:template match="/">
+6.   <html>
+7.   <body>
+8.     <h1>Person List</h1>
+9.       <xsl:apply-templates/>
+10.  </body>
+11.  </html>
+12. </xsl:template>
+13.
+14. <xsl:template match="persons">
+15.   <ul><xsl:apply-templates select="person"/></ul>
+16. </xsl:template>
+17.
+18. <xsl:template match="person">
+19.   <li>
+20.     <xsl:value-of select="firstname"/> 
+21.     <xsl:value-of select="lastname"/>
+22.   </li>
+23. </xsl:template>
+24.
+25. </xsl:stylesheet>]]></programlisting>
+				</example>
+
+				<example>
+					<title>Une liste de personnes en XML</title>
+					<programlisting><![CDATA[1.  <?xml version="1.0" encoding="UTF-8"?>
+2.  <persons>
+3.    <person>
+4.      <lastname>Normand</lastname>
+5.      <firstname>Nicolas</firstname>
+6.    </person>
+7.    <person>
+8.      <lastname>David</lastname>
+9.      <firstname>Jérôme</firstname>
+10.   </person>
+11.   <person>
+12.     <lastname>Lehn</lastname>
+13.     <firstname>Rémi</firstname>
+14.   </person>
+15.   <person>
+16.     <lastname>Brun</lastname>
+17.     <firstname>Cédric</firstname>
+18.   </person>
+19.   <person>
+20.     <lastname>Barbero</lastname>
+21.     <firstname>Mikaël</firstname>
+22.   </person>
+23. </persons>]]></programlisting>
+				</example>
+
+				<example>
+					<title>Résultat de la transformation</title>
+					<programlisting><![CDATA[1.  <html><body>
+2.  <h1>Person List</h1>
+3.  <ul>
+4.  <li>Nicolas Normand</li>
+5.  <li>Jérôme David</li>
+6.  <li>Rémi Lehn</li>
+7.  <li>Cédric Brun</li>
+8.  <li>Mikaël Barbero</li>
+9.  </ul>
+10. </body></html>]]></programlisting>
+				</example>
+				
+
+				
+			</section>
 		</section>
 
 </chapter>
