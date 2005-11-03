@@ -136,7 +136,7 @@ Fonctionnement</title>
 <section id="Un_chemin" ><title>
 Un chemin</title>
 <para>Il s'agit de l'élément de syntaxe le plus important. Tout noeud d'un arbre XML peut être identifié de manière unique à l'aide d'un chemin. Il peut alors être très verbeux. Un chemin est composé d'une ou plusieurs étapes séparées par un <quote>/</quote>.</para>
-<para>Un chemin peut être qualifié d'absolu ou de relatif. Le fonctionnement est le même que dans le cadre des système de fichiers sous Unix. </para>
+<para>Un chemin peut être qualifié d'absolu ou de relatif. Le fonctionnement est le même que dans le cadre des systèmes de fichier sous Unix. </para>
 <example id="xpath1">
 <title>Un chemin XPath relatif</title>
 <programlisting>child::chapter/descendant::para</programlisting>
@@ -163,10 +163,10 @@ un test de noeud : qui spécifie le type de noeud que l'on souhaite sélectionne
 <listitem><para>
 aucun, un ou plusieurs prédicats qui utilisent des expressions arbitraires afin de raffiner la sélection des noeuds.</para></listitem>
 </itemizedlist>
-<para>La syntaxe d'une étape est donc tout d'abord le nom de l'axe, suivi du test de noeud, tous deux séparés par '::', ce dernier suivi des prédicats entre crochets '[]' (cf [<xref linkend="xpath3" xrefstyle="select:label"/>].</para>
+<para>La syntaxe d'une étape est donc tout d'abord le nom de l'axe, suivi du test de noeud, tous deux séparés par '::'et ce dernier suivi des prédicats entre crochets '[]' (cf [<xref linkend="xpath3" xrefstyle="select:label"/>].</para>
 
 <example id="xpath3">
-<title>Un chemin XPath avec étape</title>
+<title>Un chemin XPath avec étapes</title>
 <programlisting>child::para[position()=1]</programlisting>
 </example>
 
@@ -176,32 +176,32 @@ aucun, un ou plusieurs prédicats qui utilisent des expressions arbitraires afin
 
 <section id="Un_axe" ><title>
 Un axe</title>
-<para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds. On identifie les axes suivant :</para>
+<para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds. On identifie les axes suivants :</para>
 <itemizedlist>
 <listitem><para>
 <emphasis role="strong">ancestor</emphasis> : les ancêtres du noeud courant, autrement dit son parent, le parent de son parent et ainsi de suite jusqu'à la racine du document.</para></listitem>
 <listitem><para>
-<emphasis role="strong">ancestor-or-self</emphasis> : les ancêtres auquel ont ajoute le noeud courant.</para></listitem>
+<emphasis role="strong">ancestor-or-self</emphasis> : les ancêtres auxquels on ajoute le noeud courant.</para></listitem>
 <listitem><para>
-<emphasis role="strong">attribute</emphasis> : tous les attributs du noeud courant.</para></listitem>
+<emphasis role="strong">attribute</emphasis> : tout les attributs du noeud courant.</para></listitem>
 <listitem><para>
 <emphasis role="strong">child </emphasis>: les noeuds dont le noeud courant est le noeud père.</para></listitem>
 <listitem><para>
-<emphasis role="strong">descendant</emphasis> : tous les descendants du noeud courant.</para></listitem>
+<emphasis role="strong">descendant</emphasis> : tout les descendants du noeud courant.</para></listitem>
 <listitem><para>
 <emphasis role="strong">descendant-or-self</emphasis> : les descendants auxquels on ajoute le noeud courant.</para></listitem>
 <listitem><para>
-<emphasis role="strong">following</emphasis> : tous les noeuds que l'on trouve après la fermeture du noeud courant.</para></listitem>
+<emphasis role="strong">following</emphasis> : tout les noeuds que l'on trouve après la fermeture du noeud courant.</para></listitem>
 <listitem><para>
 <emphasis role="strong">following-sibling</emphasis> : les noeuds ayant le même parent que le noeud courant et le suivant.</para></listitem>
 <listitem><para>
-<emphasis role="strong">namespace </emphasis>: tous les noeuds d'espace de nommage du noeud courant.</para></listitem>
+<emphasis role="strong">namespace </emphasis>: tout les noeuds d'espace de nommage du noeud courant.</para></listitem>
 <listitem><para>
 <emphasis role="strong">parent</emphasis> : le parent du noeud courant.</para></listitem>
 <listitem><para>
-<emphasis role="strong">preceding </emphasis>: tous les noeuds que l'on trouve avant le noeud courant.</para></listitem>
+<emphasis role="strong">preceding </emphasis>: tout les noeuds que l'on trouve avant le noeud courant.</para></listitem>
 <listitem><para>
-<emphasis role="strong">preceding-sibling</emphasis> :  les noeuds ayant le même parent que le noeud courant et le précédant.</para></listitem>
+<emphasis role="strong">preceding-sibling</emphasis> :  les noeuds ayant le même parent que le noeud courant et le précédent.</para></listitem>
 <listitem><para>
 <emphasis role="strong">self </emphasis>: le noeud courant.</para></listitem>
 </itemizedlist>
@@ -210,7 +210,7 @@ Un axe</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/AxesXpath.png"/>
 </imageobject></mediaobject> </figure>
 <para>
-La figure [<xref linkend="axeXPath_ancestor" xrefstyle="select:label"/>] montre un exemple concret d'arbre XML, les éléments marqués en rouge sont ceux correspondant à l'axe "ancestors" si le noeud courant est le noeud "Barbero".
+La figure [<xref linkend="axeXPath_ancestor" xrefstyle="select:label"/>] montre un exemple concret d'arbre XML, les éléments marqués en rouge sont ceux correspondants à l'axe "ancestors" si le noeud courant est le noeud "Barbero".
 </para>
 <figure id="axeXPath_ancestor">
 <title>Axe XPath - ancêtres</title>
@@ -222,7 +222,7 @@ La figure [<xref linkend="axeXPath_ancestor" xrefstyle="select:label"/>] montre 
 </section>
 
 <section id="Les_tests_de_noeuds" ><title>
-Les tests de noeuds</title>
+Les tests de noeud</title>
 <para>Le test de noeud spécifie le type du noeud et le nom des noeuds obtenus par l'étape de localisation.</para>
 <figure>
 <title>XPath - Test de noeud "Person"</title>
@@ -235,13 +235,13 @@ Les tests de noeuds</title>
 
 <section id="Les_predicats" ><title>
 Les prédicats</title>
-<para>Un prédicat filtre un ensemble de noeud selon l'axe spécifié afin de produire un nouvel ensemble de noeud. Pour chaque noeud l'expression du prédicat est évaluée, si l'évaluation renvoie "vrai" alors le noeud est gardé dans l'ensemble résultant, dans le cas contraire il est rejeté.</para>
-<para>Si le résultat de l'évaluation est un nombre alors l'expression sera considérée comme 'vrai' si le nombre obtenu est le même que la position courante dans l'arbre, à 'faux' autrement.</para>
+<para>Un prédicat filtre un ensemble de noeuds selon l'axe spécifié afin de produire un nouvel ensemble de noeuds. Pour chaque noeud l'expression du prédicat est évaluée, si l'évaluation renvoie "vrai" alors le noeud est gardé dans l'ensemble résultant, dans le cas contraire il est rejeté.</para>
+<para>Si le résultat de l'évaluation est un nombre, alors l'expression sera considérée comme 'vraie' seulement si le nombre obtenu est le même que la position courante dans l'arbre, dans le cas contraire elle sera considérée comme 'fausse'.</para>
 </section>
 
 <section id="La_syntaxe_reduite" ><title>
 La syntaxe réduite</title>
-<para>Il existe une syntaxe réduite afin de limiter la verbosité de XPath.Le raccourcis le plus important est que l'on peut omettre le</para>
+<para>Il existe une syntaxe réduite afin de limiter la verbosité de XPath.Le raccourci le plus important est que l'on peut omettre le</para>
 <programlisting>child::</programlisting>
 <para>dans une étape, ainsi</para>
 <programlisting>child::div/child::para</programlisting>
