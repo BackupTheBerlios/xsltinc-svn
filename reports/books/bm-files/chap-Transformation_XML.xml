@@ -16,7 +16,7 @@ Avec l'évolution de la notion même de document, surgissent de nouvelles probl�
 		<!-- traitement de document -> plusieurs formes pour un fond (editorial, Airbus, NASDAQ...) -->
 		</para>
 	<para>
-	Par exemple, une nouvelle problématique ayant surgit concerne l'évolutivité des documents.En effet XML facilite la création de nouvelles classes de documents adaptées à des problèmes particuliers (MathML, SVG, SMIL). Se pose donc alors le problème suivant : lorsqu'un modèle de document évolue, comment changer ses instances correspondantes. Autrement dit, comment transformer un document d'une classe vers une nouvelle classe.
+	Par exemple, une nouvelle problématique ayant surgit concerne l'évolutivité des documents.En effet XML facilite la création de nouvelles classes de document adaptées à des problèmes particuliers (MathML, SVG, SMIL). Se pose donc alors le problème suivant : lorsqu'un modèle de document évolue, comment changer ses instances correspondantes. Autrement dit, comment transformer un document d'une classe vers une nouvelle classe.
 	</para>
 	<para>
 	Une autre problématique concerne l'intéropérabilité, comment permettre la compatibilité de modèle, comment adapter les documents XML issus d'un logiciel à un autre logiciel si ils ont des modèles de documents distincts.
@@ -44,9 +44,9 @@ Avec l'évolution de la notion même de document, surgissent de nouvelles probl�
 		<itemizedlist>
 			<listitem><para>Transformation en bloc: c'est l'approche utilisée par XSLT. On dispose de la totalité de l'arbre source et de règles de transformation qui à chaque fois sélectionnent une partie précise de cet arbre et l'utilise pour générer le document cible.</para>
 			</listitem>
-			<listitem><para>En <foreignphrase>streaming</foreignphrase> : on considère alors les données sources XML comme étant infinies, cela est par exemple utilisé dans le cadre de la TV numérique, où l'on diffuse en permanence les informations liées à l'interactivité. La taille totale du flot de données est telle qu'on ne peut envisager de le stocker. Il faut donc réaliser la transformation au fur et à mesure, sans connaître la totalité du document source.</para>
+			<listitem><para>En <foreignphrase>streaming</foreignphrase> : on considère alors les données sources XML comme étant infinies, cela est par exemple utilisé dans le cadre de la TV numérique où l'on diffuse en permanence les informations liées à l'interactivité. La taille totale du flot de données est telle qu'on ne peut envisager de le stocker. Il faut donc réaliser la transformation au fur et à mesure, sans connaître la totalité du document source.</para>
 			</listitem>
-			<listitem><para>Transformation incrémentale : sachant que la plupart des modifications apportées dans un document sont très légères, et qu'elles sont souvent à l'origine de légers résultat dans le document cible, l'approche incrémentale vise à faire en sorte que l'on puisse calculer le nouveau résultat de manière incrémentale, c'est à dire en mettant à jour les parties adéquates de l'ancien résultat, plutôt que de recalculer à partir de zéro.</para>
+			<listitem><para>Transformation incrémentale : sachant que la plupart des modifications apportées dans un document sont très légères, et qu'elles sont souvent à l'origine de légers changements dans le document cible, l'approche incrémentale vise à faire en sorte que l'on puisse calculer le nouveau résultat de manière incrémentale, c'est à dire en mettant à jour les parties adéquates de l'ancien résultat, plutôt que de recalculer à partir de zéro.</para>
 			</listitem>
 			<listitem><para>Transformation inversible : une transformation est dite inversible si la transformation inverse existe. Autrement dit, si en modifiant le document cible, on est capable de répercuter ces modifications sur le document source. En règle générale les transformations génériques sont rarement inversibles, certaines approchent ad-hoc fournissent cette fonctionnalité sur des cas très spécifiques.</para>
 			</listitem>
@@ -64,7 +64,7 @@ Avec l'évolution de la notion même de document, surgissent de nouvelles probl�
 	<section>
 		<title>Exemple</title>
 
-		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document précis, ce rapport. L'information est présente dans un document de classe DocBook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique de vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
+		<para>Un exemple montrant l'intérêt des transformations XML est par exemple ce document-ci, ce rapport. L'information est présente dans un document de classe DocBook, il peut être tout à fait intéressant dans le cadre de la publication de ce document sur internet, de le transformer en un document XHTML. On peut tout aussi bien imaginer créer à partir de ce document, une représentation graphique vectorielle (de classe SVG par exemple) permettant une présentation orale.</para>
 		
 				             <figure>
                  <title>Exemple de transformation XML</title>

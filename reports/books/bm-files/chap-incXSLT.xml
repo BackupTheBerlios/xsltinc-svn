@@ -8,16 +8,16 @@
 <para>
 incXSLT est un processeur XSLT incrémental conçu par Lionel Villard et Nabil Layaïda <biblioref linkend="vil2000"/>. La conception de ce processeur incrémental repose sur la modélisation du contexte d’exécution de XSLT et l’étude fine du langage de sélection XPath.
 </para>
-<para> Lors d'une mise à jour du document source, les principes mis en oeuvre dans le processeur incXSLT sont les suivants : il détecte dans un premier temps les expressions XPath qui ont besoin d'être ré-évaluées, il élabore ensuite un graphe de dépendance afin d'identifier le sous-ensemble de règles de transformation qu'il est nécessaire de ré-appliquer, il restaure les contexte du document cible et du document source puis il peut enfin appliquer les règles sélectionnées auparavant.
+<para> Lors d'une mise à jour du document source, les principes mis en oeuvre dans le processeur incXSLT sont les suivants : il détecte dans un premier temps les expressions XPath qui ont besoin d'être ré-évaluées, il élabore ensuite un graphe de dépendance afin d'identifier le sous-ensemble de règles de transformation qu'il est nécessaire de ré-appliquer, il restaure le contexte du document cible et celui du document source puis il peut enfin appliquer les règles sélectionnées auparavant.
 </para>
 <para> Ces principes ont été validés par la création d'un processeur incrémental basé sur Xalan. Nous allons maintenant les détailler.
 </para>
 </section>
 
 <section><title>Principes utilisés dans incXSLT</title>	
-<para>L'objectif de la transformation incrémentale est de ne changer que les fragments de du document cible qu'il est nécessaire de changer  lorsque le document source est mis à jour et rien d'autre. 
-Au niveau des feuilles de transformation, on peut voir ça comme la sélection de toutes les instructions qu'il faut ré-exécuter. Ainsi ce processus repose principalement sur l'analyse des chemins XPath. A partir de ces chemins XPath nous pouvons donc sélectionner les instructions qu'il est nécessaire de ré-exécuter.</para>
-<para>Pour chacune des instructions ainsi sélectionnée il s'agit dans un premier temps de rétablir son contexte d'exécution, et ce de la manière la plus rapide possible. Dans cet optique il va falloir définir les données minimales nécessaires à la ré-execution de la transformation.</para>
+<para>L'objectif de la transformation incrémentale est de ne changer que les fragments du document cible qu'il est nécessaire de modifier  lorsque le document source est mis à jour. 
+Au niveau des feuilles de transformation, on peut voir cela comme la sélection de toutes les instructions qu'il faut ré-exécuter. Ainsi ce processus repose principalement sur l'analyse des chemins XPath. A partir de ces chemins XPath nous pouvons donc sélectionner les instructions qu'il est nécessaire de ré-exécuter.</para>
+<para>Pour chacune des instructions ainsi sélectionnées il s'agit dans un premier temps de rétablir son contexte d'exécution, et ce de la manière la plus efficace possible. Dans cet optique il va falloir définir les données minimales nécessaires à la ré-execution de la transformation.</para>
 <section id="Expressions_et_ré-évaluation" ><title>
 Expressions et règles de réévaluation</title>
 <para>Dans le langage XSLT, un certain nombre d'instructions utilisent des expressions exprimées dans des attributs. Ces expressions sont généralement composées d'une ou plusieurs sous expressions de chemin</para>

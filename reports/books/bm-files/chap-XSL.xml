@@ -35,7 +35,7 @@ XPath</title>
 Introduction</title>
 <section id="Historique" ><title>
 Historique</title>
-<para>XPath est un standard du W3C défini en 1999. Il a été créée dans le but d'avoir une syntaxe commune pour XPointer et les transformations XSLT.
+<para>XPath est un standard du W3C défini en 1999. Il a été créé dans le but d'avoir une syntaxe commune pour XPointer et les transformations XSLT.
 Son nom vient du fait que les expressions XPath sont semblables aux "chemins" que l'on distingue dans les URL par exemple.</para>
 
 </section>
@@ -44,7 +44,7 @@ Son nom vient du fait que les expressions XPath sont semblables aux "chemins" qu
 Objectif</title>
 <para>XPath permet la sélection d'un ensemble de noeuds dans un arbre XML. On obtient alors un sous arbre de l'arbre source. XPath fourni quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.</para>
 <para>
-En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore <foreignphrase>matching</foreignphrase>, pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
+En plus de ces opérations il permet également de définir des règles de filtrage, ou encore <foreignphrase>matching</foreignphrase>: pour chaque noeud du source XML on va pouvoir dire si il est apparié ou non au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
 </section>
 
 
@@ -94,7 +94,7 @@ Relations entre les noeuds</title>
 <para>On distingue également plusieurs types de relation entre les noeuds.</para>
 <itemizedlist>
 <listitem><para>
-Parents : chaque noeud élément ou d'attribut à un parent.</para></listitem>
+Parent : chaque noeud élément ou d'attribut à un parent.</para></listitem>
 <listitem><para>
 Children : les noeuds d'élément peuvent avoir aucun, un ou plus d'un enfant.</para></listitem>
 <listitem><para>
@@ -109,14 +109,14 @@ Descendants : l'enfant, son enfant, etc etc..</para></listitem>
 
 <section id="Expressions" ><title>
 Expressions</title>
-<para>Une expression peut être composé de plusieurs sous-expression, chacune pouvant être de type :</para>
+<para>Une expression peut être composée de plusieurs sous-expressions, chacune pouvant être:</para>
 <itemizedlist>
 <listitem><para>
-les appels de fonction.</para></listitem>
+un appel de fonction.</para></listitem>
 <listitem><para>
-les ensembles de noeuds : lorsque l'on indique un chemin au sein d'une expression celui-ci est évalué comme l'ensemble des noeuds correspondants.</para></listitem>
+un ensemble de noeuds : lorsque l'on indique un chemin au sein d'une expression celui-ci est évaluée comme l'ensemble des noeuds correspondants.</para></listitem>
 <listitem><para>
-les booléens : qui peuvent être "vrai" ou "faux", ils peuvent être le résultat de l'évaluation d'un opérateur.</para></listitem>
+un booléen : qui peux être "vrai" ou "faux", il peux être le résultat de l'évaluation d'un opérateur.</para></listitem>
 <listitem><para>
 les nombres </para></listitem>
 <listitem><para>
@@ -367,7 +367,7 @@ La syntaxe réduite</title>
 				</para>
 				
 				<para>
-					Regardons maintenant la feuille de style XSLT que nous allons lui appliquer [<xref linkend="persons2HTML" xrefstyle="select:label"/>]. Elle est composée de trois règles. La première (ligne 5) s'occupe du noeud racine. La seconde (ligne 14) prend en charge les noeuds de type <quote>persons</quote>. On remarque ici que en réalité le noeud racine est un noeud <quote>persons</quote>. Nous verrons un peu plus loin que cela ne pose pas de problème. Enfin, la dernière règle (ligne 18) gère les noeuds <quote>person</quote>.
+					Regardons maintenant la feuille de style XSLT que nous allons lui appliquer [<xref linkend="persons2HTML" xrefstyle="select:label"/>]. Elle est composée de trois règles. La première (ligne 5) s'occupe du noeud racine. La seconde (ligne 14) prend en charge les noeuds de type <quote>persons</quote>. On remarque ici qu'en réalité le noeud racine est un noeud <quote>persons</quote>. Nous verrons un peu plus loin que cela ne pose pas de problème. Enfin, la dernière règle (ligne 18) gère les noeuds <quote>person</quote>.
 				</para>
 				
 				<example id="persons2HTML">
@@ -401,11 +401,11 @@ La syntaxe réduite</title>
 				</example>
 
 				<para>
-					L'exécution de cette transformation produit le résultat tel qu'il est présenté dans [<xref linkend="resultat_pesons2HTML" xrefstyle="select:label"/>]. Voyons un plus en détails ce qui s'est passé. Nous considérons que l'arbre de transormation et l'arbre source sont construit. Tout d'abord, la première règle est appliqué puisqu'elle a la priorité la plus forte d'après la spécification de la méthode de résolution de conflits dans les règles XSLT. Les noeuds sans le préfixee <quote>xsl:</quote> sont rajoutés dans l'arbre résultat jusqu'à l'instruction <quote>xsl:apply-templates</quote>. Comme dit précédement, elle sélectionne les noeuds fils correspondant au critère XPath de son attribut <quote>select</quote> ou à défaut l'ensemble des noeuds fils du noeuds courant et les place dans la liste de noeuds courants.
+					L'exécution de cette transformation produit le résultat tel qu'il est présenté dans [<xref linkend="resultat_pesons2HTML" xrefstyle="select:label"/>]. Voyons plus en détails ce qui s'est passé. Nous considérons que l'arbre de transormation et l'arbre source sont construit. Tout d'abord, la première règle est appliqué puisqu'elle a la priorité la plus forte d'après la spécification de la méthode de résolution de conflits dans les règles XSLT. Les noeuds sans le préfixee <quote>xsl:</quote> sont rajoutés dans l'arbre résultat jusqu'à l'instruction <quote>xsl:apply-templates</quote>. Comme dit précédement, elle sélectionne les noeuds fils correspondants au critère XPath de son attribut <quote>select</quote> ou à défaut, l'ensemble des noeuds fils du noeuds courant et les place dans la liste de noeuds courants.
 				</para>
 
 				<para>
-					La règle deux (ligne 14) est alors sélectionnée à son tour. Elle ajoute le noeud <quote>ul</quote> à l'arbre résultat et rechange encore la liste des noeuds courants en prenant tout les noeuds fils de <quote>persons</quote> qui ont pour nom <quote>person</quote> (ici tout les noeuds fils). Enfin la troisième règle est appliquée : elle ajoute le noeud <quote>li</quote> à l'arbre résultat ainsi que trois noeuds texte produits par sélection de valeurs de sous-noeuds (instruction <quote>xsl:value-of</quote>) ou créé de toute pièce par le processeur (instruction <quote>xsl:text</quote>).
+					La règle deux (ligne 14) est alors sélectionnée à son tour. Elle ajoute le noeud <quote>ul</quote> à l'arbre résultat et modifie encore la liste des noeuds courants en prenant tout les noeuds fils de <quote>persons</quote> qui ont pour nom <quote>person</quote> (ici tout les noeuds fils). Enfin la troisième règle est appliquée : elle ajoute le noeud <quote>li</quote> à l'arbre résultat ainsi que trois noeuds texte produits par sélection de valeurs de sous-noeuds (instruction <quote>xsl:value-of</quote>) ou créé de toute pièce par le processeur (instruction <quote>xsl:text</quote>).
 				</para>
 
 				<example id="resultat_pesons2HTML">
@@ -427,7 +427,7 @@ La syntaxe réduite</title>
 		<section>
 			<title>Conclusion</title>
 			<para>
-				Nous avons donc étudié de très près la norme XSL et ses deux principales composantes, à savoir XPath et XSLT. Cette étude n'a certe pas été faite de façon formelle, mais nous verrons dans le chapitre <xref linkend="incXSLT" xrefstyle="template:%t page %p"/> une vue un peu plus détaillé et formelle. Dans le chapitre suivant nous allons faire un tour d'horizon des méthodes de traitement incrémental.
+				Nous avons donc étudié de très près la norme XSL et ses deux principales composantes, à savoir XPath et XSLT. Cette étude n'a certe pas été faite de façon formelle, mais nous verrons dans le chapitre <xref linkend="incXSLT" xrefstyle="template:%t page %p"/> une vue un peu plus détaillée et formelle. Dans le chapitre suivant nous allons faire un tour d'horizon des méthodes de traitement incrémental.
 			</para>
 		</section>
 		

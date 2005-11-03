@@ -12,7 +12,7 @@
 	<section>
 		<title>Définition</title>
 		<para>
-			L'expression d'un traitement incrémental de manière mathématique pourrait être la suivante : il faut calculer une fonction <phrase role="math">f</phrase> sur la donnée d’entrée <phrase role="math">x</phrase> et de maintenir le résultat <phrase role="math">f (x)</phrase> à jour lorsque la donnée d’entrée subit des modifications. Ainsi, un algorithme incrémental pour le calcul de f prend comme données d’entrée : 
+			L'expression d'un traitement incrémental de manière mathématique pourrait être la suivante : il faut calculer une fonction <phrase role="math">f</phrase> sur la donnée d’entrée <phrase role="math">x</phrase> et maintenir le résultat <phrase role="math">f (x)</phrase> à jour lorsque la donnée d’entrée subit des modifications. Ainsi, un algorithme incrémental pour le calcul de f prend comme données d’entrée : 
 		</para>
 		<itemizedlist>
 			<listitem>la donnée d'entrée <phrase role="math">x</phrase> ;</listitem>
@@ -48,10 +48,10 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 	<section>
 		<title>Catégorisation des travaux sur l'incrémentalité</title>
 		<para>
-			De nombreux travaux concernant l’incrémentalité ont été effectués. Un aperçu des différents travaux existants est donné par G. Ramalingam et T. Reps dans une bibliographie classifiée sur le traitement incrémental <xref linkend="ram1993"/>. Les algorithmes incrémentaux sont notamment utilisés pour les environnements de programmation interactifs, pour la compilation de programmes, dans les résolveurs de contraintes, pour la transformation de documents structurés, etc.
+			De nombreux travaux concernant l’incrémentalité ont été effectués. Un aperçu des différents travaux existants est donné par G. Ramalingam et T. Reps dans une bibliographie classifiée sur le traitement incrémental <xref linkend="ram1993"/>. Les algorithmes incrémentaux sont notamment utilisés pour les environnements de programmation intéractifs, pour la compilation de programmes, dans les résolveurs de contraintes, pour la transformation de documents structurés, etc.
 		</para>
 		<para>
-			De ces travaux, ont peut extraire deux types de méthodes afin de rendre incrémentale une oération. Les méthodes générales et le méthodes spécificiques. Les méthodes générales tout d'abord tente, dans un domaine définis, de rendre un programme incrémental quelque soit ses données d'entrées et leurs modifications. Les méthodes spécifiques quant à elles sont plus particulièrement destinées à résoudre un problème donné. Par conséquent, ces méthodes s'interessent souvent à des modifications particulières des données en entrée. Ils peuvent-être qualifié de <foreignphrase>ad-hoc</foreignphrase>.
+			De ces travaux, ont peut extraire deux types de méthodes afin de rendre incrémentale une opération. Les méthodes générales et les méthodes spécifiques. Les méthodes générales tout d'abord tentent, dans un domaine définis, de rendre un programme incrémental quelque soit ses données d'entrée et leurs modifications. Les méthodes spécifiques quant à elles sont plus particulièrement destinées à résoudre un problème donné. Par conséquent, ces méthodes s'intéressent souvent à des modifications particulières des données en entrée. Elles peuvent-être qualifiée de <foreignphrase>ad-hoc</foreignphrase>.
 		</para>
 	</section>
 	
@@ -64,20 +64,20 @@ l’entrée modifiée, et met à jour adéquatement les éventuelles information
 		<section>
 			<title>Méthodes de recalcul sélectif</title>
 			<para>
-				Les méthodes par recalcul sélectif exploite le résultat précédent. Le calcul de <phrase role="math">f’ (x OP delta(x))</phrase> s'effectue en utilisant le résultat du calcul précédent <phrase role="math">f (x)</phrase>. Pour cela il est nécessaire de stocker le résultat <phrase role="math">f (x)</phrase> dans un cache. Les techniques de mises en cache (<foreignphrase>function caching</foreignphrase>) introduite par <xref linkend="mic1968"/> en sont un exemple parlant.  Pugh et Teitelbaum <xref linkend="ped1989"/> ont décrit comment utiliser la technique <quote>function caching</quote> pour l’évaluation incrémentale avec des structures de données. Dans le but d’obtenir des algorithmes incrémentaux efficaces, les structures de données doivent être conçues spécifiquement de manière à ce que les traitements sur des instances similaires du type de donnée aient en commun de nombreux sous-traitements. Une autre difficulté est de conserver la taille du cache raisonnablement limitée sauf dans le cas d'un langage sans effets de bord comme c'est la cas pour XSLT.
+				Les méthodes par recalcul sélectif exploitent le résultat précédent. Le calcul de <phrase role="math">f’ (x OP delta(x))</phrase> s'effectue en utilisant le résultat du calcul précédent <phrase role="math">f (x)</phrase>. Pour cela il est nécessaire de stocker le résultat <phrase role="math">f (x)</phrase> dans un cache. Les techniques de mises en cache (<foreignphrase>function caching</foreignphrase>) introduite par <xref linkend="mic1968"/> en sont un exemple parlant.  Pugh et Teitelbaum <xref linkend="ped1989"/> ont décrit comment utiliser la technique <quote>function caching</quote> pour l’évaluation incrémentale avec des structures de données. Dans le but d’obtenir des algorithmes incrémentaux efficaces, les structures de données doivent être conçues spécifiquement de manière à ce que les traitements sur des instances similaires du type de donnée aient en commun de nombreux sous-traitements. Une autre difficulté est de conserver la taille du cache raisonnablement limitée sauf dans le cas d'un langage sans effets de bord comme c'est la cas pour XSLT.
 			</para>
 		</section>
 
 		<section>
 			<title>Méthodes par différence finie</title>
 			<para>
-				Les méthodes par différence finie exploite les résultats intermédiaires à l'éxecution d'une transformation. Dans cette approche l’existence d’une fonction de différence <phrase role="math">f_delta</phrase> est prise comme hypothèse. <phrase role="math">f_delta</phrase> est utilisée pour calculer le résultat pour <phrase role="math">x OP delta(x)</phrase> par 
+				Les méthodes par différence finie exploitent les résultats intermédiaires à l'éxecution d'une transformation. Dans cette approche l’existence d’une fonction de différence <phrase role="math">f_delta</phrase> est prise comme hypothèse. <phrase role="math">f_delta</phrase> est utilisée pour calculer le résultat pour <phrase role="math">x OP delta(x)</phrase> par 
 mise à jour du résultat précédent : <phrase role="math">f (x OP delta(x)) = f (x) OP' f(delta(x))</phrase>. Cette technique a été énoncé par <xref linkend="pai1982"/> et appliqué dans le contexte de programmation avec invariants.
 			</para>
 		</section>
 		
 		<section>
-			<title>Méthodes d'évaluation partielle</title>
+			<title>Méthode d'évaluation partielle</title>
 			<para>
 				Cette technique s’appuie sur une partie connue et statique de la donnée en entrée. Dans certain cas, la fonction peut être simplifiée en évaluant de façon statique cette partie. Une définition formelle de l’évaluation partielle au moyen des projections est donnée par Sundaresh dans <xref linkend="sun1991"/> et montre comment elle peut être utilisée dans le cadre du traitement incrémental. 
 			</para>
@@ -109,7 +109,7 @@ mise à jour du résultat précédent : <phrase role="math">f (x OP delta(x)) = 
 		<section>
 			<title>Une methode ad-hoc à XSLT : incXSLT</title>
 			<para>
-				Un processeur XSLT incrémental a déjà été réalisé par Lionel Villard et Nabil Layaïda. De par son adéquation à notre projet et l'étude approndie que nous en avons fait, nous lui avons consacré le chapitre suivant tout en sachant qu'il s'intègre ici, en tant que méthode ad-hoc de programme incrémental.
+				Un processeur XSLT incrémental a déjà été réalisé par Lionel Villard et Nabil Layaïda. De par son adéquation à notre projet et l'étude approfondie que nous en avons fait, nous lui avons consacré le chapitre suivant tout en sachant qu'il s'intègre ici, en tant que méthode ad-hoc de programme incrémental.
 			</para>
 		</section>
 		

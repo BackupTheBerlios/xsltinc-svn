@@ -6,11 +6,11 @@
 	<title>Du document traditionnel au XML</title>
 	
 	<para>
-		Dans ce premier chapitre nous allons rappeler la notion de document puisqu'elle constitue notre base de travail. En effet, les transformations que nous voulons rendre incrémentales s'appliquent à des documents XML et nous avons jugé opportun d'en faire une étude un peu détaché du contexte informatique et ainsi dégagé nos problématiques.
+		Dans ce premier chapitre nous allons rappeler la notion de document puisqu'elle constitue notre base de travail. En effet, les transformations que nous voulons rendre incrémentales s'appliquent à des documents XML et nous avons jugé opportun d'en faire une étude un peu détachée du contexte informatique et ainsi dégagée nos problématiques.
 	</para>
 	
 	<para>
-		Nos allons donc d'abord aborder la notion de documents dans sa vision pluridisciplinaire ainsi que son évolution. A partir de ce cadrage de la notion de documents, nous étudierons la technologie pivot de notre travail, à savoir le XML.
+		Nos allons donc d'abord aborder la notion de document dans sa vision pluridisciplinaire ainsi que son évolution. A partir de ce cadrage de la notion de document, nous étudierons la technologie pivot de notre travail, à savoir le XML.
 	</para>
 	
 	<!-- <xref linkend="glossary" xrefstyle="template:section %t page %p"/> -->
@@ -47,7 +47,7 @@
 			<section>
 				<title>Le document comme forme</title>
 				<para>
-					Tout d'abord entendons nous sur le terme de <quote>forme</quote>. Il peut en effet prêté à confusion. Il est ici employé dans le sens de <quote>contour</quote>, c'est à dire dont on connait les limites. L'approche est donc de considérer le document comme un objet ou une inscription sur un objet et qui est régie par des règles qui le constituent. Dans cette vision, le document est un objet de communication soumis à des règles et qui matérialise un contrat de leture entre un producteur et un lecteur. Appliqué au domaine informatique, cette vue à été définie comme suit <xref linkend="qui1987"/> <xref linkend="roi1999"/> :
+					Tout d'abord entendons nous sur le terme de <quote>forme</quote>. Il peut en effet prêter à confusion. Il est ici employé dans le sens de <quote>contour</quote>, c'est à dire dont on connait les limites. L'approche est donc de considérer le document comme un objet ou une inscription sur un objet et qui est régie par des règles qui le constituent. Dans cette vision, le document est un objet de communication soumis à des règles et qui matérialise un contrat de leture entre un producteur et un lecteur. Appliqué au domaine informatique, cette vue à été définie comme suit <xref linkend="qui1987"/> <xref linkend="roi1999"/> :
 				</para>
 				
 				<blockquote>
@@ -57,11 +57,11 @@
 				</blockquote>
 				
 				<para>
-					Insistons sur deux points de cette définition. Tout d'abord la notion d'<quote>usage défini</quote> d'un document et de cohérence. Ceci implique qu'un document est défini dans un cadre, obéissent à des contraintes et peuvent-être regroupé en familles appelées <emphasis>modèles</emphasis>. Ensuite, l'aspect de perceptibilité d'un document, s'inscrivant dans le contrat lecture cité plus haut est l'autre point à souligner. En effet, la perception d'un document s'effectue par une représentation visuelle et graphique de celui-ci. Ceci sous-entend qu'il y une différence entre le contenu sémantique et la restitution des dits documents. Il y a donc possibilité de remplir le contrat entre le lecteur et le producteur de différentes manières et ceci passe par la variété des représentations possibles : textuelle, sonore, tactile (braille) etc.
+					Insistons sur deux points de cette définition. Tout d'abord la notion d'<quote>usage défini</quote> d'un document et de cohérence. Ceci implique que les documents sont définis dans un cadre, obéissent à des contraintes et peuvent-être regroupés en familles appelées <emphasis>modèles</emphasis>. Ensuite, l'aspect de perceptibilité d'un document, s'inscrivant dans le contrat lecture cité plus haut est l'autre point à souligner. En effet, la perception d'un document s'effectue par une représentation visuelle et graphique de celui-ci. Ceci sous-entend qu'il y une différence entre le contenu sémantique et la restitution des dits documents. Il y a donc possibilité de remplir le contrat entre le lecteur et le producteur de différentes manières et ceci passe par la variété des représentations possibles : textuelles, sonores, tactiles (braille) etc.
 				</para>
 				
 				<para>
-					La notion de document un peu plus claire ou tout du moins élaguée, nous allons maintenant montrer comment la vision de la forme des documents a évoluée afin de saisir d'en saisir plus d'aspects. 
+					La notion de document est un peu plus claire ou tout du moins élaguée, nous allons maintenant montrer comment la vision de la forme des documents a évoluée afin d'en saisir plus d'aspects. 
 				</para>
 			</section>
 			
@@ -102,7 +102,7 @@ la police, la couleur, l’espacement etc.
 				<section>
 					<title>Document structuré hypermédia</title>
 					<para>
-						Alors que les documents structuré ne permet que des relations de type hiérarchiques, les documents structurés hypermédia rajoute la possiblité de définir des liens inter-documents que l'on définit sous le nom d'hypertexte.
+						Alors que les documents structurés ne permet que des relations de type hiérarchiques, les documents structurés hypermédia rajoute la possiblité de définir des liens inter-documents que l'on définit sous le nom d'hypertexte.
 					</para>
 					<para>
 						La sémantique associé aux liens hypertextes est variée. Les sens les plus courants sont la désignation, l'exploration (comme une table des matières) et la transclusion<footnote><para>A l'origine cité dans le projet Xanadu de Ted Nelson, ce terme explique la possibilité d'inclure certaines sections ou ressources d'un autre document par référence. Un exemple actuel est une assertion XInclude caratérisé par un XPointer.</para></footnote>. 
@@ -111,7 +111,7 @@ la police, la couleur, l’espacement etc.
 				<section>
 					<title>Document balisé extensible</title>
 					<para>
-						Les derniers travaux dans le domaine du génie documentaire et du stockage numérique de l'information ont aboutis sur une normalisation pour la conception de documents structurés : eXtensible Markup Language (XML).  Il repose sur les concepts de documents structurés présentés précédemment avec en plus une optique d’uniformisation, d’interopérabilité, d’indépendance de la plateforme, d’extensibilité et de l’internationalisation de la notion de document. Cette norme sera référencée tout au long de ce mémoire et fait l’objet de la section suivante. 
+						Les derniers travaux dans le domaine du génie documentaire et du stockage numérique de l'information ont aboutis sur une normalisation pour la conception de documents structurés : eXtensible Markup Language (XML).  Il repose sur les concepts de documents structurés présentés précédemment avec en plus une optique d’uniformisation, d’interopérabilité, d’indépendance de la plateforme, d’extensibilité et d’internationalisation de la notion de document. Cette norme sera référencée tout au long de ce mémoire et fait l’objet de la section suivante. 
 					</para>
 				</section>								
 			</section>
@@ -124,13 +124,13 @@ la police, la couleur, l’espacement etc.
 		<section>
 			<title>Note au sujet du W3C</title>
 			<para>
-				Le W3C<footnote><para>World Wide Web Consortium.</para></footnote> n'est pas un orgnanisme officiel ; il ne peut donc prétendre éditer des normes ou des standards. C'est pourquoi un document final du W3C est appelé <emphasis>Recommendation</emphasis>, terme qui peut sembler un peu bizarre au premier abord. Mais une <emphasis>Recommendation</emphasis> du W3C n'a rien à voir avec un recueil de conseils, et c'est un document qui équivaut de fait à un standard, rédigé dans le style classique des spécifications. Dans toute la suite, nous parlerons néanmoins de standards XML et XSLT, même si ce ne sont pas des standards au sens officiel du terme.
+				Le W3C<footnote><para>World Wide Web Consortium.</para></footnote> n'est pas un organisme officiel ; il ne peut donc prétendre éditer des normes ou des standards. C'est pourquoi un document final du W3C est appelé <emphasis>Recommendation</emphasis>, terme qui peut sembler un peu bizarre au premier abord. Mais une <emphasis>Recommendation</emphasis> du W3C n'a rien à voir avec un recueil de conseils, et c'est un document qui équivaut de fait à un standard, rédigé dans le style classique des spécifications. Dans toute la suite, nous parlerons néanmoins de standards XML et XSLT, même si ce ne sont pas des standards au sens officiel du terme.
 			</para>
 		</section>
 	
 		<section>
 			<title>Historique et objectifs</title>
-			<para>Le XML est né du SGML (Standard Generalized Markup Language) et HTML (HyperText Markup Language). Il reprit les meilleurs idées de chacun de ces langages. Le SGML, apparu en 1986, était très complet et lourd. Il était destiné aux grands systèmes de gestion documentaires et à l'impression. De plus, cette n'époque n'était pas encore très souciante de la question du multisupport. Le HTML quant à lui est destiné à la publication en ligne sur l'internet. Son système de balisage concerne essentiellement la mise en forme (gras, italique, couleurs...). Le HTML a pour avantage d'être léger et souple mais aussi d'apporter la possibilité de naviguer à l'intérieur et à l'extérieur des documents grâce aux liens et aux ancres.
+			<para>Le XML est né du SGML (Standard Generalized Markup Language) et HTML (HyperText Markup Language). Il reprit les meilleurs idées de chacun de ces langages. Le SGML, apparu en 1986, était très complet et lourd. Il était destiné aux grands systèmes de gestion documentaires et à l'impression. De plus, cette époque n'était pas encore très souciante de la question du multisupport. Le HTML quant à lui est destiné à la publication en ligne sur l'internet. Son système de balisage concerne essentiellement la mise en forme (gras, italique, couleurs...). Le HTML a pour avantage d'être léger et souple mais aussi d'apporter la possibilité de naviguer à l'intérieur et à l'extérieur des documents grâce aux liens et aux ancres.
 			</para>
 			<para>
 				Bien que très utilisés, ces deux langages n'en restaient pas moins très spécialisés, le premier à l'impression, le second à la publication en ligne. Il fallait de ce fait déterminer à l'avance ce que l'on voulait faire d'un document : l'imprimer ou le rendre accessible sur l'internet. Si l'on voulait changer de medium, il fallait réaliser des adaptations lourdes et coûteuses.
@@ -228,7 +228,7 @@ la police, la couleur, l’espacement etc.
 		<section>
 			<title>Exemple de dialectes</title>
 			<para>
-			Un dialecte XML est un langage dérivé de la norme XML du W3C. Un document d'un dialecte XML est un document XML bien formé et qui est valide par rapport à une grammaire de description, qui peut être fournie soit sous la forme d'une DTD, un schéma XML, ou toute autre forme de langage de description de format de document. Un certain nombre de dialectes standard se sont imposés dont voici une petite liste des plus connus (non exhaustive) :
+			Un dialecte XML est un langage dérivé de la norme XML du W3C. Un document d'un dialecte XML est un document XML bien formé et qui est valide par rapport à une grammaire de description, qui peut être fournie soit sous la forme d'une DTD, d'un schéma XML, ou de toute autre forme de langage de description de format de document. Un certain nombre de dialectes standards se sont imposés dont voici une petite liste des plus connus (non exhaustive) :
 			</para>
 			<itemizedlist>
 					<listitem><emphasis>Langage de description de format de document XML</emphasis> : XML Schema, Relax NG, Schematron</listitem>
@@ -261,7 +261,7 @@ la police, la couleur, l’espacement etc.
 					SAX est une interface d'accès de type séquentiel à un document XML. SAX fournit un mécanisme pour lire un document XML, il ne permet cependant pas d'en générer. 
 				</para>
 				<para>
-					Un lecteur XML qui utilise SAX gère les documents XML comme des flux unique de données. The flux est unidirectionnel, c'est à dire que des données précédement lues ne peuvent-être relues sans retour au début du flux.
+					Un lecteur XML qui utilise SAX gère les documents XML comme des flux unique de données. Le flux est unidirectionnel, c'est à dire que des données précédement lues ne peuvent-être relues sans retour au début du flux.
 				</para>
 				<para>
 					Les rumeurs font que SAX est souvent considéré comme permettant de traiter les documents XML de manière plus efficiente que DOM. Cela est du au fait que les lecteurs SAX ont une empreinte mémoire ridiculement petite comparée aux arbres DOM complets.
