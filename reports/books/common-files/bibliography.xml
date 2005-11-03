@@ -324,6 +324,66 @@ of Programming Languages</conftitle>
 	<bibliodiv>
 		<title>Normes</title>
 			
+		<biblioentry id="w3cXML">
+			<abbrev>W3CXML</abbrev>
+			<title>Extensible Markup Language (XML) 1.0 (Third Edition)</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/2004/REC-xml-20040204/">http://www.w3.org/TR/2004/REC-xml-20040204/</ulink></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="w3cXSLT">
+			<abbrev>W3CXSLT</abbrev>
+			<title>W3C XSL Transformations (XSLT) Version 1.0</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/1999/REC-xslt-19991116"></ulink>http://www.w3.org/TR/1999/REC-xslt-19991116</bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="w3cXPATH">
+			<abbrev>W3CXPATH</abbrev>
+			<title></title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116">http://www.w3.org/TR/1999/REC-xpath-19991116</ulink></bibliomisc>
+		</biblioentry>
+		<biblioentry id="w3cSVG">
+			<abbrev>W3CSVG</abbrev>
+			<title>Scalable Vector Graphics (SVG) Full 1.2 Specification</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/SVG12/"></ulink>http://www.w3.org/TR/SVG12/</bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="w3cDOM">
+			<abbrev>W3CDOM</abbrev>
+			<title>Document Object Model (DOM) Level 2 Views Specification</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/DOM-Level-2-Views/">http://www.w3.org/TR/DOM-Level-2-Views/</ulink></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="w3cHTML">
+			<abbrev>W3CHTML</abbrev>
+			<title>HTML 4.01 Specification</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/html4/">http://www.w3.org/TR/html4/</ulink></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="docbook">
+			<abbrev>OASISDOCBOOK</abbrev>
+			<title>DocBook schemas</title>
+			<affiliation>OASIS</affiliation>
+			<bibliomisc><ulink url="http://www.docbook.org/">http://www.docbook.org/</ulink></bibliomisc>
+		</biblioentry>
+
+		<biblioentry id="w3cSCHEMA">
+			<abbrev>W3CSCHEMA</abbrev>
+			<title>XML Schema Part 0: Primer Second Edition</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/xmlschema-0/">http://www.w3.org/TR/xmlschema-0/</ulink></bibliomisc>
+		</biblioentry>
+		<biblioentry id="w3cXLINK">
+			<abbrev>W3CXLINK</abbrev>
+			<title>W3CXML Linking Language (XLink) Version 1.0</title>
+			<affiliation>W3C</affiliation>
+			<bibliomisc><ulink url="http://www.w3.org/TR/xlink/">http://www.w3.org/TR/xlink/</ulink></bibliomisc>
+		</biblioentry>
 <!-- 
 		<biblioentry id="xmlfrxml">
 			<abbrev>XMLfrXml</abbrev>

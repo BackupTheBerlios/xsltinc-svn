@@ -29,4 +29,59 @@
 		</para></glossdef>
 	</glossentry>
 		
+	<glossentry>
+		<glossterm>RDF</glossterm>
+		<glossdef>
+                   <para>Resource Description Framework (RDF) est un modèle de graphes pour décrire les (méta-)données et permettre un certain traitement automatique des métadonnées. Une des syntaxes (sérialisation) de ce langage est RDF/XML. Il s'agit d'un dialecte XML développée par le consortium W3C.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>ODS</glossterm>
+		<glossdef>
+                   <para>OpenDocument est un format ouvert de données pour les applications bureautiques : traitements de texte, tableurs, présentations, diagrammes, dessins et base de données bureautique. Il est basé sur le format créé pour les premières versions de la suite bureautique libre et gratuite OpenOffice.org, auquel il reste similaire.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>XSLT</glossterm>
+		<glossdef>
+                   <para>XSLT (eXtended Stylesheet Language Transformations), défini au sein de la recommandation XSL du W3C, est un langage de transformation XML de type fonctionnel.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>XHTML</glossterm>
+		<glossdef>
+                   <para>XHTML est un langage balisé servant à l'écriture de pages du World Wide Web. XHTML est le successeur de HTML (de l'anglais HyperText Markup Language), XHTML respectant la syntaxe définie par XML, plus récente et plus simple que la syntaxe définie par SGML respectée par HTML.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>SVG</glossterm>
+		<glossdef>
+                   <para>Scalable Vector Graphics (SVG) est une spécification du W3C. SVG est un format basé sur XML permettant de décrire des ensembles graphiques vectoriels. Les coordonnées, dimensions et structures des objets vectoriels sont indiqués sous forme numérique dans le document XML. Un système spécifique de style (CSS) permet d'indiquer les couleurs et les polices d'écriture à utiliser.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>DocBook</glossterm>
+		<glossdef>
+                   <para>DocBook est un langage de balisage conçu à l'origine pour la documentation technique informatique (matériel et logiciel). C'est à l'origine une Définition de type de document (DTD) SGML développée par l'éditeur O'Reilly pour les besoins de l'édition technique (et plus particulièrement informatique). Elle a été portée depuis sous forme de schéma XML.
+		   </para>
+                </glossdef>
+	</glossentry>
+		
+	<glossentry>
+		<glossterm>Génie documentaire</glossterm>
+		<glossdef>
+                   <para>L'élément central de ce domaine est le document, par opposition au génie logiciel qui est centré sur les traitements. De façon générale, « le génie documentaire s’intéresse aux principes, aux outils et aux processus permettant d’améliorer notre capacité à créer, à gérer et à maintenir d’importants ensembles de documents » .
+		   </para>
+                </glossdef>
+	</glossentry>
 </glossary>
