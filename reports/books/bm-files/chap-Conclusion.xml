@@ -10,8 +10,8 @@
 		<title>Rappel des objectifs</title>
 
 	<para>
-	Ce premier document conclu la phase de recherche bibliographique du projet en synthétisant les différentes problématiques et solutions proposées. Il a traité les besoins de transformation des nouveaux types de documents et les lacunes en termes de performances dans la mise en oeuvres actuelle des système de transformation. 
-Dans la perspective d'améliorer ces questions de performances nous nous sommes fixés comme objectif de contribuer à leur amélioration en permettant les transformations de type XSLT de s'éxécuter de manière incrémentale.
+	Ce premier document conclu la phase de recherche bibliographique du projet en synthétisant les différentes problématiques et solutions proposées. Il a traité les besoins de transformation des nouveaux types de document et les lacunes en termes de performances dans la mise en oeuvre actuelle des systèmes de transformation. 
+Dans la perspective d'améliorer ces questions de performance nous nous sommes fixés comme objectif de contribuer à leur amélioration en permettant aux transformations de type XSLT de s'exécuter de manière incrémentale.
 	</para>
 
 	</section>
@@ -29,7 +29,7 @@ Effectué l'analyse des différentes solutions de traitements incrémentaux exis
 <listitem><para>
 Recherché la possibilité ou non de rendre reversible une transformation XSLT.
 </para></listitem>
-<listitem><para>Étudié en profondeur du langage de transformation XSLT et de ses composantes associées, telles que XPath.
+<listitem><para>Étudié en profondeur le langage de transformation XSLT et ses composantes associées, telles que XPath.
 </para></listitem>
 <listitem><para>Proposé une solution répondant à la problématique de la transformation XSLT incrémentale et étudié l'intégration possible de cette architecture au sein d'un projet pré-existant.
 </para></listitem>
@@ -39,7 +39,7 @@ Recherché la possibilité ou non de rendre reversible une transformation XSLT.
 	</section>
 	<section>
 		<title>Perspectives</title>
-		<para>Fort des connaissances accumulées et synthétisées ici, nous pouvons désormais nous lancer dans la réalisation du prototype qui validera, ou non, la solution proposées.		
+		<para>Fort des connaissances accumulées et synthétisées ici, nous pouvons désormais nous lancer dans la réalisation du prototype qui validera, ou non, la solution proposée.		
 		</para>
 	</section>
 	
