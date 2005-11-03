@@ -5,7 +5,7 @@
 <chapter id="Conception" >
 <title>Conception</title>
 <para>
-Dans ce chapitre nous étudierons les différents supports technologiques disponibles pour réaliser notre moteur XSLT incrémental, nous détaillerons ensuite l'architecture du support choisi. Enfin nous évoquerons l'intégration nécessaire entre les traitement supplémentaires liés à l'aspect incrémental et le support d'origine.
+Dans ce chapitre nous étudierons les différents supports technologiques disponibles pour réaliser notre moteur XSLT incrémental. Nous détaillerons ensuite l'architecture du support choisi. Enfin nous évoquerons l'intégration nécessaire entre les traitements supplémentaires liés à l'aspect incrémental et le support d'origine.
 </para>
 <section id="Plateformes_technologiques_etudiees" ><title>
 Plate-formes technologiques étudiées</title>
@@ -24,28 +24,28 @@ Conformité</para></listitem>
 <listitem><para>
 Licence</para></listitem>
 </itemizedlist>
-<para>L'évaluation de la qualité du code est forcément assez subjective, mais on s'est attaché à vérifié que ce dernier semblant clair, c'est à dire qu'on comprends rapidement son fonctionnement global, et bien sûr qu'il est documenté.</para>
-<para>L'extensibilité est évalué par la possibilité ou non d'enrichir le comportement classique du programme et dans quelle mesure cette extension peut éviter de trop s' immiscer dans le code d'origine.</para>
-<para>La robustesse d'un programme est directement proportionnelle à son degré d'utilisation ainsi qu'à son âge, ainsi les programmes reconnus et utilisés dans de nombreux projets pourront être qualifiés comme stable tandis que des programmes jeunes, encore <quote>expérimentaux</quote> ne le seront pas.</para>
-<para>La conformité d'un programme de traitement XSLT est testée sur des exemples de traitements sur des données relativement importantes, telles que des rapports au format DocBook traités avec les feuilles de style (quelques peut alambiquées) de Norman Walsh.  Le résultat sera comparé avec celui de référence, ici on considérera que le résultat de référence est celui du programme XSLTproc. Par la même occasion on pourra tester les performances. </para>
-<para>Enfin la licence, il s'agit d'augmenter un programme, de l'enrichir, par conséquent il faut tout d'abord en avoir l'autorisation. De plus on cherchera à évaluer par ce biais les possibilités de réutilisation du programme modifié dans d'autres projets.</para>
+<para>L'évaluation de la qualité du code est forcément assez subjective. Nous nous attacherons a vérifier que ce dernier soit clair, c'est à dire que son fonctionnement global es facilement compréhensible. Il faut bien sûr qu'il soit documenté.</para>
+<para>L'extensibilité est évaluée par la possibilité ou non d'enrichir le comportement classique du programme et dans quelle mesure cette extension devra s'immiscer dans le code d'origine.</para>
+<para>La robustesse d'un programme est directement proportionnelle à son degré d'utilisation ainsi qu'à son âge. Ainsi, les programmes reconnus et utilisés dans de nombreux projets pourront être qualifiés de stable tandis que des programmes jeunes, encore <quote>expérimentaux</quote> ne le seront pas.</para>
+<para>La conformité d'un programme de traitement XSLT est testée sur des exemples de traitements avec des données relativement importantes, telles que des rapports au format DocBook traités avec les feuilles de style (quelques peu alambiquées) de Norman Walsh.  Le résultat sera comparé avec celui de référence, ici on considérera que le résultat de référence est celui du programme XSLTProc. Par la même occasion on pourra tester les performances.</para>
+<para>Enfin, nous regarderons la licence. Comme il s'agit d'augmenter ces programmes, de les enrichir, il faut  par conséquent en avoir l'autorisation. De plus on cherchera à évaluer par ce biais les possibilités de réutilisation du programme modifié dans d'autres projets.</para>
 
 </section>
 
 <section id="LibXSLT_et_XSLTproc" ><title>
 Lib-XSLT et XSLTproc</title>
-<para><quote>XSLTproc</quote> est probablement le programme le plus répandu lorsqu'il s'agit de traiter via XSLT sur les plate-formes venant du monde Unix. Le programme utilise la  bibliothèque de fonctions <quote>Lib-XSLT</quote> elle même reposant largement sur <quote>Lib-XML</quote> : réalisée en langage C, elle est extrêmement robuste et est utilisée dans de nombreux projets. Elle fait partie du projet GNOME.</para>
+<para><quote>XSLTProc</quote> est probablement le programme le plus répandu lorsqu'il s'agit de traiter des feuilles XSLT sur les plate-formes venant du monde Unix. Le programme utilise la  bibliothèque de fonctions <quote>Lib-XSLT</quote> elle même reposant largement sur <quote>Lib-XML</quote>. Réalisée en langage C, elles sont extrêmement robustes et sont utilisées dans de nombreux projets. Elle font partie du projet GNOME.</para>
 <para>La qualité du code source est satisfaisante, les fonctions sont  quasiment toutes documentées.</para>
 <para>La licence du projet n'est pas la licence GPL ou même LGPL, elle est encore moins restrictive et permet de réutiliser ce projet sous n'importe quelles conditions.</para>
-<para>Du fait du langage C, l'extensibilité de cette librairie est toutefois limitée, on peut assez difficilement inculquer un nouveau comportement sans avoir à modifier de nombreuses parties du code source.</para>
+<para>Du fait du langage C, l'extensibilité de cette librairie est toutefois limitée, on peut assez difficilement ajouter un nouveau comportement sans avoir à modifier de nombreuses parties du code source.</para>
 
 </section>
 
 <section id="PyXml" ><title>
 PyXml</title>
-<para>PyXml est un module Python permettant le traitement de données de type XML. A terme ce module devrait augmenter le module de la distribution standard de Python. Il offre entre autres des API telles que DOM, SAX ou encore minidom.</para>
+<para>PyXml est un module Python permettant le traitement de données de type XML. A terme ce module devrait augmenter le module de la distribution standard de Python. Il offre entre autres des API telles que DOM, SAX ou encore miniDOM.</para>
 <para>Ce module dispose d'un sous-module de traitement XSLT, cependant ce dernier n'est en réalité qu'une colle logicielle (<foreignphrase>binding</foreignphrase>) vers la Lib-XSLT en langage C.</para>
-<para>Cependant dans les dernières versions de PyXml on trouve une implémentation native en Python du support XSLT. Le résultat est encore très instable et incomplet. Cette fonctionnalité est à l'heure qu'il est qualifiée d' expérimentale et ne devrait donc pas être utilisée.</para>
+<para>Cependant dans les dernières versions de PyXml on trouve une implémentation native en Python du support XSLT. Le résultat est encore très instable et incomplet. Cette fonctionnalité est à l'heure actuelle qualifiée d' expérimentale et ne devrait donc pas être utilisée.</para>
 
 </section>
 
@@ -55,10 +55,10 @@ PyXml</title>
 <para>Contrairement à l'implémentation de PyXml, ici tout est réalisé de manière native en Python, sans colle logicielle.</para>
 <para>La qualité du code source est très bonne, toutes les classes sont documentées et de nombreux test unitaires ont été réalisés. Le fonctionnement de 4Suite et de 4XSLT en particulier est donc assez immédiat à saisir.</para>
 <para>La robustesse du projet est difficile à évaluer, il est disponible depuis maintenant assez longtemps et est utilisé dans quelques autres projets. Il a cependant une audience moindre que la Lib-XSLT.</para>
-<para>L'extensibilité est cependant excellente, du fait du langage Python, orienté objet, on peut aisément augmenter le module sans qu'il y ai la moindre modification dans le code source de départ.</para>
+<para>L'extensibilité est cependant excellente, du fait du langage Python et de son orientation objet. On peut aisément augmenter le module sans qu'il y ai la moindre modification dans le code source de départ.</para>
 <para>La conformité du processeur XSLT est très bonne bien que pas tout à fait similaire au document de référence. De petites différences existent. </para>
-<para>En terme de performances, si l'on retranche le temps de chargement de l'interpréteur Python, les performances sont tout à fais comparables à celles de XSLTproc. Cela n'est donné qu'à titre d'indication car aucun protocole de test précis n'a été mis en place.</para>
-<para>La licence est une licence dérivée de la licence Apache et permet donc une réutilisation du code sous la condition que l'on n'utilise pas les noms réservés du projet, telles que 4Suite ou 4XSLT.</para>
+<para>En terme de performances, si l'on retranche le temps de chargement de l'interpréteur Python, les performances sont tout à fais comparables à celles de XSLTProc. Cela n'est donné qu'à titre d'indication car aucun protocole de test précis n'a été mis en place.</para>
+<para>La licence est une licence dérivée de la licence Apache et permet donc une réutilisation du code sous la condition que l'on n'utilise pas les noms réservés du projet, tels que 4Suite ou 4XSLT.</para>
 
 </section>
 
@@ -70,7 +70,7 @@ Xalan</title>
 
 <section><title>
 Conclusion</title>
-<para>Après avoir évaluer ces solutions notre choix se porte sur le module 4Suite. En effet il présente toutes les qualités nécessaires et le fait qu'il s'agisse d'un langage de haut niveau va nous permettre de nous concentrer sur la problématique du projet sans s'encombrer de trop de problèmes techniques.</para>
+<para>Après avoir évalué ces solutions notre choix se porte sur le module 4Suite. En effet, il présente toutes les qualités nécessaires et le fait qu'il s'agisse d'un langage de haut niveau va nous permettre de nous concentrer sur la problématique du projet sans s'encombrer de trop de problèmes techniques.</para>
 
 </section>
 
@@ -81,7 +81,7 @@ Analyse de 4XSLT</title>
 <section id="Vue_logique" ><title>
 Vue logique</title>
 <para>
-4Suite est un module python divisé en plusieurs sous modules, chacun correspondant à un domaine bien précis des technologies XML. Ce module couvre a peut prêt tout ce que l'on peut souhaiter autour du langage XML.
+4Suite est un module python divisé en plusieurs sous modules, chacun correspondant à un domaine bien précis des technologies XML. Ce module couvre a peu près tout ce que l'on peut souhaiter autour du langage XML.
 </para>
 <figure>
 <title>Vue d'ensemble de 4Suite</title>
@@ -89,7 +89,7 @@ Vue logique</title>
 </imageobject></mediaobject>
 </figure>
 <para>
-Interessons-nous au sous-module XSLT. Son fonctionnement est le suivant: l'utilisateur du module crée un processeur XSLT. Il associe à ce processeur une ou plusieurs feuilles de transformation.Au moment de cette association le module va créer des instances d'éléments XSLT en fonctions des fichiers associés au processeur. Ces instances sont organisées à la manière de DOM. Ensuite l'utilisateur lance l'exécution du processeur sur un fichier XML donné (il peut aussi le faire sur un arbre DOM existant). Ce fichier XML est transformé lui aussi en un arbre DOM d'instances, ensuite le processeur lance le processus d'instanciation des éléments XSLT liés à la racine de la feuille de transformation. Cette instanciation est déclenchée de père en fils, chaque noeud XSLT y exécutant son opération propre, la transformation est effectuée. Le résultat est obtenue sous la forme d'un arbre DOM.
+Interessons nous au sous-module XSLT. Son fonctionnement est le suivant : l'utilisateur du module instancie un processeur XSLT. Il associe à ce processeur une ou plusieurs feuilles de transformation. Au moment de cette association le module va créer des instances d'éléments XSLT en fonctions des fichiers associés au processeur. Ces instances sont organisées à la manière de DOM. Ensuite l'utilisateur lance l'exécution du processeur sur un fichier XML donné (il peut aussi le faire sur un arbre DOM existant). Ce fichier XML est transformé lui aussi en un arbre DOM d'instances. Ensuite le processeur lance le processus d'instanciation des éléments XSLT liés à la racine de la feuille de transformation. Cette instanciation est déclenchée de père en fils, chaque noeud XSLT y exécutant son opération propre. La transformation est ainsi effectuée. Le résultat est obtenue sous la forme d'un arbre DOM.
 </para>
 
 </section>
@@ -107,9 +107,8 @@ Le diagramme suivant détaille le processus d'instanciation.
 </imageobject></mediaobject> </figure>
 <section id="Les_elements_XSLT" ><title>
 Les éléments XSLT</title>
-<para>Tous les éléments XSLT sont modélisés par une classe donnée. Ainsi on trouve les classes <emphasis>NumberElement</emphasis>, ou encore <emphasis>ValueOfElement</emphasis>. Elles héritent toutes de la classe XSLTElement qui leur fourni le comportement de base type DOM.</para>
-<para>Cette classe définie de plus une méthode appelée <emphasis>instantiate</emphasis>. Cette dernière est appelée au moment de l'instanciation du template sur un contexte donné. C'est dans cette méthode que l'on retrouvera l'opération spécifique à l'élément XSLT, ainsi dans la classe <emphasis>ValueOfElement</emphasis> on évaluera l'expression données (selon le contexte) et on écrira le résultat de cette évaluation dans la sortie du traitement.</para>
-<para>Une objet de la classe <emphasis>AttributeElement</emphasis> va lui chercher à ajouter au noeud courant dans le résultat un attribut et sa valeur. Il est utile de préciser que dans cette méthode chaque élément à la responsabilité de lancer la méthode <emphasis>instantiate</emphasis> sur ses éléments fils.</para>
+<para>Tous les éléments XSLT sont modélisés par une classe donnée. Ainsi on trouve les classes <emphasis>NumberElement</emphasis>, ou encore <emphasis>ValueOfElement</emphasis>. Elles héritent toutes de la classe <emphasis>XsltElement</emphasis> qui leur fourni le comportement de base type DOM.</para>
+<para>Cette classe définie de plus une méthode appelée <emphasis>instantiate</emphasis>. Cette dernière est appelée au moment de l'instanciation du template sur un contexte donné. C'est dans cette méthode que l'on retrouvera l'opération spécifique à l'élément XSLT. Ainsi,  dans la classe <emphasis>ValueOfElement</emphasis>, on évaluera l'expression données (selon le contexte) et on écrira le résultat de cette évaluation dans la sortie du traitement. Une objet de la classe <emphasis>AttributeElement</emphasis> va quant à lui chercher à ajouter au noeud courant dans le résultat un attribut et sa valeur. Il est utile de préciser que dans cette méthode chaque élément a la responsabilité de lancer la méthode <emphasis>instantiate</emphasis> sur ses éléments fils.</para>
 <figure>
 <title>Diagramme de classe - Les éléments XSLT</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-39.png"/>
@@ -122,7 +121,7 @@ Les éléments XSLT</title>
 
 <section id="Evaluation_des_expressions" ><title>
 Évaluation des expressions</title>
-<para>L'évaluation des expressions est réalisé dans le sous-module Xpath. Elle utilise de nombreuses classes, chacune représentant un atome possible de l'expression. Lorsque cette dernière est évaluée, on récupère une arborescence d'atomes de type différents (Number,String,Choice..)</para>
+<para>L'évaluation des expressions est réalisé dans le sous-module XPath. Elle utilise de nombreuses classes, chacune représentant un atome possible de l'expression. Lorsque cette dernière est évaluée, on récupère une arborescence d'atomes de type différents (<emphasis>Number</emphasis>, <emphasis>String</emphasis>, <emphasis>Choice</emphasis>...).</para>
 <para> Voici une vue d'ensemble de ces classes:</para>
 <figure>
 <title>Diagramme de classe - Les attributs XSLT</title>
@@ -131,18 +130,16 @@ Les éléments XSLT</title>
 </figure>
 
 
-<para> Chacune de ces classes est associées à une autre classe dont le nom est suffixé par AVT. Ceci signifie <emphasis>Attribute Value Templates</emphasis>, il s'agit des expressions que l'on peut rencontrer entre crochets <emphasis>{}</emphasis>. Il s'agit en fait d'un raccourci appelant automatiquement l'évaluation d'expression classique, ainsi on peut écrire:
+<para> Chacune de ces classes est associée à une autre classe dont le nom est suffixé par AVT. Ceci signifie <quote><emphasis>Attribute Value Templates</emphasis></quote>, il s'agit des expressions que l'on peut rencontrer entre crochets <emphasis>{}</emphasis>. Il s'agit en fait d'un raccourci appelant automatiquement l'évaluation d'expression classique, ainsi on peut écrire:
 </para>
-<programlisting>
-<![CDATA[<xsl:tempalte match ="x">
-  <elem attrib="{une-valeur}">
-]]>
+<programlisting><![CDATA[<xsl:tempalte match ="x">
+  <elem attrib="{une-valeur}">]]>
 </programlisting>
 <para>
 Où <emphasis>une-valeur</emphasis> peut-être n'importe quelle expression XPath.
 </para>
 <para>
-Chacune des classes héritant de <emphasis>AttributeInfo</emphasis> est responsable de sa propre évaluation. Autrement dit elle doit renvoyer la valeur résultant de l'évaluation lors d'un appel à la méthode <emphasis>evaluate</emphasis>.
+Chacune des classes héritant de <emphasis>AttributeInfo</emphasis> est responsable de sa propre évaluation. Autrement dit elle doit renvoyer la valeur résultat de l'évaluation lors d'un appel à la méthode <emphasis>evaluate</emphasis>.
 </para>
 </section>
 
