@@ -42,9 +42,9 @@ Son nom vient du fait que les expressions XPath sont semblables aux "chemins" qu
 
 <section id="Objectif" ><title>
 Objectif</title>
-<para>"XPath permet la sélection d'un ensemble de noeuds dans un arbre XML. On obtient alors un sous arbre de l'arbre source. </para>
-<para>XPath fourni également quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.
-En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore "matching", pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
+<para>XPath permet la sélection d'un ensemble de noeuds dans un arbre XML. On obtient alors un sous arbre de l'arbre source. XPath fourni quelques fonctions basiques de traitement de chaînes de caractères, de nombre ou de booléens.  XPath opère sur la structure logique, abstraite, des données XML et non pas sur la syntaxe de ce dernier.</para>
+<para>
+En plus de ces opérations XPath permet également de définir des règles de filtrage, ou encore <foreignphrase>matching</foreignphrase>, pour chaque noeud du source XML on va pouvoir dire si il est apparié ou pas au chemin XPath. Ceci est principalement utilisé dans les transformations XSLT.</para>
 </section>
 
 
@@ -71,8 +71,10 @@ Les noeuds d'instructions de traitement</para></listitem>
 <listitem><para>
 Les noeuds de commentaires</para></listitem>
 </itemizedlist>
-<para>Ainsi dans l'exemple suivant :</para>
-<para><programlisting><![CDATA[<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<example id="harrypotter">
+<title>Fichier XML représentant une librairie</title>
+<programlisting><![CDATA[<?xml version="1.0" encoding="ISO-8859-1"?>
 <bookstore>
   <book>
     <title lang="en">Harry Potter</title>
@@ -80,8 +82,10 @@ Les noeuds de commentaires</para></listitem>
     <year>2005</year>
     <price>29.99</price>
   </book>
-</bookstore>]]></programlisting></para>
-<para>Le noeud racine est <quote>&lt;bookstore&gt;</quote>, <quote>&lt;author&gt;J K. Rowling&lt;/author&gt;</quote> est un noeud d'élément et <quote>lang="en"</quote> un noeud d'attribut.</para>
+</bookstore>]]></programlisting>
+</example>
+
+<para>Dans [<xref linkend="harrypotter" xrefstyle="select:label"/>], le noeud racine est <emphasis>&lt;bookstore&gt;</emphasis>, <emphasis>&lt;author&gt;J K. Rowling&lt;/author&gt;</emphasis> est un noeud d'élément et <emphasis>lang="en"</emphasis> un noeud d'attribut.</para>
 
 </section>
 
@@ -128,18 +132,23 @@ les structures lexicales : parenthèses et regroupements de termes.</para></list
 
 <section id="Fonctionnement" ><title>
 Fonctionnement</title>
-<para>Le principe de XPath est le suivant : on définit un sous ensemble de l'arbre par la concaténation d'un chemin auquel on peut associer un prédicat. </para>
-<para>Ce principe de base peut ensuite être utilisé autant de fois que nécessaire afin de sélectionner les données désirées.</para>
+<para>Le principe de XPath est le suivant : on définit un sous ensemble de l'arbre par la concaténation d'un chemin auquel on peut associer un prédicat. Ce principe de base peut ensuite être utilisé autant de fois que nécessaire afin de sélectionner les données désirées.</para>
 <section id="Un_chemin" ><title>
 Un chemin</title>
-<para>Il s'agit de l'élément de syntaxe le plus important. Tout noeud d'un arbre XML peut être identifié de manière unique à l'aide d'un chemin. Il peut alors être très verbeux.</para>
-<para>Un chemin est composé d'une ou plusieurs étapes séparées par un '/'.</para>
+<para>Il s'agit de l'élément de syntaxe le plus important. Tout noeud d'un arbre XML peut être identifié de manière unique à l'aide d'un chemin. Il peut alors être très verbeux. Un chemin est composé d'une ou plusieurs étapes séparées par un <quote>/</quote>.</para>
 <para>Un chemin peut être qualifié d'absolu ou de relatif. Le fonctionnement est le même que dans le cadre des système de fichiers sous Unix. </para>
-<para>Par exemple, le noeud suivant <programlisting>child::chapter/descendant::para</programlisting></para>
-<para> sélectionne l'élément "para" descendant de l'élément "chapter" fils du noeud courant.</para>
-<para>Un chemin relatif est constitué d'une ou plusieurs étapes séparées par '/' . Chaque étape sélectionne  un ensemble de noeud par rapport au contexte d'évaluation du chemin. Ce contexte change à chaque fois et correspond au dernier ensemble de noeuds sélectionné.</para>
-<para>Un chemin absolu commence par '/' qui peut être suivi ou non par une suite d'étapes. Le '/' représente le noeud racine du document source.</para>
-<para>Par exemple <programlisting>/chapter</programlisting> qui sélectionne les chapitres dont le parent est la racine du document</para>
+<example id="xpath1">
+<title>Un chemin XPath relatif</title>
+<programlisting>child::chapter/descendant::para</programlisting>
+</example>
+<para>Ainsi, le chemin [<xref linkend="xpath1" xrefstyle="select:label"/>] sélectionne l'élément <emphasis>para</emphasis> descendant de l'élément <emphasis>chapter</emphasis> fils du noeud courant.</para>
+<para>Un chemin relatif est constitué d'une ou plusieurs étapes séparées par <quote>/</quote> . Chaque étape sélectionne un ensemble de noeud par rapport au contexte d'évaluation du chemin. Ce contexte change à chaque fois et correspond au dernier ensemble de noeuds sélectionné.</para>
+<para>Un chemin absolu commence par <quote>/</quote> qui peut être suivi ou non par une suite d'étapes. Le <quote>/</quote> représente le noeud racine du document source. Par exemple, le chemin [<xref linkend="xpath2" xrefstyle="select:label"/>] sélectionne les chapitres dont le parent est la racine du document</para>
+
+<example id="xpath2">
+<title>Un chemin XPath relatif</title>
+<programlisting>/chapter</programlisting>
+</example>
 
 </section>
 
@@ -154,18 +163,20 @@ un test de noeud : qui spécifie le type de noeud que l'on souhaite sélectionne
 <listitem><para>
 aucun, un ou plusieurs prédicats qui utilisent des expressions arbitraires afin de raffiner la sélection des noeuds.</para></listitem>
 </itemizedlist>
-<para>La syntaxe d'une étape est donc tout d'abord le nom de l'axe, suivi du test de noeud, tous deux séparés par '::', ce dernier suivi des prédicats entre crochets '[]'.</para>
-<para>Voici un exemple :</para>
-<para><programlisting>child::para[position()=1]</programlisting></para>
+<para>La syntaxe d'une étape est donc tout d'abord le nom de l'axe, suivi du test de noeud, tous deux séparés par '::', ce dernier suivi des prédicats entre crochets '[]' (cf [<xref linkend="xpath3" xrefstyle="select:label"/>].</para>
+
+<example id="xpath3">
+<title>Un chemin XPath avec étape</title>
+<programlisting>child::para[position()=1]</programlisting>
+</example>
+
 <para>L'ensemble de noeuds sélectionnés par une étape est donc l'ensemble de noeuds généré par l'axe associé au test de noeud qui serait par la suite filtré par le ou les prédicats.</para>
 
 </section>
 
 <section id="Un_axe" ><title>
 Un axe</title>
-<para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds.</para>
-
-<para>On identifie les axes suivant :</para>
+<para>Un axe définit un ensemble de noeuds de manière relative au noeud courant. Les axes utilisent les relations hiérarchiques entre les noeuds. On identifie les axes suivant :</para>
 <itemizedlist>
 <listitem><para>
 <emphasis role="strong">ancestor</emphasis> : les ancêtres du noeud courant, autrement dit son parent, le parent de son parent et ainsi de suite jusqu'à la racine du document.</para></listitem>
@@ -199,9 +210,9 @@ Un axe</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/AxesXpath.png"/>
 </imageobject></mediaobject> </figure>
 <para>
-La figure suivante montre un exemple concret d'arbre XML, les éléments marqués en rouge sont ceux correspondant à l'axe "ancestors" si le noeud courant est le noeud "Barbero".
+La figure [<xref linkend="axeXPath_ancestor" xrefstyle="select:label"/>] montre un exemple concret d'arbre XML, les éléments marqués en rouge sont ceux correspondant à l'axe "ancestors" si le noeud courant est le noeud "Barbero".
 </para>
-<figure>
+<figure id="axeXPath_ancestor">
 <title>Axe XPath - ancêtres</title>
 <mediaobject><imageobject><imagedata format="PNG" fileref="images/pic-33.png"/>
 <!--file:///home/t0rt00se/Travail/SILR3/pTrans/xsltinc/reports/books/bm-files/images/xpath-axe.png-->
@@ -257,7 +268,7 @@ La syntaxe réduite</title>
 				XSLT (eXtended Stylesheet Language Transformations), défini au sein de la recommandation XSL du W3C, est un langage de transformation XML de type fonctionnel. L'objectif principal est la transformation d'un document XML vers un autre, ou un dialecte XML (XHTML, XSL-FO, HTML, etc.). Cependant, le langage XSLT permet aussi les transformations vers tout autre type de document, au format texte ou dans un format binaire (bien que ceci ne soit pas nativement prévu par la recommandation XSLT). XSLT s'appuie sur XPath (une autre partie de la recommandation XSL) pour désigner une partie d'un arbre XML. XSLT est lui-même un dialecte XML. Un programme XSLT est donc, avant tout, un document XML.
 			</para>
 			<para>
-	 			Le standard XSLT 1.0 est <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath (cf. <!--<xref linkend="" xrefstyle="select:label"/>-->)
+	 			Le standard XSLT 1.0 est une <foreignphrase>W3C Recommendation</foreignphrase> du 16 novembre 1999<footnote><para>voir http://www.w3.org/TR/xslt</para></footnote>. A noter que les attributs de certains éléments XML de ce langage contiennent des chaînes de caractères dont la syntaxe et la sémantique obéissent au langage XPath.
 			</para>
 			<section>
 				<title>Le langage XSLT</title>

@@ -3,12 +3,12 @@
                       "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 
 <chapter id="incXSLT" >
-	<title>Une transformation Xslt incrémentale : incXSLT</title>
+	<title>incXSLT : XSLT incrémental</title>
 <section><title>Présentation</title>
 <para>
-incXSLT est un processeur XSLT incrémental conçu par Lionel Villard et Na- bil Layaïda <biblioref linkend="vil2000"/>. La conception de ce processeur incrémental repose sur la modélisation du contexte d’exécution de XSLT et l’étude ﬁne du langage de sélection XPath.
+incXSLT est un processeur XSLT incrémental conçu par Lionel Villard et Nabil Layaïda <biblioref linkend="vil2000"/>. La conception de ce processeur incrémental repose sur la modélisation du contexte d’exécution de XSLT et l’étude fine du langage de sélection XPath.
 </para>
-<para> Lors d'une mise à jour du document source, les principes mis en oeuvre dans le processeur incXSLT sont les suivants : il détecte dans un premier temps les expressions XPath qui ont besoin d'être réévaluées, il élabore ensuite un graphe de dépendance afin d'identifier le sous-ensemble de règles de transformation qu'il est nécessaire de ré-appliquer, il restaure les contexte du document cible et du document source puis il peut enfin appliquer les règles sélectionnées auparavant.
+<para> Lors d'une mise à jour du document source, les principes mis en oeuvre dans le processeur incXSLT sont les suivants : il détecte dans un premier temps les expressions XPath qui ont besoin d'être ré-évaluées, il élabore ensuite un graphe de dépendance afin d'identifier le sous-ensemble de règles de transformation qu'il est nécessaire de ré-appliquer, il restaure les contexte du document cible et du document source puis il peut enfin appliquer les règles sélectionnées auparavant.
 </para>
 <para> Ces principes ont été validés par la création d'un processeur incrémental basé sur Xalan. Nous allons maintenant les détailler.
 </para>
@@ -21,7 +21,7 @@ Au niveau des feuilles de transformation, on peut voir ça comme la sélection d
 <section id="Expressions_et_ré-évaluation" ><title>
 Expressions et règles de réévaluation</title>
 <para>Dans le langage XSLT, un certain nombre d'instructions utilisent des expressions exprimées dans des attributs. Ces expressions sont généralement composées d'une ou plusieurs sous expressions de chemin</para>
-<para>Quand cette expression est évaluée, on obtient un ensemble de noeuds issus du document source.  Ainsi par exemple, l'expression "persons/person" renvoie, lorsqu'elle est évaluée, un ensemble de noeuds "person" qui ont tous comme parent un noeud de type "persons".</para>
+<para>Quand cette expression est évaluée, on obtient un ensemble de noeuds issus du document source.  Ainsi par exemple, l'expression <emphasis>persons/person</emphasis> renvoie, lorsqu'elle est évaluée, un ensemble de noeuds <emphasis>person</emphasis> qui ont tous comme parent un noeud de type <emphasis>persons</emphasis>.</para>
 <para>L'évaluation de telles expressions dépend d'un contexte statique mais aussi d'un contexte dynamique. Dans le cas de la transformation incrémentale, il n'est nécessaire de restaurer que le contexte dynamique à chaque fois que l'on exécute une instruction. Ce contexte dépend de l'état du processeur au moment où l'expression est évaluée, il est composé de :</para>
 <itemizedlist>
 <listitem><para>
@@ -29,7 +29,7 @@ la valeur courante de toutes les variables présentes dans la portée de l'expre
 <listitem><para>
 le noeud courant, c'est le noeud du document source qui est en train d'être traité.</para></listitem>
 <listitem><para>
-la liste des noeuds courants, nécessaire lorsqu'une instruction "apply-templates" ou "for-each" est utilisée pour traiter une liste de noeuds.</para></listitem>
+la liste des noeuds courants, nécessaire lorsqu'une instruction <emphasis>apply-templates</emphasis> ou <emphasis>for-each</emphasis> est utilisée pour traiter une liste de noeuds.</para></listitem>
 <listitem><para>
 la position courante qui indique la position du noeud courant dans la liste des noeuds courants.</para></listitem>
 </itemizedlist>
@@ -38,24 +38,24 @@ la position courante qui indique la position du noeud courant dans la liste des 
 <listitem><para>
 son évaluation doit donner un ensemble de noeud pour résultat</para></listitem>
 <listitem><para>
-seuls les axes "child" et "attribute" sont permis</para></listitem>
+seuls les axes <emphasis>child</emphasis> et <emphasis>attribute</emphasis> sont permis</para></listitem>
 </itemizedlist>
 <para>Pendant une session incrémentale, les instruction qu'il faut réévaluer sont celles qui utilisent une expression dont la valeur a pu changer. En particulier cela peut arriver lorsqu'un attribut est modifié dans le document source. Dans le cas général la valeur d'une expression peut changer soit parce que son contexte d'évaluation a changé et/ou le résultat des chemins de l'expression ont changés. Par exemple l'instruction</para>
 <programlisting>&lt;xsl:value-of select=”position()”&gt;</programlisting>
 <para>doit être réévaluée lorsque la position du noeud courant change. Cela peut arriver lorsque l'on supprime ou que l'on ajoute une section avant le noeud courant.</para>
-<para>Comme il est indiqué plus tôt, une expression de chemin sélectionne un ensemble de noeuds, dans la plupart des cas, les types de noeuds inclus dans cet ensemble peuvent être déterminés sans connaître le contexte dynamique. Par exemple le résultat d'une expression "article/section" dépend uniquement des éléments de type articles et section. On peut utiliser cette propriété afin de réaliser un premier filtrage qui enlève les instructions n'ayant pas besoin d'être réévaluées.</para>
+<para>Comme il est indiqué plus tôt, une expression de chemin sélectionne un ensemble de noeuds, dans la plupart des cas, les types de noeuds inclus dans cet ensemble peuvent être déterminés sans connaître le contexte dynamique. Par exemple le résultat d'une expression <emphasis>article/section</emphasis> dépend uniquement des éléments de type articles et section. On peut utiliser cette propriété afin de réaliser un premier filtrage qui enlève les instructions n'ayant pas besoin d'être réévaluées.</para>
 <para>En fait les noeuds de l'ensemble sélectionné correspondent à une règle de réévaluation particulière. Cette règle est déduite de l'expression de chemin. Lorsqu'on la détermine il est indispensable d'y enlever toute référence à des éléments du contexte dynamique.</para>
 <para>Voici un algorithme informel permettant de créer les règles de réévaluation à partir des expressions, on cherche en fait à associer à chaque expression une règle. Cette dernière permettra par la suite de dire si oui ou non il faut réévaluer l'expression:</para>
 <para>
-Les opérations telles que "and", "or" ou "=" génère des règles correspondantes à celles produites par les arguments de l'opération. Par exemple l'expression "count(section) or position()" génère deux règles : "section" et "node()". 
+Les opérations telles que <emphasis>and</emphasis>, <emphasis>or</emphasis> ou <emphasis>=</emphasis> génère des règles correspondantes à celles produites par les arguments de l'opération. Par exemple l'expression <emphasis>count(section) or position()</emphasis> génère deux règles : <emphasis>section</emphasis> et <emphasis>node()</emphasis>. 
 </para>
 <para>
-Concernant les fonctions, il faut distinguer celles qui utilisent le contexte dynamique, telles que "position()" ou "last()" de celles qui utilisent un chemin en paramètre. Les premières doivent être réévaluées lorsque la liste courante de noeuds ou la position du noeud courant change. A cette étape aucune autre information n'est donnée. On remplace cette sorte de fonction par une règle 'node()'.
-Les fonctions utilisant des chemins comme paramètres sont transformées en règles correspondantes au résultat de la conversion du chemin, ainsi par exemple "count(section)" sera transformée en 'section'.
-Les autres types de fonctions ne génère aucune règle, par exemple la fonction "floor(43/2)" n'aura jamais besoin d'être réévaluée.
+Concernant les fonctions, il faut distinguer celles qui utilisent le contexte dynamique, telles que <emphasis>position()</emphasis> ou <emphasis>last()</emphasis> de celles qui utilisent un chemin en paramètre. Les premières doivent être réévaluées lorsque la liste courante de noeuds ou la position du noeud courant change. A cette étape aucune autre information n'est donnée. On remplace cette sorte de fonction par une règle <emphasis>node()</emphasis>.
+Les fonctions utilisant des chemins comme paramètres sont transformées en règles correspondantes au résultat de la conversion du chemin, ainsi par exemple <emphasis>count(section)</emphasis> sera transformée en <emphasis>section</emphasis>.
+Les autres types de fonctions ne génère aucune règle, par exemple la fonction <emphasis>floor(43/2)</emphasis> n'aura jamais besoin d'être réévaluée.
 </para>
 <para>
-Une référence à une variable génère une règle "node()", cela correspond à la valeur que peut prendre la variable, en particulier un ensemble de noeuds.
+Une référence à une variable génère une règle <emphasis>node()</emphasis>, cela correspond à la valeur que peut prendre la variable, en particulier un ensemble de noeuds.
 </para>
 <para>
 Les objets de bases, tels que les nombres, chaînes de caractères ou booléens ne génèrent aucune règle.
@@ -66,11 +66,11 @@ Les objets de bases, tels que les nombres, chaînes de caractères ou booléens 
 Instructions</title>
 <para>Durant une session de transformation incrémentale, il est nécessaire de restaurer le contexte dynamique afin de ré-exécuter les règles qui prendront alors compte des modifications. Le contexte du document cible doit également être restauré.</para>
 <para>Afin de comprendre comment les différentes instructions XSLT affectent le processus, elles ont été classées en différentes catégories. </para>
-<para>Les instructions globales telles que "attribute-set" ou encore "namespace-alias" sont des paramètres statiques exécutés au début de la transformation et ne dépendent pas du document source.</para>
+<para>Les instructions globales telles que <emphasis>attribute-set</emphasis> ou encore <emphasis>namespace-alias</emphasis> sont des paramètres statiques exécutés au début de la transformation et ne dépendent pas du document source.</para>
 <para>Les instructions de modularisation (import, include, etc) définissent comment les feuilles de style sont physiquement organisées, elles ne dépendent donc pas non plus du document source.</para>
 <para>Les instructions de variables (variable, param ..) permettent de définir des variables locales ou des paramètres de templates, les variables sont une part importante du contexte du processeur. </para>
-<para>Les instructions  telles que  "apply-template","for-each" ou encore "if" permettent le contrôle de l'exécution de la transformation et en particulier le choix du noeud source que l'on va instancier (instruction apply-templates).</para>
-<para>Les instructions de production (value-of, element, etc) génère des fragments du document source.  Ces instructions réalisent la liaison entre la transformation et le document cible. Elles sont très utiles dans le cadre de la restauration du contexte cible.</para>
+<para>Les instructions  telles que  <emphasis>apply-template</emphasis>, <emphasis>for-each</emphasis> ou encore <emphasis>if</emphasis> permettent le contrôle de l'exécution de la transformation et en particulier le choix du noeud source que l'on va instancier (instruction apply-templates).</para>
+<para>Les instructions de production (<emphasis>value-of</emphasis>, <emphasis>element</emphasis>, etc) génère des fragments du document source. Ces instructions réalisent la liaison entre la transformation et le document cible. Elles sont très utiles dans le cadre de la restauration du contexte cible.</para>
 
 </section>
 
@@ -78,7 +78,7 @@ Instructions</title>
 Arbre d'exécution</title>
 <para>Pendant une transformation les instructions sont exécutées séquentielle ment. Ces instruction réalisent des actions et parfois vont entraîner le stockage de certaines données. </para>
 <para>L'arbre d'exécution est une représentation de l'exécution des instructions. De nombreux systèmes ont utilisé des variantes de l'arbre d'exécution principalement dans le cadre de langages à effets de bord. L'objectif de ces systèmes est  de fournir la possibilité de retour arrière dans l'exécution d'un programme, ceci dans le but de faciliter le dé-verminage de ce dernier. L'utilisateur peut arrêter l'exécution du programme, repartir en arrière de quelques étapes, changer des valeurs de variables puis relancer l'exécution de manière incrémentale.</para>
-<para> L' exécution incrémentale repose sur le traçage de l'exécution du programme qui va créer des journaux d'historiques ( une liste de couples (ligne, valeur des variables)). À partir de ces journaux l'état de la mémoire peut être restauré et la ré-exécution est alors possible. Le problème majeur de ces système est le coût en temps machine comme en espace mémoire qui deviennent rapidement prohibitifs.</para>
+<para> L' exécution incrémentale repose sur le traçage de l'exécution du programme qui va créer des journaux d'historiques (une liste de couples (ligne, valeur des variables)). À partir de ces journaux, l'état de la mémoire peut être restauré et la ré-exécution est alors possible. Le problème majeur de ces système est le coût en temps machine comme en espace mémoire qui deviennent rapidement prohibitifs.</para>
 <para>Dans le contexte d'une transformation, le problème varie selon plusieurs aspects:</para>
 <itemizedlist>
 <listitem><para>
@@ -100,13 +100,13 @@ La modification des feuilles de transformation pendant la session incrémentale 
 		 </mediaobject>
                 </figure>
 
-<para>L'arbre d'exécution est composé de noeuds d'exécution. Les noeuds contiennent la valeur de l'expression qui leur est associée. Par exemple le noeud 'apply-templates" a comme fils directs des noeuds de type "template" Ces derniers sont liés à des noeuds du document source. Ainsi, à partir du noeud 'apply-template' on peut retrouver les noeuds sources qui compose la liste des noeuds présente dans le contexte.</para>
-<para>Les noeuds de production contiennent des données liées au document cible. Ces données servirons à restaurer le contexte cible. Par exemple, l'instruction "element" à un lien vers l'élément qu'elle génère. Pour un producteur de caractère, tel qu'une instruction "value-of" seul le nombre de caractères générés doit être stocké. </para>
+<para>L'arbre d'exécution est composé de noeuds d'exécution. Les noeuds contiennent la valeur de l'expression qui leur est associée. Par exemple le noeud <emphasis>apply-templates</emphasis> a comme fils directs des noeuds de type <emphasis>template</emphasis> Ces derniers sont liés à des noeuds du document source. Ainsi, à partir du noeud <emphasis>apply-template</emphasis> on peut retrouver les noeuds sources qui compose la liste des noeuds présente dans le contexte.</para>
+<para>Les noeuds de production contiennent des données liées au document cible. Ces données servirons à restaurer le contexte cible. Par exemple, l'instruction <emphasis>element</emphasis> à un lien vers l'élément qu'elle génère. Pour un producteur de caractère, tel qu'une instruction <emphasis>value-of</emphasis> seul le nombre de caractères générés doit être stocké. </para>
 <para>La structure de donnée présentée ici permet d'avoir à tout instant d'une session de transformation incrémentale les contextes sources ou cibles.Il faut tout de même ajouter quelques traitements supplémentaires afin de restaurer les valeurs de variables.</para>
 
 </section>
 <section><title>Re-considération de l'instanciation</title>
-<para> Il s'agit maintenant de créer un graphe de dépendances permettant d'identifier les relations entre différents noeuds "&lt;xsl:template&gt;". En effet l'exécution de l'instruction "apply-template" entraîne la recherche des templates qui correspondent à tous les noeuds sélectionnés. Cette recherche (l'opération d'instantiation) doit être reconsidérée à chaque fois que le document source est modifié.Ainsi considérons par exemple les définition suivantes : 
+<para> Il s'agit maintenant de créer un graphe de dépendances permettant d'identifier les relations entre différents noeuds <emphasis>&lt;xsl:template&gt;</emphasis>. En effet l'exécution de l'instruction <emphasis>apply-template</emphasis> entraîne la recherche des templates qui correspondent à tous les noeuds sélectionnés. Cette recherche (l'opération d'instantiation) doit être reconsidérée à chaque fois que le document source est modifié. Ainsi considérons par exemple les définition suivantes : 
 </para>
 <programlisting><![CDATA[
 <xsl:template match="section[title]"> ... </xsl:template>
@@ -114,7 +114,7 @@ La modification des feuilles de transformation pendant la session incrémentale 
 ]]>
 </programlisting>
 <para>
-l'instanciation d'un élément "section"  peut changer lorsqu'un élément "title" est ajouté, ou enlevé d'un élément section. Ainsi une instruction "apply-templates" qui a sélectionnée des éléments de type "section" peut potentiellement avoir besoin d'être réévaluée. En règle générale le processus d'instanciation oblige à considérer la totalité des templates des feuilles de transformation, pour éviter ce coût on peut tenir compte du fait que dans la plupart des cas, seuls quelques templates peuvent être instanciés a partir d'une instruction "apply-template". Grâce à ces dépendances on peut construire un graphe et ainsi limiter l'ensemble des templates concernés par le "apply-template" à un sous-ensemble des templates des feuilles de transformation.
+L'instanciation d'un élément <emphasis>section</emphasis> peut changer lorsqu'un élément <emphasis>title</emphasis> est ajouté, ou enlevé d'un élément section. Ainsi une instruction <emphasis>apply-templates</emphasis> qui a sélectionnée des éléments de type <emphasis>section</emphasis> peut potentiellement avoir besoin d'être réévaluée. En règle générale le processus d'instanciation oblige à considérer la totalité des templates des feuilles de transformation, pour éviter ce coût on peut tenir compte du fait que dans la plupart des cas, seuls quelques templates peuvent être instanciés a partir d'une instruction <emphasis>apply-template</emphasis>. Grâce à ces dépendances on peut construire un graphe et ainsi limiter l'ensemble des templates concernés par le "apply-template" à un sous-ensemble des templates des feuilles de transformation.
 </para>
 </section>
 </section>

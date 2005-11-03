@@ -3,16 +3,94 @@
                       "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 
 <chapter id="Transformations_inversibles" >
-	<title>Transformations inversibles</title>
+	<title>Transformations inverses</title>
 	
-	<para>
-	
-	</para>
+		<para>
+			Le principe des transformations inverses est de permettre à l'utilisateur de modifier le document résultant d'une transformation et que ces modifications se répercutent dans le document d'origine. Cela à pour intéret d'augmenter la convivialité d'un système de gestion documentaire puisque bien souvent, l'utilisateur préfère bien souvent modifier la document cible plutôt que le document source surtout dans un contexte WYSIWYG<footnote><para>What Yoy See Is What You Get. Se dit d'un environnement où ce qui apparaît à l'écran est semblable au document final.</para></footnote>.
+		</para>
 	
 	<section>
-		<title></title>
+		<title>Rappel de la problématique</title>
 		<para>
+			Une opération de tranformation sur un document structuré consiste à transformer un arbre en un autre arbre. Si l'on considère un arbre comme une structure algébrique alors la transformation est un morphisme<footnote><para>un morphisme est une application entre deux ensembles munis d'une même espèce de structure algébrique, qui respecte cette structure.</para></footnote>. 
+		</para>
+		<para>
+			L'objectif de la transformation inverse est d'obtenir, à partir de l'arbre cible (le produit de l'application de la transformation), un arbre source qui soit identique à celui qui aurait été nécessaire à l'obtention de ce même arbre cible par le morphisme. Prenons <phrase role="math">f</phrase> la transformation qui génère l'arbre cible à partir de l'arbre source et <phrase role="math">f'</phrase> la transformation inverse ainsi que <phrase role="math">S</phrase> et <phrase role="math">T</phrase>, respectivement les arbres sources et destinations. L'objectif précédent sous forme mathématique est donc que <phrase role="math">f (f' (T)) = S</phrase> et  que <phrase role="math">f' (f (S)) = T</phrase>. Autrement dit que les compositions de <phrase role="math">f</phrase> par <phrase role="math">f'</phrase> et de <phrase role="math">f'</phrase> par <phrase role="math">f</phrase> soit les identités des structures et donc que <phrase role="math">f</phrase> soit un <emphasis>isomorphisme</emphasis>.
+		</para>
+		<para>
+			Le problème des transformations inverses se réduit donc à identifier si les transformations sont des isomorphismes. Étudions maintenant ce problème appliqué aux transformations XSLT.
+		</para>
+	</section>
+	
+	<section>
+		<title>Application à XSLT</title>
+		<para>
+			Une transformation XSLT n'est clairement pas dans le cas général un isomorphisme. En effet, l'application des règles permettent de parcourir l'arbre source de manière totalement désordonné (par rapport à un parcours dit en profondeur d'abord) et de générer à chaque noeud source un nombre indifférent de noeuds résultats. Si la transformation complète n'est pas un isomorphisme, peut-être qu'une partie de celle-ci l'est.
+		</para>
+		<para>
+			Nous allons commencer par étudier les éléments XSLT qui produisent des noeuds dans l'arbre résultat et les classer selon le fait qu'ils sont susceptibles former un arbre résultat isomorphe à l'arbre source. Dans le cas contraire, l'édition des noeuds créés par ces éléments sera tout simplement impossible. S'ils sont susceptibles de le faire, nous essaierons de voir, pour chacun d'eux, dans quelles conditions.
+		</para>
 		
+		<section>
+			<title>Classification des éléments XSLT de production</title>
+			<formalpara>
+				<title>xsl:copy</title>
+				<para>
+					L'élément <emphasis>xsl:copy</emphasis> effectue la copie du noeud courant. Il est donc possible de faire un lien direct entre le noeud résultat et le noeud source et il n'y a aucune ambiguïté.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>xsl:text</title>
+				<para>
+					L'élément <emphasis>xsl:text</emphasis> est un cas particulier, car contrairement aux autres éléments de production, il ne peut pas contenir des règles mais uniquement des données caractères. Il n'a donc aucune référence avec des noeuds sources. Si le noeud créé à partir de celui-ci est modifiable dans l'arbre résultat, la répercution se ferait sur l'arbre de transformation. Pour l'instant, cette option n'est pas envisagé.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>xsl:number</title>
+				<para>
+					L'élément <emphasis>xsl:number</emphasis> produit un noeud texte. Celui-ci est calculé par le processeur en fonction de la position dans l'arbre cible et ceci empêche de le rendre modifiable.
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>les autres</title>
+				<para>
+					Les autres éléments de production sont : <emphasis>les éléments littéraux non présents dans l'espace de nommage XSLT</emphasis>, <emphasis>xsl:element</emphasis>, <emphasis>xsl:attribute</emphasis>, <emphasis>xsl:attribute-set</emphasis>, <emphasis>xsl:value-of</emphasis>, <emphasis>xsl:processing-instruction</emphasis> et <emphasis>xsl:comment</emphasis>. Ces instructions peuvent produire des noeuds cibles à partir de plus d'un seul noeud source. Dans ce cas, il est nécessaire de tous les retrouver afin de les mettre à jour. C'est ce que nous allons voir dans la section suivante.
+				</para>
+			</formalpara>
+		</section>
+		
+		<section>
+			<title>Recherche des noeuds sources d'une transformation</title>
+			<para>
+				Le problème de la transformation inverse est de retrouver les noeuds du document source qui affecte ou qui sont à l’origine d’un noeud cible. La première étape consiste à retrouver le noeud (ou instruction) de la spécification XSLT qui a généré le noeud cible. La seconde étape consiste à retrouver les noeuds source à partir de cette instruction. Ce processus de recherche dépend de la catégorie du noeud source.
+			</para>
+			<para>
+				On peut distinguer deux catégories de noeuds sources selon leur utilisation dans la feuille de transformation <xref linkend="vil2002"/> : les noeuds directs et les noeuds indirects. Les noeuds sources sont dits <emphasis>directs</emphasis> lorsqu’ils sont liés à un noeud cible par l’intermédiaire d’une seule instruction XSLT. Dans le cas contraire, les noeuds sont dits <emphasis>indirects</emphasis>.
+			</para>
+			<para>
+				Le processus de transformation inverse nécessite de conserver les liens entre le document source et la feuille de transformation, ainsi que les liens entre la feuille de transformation et le document cible. Plus exactement, un lien doit-être tenu entre les noeuds de l'arbre d'exécution de la transformation et les documents source et cible.
+			</para>
+		</section>
+		
+		<section>
+			<title>Types de modifications possibles</title>
+				<para>
+				Deux types de modifications sont possibles sur un document structuré : modifications d'un objet textuel et ajout/suppression de noeud. 
+				</para>
+				<para>
+					Afin de conserver le concept d'isomorphisme de la transformation pour permettre une transformation inverse cohérente, nous ne permettons que les actions de modification du contenu d’un objet textuel lorsque cela correspond à la modification du contenu d’<emphasis role="strong">un</emphasis> élément ou la valeur d’<emphasis role="strong">un</emphasis> attribut. Cette vision suppose que le système est capable de calculer l’expression inverse. Avec les contraintes imposées sur les actions de modifications, ce calcul peut facilement être réalisé, puisqu’à chaque constructeur d’une expression correspond un constructeur inverse. 
+				</para>
+		</section>
+		
+	</section>
+	
+	<section>
+		<title>Conclusion</title>
+		<para>
+		Nous avons vu que la modification du document source à partir du document cible ne permet pas d’effectuer des modifications importantes. L’ajout et la suppression de noeuds ne sont pas possibles à cause notamment de l’ambiguïté liée à ces actions. Pour permettre une édition plus complète, il serait nécessaire d’étendre les actions existantes par des actions spécifiques au modèle du document source. Cependant, celui-ci étant inconnue à priori, il n'est possible de le faire dans le cas général.
+		</para>
+		<para>
+			Nous n'irons pas plus loin dans l'étude de la transformation inverse lors du chapitre de conception. Cette possibilité d'inverser une transformation devait être étudié mais l'implémentation de celle-ci etait optionnelle.
 		</para>
 	</section>
 	

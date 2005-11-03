@@ -77,7 +77,7 @@ mise à jour du résultat précédent : <phrase role="math">f (x OP delta(x)) = 
 		</section>
 		
 		<section>
-			<title>Méthode d'évaluation partielle</title>
+			<title>Méthodes d'évaluation partielle</title>
 			<para>
 				Cette technique s’appuie sur une partie connue et statique de la donnée en entrée. Dans certain cas, la fonction peut être simplifiée en évaluant de façon statique cette partie. Une définition formelle de l’évaluation partielle au moyen des projections est donnée par Sundaresh dans <xref linkend="sun1991"/> et montre comment elle peut être utilisée dans le cadre du traitement incrémental. 
 			</para>

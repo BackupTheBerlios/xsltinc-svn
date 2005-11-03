@@ -85,7 +85,7 @@ transformation déjà appliquée en tirant partie de son exécution précédente
 		<title>Cadre du travail</title>
 		
 		<para>
-			Le bureau numérique... blabla...
+			Ce projet de recherche s'inscrit dans le projet de <quote>bureau numérique</quote> développé au sein de des équipes MOC et IVC. Il a pour but de fournir une réflexion avancé sur le concept d'interface homme-machine du futur. Pour cela, il leur est nécessaire de revoir les concepts de bases tels que le métaphores classiques de l'informatique et notamment celle décrivant la notion de document. Dans la nouvelle vision, un document doit être visionnable sous différentes formes physique et numérique. De là, la nécessité de transformations de documents performantes est une condition <foreignphrase>sine qua none</foreignphrase>
 		</para>
 	</section>
 
@@ -93,7 +93,16 @@ transformation déjà appliquée en tirant partie de son exécution précédente
 		<title>Organisation du rapport</title>
 		
 		<para>
-			Recherche bilblio &amp; conception...
+			Ce rapport décrit la réalisation des deux premières phases de ce projet, à savoir la bilbiographie et la conception. Nous commencons logiquement ce rapport par la partie bibliographie pour avancer doucement vers la conception, dernier chapitre qui clos ce rapport.
+		</para>
+		<para>
+			Le premier chapitre présente la notion de document et ses interprétations depuis ses origines jusqu'au XML dont il fait une introduction détaillée. Ensuite, le concept de transformation XML sera introduit dans le chapitre deux avec ses problématiques. Il est logique alors de présenter dans le chapitre suivant le langage dominant dans ce domaine, à savoir XSLT. 
+		</para>
+		<para>
+			Les chapitres suivants font la part belle à notre problématique en commencant par le cinquième qui fait un état de l'art des méthodes de traitements incrémentales suivi par une présentation exhaustive d'un processeur XSLT incrémental : incXSLT. Une ouverture est donnée dans le chapitre sept qui expose les problématiques et les pistes de solutions au sujet des transformations inverses.
+		</para>
+		<para>
+			Enfin, le chapitre huit présentera notre étude quant à la conception d'un processeur XSLT incrémental se basant sur les recherches exposées précèdement dans le rapport. Le planning de réalisation est fourni en annexe A.
 		</para>
 	</section>
 

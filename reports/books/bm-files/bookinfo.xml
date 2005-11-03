@@ -28,6 +28,12 @@
     <surname>Guédon</surname>
  		<email>Jean-Pierre.Guédon@polytech.univ-nantes.fr</email>
   </othercredit>
+  
+	<othercredit class="coordinateur">
+  	<firstname>Henri</firstname>
+    <surname>Briand</surname>
+ 		<email>Henri.Briand@polytech.univ-nantes.fr</email>
+  </othercredit>  
 		
 	<othercredit class="enseignant">
   	<firstname>Nicolas</firstname>

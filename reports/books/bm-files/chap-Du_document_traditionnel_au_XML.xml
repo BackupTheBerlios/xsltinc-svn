@@ -71,13 +71,13 @@
 				<section>
 					<title>Document linéaire</title>
 					<para>
-						La première définition du document pourrait-être représenté par l'équation : document traditionnel = support + inscription. Dans ce cas, le document est vu comme des processus sériels. L'accent est mis sur un support manipulable sur lequel est fixé une trace interprétable. Il était donc logique de le représenter par un modèle linéaire qui définit ainsi un document comme un flux de données. Les limites de ce modèle apparaissent très vite puisqu'il est impossible de séparer sémantique et représentation. Des travaux sur ce problème ont été éffectué dans le domaine du génie documentaire afin de définir un modèle plus adapté et maintenant bien connu : le document structuré.
+						La première définition du document pourrait-être représenté par l'équation : document <phrase role="math">traditionnel = support + inscription</phrase>. Dans ce cas, le document est vu comme des processus sériels. L'accent est mis sur un support manipulable sur lequel est fixé une trace interprétable. Il était donc logique de le représenter par un modèle linéaire qui définit ainsi un document comme un flux de données. Les limites de ce modèle apparaissent très vite puisqu'il est impossible de séparer sémantique et représentation. Des travaux sur ce problème ont été éffectué dans le domaine du génie documentaire afin de définir un modèle plus adapté et maintenant bien connu : le document structuré.
 					</para>
 				</section>
 				<section>
 					<title>Document structuré</title>
 					<para>
-						La notion de document structuré est bien connue de nos jours et les premières définitions datent du début des années 80 <xref linkend="gol1981"/>. Elle met en avant une deuxième équation : document = structure + données. Au delà de cette équation, la notion de structure introduit deux concepts fondamentaux : la <emphasis>structure logique</emphasis> du document et ce qui définit cette structure, le <emphasis>modèle de document</emphasis>.
+						La notion de document structuré est bien connue de nos jours et les premières définitions datent du début des années 80 <xref linkend="gol1981"/>. Elle met en avant une deuxième équation : <phrase role="math">document = structure + données</phrase>. Au delà de cette équation, la notion de structure introduit deux concepts fondamentaux : la <emphasis>structure logique</emphasis> du document et ce qui définit cette structure, le <emphasis>modèle de document</emphasis>.
 					</para>
 					<formalpara>
 						<title>Structure logique</title>
@@ -178,15 +178,16 @@ la police, la couleur, l’espacement etc.
 			<para>
 				Un document XML commence par un prologue composé notamment de la déclaration 
 <emphasis><![CDATA[<?xml?>]]></emphasis>. Celle-ci doit contenir le numéro de version du format XML utilisé dans le document. L’attribut encoding permet de préciser le codage de caractères utilisé pour ce document. XML utilise par défaut les jeux de caractères définis par la norme Unicode<footnote><para>Unicode est un standard informatique développé par le Consortium Unicode qui vise à donner à tout caractère de n'importe quel système d'écriture de langue un identifiant numérique, et ce de manière unifiée, quelle que soit la plate-forme informatique ou le logiciel.</para></footnote>. Ensuite, le document contient l’arbre d’éléments. Le premier élément correspond à la racine de l’arbre. Dans notre exemple c’est l’élément annuaire. Les noms d’éléments sont encadrés par des chevrons (<![CDATA[<>]]>). La balise ouvrante peut contenir des attributs spécifiés par un nom suivi de sa valeur spécifiée entre guillemets. 
-			</para>
-			
-			<para>
-				La  structure d'un document XML est hiérarchique et arborescente et est donc aussi facilement interprétable par un humain que par un programme informatique. Ainsi, il est facile de représenter visuellement un document XML sous forme d'arbre [<xref linkend="structArboXML" xrefstyle="select:label"/>]
-			</para>
+			</para>			
+
 			<figure id="structArboXML">
       	<title>Vue arborescente d'un document XML</title>
         <mediaobject><imageobject><imagedata format="PNG" fileref="images/structArboXML.png"/></imageobject></mediaobject>
-      </figure>
+      </figure>			
+			
+			<para>
+				La  structure d'un document XML est hiérarchique et arborescente et est donc aussi facilement interprétable par un humain que par un programme informatique. Ainsi, il est facile de représenter visuellement un document XML sous forme d'arbre [<xref linkend="structArboXML" xrefstyle="select:label"/>]
+			</para>				
 		</section>
 				
 		<section>
