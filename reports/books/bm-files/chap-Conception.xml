@@ -85,7 +85,7 @@ Vue logique</title>
 </para>
 <figure>
 <title>Vue d'ensemble de 4Suite</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="images/4SuiteOverview.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/4suiteOverview.png"/>
 </imageobject></mediaobject>
 </figure>
 <para>
@@ -177,7 +177,7 @@ Voici le diagramme de classe découlant de ce fonctionnement:
 </para>
 <figure>
 <title>Diagramme de classe - règles de réévaluation</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="images/XSLTIncDiagClassBasic.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncDiagClassBasic.png"/>
 </imageobject></mediaobject>
 </figure>
 <para>
@@ -185,7 +185,7 @@ Et voici un diagramme de séquence montrant l'exécution d'une session incrémen
 </para>
 <figure>
 <title>Diagramme de séquence - instanciation incrémentale</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="images/XSLTIncDiagSeqBasic.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncDiagSeqBasic.png"/>
 </imageobject></mediaobject>
 </figure>
 <para>
@@ -284,7 +284,7 @@ Cette classification entre les classes sera ajoutée au sein même des classes d
 </para>
 <figure>
 <title>Diagramme de classe de 4XSLT après ajout</title>
-<mediaobject><imageobject><imagedata format="PNG" fileref="images/XSLTIncClassDiagElements.png"/>
+<mediaobject><imageobject><imagedata format="PNG" fileref="images/xsltIncClassDiagElements.png"/>
 </imageobject></mediaobject>
 </figure>
 <para>
