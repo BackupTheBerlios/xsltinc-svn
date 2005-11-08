@@ -7,15 +7,18 @@
 	<done>
 Début de conception du système.
 	</done>
-<done>Étude des possibilités autours de la transformation Xslt inversible.
+<done>
+	Recherche et analyse de la problématique de la transformation inverse. Intégration dans le rapport.
 </done>
 <done>Rédaction rapport de bibliographie.
+</done>
+<done>
+	Plannification de la réalisation.
 </done>
  	</donelist>
   
   <todolist>
-  <todo>Finition rapport de bibliographie
-
+  <todo>Finition rapport de bibliographie.
   </todo>
   <todo>Préparation de la présentation de soutenance.</todo>
   </todolist>

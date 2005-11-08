@@ -30,7 +30,7 @@
   	de différents moteurs xslt. Dispo sur http://xsltinc.berlios.de/testset/.
   </done>
   <done>
-  	Réalisation de la trace de l'execution de xsltproc avec callgrind et KCacheGrind.
+  	Réalisation de la trace de l'exécution de xsltproc avec callgrind et KCacheGrind.
   	Résultat dispo sur http://xsltinc.berlios.de/testset_results/.
   </done>
   </donelist>
