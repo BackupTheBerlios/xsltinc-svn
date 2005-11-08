@@ -1,0 +1,123 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DemoView</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>DemoView</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>697</width>
+            <height>455</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>XsltInc demonstration</string>
+    </property>
+    <hbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="title">
+                <string>Source tree</string>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>SourceListView</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>21</y>
+                        <width>220</width>
+                        <height>370</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1_2_2</cstring>
+            </property>
+            <property name="title">
+                <string>Transformation tree</string>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>TransfoListView</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>20</y>
+                        <width>220</width>
+                        <height>370</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1_2</cstring>
+            </property>
+            <property name="title">
+                <string>Target tree</string>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>TargetListView</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>20</y>
+                        <width>220</width>
+                        <height>370</height>
+                    </rect>
+                </property>
+            </widget>
+        </widget>
+    </hbox>
+</widget>
+<toolbars>
+</toolbars>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
