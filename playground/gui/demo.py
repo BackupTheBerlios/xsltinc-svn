@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'demo.ui'
 #
-# Created: lun nov 7 20:45:52 2005
+# Created: mar nov 8 19:15:37 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -24,24 +24,42 @@ class DemoView(QMainWindow):
         DemoViewLayout = QHBoxLayout(self.centralWidget(),11,6,"DemoViewLayout")
 
         self.groupBox1 = QGroupBox(self.centralWidget(),"groupBox1")
+        self.groupBox1.setColumnLayout(0,Qt.Vertical)
+        self.groupBox1.layout().setSpacing(6)
+        self.groupBox1.layout().setMargin(11)
+        groupBox1Layout = QHBoxLayout(self.groupBox1.layout())
+        groupBox1Layout.setAlignment(Qt.AlignTop)
 
         self.SourceListView = QListView(self.groupBox1,"SourceListView")
         self.SourceListView.addColumn(self.__tr("Node"))
-        self.SourceListView.setGeometry(QRect(0,21,220,370))
+        self.SourceListView.setAcceptDrops(1)
+        groupBox1Layout.addWidget(self.SourceListView)
         DemoViewLayout.addWidget(self.groupBox1)
 
         self.groupBox1_2_2 = QGroupBox(self.centralWidget(),"groupBox1_2_2")
+        self.groupBox1_2_2.setColumnLayout(0,Qt.Vertical)
+        self.groupBox1_2_2.layout().setSpacing(6)
+        self.groupBox1_2_2.layout().setMargin(11)
+        groupBox1_2_2Layout = QHBoxLayout(self.groupBox1_2_2.layout())
+        groupBox1_2_2Layout.setAlignment(Qt.AlignTop)
 
         self.TransfoListView = QListView(self.groupBox1_2_2,"TransfoListView")
         self.TransfoListView.addColumn(self.__tr("Node"))
-        self.TransfoListView.setGeometry(QRect(0,20,220,370))
+        self.TransfoListView.setAcceptDrops(1)
+        groupBox1_2_2Layout.addWidget(self.TransfoListView)
         DemoViewLayout.addWidget(self.groupBox1_2_2)
 
         self.groupBox1_2 = QGroupBox(self.centralWidget(),"groupBox1_2")
+        self.groupBox1_2.setColumnLayout(0,Qt.Vertical)
+        self.groupBox1_2.layout().setSpacing(6)
+        self.groupBox1_2.layout().setMargin(11)
+        groupBox1_2Layout = QHBoxLayout(self.groupBox1_2.layout())
+        groupBox1_2Layout.setAlignment(Qt.AlignTop)
 
         self.TargetListView = QListView(self.groupBox1_2,"TargetListView")
         self.TargetListView.addColumn(self.__tr("Node"))
-        self.TargetListView.setGeometry(QRect(0,20,220,370))
+        self.TargetListView.setAcceptDrops(1)
+        groupBox1_2Layout.addWidget(self.TargetListView)
         DemoViewLayout.addWidget(self.groupBox1_2)
 
 

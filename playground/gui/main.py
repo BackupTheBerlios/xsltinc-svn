@@ -8,6 +8,26 @@ from xsltinc.Observable import *
 import xsltinc
 import xsltinc.Dom
 
+class ObsListItem(QListViewItem,Observer):
+  def __init__(self,parent,text):
+    QListViewItem.__init__(self,parent,text)
+    Observer.__init__(self)
+    self.colorName = "blue"
+    self.colors = { 1 : "black" , 2 : "yellow", 3: "blue" , 
+                    4 : "green" , 5 : "purple" , 6 : "grey" , 7:"light blue" ,
+                    8 : "black" , 9 : "forest green"}
+    
+  def paintCell(self, p, cg, column, width, align ):
+    cg = QColorGroup(cg)
+    cg.setColor(QColorGroup.Text, QColor(self.colorName))
+    QListViewItem.paintCell(self, p, cg, column,width,align)
+
+  def chooseColor(self,obj):
+   self.colorName = self.colors[obj.nodeType]
+
+  def update(self,obj,arg):
+   #here I should update the qlistitem with the obj value
+   self.chooseColor(obj)
 
 class QListViewItemUpdater(Observer):
   """ used in order to link the ViewItem with its model without needing subclassing """
@@ -15,52 +35,47 @@ class QListViewItemUpdater(Observer):
    Observer.__init__(self)
    self.qlistitem = qlistitem
 
-  def chooseColor(self,obj):
-   if obj.nodeType ==1:
-    self.qlistitem.setText(0,"1-%s" % self.qlistitem.text(0))
-   elif obj.nodeType == 2:
-    self.qlistitem.setText(0,"2-%s " % self.qlistitem.text(0))
-   elif obj.nodeType == 3:
-    self.qlistitem.setText(0, self.qlistitem.text(0))
-   elif obj.nodeType == 4:
-    self.qlistitem.setText(0,"4-%s " % self.qlistitem.text(0))
-   elif obj.nodeType == 5:
-    self.qlistitem.setText(0,"5-%s " % self.qlistitem.text(0))
-
-  def update(self,obj,arg):
-   #here I should update the qlistitem with the obj value
-   self.chooseColor(obj)
     
 def QlistItemTreeFactory(qlistParent,domNode):
    """ here we build the given listitem, then we run the same
     method recursibely to build the childs."""
    text = domNode.localName
    if not text: text = domNode.nodeValue
-   newItem = QListViewItem(qlistParent,text)
+   newItem =ObsListItem(qlistParent,text)
    newItem.setOpen(True)
    if hasattr(domNode,'add_observer'):
-     print "un qui est lié"
-     domNode.add_observer(QListViewItemUpdater(newItem))
+     domNode.add_observer(newItem)
      domNode.notify_observers(domNode)
+   newItem.chooseColor(domNode)
    for node in domNode.childNodes:
         QlistItemTreeFactory(newItem,node)
 
+class DemoTransformer:
+  def __init__(self):
+   self.source = xsltinc.NonvalidatingReader.parseStream(open("persons.xml"))
+   self.transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
+   writer = xsltinc.Dom.CustomDomWriter()
+   self.xsltproc = xsltinc.LinearProcessor()
+   self.xsltproc.appendStylesheetNode(self.transfo)
+   self.xsltproc.runNode(self.source,writer=writer)
+   self.target = writer.getResult() 
+
+  def changeSource(self,file):
+   pass
+
+  def changeTarget(self,file):
+   pass
+
+  def changeTransfo(self,file):
+   pass
 
 def main(args):
  app=QApplication(args)
  mainWin = DemoView()
- source = xsltinc.NonvalidatingReader.parseStream(open("persons.xml"))
- transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
- xsltproc = xsltinc.LinearProcessor()
-
- writer = xsltinc.Dom.CustomDomWriter()
- xsltproc.appendStylesheetNode(transfo)
- xsltproc.runNode(source,writer=writer)
- target = writer.getResult()
-
- QlistItemTreeFactory(mainWin.TransfoListView,transfo)
- QlistItemTreeFactory(mainWin.SourceListView,source)
- QlistItemTreeFactory(mainWin.TargetListView,target)
+ demo = DemoTransformer()
+ QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
+ QlistItemTreeFactory(mainWin.SourceListView,demo.source)
+ QlistItemTreeFactory(mainWin.TargetListView,demo.target)
 
  mainWin.show()
 
