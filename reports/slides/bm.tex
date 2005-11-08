@@ -1,0 +1,60 @@
+\documentclass{beamer}
+
+
+
+\mode<article> % only for the article version
+{
+  \usepackage{fullpage}
+  \usepackage{hyperref}
+}
+
+\mode<presentation>
+{
+  \setbeamercovered{transparent}
+
+  \usetheme{Warsaw}
+  \usefonttheme[onlysmall]{structurebold}
+}
+
+\usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+\title % (optional, use only with long paper titles)
+{Bureau Numérique : Transformations Incrémentales}
+
+\subtitle
+{Phase 1 : Bibliographie et Modélisation}
+
+\author
+{Mikaël~Barbero \and Cédric~Brun}
+
+\institute
+{
+	École Polytechnique de l'université de Nantes\\
+	Département Informatique, promotion 2006}
+
+\date
+{Projet de recherche 2005, 2006}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Plan de la présentation}
+  \tableofcontents[pausesections]
+\end{frame}
+
+\end{document}
