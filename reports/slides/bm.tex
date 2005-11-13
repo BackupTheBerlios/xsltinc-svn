@@ -21,7 +21,7 @@
 \usepackage{times}
 \usepackage[T1]{fontenc}
 
-\title % (optional, use only with long paper titles)
+\title 
 {Bureau Numérique : Transformations Incrémentales}
 
 \subtitle
@@ -33,18 +33,11 @@
 \institute
 {
 	École Polytechnique de l'université de Nantes\\
-	Département Informatique, promotion 2006}
+	Département Informatique}
 
 \date
-{Projet de recherche 2005, 2006}
-
-\AtBeginSubsection[]
-{
-  \begin{frame}<beamer>
-    \frametitle{Outline}
-    \tableofcontents[currentsection,currentsubsection]
-  \end{frame}
-}
+{Projet de recherche 2005, 2006\\
+ Présenté le 15 novembre 2005}
 
 \begin{document}
 
@@ -56,5 +49,83 @@
   \frametitle{Plan de la présentation}
   \tableofcontents[pausesections]
 \end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan de la présentation}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%% Cédric : Intro du plan et on se presente 
+
+%% Mika
+\section{Motivations et objectifs}
+
+  \begin{frame}
+    \frametitle{Cadre du Travail}
+    \framesubtitle{Le Bureau Numérique}
+    \begin{itemize}
+    \item
+      Nouvelle vision du document.
+    \item
+      Augmentation de la taille des documents.
+    \item
+      Meilleure accessibilité pour l'utilisateur.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Problématique}
+    \framesubtitle{Le Bureau Numérique}
+    \begin{itemize}
+    \item
+      Problème : traiter des documents de plus en plus importants 
+      \begin{itemize}
+        \item
+          Reponse : traitement incrémental
+      \end{itemize}
+    \item
+      Problème : améliorer l'expérience utilisateur
+      \begin{itemize}
+        \item
+          Réponse : transformation inverse
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+  
+\section{État de l'art}
+  %% Cédric
+  \subsection{Notion de document}
+  %% Mika (XML), Cédric (XPath) puis Mika (XSLT)
+  \subsection{XML et XSL}
+  %% Cédric
+  \subsection{Traitements Incrémentaux}
+  %% Mika
+  \subsection{Transformations Inverses}
+
+\section{Conception}
+  %% Cédric
+  \subsection{Choix de Plate-Forme de Développement}
+  %% Cédric
+  \subsection{4Suite et 4XSLT}
+  %% Mika
+  \subsection{Modélisation}
+  
+%% Cédric  
+\section{Gestion de projet}
+  \begin{frame}
+    \frametitle{Modèle de Développement}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Plannification}
+  \end{frame}
+
+%% Mika
+\section{Conclusion}
+  \begin{frame}
+    \frametitle{Conclusion}
+  \end{frame}
 
 \end{document}
