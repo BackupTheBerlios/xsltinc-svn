@@ -28,6 +28,9 @@ class ObsListItem(QListViewItem,Observer):
   def update(self,obj,arg):
    #here I should update the qlistitem with the obj value
    self.chooseColor(obj)
+   if obj.nodeType == 3: 
+     self.setRenameEnabled(0,True)
+     self.startRename(0)
 
 class QListViewItemUpdater(Observer):
   """ used in order to link the ViewItem with its model without needing subclassing """

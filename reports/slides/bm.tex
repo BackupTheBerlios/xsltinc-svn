@@ -115,6 +115,32 @@
 \section{État de l'art}
   %% Cédric
   \subsection{Notion de document}
+  \begin{frame}
+    \frametitle{Présentation}
+    \begin{itemize}
+    \item<1-> "documentum" : qui sert à instruire
+    \item<1-> définition naïve : "Le document est support physique d'une information."
+    \item<2-> définition insuffisante désormais
+    \begin{itemize}
+    \item<3-> le document comme forme ?
+    \item<3-> le document comme signe ?
+    \item<3-> le document comme médium ?
+    \end{itemize}
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Évolution du document}
+    \begin{itemize}
+    \item<1-> document linéaire
+    \item<2-> document structuré
+    \begin{itemize}
+    \item<3-> structure logique
+    \item<3-> modèle du document
+    \end{itemize}
+    \item<4-> document structuré hypermédia
+    \item<5-> document balisé extensible
+    \end{itemize}
+  \end{frame}
   %% Mika (XML), Cédric (XPath) puis Mika (XSLT)
   \subsection{XML et XSL}
     \begin{frame}
@@ -154,14 +180,139 @@
     \end{frame}
   %% Cédric
   \subsection{Traitements Incrémentaux}
+  \begin{frame}
+    \frametitle{Principes}
+    \begin{itemize}
+    \item « Étant donnés un programme f et une opération OP, un programme g est appelé une ver-
+sion incrémentale de f par rapport à OP si g calcule f (x OP delta(x)) de façon efficace en uti-
+lisant f (x).»
+
+    \end{itemize}
+     \includegraphics[scale=1]{../books/bm-files/images/calculIncr.png}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Méthodes générales}
+    \begin{itemize}
+    \item<1-> Méthode de recalcul sélectif
+    \item<2-> Méthode par différence finie
+    \item<3-> Méthode d'évaluation partielle
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Méthodes spécifiques au génie documentaire}
+    \begin{itemize}
+    \item<1-> Traduction incrémentale
+    \item<2-> Traitement au plus tard
+    \item<3-> Méthode ad-hoc
+    \begin{itemize}
+    \item<3-> pour XSLT: incXslt
+    \end{itemize}
+    \end{itemize}
+  \end{frame}
   %% Mika
   \subsection{Transformations Inverses}
 
 \section{Conception}
   %% Cédric
   \subsection{Choix de Plate-Forme de Développement}
+  \begin{frame}
+    \frametitle{Critères évalués}
+    \begin{itemize}
+    \item<1->Qualité du code
+    \item<1->Extensibilité
+    \item<1->Robustesse
+    \item<1->Licence
+    \end{itemize}
+  \end{frame}
+\frame
+{ \frametitle{XsltProc}
+XsltProc repose sur la bibliothèque \alert{libxslt}.
+\begin{columns}
+	\begin{column}{5cm}
+	\begin{block}{Pour}
+		\begin{itemize}
+		\item largement diffusée et utilisée
+                \item code bien documenté
+		\item référence en terme de conformité
+		\item licence type BSD
+		\end{itemize}
+	\end{block}
+	\end{column}
+	\begin{column}{5cm}
+	\begin{alertblock}{Contre}
+		\begin{itemize}
+		\item langage de bas niveau
+		\item difficilement extensible
+		\end{itemize}
+	\end{alertblock}
+	\end{column}
+\end{columns}
+}
+
+\frame
+{ \frametitle{PyXml}
+\begin{columns}
+	\begin{column}{5cm}
+	\begin{block}{Pour}
+		\begin{itemize}
+		\item langage de haut niveau
+                \item facilement extensible
+		\item licence compatible GPL
+		\item conformité correcte
+		\end{itemize}
+	\end{block}
+	\end{column}
+	\begin{column}{5cm}
+	\begin{alertblock}{Contre}
+		\begin{itemize}
+		\item repose presque entièrement sur une colle logicielle ("binding")
+		\item support XSLT natif expérimental
+		\end{itemize}
+	\end{alertblock}
+	\end{column}
+\end{columns}
+}
+\frame
+{ \frametitle{4XSLT}
+\begin{columns}
+	\begin{column}{5cm}
+	\begin{block}{Pour}
+	\begin{itemize}
+		\item langage de haut niveau
+		\item facilement extensible
+                \item code clair et documenté
+		\item conformité correcte
+		\item licence Apache
+	\end{itemize}
+	\end{block}
+	\end{column}
+	\begin{column}{5cm}
+	\begin{alertblock}{Contre}
+	\begin{itemize}
+		\item surplus de fonctionnalités
+		\item phase "béta"
+                \item en Python
+	\end{itemize}
+	\end{alertblock}
+	\end{column}
+\end{columns}
+}
   %% Cédric
-  \subsection{4Suite et 4XSLT}
+\subsection{4Suite et 4XSLT}
+\frame
+{
+\frametitle{Vue d'ensemble}
+\begin{itemize}
+\item Auteur principal : Uche Ogbuji, rédacteur pour XML.com
+\item Couvre toutes les technologies XML et liées à XML
+\end{itemize}
+
+}
+\frame
+{ \frametitle{Éléments XSLT}
+}
   %% Mika
   \subsection{Modélisation}
   
