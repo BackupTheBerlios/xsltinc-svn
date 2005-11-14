@@ -70,36 +70,88 @@
     \item
       Nouvelle vision du document.
     \item
-      Augmentation de la taille des documents.
+      Traitement principal : la transformation de documents.
     \item
-      Meilleure accessibilité pour l'utilisateur.
+      Meilleure accessibilité pour l'utilisateur
+      \begin{itemize}
+        \item en terme de réactivité,
+        \item en terme de facilité d'utilisation.
+      \end{itemize}
     \end{itemize}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Problématique}
+    \frametitle{Problématiques (1)}
     \framesubtitle{Le Bureau Numérique}
-    \begin{itemize}
-    \item
-      Problème : traiter des documents de plus en plus importants 
-      \begin{itemize}
-        \item
-          Reponse : traitement incrémental
-      \end{itemize}
-    \item
-      Problème : améliorer l'expérience utilisateur
-      \begin{itemize}
-        \item
-          Réponse : transformation inverse
-      \end{itemize}
-    \end{itemize}
+    \begin{block}{Besoin}<1->
+      Traiter des documents de tailles toujours plus importantes.
+    \end{block}
+
+    \begin{alertblock}{Problème}<2->
+      Comment optimiser les performances des traitements ?
+    \end{alertblock}
+
+    \begin{exampleblock}{Solution}<3->
+      Rendre les traitements incrémentaux.
+    \end{exampleblock}
   \end{frame}
+  
+  \begin{frame}
+    \frametitle{Problématiques (2)}
+    \framesubtitle{Le Bureau Numérique}
+    \begin{block}{Besoin}<1->
+      Améliorer l'expérience utilisateur.
+    \end{block}
+
+    \begin{alertblock}{Problème}<2->
+      Comment permettre l'édition des documents résultant d'une transformation ?
+    \end{alertblock}
+
+    \begin{exampleblock}{Solution}<3->
+      Rendre les tranformations inversibles.
+    \end{exampleblock}  
+  \end{frame}  
   
 \section{État de l'art}
   %% Cédric
   \subsection{Notion de document}
   %% Mika (XML), Cédric (XPath) puis Mika (XSLT)
   \subsection{XML et XSL}
+    \begin{frame}
+      \frametitle{XML (1)}
+      \framesubtitle{Historique et Objectifs}
+      \begin{itemize}
+        \item Définie par le W3C (première TR en 1998).
+        \item Né de la fusion du meilleur de SGML et de HTML :
+          \begin{itemize}
+            \item la polyvalence de SGML,
+            \item la simplicité de HTML.
+          \end{itemize}
+        \item Trois principaux objectifs :
+          \begin{itemize}
+            \item l'écriture de programmes de traitements doit-être aisé,
+            \item la définition de XML doit-être formelle et concise,
+            \item La verbosité des document est peu importante.
+          \end{itemize}   
+        \begin{example}
+          Example de doc XML
+        \end{example}
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{XML (2)}
+      \framesubtitle{Structure et Syntaxe}
+      \begin{itemize}
+        \item Langage à balise à inclusion strict.
+        \item Le nombre de concepts est limité :
+          \begin{itemize}
+            \item balises,
+            \item attributs,
+            \item données.
+          \end{itemize}
+      \end{itemize}
+    \end{frame}
   %% Cédric
   \subsection{Traitements Incrémentaux}
   %% Mika
