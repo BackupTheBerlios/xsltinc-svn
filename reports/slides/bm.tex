@@ -1,7 +1,5 @@
 \documentclass{beamer}
 
-
-
 \mode<article> % only for the article version
 {
   \usepackage{fullpage}
@@ -118,7 +116,7 @@
   \begin{frame}
     \frametitle{Présentation}
     \begin{itemize}
-    \item<1-> "documentum" : qui sert à instruire
+    \item<1-> \"documentum\" : qui sert à instruire
     \item<1-> définition naïve : "Le document est support physique d'une information."
     \item<2-> définition insuffisante désormais
     \begin{itemize}
@@ -144,7 +142,7 @@
   %% Mika (XML), Cédric (XPath) puis Mika (XSLT)
   \subsection{XML et XSL}
     \begin{frame}
-      \frametitle{XML (1)}
+      \frametitle{XML}
       \framesubtitle{Historique et Objectifs}
       \begin{itemize}
         \item Définie par le W3C (première TR en 1998).
@@ -159,14 +157,11 @@
             \item la définition de XML doit-être formelle et concise,
             \item La verbosité des document est peu importante.
           \end{itemize}   
-        \begin{example}
-          Example de doc XML
-        \end{example}
       \end{itemize}
     \end{frame}
     
     \begin{frame}
-      \frametitle{XML (2)}
+      \frametitle{XML}
       \framesubtitle{Structure et Syntaxe}
       \begin{itemize}
         \item Langage à balise à inclusion strict.
@@ -178,9 +173,64 @@
           \end{itemize}
       \end{itemize}
     \end{frame}
+    
+    \begin{frame}
+      \frametitle{XML}
+      \framesubtitle{Exemple}
+       \begin{Example}
+       (...) \newline
+       <annuaire> \newline
+        <personne categorie="jedi"> \newline
+          <nom>Luke Skywalker</nom> \newline
+          <email>luke@sw.com</email> \newline
+        </persone> \newline
+        ... \newline
+       </annuaire> \newline     
+       (...)
+       \end{Example}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{XML}
+      \framesubtitle{Modèle de documents}
+      \begin{itemize}
+        \item Définition de modèles de documents :
+          \begin{itemize}
+            \item DTD, Document Type Definition,
+            \item XML Schema...
+          \end{itemize}
+        \item 2 niveaux de validité :
+          \begin{itemize}
+            \item document bien formé,
+            \item document valide.
+          \end{itemize}
+        \item Un modèle définit un dialecte XML.
+        \item Exemple de dialectes : \emph SVG, MathML, SOAP, XHTML...
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{XML}
+      \framesubtitle{Outils de traitements}
+      \begin{itemize}
+        \item DOM, Document Object Model
+          \begin{itemize}
+            \item Définie par le W3C.
+            \item Se base sur la structure arborescente de XML.
+            \item Empreinte mémoire volumineuse.
+          \end{itemize}
+        \item SAX, Simple API for XML
+          \begin{itemize}
+            \item Né d'une discussion entre utilisateur de XML et de Java.
+            \item La lecture d'un noeud génère un évènement à récupérer.
+            \item Empreinte mémoire faible, mais accès en lecture seule.
+          \end{itemize}  
+      \end{itemize}
+    \end{frame}
 
 \frame
-{ \frametitle{XPath}
+{  \frametitle{XSL}
+\framesubtitle{XPath, Introduction}
 \begin{itemize}
 \item Objectifs
   \begin{itemize}
@@ -192,24 +242,42 @@
   \item est un chemin composé d'un axe et d'étapes 
   \item chaque étape peut se voir adjoindre un prédicat
   \end{itemize}
+  \begin{Example}
+    child::chapter/descendant::para[position()=1]
+  \end{Example}
 \end{itemize}
 }
 
 \frame
-{ \frametitle{Axes dans XPath}
+{ \frametitle{XSL}
+\framesubtitle{XPath - Axes}
 \begin{center}
  \includegraphics[scale=0.25]{../books/bm-files/images/AxesXpath.png}
 \end{center}
 }
 
+\begin{frame}
+  \frametitle{XSL}
+  \framesubtitle{XSLT, Introduction}
+\end{frame}
+
+\begin{frame}
+  \frametitle{XSL}
+  \framesubtitle{XSLT, Fonctionnement Interne}
+\end{frame}
+
+\begin{frame}
+  \frametitle{XSL}
+  \framesubtitle{XSLT, Arbre d'exécution}
+\end{frame}
+
   %% Cédric
   \subsection{Traitements Incrémentaux}
   \begin{frame}
-    \frametitle{Principes}
+    \frametitle{Traitements Incrémentaux}
+    \framesubtitle{Principes}
     \begin{itemize}
-    \item « Étant donnés un programme f et une opération OP, un programme g est appelé une ver-
-sion incrémentale de f par rapport à OP si g calcule f (x OP delta(x)) de façon efficace en uti-
-lisant f (x).»
+    \item « Étant donnés un programme f et une opération OP, un programme g est appelé une version incrémentale de f par rapport à OP si g calcule f (x OP delta(x)) de façon efficace en utilisant f (x).»
     \end{itemize}
 \begin{center}
      \includegraphics[scale=0.07]{../books/bm-files/images/calculIncr2.png}
@@ -217,33 +285,81 @@ lisant f (x).»
   \end{frame}
 
   \begin{frame}
-    \frametitle{Méthodes générales}
+    \frametitle{Traitements Incrémentaux}
+    \framesubtitle{Méthodes générales}
     \begin{itemize}
     \item<1-> Méthode de recalcul sélectif
+      \begin{itemize}
+        \item Technique de memoizing
+        \item Problème : stockage des résultats intermédiaires dans le cas d'un langage avec effet de bords.
+      \end{itemize}
     \item<2-> Méthode par différence finie
+      \begin{itemize}
+        \item Hypothèse d'une fonction de différence.
+      \end{itemize}
     \item<3-> Méthode d'évaluation partielle
+      \begin{itemize}
+        \item Partitionnement du domaine \"d'entrée\".
+        \item Difficulté : trouver un bon partionnement.
+      \end{itemize}      
     \end{itemize}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Méthodes spécifiques au génie documentaire}
+    \frametitle{Traitements Incrémentaux}
+    \framesubtitle{Méthodes spécifiques au génie documentaire}
     \begin{itemize}
     \item<1-> Traduction incrémentale
+      \begin{itemize}
+        \item Traduction d'arbre.
+        \item Repose sur les grammaire d'entrée et de sortie.
+      \end{itemize}
     \item<2-> Traitement au plus tard
+      \begin{itemize}
+        \item retarde au maximum le traitement car :
+        \begin{itemize}
+        \item certains sous-calculs peuvent ne pas être pertinents,
+        \item non nécessaires immédiatement, 
+        \item ou bien les résultats redondants.
+        \end{itemize}
+      \end{itemize}    
     \item<3-> Méthode ad-hoc
     \begin{itemize}
-    \item<3-> pour XSLT: incXslt
+    \item<3-> pour XSLT: incXslt \newline Détaillé ci-après.
     \end{itemize}
     \end{itemize}
   \end{frame}
+  
+  \begin{frame}
+    \frametitle{Traitements Incrémentaux}
+    \framesubtitle{incXSLT, Principes}
+    \begin{itemize}
+      \item Création d'un graphe de dépendances entre les templates,
+      \item Construction de règles de ré-évalution construites à partir des expressions XPath,
+      \item Analyse de l'arbre d'exécution afin de restaurer les contextes.
+    \end{itemize}
+  \end{frame}
+  
   %% Mika
   \subsection{Transformations Inverses}
+  \begin{frame}
+    \frametitle{Transformations Inverses}
+    \framesubtitle{Principes}
+  \end{frame}
+
+  \subsection{Transformations Inverses}
+  \begin{frame}
+    \frametitle{Transformations Inverses}
+    \framesubtitle{Solutions possibles}
+  \end{frame}
+  
 
 \section{Conception}
   %% Cédric
   \subsection{Choix de Plate-Forme de Développement}
   \begin{frame}
-    \frametitle{Critères évalués}
+    \frametitle{Choix de Plate-Forme de Développement} 
+    \framesubtitle{Critères évalués}
     \begin{itemize}
     \item<1->Qualité du code
     \item<1->Extensibilité
@@ -252,7 +368,9 @@ lisant f (x).»
     \end{itemize}
   \end{frame}
 \frame
-{ \frametitle{XsltProc}
+{ 
+    \frametitle{Choix de Plate-Forme de Développement} 
+\framesubtitle{XsltProc}
 XsltProc repose sur la bibliothèque \alert{libxslt}.
 \begin{columns}
 	\begin{column}{5cm}
@@ -277,7 +395,9 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
 }
 
 \frame
-{ \frametitle{PyXml}
+{ 
+    \frametitle{Choix de Plate-Forme de Développement} 
+\framesubtitle{PyXml}
 \begin{columns}
 	\begin{column}{5cm}
 	\begin{block}{Pour}
@@ -300,7 +420,9 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
 \end{columns}
 }
 \frame
-{ \frametitle{4XSLT}
+{ 
+    \frametitle{Choix de Plate-Forme de Développement} 
+\framesubtitle{4XSLT}
 \begin{columns}
 	\begin{column}{5cm}
 	\begin{block}{Pour}
@@ -328,7 +450,8 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
 \subsection{4Suite et 4XSLT}
 \frame
 {
-\frametitle{Vue d'ensemble}
+    \frametitle{4Suite et 4XSLT} 
+\framesubtitle{Vue d'ensemble}
 \begin{itemize}
 \item Auteur principal : Uche Ogbuji, rédacteur pour XML.com
 \item Couvre toutes les technologies XML et liées à XML
@@ -340,20 +463,26 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
 
 }
 \frame
-{ \frametitle{Éléments XSLT}
+{
+\frametitle{4Suite et 4XSLT} 
+\framesubtitle{Éléments XSLT}
 \begin{center}
  \includegraphics[scale=0.45]{../books/bm-files/images/classDiagramElements.png}
 \end{center}
 }
 
 \frame
-{ \frametitle{Exemple d'instanciation}
+{ 
+\frametitle{4Suite et 4XSLT} 
+\framesubtitle{Exemple d'instanciation}
 \begin{center}
  \includegraphics[scale=0.30]{../books/bm-files/images/seqDiagramInstantiate.png}
 \end{center}
 }
 \frame
-{ \frametitle{Modélisation du contexte}
+{ 
+\frametitle{4Suite et 4XSLT} 
+\framesubtitle{Modélisation du contexte}
 \begin{center}
  \includegraphics[scale=0.35]{../books/bm-files/images/ContextAndProcessor.png}
 \end{center}
@@ -361,24 +490,51 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
   %% Mika
   \subsection{Modélisation}
   
+  \begin{frame}
+    \frametitle{Modélisation}
+    \framesubtitle{Introduction}
+    \begin{itemize}
+      \item 4 classes d'instructions XSLT
+      \item 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Modélisation}
+    \framesubtitle{Ré-évaluation}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Modélisation}
+    \framesubtitle{Instanciation incrémentale}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Modélisation}
+    \framesubtitle{Intégration dans 4XSLT}
+  \end{frame}
+  
 %% Cédric  
 \section{Gestion de projet}
   \begin{frame}
-    \frametitle{Modèle de Développement}
+    \frametitle{Gestion de projet} 
+    \framesubtitle{Modèle de Développement}
 \begin{center}
  \includegraphics[scale=0.20]{../books/bm-files/images/CycleDev.png}
 \end{center}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Plannification - liste des tâches}
+    \frametitle{Gestion de projet}
+    \framesubtitle{Plannification - liste des tâches}
 \begin{center}
  \includegraphics[scale=0.50]{../books/bm-files/images/GanttTasks2.png}
 \end{center}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Plannification - diagramme de Gantt}
+    \frametitle{Gestion de projet}
+    \framesubtitle{Plannification - diagramme de Gantt}
 \begin{center}
  \includegraphics[scale=0.40]{../books/bm-files/images/GanttDiag.png}
 \end{center}
