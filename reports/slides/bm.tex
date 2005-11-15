@@ -306,14 +306,26 @@
   \begin{itemize}
     \item Lecture de la feuille XSLT et du document source.
     \item Création d'un arbre de transformation, un arbre source et un arbre résultat (vide).
-    \item Traitement du noeud racine puis par propagation, des autres noeuds.
+    \item Traitement du noeud racine puis par propagation, des autres noeuds (processus d'instanciation).
     \item Linéarisation de l'arbre résultat.
   \end{itemize}  
 \end{frame}
 
 \begin{frame}
   \frametitle{XSL}
+  \framesubtitle{XSLT, Processus d'instanciation}
+   \includegraphics[scale=0.20]{../books/bm-files/images/instanciation.png}
+   \begin{itemize}
+    \item Sélection de la règle la plus spécifique au noeud courant.
+    \item Éxecution de la règle.
+    \item Un apply-template change la liste des noeuds courants.
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{XSL}
   \framesubtitle{XSLT, Arbre d'exécution}
+     \includegraphics[scale=0.20]{../books/bm-files/images/ExecFlowTree.png}
 \end{frame}
 
   %% Cédric
@@ -390,11 +402,23 @@
   \begin{frame}
     \frametitle{Transformations Inverses}
     \framesubtitle{Principes}
+    \begin{itemize}
+      \item Répercuter les modification de l'arbre cible dans l'arbre source.
+      \item Soit f et f' resp. les transformation inverse et S et T resp. les arbres source et cible tel que f(S) = T et f'(T)=S.
+      \item On souhaite que f(f'(T)) = T et f'(f(S)) = S
+      \item Reviens à une détection d'isomorphisme.
+    \end{itemize}
   \end{frame}
 
   \begin{frame}
     \frametitle{Transformations Inverses}
-    \framesubtitle{Solutions possibles}
+    \framesubtitle{Solutions possibles via XSLT}
+    \begin{itemize}
+      \item Détecter les sous arbres de la transformations qui sont des isomorphismes.
+      \item Classifier les éléments XSLT de production.
+      \item Garder les liens entre les noeuds générés, les noeuds source et les noeuds de production.
+      \item Classifier les types de modifications possibles dans l'arbre résultats.
+    \end{itemize}
   \end{frame}
   
 
@@ -538,24 +562,35 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
     \frametitle{Modélisation}
     \framesubtitle{Introduction}
     \begin{itemize}
-      \item 4 classes d'instructions XSLT
-      \item 
+      \item 4 classes d'instructions XSLT à greffer sur 4XSLT.
+      \item Ajout de la capacité de renvoyer les règles de ré-évaluation le concernant.
+      \item Conservation de l'abre d'exécution
+      \item Mettre en place un processus d'instanciation incrémental.
     \end{itemize}
   \end{frame}
 
   \begin{frame}
     \frametitle{Modélisation}
     \framesubtitle{Ré-évaluation}
+    \includegraphics[scale=0.30]{../books/bm-files/images/xsltIncDiagClassBasic.png}
   \end{frame}
 
   \begin{frame}
     \frametitle{Modélisation}
     \framesubtitle{Instanciation incrémentale}
+    \includegraphics[scale=0.30]{../books/bm-files/images/xsltIncDiagSeqBasic.png}
   \end{frame}
 
   \begin{frame}
     \frametitle{Modélisation}
+    \framesubtitle{Instanciation incrémentale}
+    \includegraphics[scale=0.30]{../books/bm-files/images/ContextAndProcessor.png}
+  \end{frame}  
+
+  \begin{frame}
+    \frametitle{Modélisation}
     \framesubtitle{Intégration dans 4XSLT}
+    \includegraphics[scale=0.20]{../books/bm-files/images/xsltIncClassDiagElements.png}
   \end{frame}
   
 %% Cédric  
@@ -588,6 +623,24 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
 \section{Conclusion}
   \begin{frame}
     \frametitle{Conclusion}
+    \framesubtitle{Travail réalisé}
+    \begin{itemize}
+      \item Étude des concepts fondamentaux du génie documentaire.
+      \item Analyse des solutions de traitements incrémentaux.
+      \item Recherche de la possibilité de rendre inversible des transformations.
+      \item Étude approfondie de XSLT et XPath.
+      \item Proposition d'une solution répondant à nos problématique.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Conclusion}
+    \framesubtitle{Perspectives}
+    \begin{itemize}
+      \item Validation du prototype.
+      \item Augmentation du prototype mise en conformité avec les objectifs.
+      \item Synthétiser choix et erreurs.
+    \end{itemize}
   \end{frame}
 
 \end{document}
