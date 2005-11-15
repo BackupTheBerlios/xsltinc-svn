@@ -82,7 +82,7 @@
     \frametitle{Problématiques (1)}
     \framesubtitle{Le Bureau Numérique}
     \begin{block}{Besoin}<1->
-      Traiter des documents de tailles toujours plus importantes.
+      Traiter des documents de taille toujours plus importante.
     \end{block}
 
     \begin{alertblock}{Problème}<2->
@@ -114,9 +114,10 @@
   %% Cédric
   \subsection{Notion de document}
   \begin{frame}
-    \frametitle{Présentation}
+  \frametitle{Notion de document}
+    \framesubtitle{Présentation}
     \begin{itemize}
-    \item<1-> \"documentum\" : qui sert à instruire
+    \item<1-> "documentum" : qui sert à instruire
     \item<1-> définition naïve : "Le document est support physique d'une information."
     \item<2-> définition insuffisante désormais
     \begin{itemize}
@@ -127,7 +128,8 @@
     \end{itemize}
   \end{frame}
   \begin{frame}
-    \frametitle{Évolution du document}
+    \frametitle{Notion de document}
+    \framesubtitle{Évolution du document}
     \begin{itemize}
     \item<1-> document linéaire
     \item<2-> document structuré
@@ -151,11 +153,12 @@
             \item la polyvalence de SGML,
             \item la simplicité de HTML.
           \end{itemize}
-        \item Trois principaux objectifs :
+        \item 4 principaux objectifs :
           \begin{itemize}
+            \item L'interopérabilité doit-être assurée,
             \item l'écriture de programmes de traitements doit-être aisé,
             \item la définition de XML doit-être formelle et concise,
-            \item La verbosité des document est peu importante.
+            \item La verbosité des document n'est pas un problème.
           \end{itemize}   
       \end{itemize}
     \end{frame}
@@ -164,7 +167,7 @@
       \frametitle{XML}
       \framesubtitle{Structure et Syntaxe}
       \begin{itemize}
-        \item Langage à balise à inclusion strict.
+        \item Langage à balises à inclusion stricte structurant de manière arborescente les documents.
         \item Le nombre de concepts est limité :
           \begin{itemize}
             \item balises,
@@ -180,7 +183,7 @@
        \begin{Example}
        (...) \newline
        <annuaire> \newline
-        <personne categorie="jedi"> \newline
+        <personne catégorie="jedi"> \newline
           <nom>Luke Skywalker</nom> \newline
           <email>luke@sw.com</email> \newline
         </persone> \newline
@@ -215,18 +218,48 @@
       \begin{itemize}
         \item DOM, Document Object Model
           \begin{itemize}
-            \item Définie par le W3C.
+            \item Défini par le W3C.
             \item Se base sur la structure arborescente de XML.
             \item Empreinte mémoire volumineuse.
           \end{itemize}
         \item SAX, Simple API for XML
           \begin{itemize}
-            \item Né d'une discussion entre utilisateur de XML et de Java.
+            \item Né d'une discussion entre utilisateurs de XML et de Java.
             \item La lecture d'un noeud génère un évènement à récupérer.
             \item Empreinte mémoire faible, mais accès en lecture seule.
           \end{itemize}  
       \end{itemize}
     \end{frame}
+    
+    \begin{frame}
+      \frametitle{XML}
+      \framesubtitle{Transformation de documents XML}
+      
+       \includegraphics[scale=0.10]{../books/bm-files/images/TransformationXML.png}
+      
+      \begin{itemize}
+        \item 4 classes de transformations XML
+        \begin{itemize}
+          \item En bloc, comme XSLT,
+          \item En "streaming", 
+          \item Incrémentales,
+          \item inversibles.
+        \end{itemize}
+      \end{itemize}
+    \end{frame}
+
+\begin{frame}
+  \frametitle{XSL}
+  \framesubtitle{Introduction}
+  \begin{itemize}
+    \item XSL est un groupe de 3 standards :
+    \begin{itemize}
+      \item XPath, langage de navigation dans un document XML,
+      \item XSLT, langage de transformation,
+      \item XSL-FO, dialecte XML de mise en forme (non détaillé ici).
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
 \frame
 {  \frametitle{XSL}
@@ -259,11 +292,23 @@
 \begin{frame}
   \frametitle{XSL}
   \framesubtitle{XSLT, Introduction}
-\end{frame}
+  \begin{itemize}
+    \item Langage déclaratif sans effet de bords.
+    \item Notion d'arbre source et résultat.
+    \item Une règle de transformation est nommé "template".
+    \item Se base sur XPath pour identifier les sous-ensembles de l'arbre source.
+  \end{itemize}
+\end{frame} 
 
 \begin{frame}
   \frametitle{XSL}
-  \framesubtitle{XSLT, Fonctionnement Interne}
+  \framesubtitle{XSLT, Algorithme général}
+  \begin{itemize}
+    \item Lecture de la feuille XSLT et du document source.
+    \item Création d'un arbre de transformation, un arbre source et un arbre résultat (vide).
+    \item Traitement du noeud racine puis par propagation, des autres noeuds.
+    \item Linéarisation de l'arbre résultat.
+  \end{itemize}  
 \end{frame}
 
 \begin{frame}
@@ -277,7 +322,7 @@
     \frametitle{Traitements Incrémentaux}
     \framesubtitle{Principes}
     \begin{itemize}
-    \item « Étant donnés un programme f et une opération OP, un programme g est appelé une version incrémentale de f par rapport à OP si g calcule f (x OP delta(x)) de façon efficace en utilisant f (x).»
+    \item « Étant donnés un programme f et une opération OP, un programme f' est appelé une version incrémentale de f par rapport à OP si f' calcule f (x OP delta(x)) de façon efficace en utilisant f (x).»
     \end{itemize}
 \begin{center}
      \includegraphics[scale=0.07]{../books/bm-files/images/calculIncr2.png}
@@ -299,7 +344,7 @@
       \end{itemize}
     \item<3-> Méthode d'évaluation partielle
       \begin{itemize}
-        \item Partitionnement du domaine \"d'entrée\".
+        \item Partitionnement du domaine "d'entrée".
         \item Difficulté : trouver un bon partionnement.
       \end{itemize}      
     \end{itemize}
@@ -311,7 +356,7 @@
     \begin{itemize}
     \item<1-> Traduction incrémentale
       \begin{itemize}
-        \item Traduction d'arbre.
+        \item Traduction d'arbre (algorithme de Lindén). 
         \item Repose sur les grammaire d'entrée et de sortie.
       \end{itemize}
     \item<2-> Traitement au plus tard
@@ -335,7 +380,7 @@
     \framesubtitle{incXSLT, Principes}
     \begin{itemize}
       \item Création d'un graphe de dépendances entre les templates,
-      \item Construction de règles de ré-évalution construites à partir des expressions XPath,
+      \item Construction de règles de ré-évaluation construites à partir des expressions XPath,
       \item Analyse de l'arbre d'exécution afin de restaurer les contextes.
     \end{itemize}
   \end{frame}
@@ -347,7 +392,6 @@
     \framesubtitle{Principes}
   \end{frame}
 
-  \subsection{Transformations Inverses}
   \begin{frame}
     \frametitle{Transformations Inverses}
     \framesubtitle{Solutions possibles}
