@@ -8,114 +8,240 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>697</width>
-            <height>455</height>
+            <width>800</width>
+            <height>535</height>
         </rect>
     </property>
     <property name="caption">
         <string>XsltInc demonstration</string>
     </property>
-    <hbox>
+    <widget class="QGroupBox">
         <property name="name">
-            <cstring>unnamed</cstring>
+            <cstring>groupBox1</cstring>
         </property>
-        <widget class="QGroupBox">
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>11</y>
+                <width>225</width>
+                <height>402</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Source tree</string>
+        </property>
+        <hbox>
             <property name="name">
-                <cstring>groupBox1</cstring>
+                <cstring>unnamed</cstring>
             </property>
-            <property name="title">
-                <string>Source tree</string>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QListView">
-                    <column>
-                        <property name="text">
-                            <string>Node</string>
-                        </property>
-                        <property name="clickable">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizable">
-                            <bool>true</bool>
-                        </property>
-                    </column>
-                    <property name="name">
-                        <cstring>SourceListView</cstring>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
                     </property>
-                    <property name="acceptDrops">
+                    <property name="clickable">
                         <bool>true</bool>
                     </property>
-                </widget>
-            </hbox>
-        </widget>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox1_2_2</cstring>
-            </property>
-            <property name="title">
-                <string>Transformation tree</string>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QListView">
-                    <column>
-                        <property name="text">
-                            <string>Node</string>
-                        </property>
-                        <property name="clickable">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizable">
-                            <bool>true</bool>
-                        </property>
-                    </column>
-                    <property name="name">
-                        <cstring>TransfoListView</cstring>
-                    </property>
-                    <property name="acceptDrops">
+                    <property name="resizable">
                         <bool>true</bool>
                     </property>
-                </widget>
-            </hbox>
-        </widget>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox1_2</cstring>
-            </property>
-            <property name="title">
-                <string>Target tree</string>
-            </property>
-            <hbox>
+                </column>
                 <property name="name">
-                    <cstring>unnamed</cstring>
+                    <cstring>SourceListView</cstring>
                 </property>
-                <widget class="QListView">
-                    <column>
-                        <property name="text">
-                            <string>Node</string>
-                        </property>
-                        <property name="clickable">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizable">
-                            <bool>true</bool>
-                        </property>
-                    </column>
-                    <property name="name">
-                        <cstring>TargetListView</cstring>
+                <property name="acceptDrops">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>490</y>
+                <width>40</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Time :</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtTransform2</cstring>
+        </property>
+        <property name="enabled">
+            <bool>false</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>459</y>
+                <width>161</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Incremental transform</string>
+        </property>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>560</x>
+                <y>10</y>
+                <width>225</width>
+                <height>402</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Target tree</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
                     </property>
-                    <property name="acceptDrops">
+                    <property name="clickable">
                         <bool>true</bool>
                     </property>
-                </widget>
-            </hbox>
-        </widget>
-    </hbox>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>TargetListView</cstring>
+                </property>
+                <property name="acceptDrops">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>240</x>
+                <y>10</y>
+                <width>320</width>
+                <height>190</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Transformation tree</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Node</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>TransfoListView</cstring>
+                </property>
+                <property name="acceptDrops">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1_2_2_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>240</x>
+                <y>200</y>
+                <width>320</width>
+                <height>210</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Dependancies tree</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Rule</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>DepsListView</cstring>
+                </property>
+                <property name="acceptDrops">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QProgressBar">
+        <property name="name">
+            <cstring>TimeBar</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>70</x>
+                <y>490</y>
+                <width>710</width>
+                <height>22</height>
+            </rect>
+        </property>
+        <property name="progress">
+            <number>50</number>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>ButtTransform1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>430</y>
+                <width>161</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Initial transform</string>
+        </property>
+    </widget>
 </widget>
 <toolbars>
 </toolbars>

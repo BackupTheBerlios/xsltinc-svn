@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys
+import sys,time
 
 from qt import *
 from demo import * 
@@ -53,29 +53,67 @@ def QlistItemTreeFactory(qlistParent,domNode):
    for node in domNode.childNodes:
         QlistItemTreeFactory(newItem,node)
 
-class DemoTransformer:
+
+class WindowUpdater(Observer):
+  def __init__(self,model,window): 
+    Observer.__init__(self)
+    self.model = model
+    self.window = window
+    #self.window.ButtTransform1.connect(
+
+  def update(self,obj,args=None):
+    print "model changed %s -> %s" % (self.model.oldtime,self.model.inctime)
+    self.window.TimeBar.setTotalSteps(self.model.oldtime)
+    self.window.TimeBar.setProgress(self.model.inctime)
+     
+
+class DemoTransformer(Observable):
   def __init__(self):
+   Observable.__init__(self)
    self.source = xsltinc.NonvalidatingReader.parseStream(open("persons.xml"))
    self.transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
-   writer = xsltinc.Dom.CustomDomWriter()
    self.xsltproc = xsltinc.LinearProcessor()
    self.xsltproc.appendStylesheetNode(self.transfo)
-   self.xsltproc.runNode(self.source,writer=writer)
-   self.target = writer.getResult() 
+   self.inctime = 0
+   self.runFirst()
 
   def changeSource(self,file):
-   pass
+   self.notify_observers(self)
 
   def changeTarget(self,file):
-   pass
+   self.notify_observers(self)
 
   def changeTransfo(self,file):
-   pass
+   self.notify_observers(self)
+
+  def runFirst(self):
+   writer = xsltinc.Dom.CustomDomWriter()
+   start = time.time()
+   self.xsltproc.runNode(self.source,writer=writer)
+   end = time.time()
+   self.target = writer.getResult() 
+   self.can_run_inc = True
+   self.oldtime = (end-start)* 10000
+   self.notify_observers(self)
+
+  def runInc(self):
+   writer = xsltinc.Dom.CustomDomWriter()
+   start = time.time()
+   self.xsltproc.runNode(self.source,writer=writer)
+   end = time.time()
+   self.target = writer.getResult() 
+   self.can_run_inc = True
+   self.inctime = (end-start)* 10000
+   self.notify_observers(self)
+
 
 def main(args):
  app=QApplication(args)
  mainWin = DemoView()
  demo = DemoTransformer()
+ updater = WindowUpdater(demo,mainWin)
+ demo.add_observer(updater)
+ demo.runInc()
  QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
  QlistItemTreeFactory(mainWin.SourceListView,demo.source)
  QlistItemTreeFactory(mainWin.TargetListView,demo.target)

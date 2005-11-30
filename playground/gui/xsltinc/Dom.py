@@ -17,6 +17,14 @@ class CustomDomElement(Observer,Observable):
     self.baseURI = self.cdomlette.baseURI
     self.childNodes = Olist(self.cdomlette.childNodes)
     self.childNodes.add_observer(self)
+    self.memoizing=  dict() #this object is used to keep objects I send back
+
+  def __memoized__(self,name,value):
+    if name in self.memoizing.keys():
+      if id(self.memoizing[name][0]) == id(value):
+         return self.memoizing[name][1]
+    self.memoizing[name] = (value,CustomDomElement(value))
+    return self.memoizing[name][1]
 
   def update(self,obj,arg=None):
     #update from a child
@@ -30,6 +38,91 @@ class CustomDomElement(Observer,Observable):
        self.cdomlette.appendChild(child)
     self.notify_observers(self)
 
+  def cloneNode(self):
+     return CustomDomElement(self.cdomlette.cloneNode())
+
+  def firstChild(self):
+    return self.__memoized__("firstChild",self.cdomlette.firstChild())
+
+  def getAttributeNS(self):
+    return self.cdomlette.getAttributeNS()
+
+  def getAttributeNodeNS(self):
+    return self.cdomlette.getAttributeNodeNS()
+
+  def hasAttributeNS(self):
+    return self.cdomlette.hasAttributeNS()
+
+  def hasChildNodes(self):
+    return self.cdomlette.hasChildNodes()
+
+  def insertBefore(self,node):
+    self.cdomlette.insertBefore(node)
+
+  def isSameNode(self,node):
+    return id(self) == id(node) or id(self.cdomlette) == id(node)
+
+ 
+  def lastChild(self):
+    return self.__memoized__("lastChild",self.cdomlette.lastChild())
+
+  def localName(self):
+    return self.cdomlette.localName()
+
+  def namespaceURI(self):
+    return self.cdomlette.namespaceURI()
+
+  def nextSibling(self):
+    return self.__memoized__("nextSibling",self.cdomlette.nextSibling())
+
+  def nodeName(self):
+    return self.cdomlette.nodeName()
+
+  def nodeType(self):
+    return self.cdomlette.nodeType()
+
+  def nodeValue(self):
+    return self.cdomlette.nodeValue()
+
+  def normalize(self):
+    self.cdomlette.normalize()
+
+  def ownerDocument(self):
+    return self.cdomlette.ownerDocument()
+
+  def parentNode(self):
+    return CustomDomElement(self.cdomlette.nextSibling())
+
+  def removeAttributeNS(self):
+    self.cdomlette.removeAttributeNS()
+
+  def removeAttributeNode(self,node):
+    self.cdomlette.removeAttributeNode(self,node)
+
+  def removeChild(self,child):
+    self.cdomlette.removeChild(child.cdomlette)
+
+  def replaceChild(self,child):
+    self.cdomlette.replaceChild(child.cdomlette)
+
+  def rootNode(self):
+    return self.__memoized__("rootNode",self.cdomlette.rootNode())
+
+
+  def setAttributeNS(self,attr,namespace):
+    pass
+
+  def setAttributeNodeNS(self,attr,namespace):
+    pass
+
+  def tagName(self):
+    return self.cdomlette.tagName()
+
+  def xmlBase(self):
+    return self.cdomlette.xmlBase()
+
+  def xpath(self,path):
+    return self.cdomlette.path(path)
 
 
 # FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'
