@@ -1,0 +1,29 @@
+I - Mettre en place l'extension
+	- wrapping DOM avec observable
+	- wrapping noeuds XSLT avec "hook" des méthodes
+	- mise en place du moteur incrémental et de son interface (encapsulation du moteur classique)
+ 	- faire en sorte que instantiate(contexte) modifie les noeuds déjà existants dans le cible (et n'en génère pas de nouveaux)
+
+II - Mise en place du contexte de démonstration
+	- GUI édition d'un noeud source
+	-GUI transfo XSLT et comparaison des temps
+
+I+II => prototype non fonctionnel.
+
+
+III - Construction d'un moteur incrémental basique:
+	- création des regles de dépendance lors de la première transformation
+	- mise en place de l'évaluation des regles de dépendances
+	- GUI maj pour les regles de dépendances
+
+III => prototype fonctionnel
+
+
+IV - Amélioration
+	- reconstruire le contexte au lieu de le stocker
+	- dependances entre "apply-templates" pour désactiver certaines regles
+	- GUI : maj
+
+IV => prototype fonctionnel optimisé
+
+
