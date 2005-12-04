@@ -1,3 +1,5 @@
+from Ft.Xml.Xslt.StylesheetTree import XsltElement
+
 # Template's instruction
 from Ft.Xml.Xslt.TemplateElement import TemplateElement
 
@@ -33,6 +35,7 @@ def weaveContextSaving():
   # Weaving Memoizing Aspect with XSLTElement
    
   xsltElements = [
+    XsltElement,
     TemplateElement,  
     ApplyImportsElement,
     ApplyTemplatesElement,

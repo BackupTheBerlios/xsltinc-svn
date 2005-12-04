@@ -11,8 +11,9 @@ import weaving
 class DemoTransformer:
   def __init__(self):
    self.source = xsltinc.NonvalidatingReader.parseStream(open("persons.xml"))
-   self.transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
-   self.xsltproc = xsltinc.LinearProcessor()
+   self.transfo = xsltinc.NonvalidatingReader.parseStream(open("p2l.xsl"))
+   #self.xsltproc = xsltinc.LinearProcessor()
+   self.xsltproc = xsltinc.IncrementalProcessor()
    self.xsltproc.appendStylesheetNode(self.transfo)
    
    weaving.weaveContextSaving()
@@ -30,6 +31,7 @@ class DemoTransformer:
    writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
    self.xsltproc.runNode(self.source,writer=writer)
+   print '='*75
    end = time.time()
    self.target = writer.getResult() 
 
