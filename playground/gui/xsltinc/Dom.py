@@ -7,24 +7,39 @@ class CustomDomElement(Observer,Observable):
      It is an Observer because it keep an eye on it's childs
   """
   def __init__(self,cDomElement):
+    self.__wrapped_attributes = ["nodeType","tagName","localName"]
     Observable.__init__(self)
     Observer.__init__(self)
-    self.cdomlette = cDomElement
-    self.nodeType = self.cdomlette.nodeType
-    self.localName = self.cdomlette.localName
-    self.nodeValue = self.cdomlette.nodeValue
-    self.attributes = self.cdomlette.attributes
-    self.baseURI = self.cdomlette.baseURI
-    self.childNodes = Olist(self.cdomlette.childNodes)
-    self.childNodes.add_observer(self)
-    self.memoizing=  dict() #this object is used to keep objects I send back
+    self.pv_cdomlette= cDomElement
+    self.pv_memoizing=  dict() #t
+    #self.sync_with_wrapped
+
+  def __getattr__(self,attr):
+    if attr.startswith('pv_') : 
+      return getattr(self,attr)
+    else:
+      retour= getattr(self.pv_cdomlette,attr)
+      #here we should check in memoized tab
+      return retour
+
+  def sync_with_wrapped(self):
+    return
+    self.nodeType = self.__cdomlette.nodeType
+    self.tagName = self.__cdomlette.tagName
+    self.localName = self.__cdomlette.localName
+    self.firstChild = self.__cdomlette.firstChild
+    self.lastChild = self.__cdomlette.lastChild
+    self.xmlBase = self.__cdomlette.xmlBase
+    self.nodeValue = self.__cdomlette.nodeValue
+    self.attributes = self.__cdomlette.attributes
+    self.baseURI = self.__cdomlette.baseURI
 
   def __memoized__(self,name,value):
-    if name in self.memoizing.keys():
-      if id(self.memoizing[name][0]) == id(value):
-         return self.memoizing[name][1]
-    self.memoizing[name] = (value,CustomDomElement(value))
-    return self.memoizing[name][1]
+    if name in self.pv_memoizing.keys():
+      if id(self.pv_memoizing[name][0]) == id(value):
+         return self.pv_memoizing[name][1]
+    self.pv_memoizing[name] = (value,CustomDomElement(value))
+    return self.pv_memoizing[name][1]
 
   def update(self,obj,arg=None):
     #update from a child
@@ -32,81 +47,70 @@ class CustomDomElement(Observer,Observable):
 
   def appendChild(self,child):
     self.childNodes.append(child)
-    if 'cdomlette' in child.__dict__.keys():
-       self.cdomlette.appendChild(child.cdomlette)
+    if 'pv_cdomlette' in dir(child):
+       self.pv_cdomlette.appendChild(child.pv_cdomlette)
     else:
-       self.cdomlette.appendChild(child)
+       self.pv_cdomlette.appendChild(child)
     self.notify_observers(self)
 
   def cloneNode(self):
-     return CustomDomElement(self.cdomlette.cloneNode())
-
-  def firstChild(self):
-    return self.__memoized__("firstChild",self.cdomlette.firstChild())
+     return CustomDomElement(self.pv_cdomlette.cloneNode())
 
   def getAttributeNS(self):
-    return self.cdomlette.getAttributeNS()
+    return self.pv_cdomlette.getAttributeNS()
 
   def getAttributeNodeNS(self):
-    return self.cdomlette.getAttributeNodeNS()
+    return self.pv_cdomlette.getAttributeNodeNS()
 
   def hasAttributeNS(self):
-    return self.cdomlette.hasAttributeNS()
+    return self.pv_cdomlette.hasAttributeNS()
 
   def hasChildNodes(self):
-    return self.cdomlette.hasChildNodes()
+    return self.pv_cdomlette.hasChildNodes()
 
   def insertBefore(self,node):
-    self.cdomlette.insertBefore(node)
+    self.pv_cdomlette.insertBefore(node)
+    self.sync_with_wrapped
 
   def isSameNode(self,node):
-    return id(self) == id(node) or id(self.cdomlette) == id(node)
+    return id(self) == id(node) or id(self.pv_cdomlette) == id(node)
 
- 
-  def lastChild(self):
-    return self.__memoized__("lastChild",self.cdomlette.lastChild())
-
-  def localName(self):
-    return self.cdomlette.localName()
 
   def namespaceURI(self):
-    return self.cdomlette.namespaceURI()
+    return self.pv_cdomlette.namespaceURI()
 
   def nextSibling(self):
-    return self.__memoized__("nextSibling",self.cdomlette.nextSibling())
+    return self.__memoized__("nextSibling",self.pv_cdomlette.nextSibling())
 
   def nodeName(self):
-    return self.cdomlette.nodeName()
-
-  def nodeType(self):
-    return self.cdomlette.nodeType()
-
-  def nodeValue(self):
-    return self.cdomlette.nodeValue()
+    return self.pv_cdomlette.nodeName()
 
   def normalize(self):
-    self.cdomlette.normalize()
+    self.pv_cdomlette.normalize()
 
   def ownerDocument(self):
-    return self.cdomlette.ownerDocument()
+    return self.pv_cdomlette.ownerDocument()
 
   def parentNode(self):
-    return CustomDomElement(self.cdomlette.nextSibling())
+    return CustomDomElement(self.pv_cdomlette.parentNode())
 
   def removeAttributeNS(self):
-    self.cdomlette.removeAttributeNS()
+    self.pv_cdomlette.removeAttributeNS()
+    self.sync_with_wrapped
 
   def removeAttributeNode(self,node):
-    self.cdomlette.removeAttributeNode(self,node)
+    self.pv_cdomlette.removeAttributeNode(self,node)
 
   def removeChild(self,child):
-    self.cdomlette.removeChild(child.cdomlette)
+    self.pv_cdomlette.removeChild(child.cdomlette)
+    self.sync_with_wrapped
 
   def replaceChild(self,child):
-    self.cdomlette.replaceChild(child.cdomlette)
+    self.pv_cdomlette.replaceChild(child.cdomlette)
+    self.sync_with_wrapped
 
   def rootNode(self):
-    return self.__memoized__("rootNode",self.cdomlette.rootNode())
+    return self.__memoized__("rootNode",self.pv_cdomlette.rootNode())
 
 
   def setAttributeNS(self,attr,namespace):
@@ -115,14 +119,8 @@ class CustomDomElement(Observer,Observable):
   def setAttributeNodeNS(self,attr,namespace):
     pass
 
-  def tagName(self):
-    return self.cdomlette.tagName()
-
-  def xmlBase(self):
-    return self.cdomlette.xmlBase()
-
   def xpath(self,path):
-    return self.cdomlette.path(path)
+    return self.pv_cdomlette.path(path)
 
 
 # FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'
@@ -133,29 +131,29 @@ class CustomDomDocument(CustomDomElement):
     CustomDomElement.__init__(self,cDomDocument)
 
   def createDocumentFragment(self):
-    return CustomDomElement(self.cdomlette.createDocumentFragment())
+    return CustomDomElement(self.pv_cdomlette.createDocumentFragment())
 
   def createElementNS(self,a,b):
-    return CustomDomElement(self.cdomlette.createElementNS(a,b))
+    return CustomDomElement(self.pv_cdomlette.createElementNS(a,b))
  
   def createProcessingInstruction(self):
-    return CustomDomElement(self.cdomlette.createProcessingInstruction())
+    return CustomDomElement(self.pv_cdomlette.createProcessingInstruction())
 
   def createAttributeNS(self):
-    return CustomDomElement(self.cdomlette.createAttributeNS())
+    return CustomDomElement(self.pv_cdomlette.createAttributeNS())
 
   def createComment(self):
-    return CustomDomElement(self.cdomlette.createComment())
+    return CustomDomElement(self.pv_cdomlette.createComment())
 
   def createTextNode(self,t):
-    return CustomDomElement(self.cdomlette.createTextNode(t))
+    return CustomDomElement(self.pv_cdomlette.createTextNode(t))
 
 
 class CustomDomWriter(DomWriter):
   """ This class is here in order to create special DOM instances from the parsers."""
   def __init__(self):
     DomWriter.__init__(self)
-    self._root = CustomDomElement(self._root)
+    self._root = CustomDomDocument(self._root)
     self._nodeStack = [self._root]
     self._currElement = None
     self._currText = ''
@@ -171,4 +169,41 @@ class CustomDomWriter(DomWriter):
     else:
        self._nodeStack[-1].appendChild(CustomDomElement(new_element))
     return
+
+import unittest
+from Ft.Xml import InputSource
+
+
+class DomNodeTest(unittest.TestCase):
+
+   def isWrapped(self,n1):
+    self.assertEqual(n1.__class__,CustomDomElement)
+
+   def NodeEqual(self,n1,n2):
+    self.assertEqual(n1.tagName,n2.tagName)
+    self.assertEqual(n1.nodeType,n2.nodeType)
+    self.assertEqual(n1.xmlBase,n2.xmlBase)
+    self.assertEqual(len(n1.childNodes),len(n2.childNodes))
+    self.assertEqual(n1.firstChild,n2.firstChild)
+    self.assertEqual(n1.lastChild,n2.lastChild)
+    
+   def testCreate(self):
+    doc = Ft.Xml.cDomlette.implementation.createRootNode('file:///article.xml')
+    docelement = doc.createElementNS(EMPTY_NAMESPACE, 'racine')
+    sourcebis = CustomDomElement(docelement)
+    self.NodeEqual(docelement,sourcebis)
+
+   def testAppend(self):
+    doc = Ft.Xml.cDomlette.implementation.createRootNode('file:///article.xml')
+    docelement = doc.createElementNS(EMPTY_NAMESPACE, 'racine')
+    sourcebis = CustomDomElement(docelement)
+    self.NodeEqual(docelement,sourcebis)
+    sourcebis.appendChild(doc.createElementNS(EMPTY_NAMESPACE, 'fils1'))
+    self.NodeEqual(docelement,sourcebis)
+    self.NodeEqual(docelement.firstChild,sourcebis.firstChild)
+    self.NodeEqual(docelement.lastChild,sourcebis.lastChild)
+
+
+if __name__=="__main__":
+   unittest.main()
 

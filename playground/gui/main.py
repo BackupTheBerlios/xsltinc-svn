@@ -59,12 +59,14 @@ class WindowUpdater(Observer):
     Observer.__init__(self)
     self.model = model
     self.window = window
-    #self.window.ButtTransform1.connect(
+    self.window.ButtTransform1.connect(self.window.ButtTransform1,SIGNAL("clicked()"),self.model.runFirst)
+    self.window.ButtTransform2.connect(self.window.ButtTransform2,SIGNAL("clicked()"),self.model.runInc)
 
   def update(self,obj,args=None):
     print "model changed %s -> %s" % (self.model.oldtime,self.model.inctime)
     self.window.TimeBar.setTotalSteps(self.model.oldtime)
     self.window.TimeBar.setProgress(self.model.inctime)
+    self.window.ButtTransform2.setEnabled(self.model.isReadyForInc())
      
 
 class DemoTransformer(Observable):
@@ -75,15 +77,22 @@ class DemoTransformer(Observable):
    self.xsltproc = xsltinc.LinearProcessor()
    self.xsltproc.appendStylesheetNode(self.transfo)
    self.inctime = 0
+   self.ready_for_inc = False
    self.runFirst()
 
+  def isReadyForInc(self):
+   return self.ready_for_inc
+
   def changeSource(self,file):
+   self.ready_for_inc = False
    self.notify_observers(self)
 
   def changeTarget(self,file):
+   self.ready_for_inc = False
    self.notify_observers(self)
 
   def changeTransfo(self,file):
+   self.ready_for_inc = False
    self.notify_observers(self)
 
   def runFirst(self):
@@ -94,6 +103,7 @@ class DemoTransformer(Observable):
    self.target = writer.getResult() 
    self.can_run_inc = True
    self.oldtime = (end-start)* 10000
+   self.ready_for_inc = True
    self.notify_observers(self)
 
   def runInc(self):
@@ -113,11 +123,11 @@ def main(args):
  demo = DemoTransformer()
  updater = WindowUpdater(demo,mainWin)
  demo.add_observer(updater)
- demo.runInc()
+ #demo.runInc()
  QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
  QlistItemTreeFactory(mainWin.SourceListView,demo.source)
  QlistItemTreeFactory(mainWin.TargetListView,demo.target)
-
+ xsltinc.fromDomToCustomDom(demo.source)
  mainWin.show()
 
  app.connect(app, SIGNAL("lastWindowClosed()")
