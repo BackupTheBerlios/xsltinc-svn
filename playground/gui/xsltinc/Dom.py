@@ -12,7 +12,7 @@ class CustomDomElement(Observer,Observable):
     Observer.__init__(self)
     self.pv_cdomlette= cDomElement
     self.pv_memoizing=  dict() #t
-    #self.sync_with_wrapped
+    self.sync_with_wrapped
 
   def __getattr__(self,attr):
     if attr.startswith('pv_') : 
@@ -23,12 +23,11 @@ class CustomDomElement(Observer,Observable):
       return retour
 
   def sync_with_wrapped(self):
-    return
     self.nodeType = self.__cdomlette.nodeType
     self.tagName = self.__cdomlette.tagName
     self.localName = self.__cdomlette.localName
-    self.firstChild = self.__cdomlette.firstChild
-    self.lastChild = self.__cdomlette.lastChild
+    self.firstChild = self.__memoized__(self.__cdomlette.firstChild)
+    self.lastChild = self.__memoized__(self__cdomlette.lastChild)
     self.xmlBase = self.__cdomlette.xmlBase
     self.nodeValue = self.__cdomlette.nodeValue
     self.attributes = self.__cdomlette.attributes
@@ -135,6 +134,9 @@ class CustomDomDocument(CustomDomElement):
 
   def createElementNS(self,a,b):
     return CustomDomElement(self.pv_cdomlette.createElementNS(a,b))
+
+  def createElement(self,a,b):
+    return CustomDomElement(self.pv_cdomlette.createElement(a,b))
  
   def createProcessingInstruction(self):
     return CustomDomElement(self.pv_cdomlette.createProcessingInstruction())
