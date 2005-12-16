@@ -13,6 +13,7 @@ class CustomDomElement(Observer,Observable):
     self.pv_cdomlette= cDomElement
     self.pv_memoizing=  dict() #t
     self.sync_with_wrapped
+    self.childNodes = Olist(self.pv_cdomlette.childNodes)
 
   def __getattr__(self,attr):
     if attr.startswith('pv_') : 
@@ -149,6 +150,74 @@ class CustomDomDocument(CustomDomElement):
 
   def createTextNode(self,t):
     return CustomDomElement(self.pv_cdomlette.createTextNode(t))
+
+class Olist(Observable):
+   def __init__(self,l=[]):
+    Observable.__init__(self)
+    self._contenu = list(l)
+    self.pv_memoizing=  dict() 
+  
+   def append(self,truc):
+    self._contenu.append(truc)
+    self.notify_observers(self)
+
+   def remove(self,truc):
+    self._contenu.remove(truc)
+    self.notify_observers(self)
+
+   def __iadd__(self,truc):
+    self._contenu.__iadd__(truc)
+    self.notify_observers(self)
+
+   def __len__(self): return self._contenu.__len__()
+ 
+   def __len__(self): return self._contenu.__len__()
+   def __eq__(self): return self._contenu.__eq__()
+   def __le__(self): return self._contenu.__le__()
+   def __lt__(self): return self._contenu.__lt__()
+   def __ge__(self): return self._contenu.__ge__()
+   def __gt__(self): return self._contenu.__gt__()
+   def __iter__(self): return self._contenu.__iter__()
+   def __getslice__(self,i): return self._contenu.__getslice__(i)
+
+   def __memoized__(self,name,value):
+    if name in self.pv_memoizing.keys():
+      if id(self.pv_memoizing[name][0]) == id(value):
+         return self.pv_memoizing[name][1]
+    self.pv_memoizing[name] = (value,CustomDomElement(value))
+    return self.pv_memoizing[name][1]
+
+   def __getitem__(self,i): 
+     retour =  self._contenu.__getitem__(i)
+     if 'pv_cdomlette' in dir(retour):
+        return retour
+     else:
+        return CustomDomElement(retour)
+
+
+   def __contains__(self): return self._contenu.__contains__()
+
+   def __delslice__(self,truc):
+     self._contenu.__delslice__(truc)
+     self.notify_observers(self)
+
+   def __setitem__(self,truc):
+     self._contenu.__setitem__(truc)
+     self.notify_observers(self)
+
+   def __mul__(self,truc):
+     self._contenu.__mul__(truc)
+     self.notify_observers(self)
+
+   def __reduce__(self,truc):
+     self._contenu.__reduce__(truc)
+     self.notify_observers(self)
+
+
+   def pop(self):
+     retour = self._contenu.pop()
+     self.notify_observers(self)
+     return retour
 
 
 class CustomDomWriter(DomWriter):
