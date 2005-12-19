@@ -177,7 +177,9 @@ class Olist(Observable):
    def __lt__(self): return self._contenu.__lt__()
    def __ge__(self): return self._contenu.__ge__()
    def __gt__(self): return self._contenu.__gt__()
-   def __iter__(self): return self._contenu.__iter__()
+   #def __iter__(self): 
+   #  print "#######  ITER ############"
+   #  return self.__memoized__("iter",self._contenu.__iter__())
    def __getslice__(self,i): return self._contenu.__getslice__(i)
 
    def __memoized__(self,name,value):
@@ -188,11 +190,11 @@ class Olist(Observable):
     return self.pv_memoizing[name][1]
 
    def __getitem__(self,i): 
-     retour =  self._contenu.__getitem__(i)
-     if 'pv_cdomlette' in dir(retour):
-        return retour
-     else:
-        return CustomDomElement(retour)
+     return self.__memoized__("getitem",self._contenu.__getitem__(i))
+     #if 'pv_cdomlette' in dir(retour):
+     #   return retour
+     #else:
+     #   return CustomDomElement(retour)
 
 
    def __contains__(self): return self._contenu.__contains__()

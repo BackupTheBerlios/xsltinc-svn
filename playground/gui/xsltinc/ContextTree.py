@@ -8,8 +8,7 @@
   def serialize(self, node=None):
     print "%s%s" % (' '*self.depth, node.context)
     self.depth += 1
-    for i in node.children:
-      #print len(i.children)
+    for i in node.childNodes:
       self.serialize(node=i)
     self.depth -= 1
     
@@ -18,11 +17,11 @@ class ContextTreeNode:
   def __init__(self, context=None):
     self.context = context
     self.parent = None
-    self.children = []
+    self.childNodes = []
     
   def appendChild(self, child):
-    self.children.append(child)
+    self.childNodes.append(child)
     child.parent=self
     
   def lastChild(self):
-    return self.children[-1]
+    return self.childNodes[-1]

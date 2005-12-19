@@ -9,21 +9,33 @@ import xsltinc
 import xsltinc.Dom
 
 class ObsListItem(QListViewItem,Observer):
-  def __init__(self,parent,text):
+  def __init__(self,parent,model):
+    text = model.localName
+    if not text: text = model.nodeValue
     QListViewItem.__init__(self,parent,text)
     Observer.__init__(self)
+    self.model = model
+    self.model.add_observer(self)
     self.colorName = "blue"
     self.colors = { 1 : "black" , 2 : "yellow", 3: "blue" , 
                     4 : "green" , 5 : "purple" , 6 : "grey" , 7:"light blue" ,
                     8 : "black" , 9 : "forest green"}
+    self.create_childs()
+    self.chooseColor()
+    self.setOpen(True)
     
   def paintCell(self, p, cg, column, width, align ):
     cg = QColorGroup(cg)
     cg.setColor(QColorGroup.Text, QColor(self.colorName))
     QListViewItem.paintCell(self, p, cg, column,width,align)
 
-  def chooseColor(self,obj):
-   self.colorName = self.colors[obj.nodeType]
+  def create_childs(self):
+   #if len(self.model.childNodes) > 0: ObsListItem(self,self.model.childNodes[0])
+   for node in self.model.childNodes:
+        ObsListItem(self,node)
+
+  def chooseColor(self):
+   self.colorName = self.colors[self.model.nodeType]
 
   def update(self,obj,arg):
    #here I should update the qlistitem with the obj value
@@ -42,16 +54,6 @@ class QListViewItemUpdater(Observer):
 def QlistItemTreeFactory(qlistParent,domNode):
    """ here we build the given listitem, then we run the same
     method recursibely to build the childs."""
-   text = domNode.localName
-   if not text: text = domNode.nodeValue
-   newItem =ObsListItem(qlistParent,text)
-   newItem.setOpen(True)
-   if hasattr(domNode,'add_observer'):
-     domNode.add_observer(newItem)
-     domNode.notify_observers(domNode)
-   newItem.chooseColor(domNode)
-   for node in domNode.childNodes:
-        QlistItemTreeFactory(newItem,node)
 
 
 class WindowUpdater(Observer):
@@ -124,9 +126,10 @@ def main(args):
  updater = WindowUpdater(demo,mainWin)
  demo.add_observer(updater)
  #demo.runInc()
- QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
- QlistItemTreeFactory(mainWin.SourceListView,demo.source)
- QlistItemTreeFactory(mainWin.TargetListView,demo.target)
+ ObsListItem(mainWin.TransfoListView,xsltinc.fromDomToCustomDom(demo.transfo))
+ #QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
+ ObsListItem(mainWin.SourceListView,xsltinc.fromDomToCustomDom(demo.source))
+ ObsListItem(mainWin.TargetListView,xsltinc.fromDomToCustomDom(demo.target))
  xsltinc.fromDomToCustomDom(demo.source)
  mainWin.show()
 
