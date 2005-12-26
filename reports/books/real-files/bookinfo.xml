@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<bookinfo>
+	<title>Bureau numérique : transformations incrémentales</title>
+	<subtitle>Rapport de réalisation</subtitle>
+	<subjectset>
+		<subject>
+		  <subjectterm>Projet de recherche</subjectterm>
+		</subject>
+	</subjectset>
+
+	<authorgroup>
+		<author>
+			<firstname>Mikaël</firstname>
+			<surname>Barbero</surname>
+			<email>Mikael.Barbero@polytech.univ-nantes.fr</email>
+		</author>
+		<author>
+			<firstname>Cédric</firstname>
+			<surname>Brun</surname>
+			<email>Cedric.Brun@polytech.univ-nantes.fr</email>
+		</author>
+	</authorgroup>
+	
+	<othercredit class="coordinateur">
+  	<firstname>Jean-Pierre</firstname>
+    <surname>Guédon</surname>
+ 		<email>Jean-Pierre.Guédon@polytech.univ-nantes.fr</email>
+  </othercredit>
+  
+	<othercredit class="coordinateur">
+  	<firstname>Henri</firstname>
+    <surname>Briand</surname>
+ 		<email>Henri.Briand@polytech.univ-nantes.fr</email>
+  </othercredit>  
+		
+	<othercredit class="enseignant">
+  	<firstname>Nicolas</firstname>
+    <surname>Normand</surname>
+ 		<email>Nicolas.Normand@polytech.univ-nantes.fr</email>
+  </othercredit>
+
+	<othercredit class="enseignant">
+  	<firstname>Jérôme</firstname>
+    <surname>David</surname>
+ 		<email>Jerome.David@polytech.univ-nantes.fr</email>
+  </othercredit>
+  
+  <othercredit class="enseignant">
+  	<firstname>Rémi</firstname>
+    <surname>Lehn</surname>
+ 		<email>Remi.Lehn@polytech.univ-nantes.fr</email>
+  </othercredit>
+
+<!-- 
+  <othercredit class="entreprise">
+  	<firstname>John</firstname>
+    <surname>Doe</surname>
+ 		<email>John.Doe@entreprise.fr</email>
+  </othercredit>
+ -->
+	
+	<copyright>
+		<year>2005</year>
+		<year>2006</year>
+		<holder>École Polytechnique de l'université de Nantes</holder>
+	</copyright>
+	
+	<legalnotice>
+		<para>
+			Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation 
+			License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no 
+			Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled "GNU Free 
+			Documentation License".
+		</para>
+	</legalnotice>
+	
+	<affiliation>
+		<orgname class="other">École Polytechnique de l'université de Nantes</orgname>
+		<orgdiv>Département Informatique</orgdiv>
+		<year>Troisième année</year>
+	</affiliation>
+	
+	<pubdate>3 novembre 2005</pubdate>
+	
+<!-- 
+	<abstract lang="fr">
+		<title>Résumé</title>
+		<para>En bref !</para>
+	</abstract>
+	
+	<abstract lang="en">
+		<title>Abstract</title>
+		<para>In brief !</para>
+	</abstract>
+ -->
+</bookinfo>

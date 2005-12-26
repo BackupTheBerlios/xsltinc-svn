@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<book lang="fr">
+
+	<!-- ===== Front Matter ===== -->
+
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/bookinfo.xml"/>
+	<toc/>
+
+	<!-- ===== Main Matter ===== -->
+
+  <!--
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Introduction.xml"/>
+	-->
+	
+	<!-- ===== Back Matter ===== -->
+	
+	<!--
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/app-A.xml"/>
+	-->
+
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common-files/glossary.xml"/>
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common-files/bibliography.xml"/>
+
+</book>
