@@ -9,12 +9,15 @@ import xsltinc
 import xsltinc.Dom
 
 class ObsListItem(QListViewItem,Observer):
-  def __init__(self,parent,model):
+  def __init__(self,parent,model,window):
     text = model.localName
     if not text: text = model.nodeValue
     QListViewItem.__init__(self,parent,text)
     Observer.__init__(self)
     self.model = model
+    self.window = window
+    self.childs = []
+    self.changed = False
     self.model.add_observer(self)
     self.colorName = "blue"
     self.colors = { 1 : "black" , 2 : "yellow", 3: "blue" , 
@@ -24,6 +27,12 @@ class ObsListItem(QListViewItem,Observer):
     self.chooseColor()
     self.setOpen(True)
     
+  def change_node(self):
+    print "CHANGEMENT DU NOEUD!"
+    self.changed = True
+    print (self.model.observers)
+    self.model.notify_observers(self.model)
+
   def paintCell(self, p, cg, column, width, align ):
     cg = QColorGroup(cg)
     cg.setColor(QColorGroup.Text, QColor(self.colorName))
@@ -32,25 +41,57 @@ class ObsListItem(QListViewItem,Observer):
   def create_childs(self):
    #if len(self.model.childNodes) > 0: ObsListItem(self,self.model.childNodes[0])
    for node in self.model.childNodes:
-        ObsListItem(self,node)
+        self.childs.append(ObsListItem(self,node,self.window))
+
+  def init_changed(self):
+    self.changed = False
+    for c in self.childs:
+       c.init_changed()
 
   def chooseColor(self):
-   self.colorName = self.colors[self.model.nodeType]
+   if not self.changed:
+     self.colorName = self.colors[self.model.nodeType]
+   else:
+     self.colorName = "red"
+
+
+  def delete_node(self):
+    pass
+
+  def add_node(self):
+    pass
 
   def update(self,obj,arg):
    #here I should update the qlistitem with the obj value
-   self.chooseColor(obj)
+   self.chooseColor()
    if obj.nodeType == 3: 
      self.setRenameEnabled(0,True)
      self.startRename(0)
+   self.changed = False
 
-class QListViewItemUpdater(Observer):
-  """ used in order to link the ViewItem with its model without needing subclassing """
-  def __init__(self,qlistitem):
-   Observer.__init__(self)
-   self.qlistitem = qlistitem
+class ListItemMenu(QPopupMenu):
+  def __init__(self):
+    QPopupMenu.__init__(self)
+    self.insertItem("Edit node",self.editSlot)
+    self.insertItem("Add  Node",self.addSlot)
+    self.insertItem("Delete Node",self.delSlot)
+    self.item = None
 
-    
+  def display(self,item,position): #position is a QPoint
+    self.item = item
+    self.popup(position)
+    #self.show()
+
+  def editSlot(self):
+    self.item.change_node()
+
+  def addSlot(self):
+    self.item.add_node()
+
+  def delSlot(self):
+    self.item.delete_node()
+
+
 def QlistItemTreeFactory(qlistParent,domNode):
    """ here we build the given listitem, then we run the same
     method recursibely to build the childs."""
@@ -74,9 +115,10 @@ class WindowUpdater(Observer):
 class DemoTransformer(Observable):
   def __init__(self):
    Observable.__init__(self)
-   self.source = xsltinc.NonvalidatingReader.parseStream(open("persons.xml"))
+   self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open("persons.xml")))
    self.transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
-   self.xsltproc = xsltinc.LinearProcessor()
+   self.xsltproc = xsltinc.IncrementalProcessor()
+   self.xsltproc.set_observing(self.source)
    self.xsltproc.appendStylesheetNode(self.transfo)
    self.inctime = 0
    self.ready_for_inc = False
@@ -111,7 +153,7 @@ class DemoTransformer(Observable):
   def runInc(self):
    writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
-   self.xsltproc.runNode(self.source,writer=writer)
+   self.xsltproc.runNodeInc(self.source,writer=writer)
    end = time.time()
    self.target = writer.getResult() 
    self.can_run_inc = True
@@ -119,18 +161,27 @@ class DemoTransformer(Observable):
    self.notify_observers(self)
 
 
+class MainWin(DemoView):
+  def __init__(self):
+    DemoView.__init__(self)
+    self.menu = ListItemMenu()
+    self.connect(self.SourceListView,SIGNAL("contextMenuRequested(QListViewItem*, const QPoint&, int)"),self.open_context_menu)
+  
+  def open_context_menu(self,item,qpoint):
+    if item :
+      self.menu.display(item,qpoint)
+
 def main(args):
  app=QApplication(args)
- mainWin = DemoView()
+ mainWin = MainWin()
  demo = DemoTransformer()
  updater = WindowUpdater(demo,mainWin)
  demo.add_observer(updater)
- #demo.runInc()
- ObsListItem(mainWin.TransfoListView,xsltinc.fromDomToCustomDom(demo.transfo))
+ #mainWin.connect(mainWin.SourceListView,SIGNAL("rightButtonPressed( QListViewItem *, const QPoint &, int )"),open_context_menu)
+ ObsListItem(mainWin.TransfoListView,xsltinc.fromDomToCustomDom(demo.transfo),mainWin)
  #QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
- ObsListItem(mainWin.SourceListView,xsltinc.fromDomToCustomDom(demo.source))
- ObsListItem(mainWin.TargetListView,xsltinc.fromDomToCustomDom(demo.target))
- xsltinc.fromDomToCustomDom(demo.source)
+ ObsListItem(mainWin.SourceListView,demo.source,mainWin)
+ ObsListItem(mainWin.TargetListView,xsltinc.fromDomToCustomDom(demo.target),mainWin)
  mainWin.show()
 
  app.connect(app, SIGNAL("lastWindowClosed()")

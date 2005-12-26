@@ -21,6 +21,8 @@ class CustomDomElement(Observer,Observable):
     else:
       retour= getattr(self.pv_cdomlette,attr)
       #here we should check in memoized tab
+      if retour.__class__ == Ft.Xml.cDomlette.Document:
+        retour = self.__memoized__(attr,retour)
       return retour
 
   def sync_with_wrapped(self):
@@ -109,8 +111,6 @@ class CustomDomElement(Observer,Observable):
     self.pv_cdomlette.replaceChild(child.cdomlette)
     self.sync_with_wrapped
 
-  def rootNode(self):
-    return self.__memoized__("rootNode",self.pv_cdomlette.rootNode())
 
 
   def setAttributeNS(self,attr,namespace):
@@ -190,12 +190,7 @@ class Olist(Observable):
     return self.pv_memoizing[name][1]
 
    def __getitem__(self,i): 
-     return self.__memoized__("getitem",self._contenu.__getitem__(i))
-     #if 'pv_cdomlette' in dir(retour):
-     #   return retour
-     #else:
-     #   return CustomDomElement(retour)
-
+     return self.__memoized__("getitem_%s" % i,self._contenu.__getitem__(i))
 
    def __contains__(self): return self._contenu.__contains__()
 
@@ -275,6 +270,7 @@ class DomNodeTest(unittest.TestCase):
     self.NodeEqual(docelement,sourcebis)
     self.NodeEqual(docelement.firstChild,sourcebis.firstChild)
     self.NodeEqual(docelement.lastChild,sourcebis.lastChild)
+
 
 
 if __name__=="__main__":
