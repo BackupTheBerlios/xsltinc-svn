@@ -34,7 +34,6 @@ class CustomDomElement(Observer,Observable):
     self.xmlBase = self.__cdomlette.xmlBase
     self.nodeValue = self.__cdomlette.nodeValue
     self.attributes = self.__cdomlette.attributes
-    self.baseURI = self.__cdomlette.baseURI
 
   def __memoized__(self,name,value):
     if name in self.pv_memoizing.keys():
@@ -78,9 +77,6 @@ class CustomDomElement(Observer,Observable):
     return id(self) == id(node) or id(self.pv_cdomlette) == id(node)
 
 
-  def namespaceURI(self):
-    return self.pv_cdomlette.namespaceURI()
-
   def nextSibling(self):
     return self.__memoized__("nextSibling",self.pv_cdomlette.nextSibling())
 
@@ -92,9 +88,6 @@ class CustomDomElement(Observer,Observable):
 
   def ownerDocument(self):
     return self.pv_cdomlette.ownerDocument()
-
-  def parentNode(self):
-    return CustomDomElement(self.pv_cdomlette.parentNode())
 
   def removeAttributeNS(self):
     self.pv_cdomlette.removeAttributeNS()
@@ -120,7 +113,7 @@ class CustomDomElement(Observer,Observable):
     pass
 
   def xpath(self,path):
-    return self.pv_cdomlette.path(path)
+    return self.__memoized__("xpath",self.pv_cdomlette.xpath())
 
 
 # FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'

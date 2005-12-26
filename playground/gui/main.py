@@ -3,7 +3,7 @@ import sys,time
 
 from qt import *
 from demo import * 
-
+from Ft.Xml.Domlette import Print
 from xsltinc.Observable import *
 import xsltinc
 import xsltinc.Dom
@@ -18,7 +18,8 @@ class ObsListItem(QListViewItem,Observer):
     self.window = window
     self.childs = []
     self.changed = False
-    self.model.add_observer(self)
+    if hasattr(self.model,'add_observer'):
+      self.model.add_observer(self)
     self.colorName = "blue"
     self.colors = { 1 : "black" , 2 : "yellow", 3: "blue" , 
                     4 : "green" , 5 : "purple" , 6 : "grey" , 7:"light blue" ,
@@ -27,10 +28,19 @@ class ObsListItem(QListViewItem,Observer):
     self.chooseColor()
     self.setOpen(True)
     
+
+  def changeName(self):
+    """ called by the list when the user finished to edit the name"""
+    self.model.deleteData(0,self.model.length)
+    self.model.appendData("%s" % self.text(0))
+    print self.model
+
   def change_node(self):
     print "CHANGEMENT DU NOEUD!"
     self.changed = True
-    print (self.model.observers)
+    if self.model.nodeType == 3: 
+      self.setRenameEnabled(0,True)
+      self.startRename(0)
     self.model.notify_observers(self.model)
 
   def paintCell(self, p, cg, column, width, align ):
@@ -64,9 +74,6 @@ class ObsListItem(QListViewItem,Observer):
   def update(self,obj,arg):
    #here I should update the qlistitem with the obj value
    self.chooseColor()
-   if obj.nodeType == 3: 
-     self.setRenameEnabled(0,True)
-     self.startRename(0)
    self.changed = False
 
 class ListItemMenu(QPopupMenu):
@@ -97,19 +104,7 @@ def QlistItemTreeFactory(qlistParent,domNode):
     method recursibely to build the childs."""
 
 
-class WindowUpdater(Observer):
-  def __init__(self,model,window): 
-    Observer.__init__(self)
-    self.model = model
-    self.window = window
-    self.window.ButtTransform1.connect(self.window.ButtTransform1,SIGNAL("clicked()"),self.model.runFirst)
-    self.window.ButtTransform2.connect(self.window.ButtTransform2,SIGNAL("clicked()"),self.model.runInc)
 
-  def update(self,obj,args=None):
-    print "model changed %s -> %s" % (self.model.oldtime,self.model.inctime)
-    self.window.TimeBar.setTotalSteps(self.model.oldtime)
-    self.window.TimeBar.setProgress(self.model.inctime)
-    self.window.ButtTransform2.setEnabled(self.model.isReadyForInc())
      
 
 class DemoTransformer(Observable):
@@ -161,27 +156,52 @@ class DemoTransformer(Observable):
    self.notify_observers(self)
 
 
-class MainWin(DemoView):
-  def __init__(self):
+class MainWin(DemoView,Observer):
+  def __init__(self,model):
     DemoView.__init__(self)
+    Observer.__init__(self)
+    self.model = model
+    self.model.add_observer(self)
     self.menu = ListItemMenu()
+    self.ButtTransform1.connect(self.ButtTransform1,SIGNAL("clicked()"),self.model.runFirst)
+    self.ButtTransform2.connect(self.ButtTransform2,SIGNAL("clicked()"),self.model.runInc)
     self.connect(self.SourceListView,SIGNAL("contextMenuRequested(QListViewItem*, const QPoint&, int)"),self.open_context_menu)
+    self.connect(self.SourceListView,SIGNAL("itemRenamed(QListViewItem* , int)"),self.item_renamed)
+    self.update_source_view()
+    self.update_transfo_view()
+    self.update(self.model,None)
   
   def open_context_menu(self,item,qpoint):
     if item :
       self.menu.display(item,qpoint)
 
+  def item_renamed(self,item,col):
+    item.changeName()
+
+  def update(self,obj,args=None):
+    print "model changed %s -> %s" % (self.model.oldtime,self.model.inctime)
+    self.TimeBar.setTotalSteps(self.model.oldtime)
+    self.TimeBar.setProgress(self.model.inctime)
+    self.ButtTransform2.setEnabled(self.model.isReadyForInc())
+    self.update_target_view()
+
+  def update_source_view(self):
+    self.SourceListView.clear()
+    ObsListItem(self.SourceListView,self.model.source,self)
+    
+  def update_target_view(self):
+    self.TargetListView.clear()
+    ObsListItem(self.TargetListView,self.model.target,self)
+    
+  def update_transfo_view(self):
+    self.TransfoListView.clear()
+    ObsListItem(self.TransfoListView,self.model.transfo,self)
+    
+
 def main(args):
  app=QApplication(args)
- mainWin = MainWin()
  demo = DemoTransformer()
- updater = WindowUpdater(demo,mainWin)
- demo.add_observer(updater)
- #mainWin.connect(mainWin.SourceListView,SIGNAL("rightButtonPressed( QListViewItem *, const QPoint &, int )"),open_context_menu)
- ObsListItem(mainWin.TransfoListView,xsltinc.fromDomToCustomDom(demo.transfo),mainWin)
- #QlistItemTreeFactory(mainWin.TransfoListView,demo.transfo)
- ObsListItem(mainWin.SourceListView,demo.source,mainWin)
- ObsListItem(mainWin.TargetListView,xsltinc.fromDomToCustomDom(demo.target),mainWin)
+ mainWin = MainWin(demo)
  mainWin.show()
 
  app.connect(app, SIGNAL("lastWindowClosed()")
