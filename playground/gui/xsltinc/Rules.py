@@ -1,4 +1,4 @@
-
+﻿
 
 
 
@@ -26,7 +26,7 @@ class NodeTestRule(ReevaluationRule):
    return node.get_first_nodetest().localName == self.nodeTestName
 
   def execute(self,node):
-    print "TODO incremental mise à ajour !"
+    print "%s" % node
   
   def __repr__(self):
     return ("Test de type de noeud : %s" % self.nodeTestName)

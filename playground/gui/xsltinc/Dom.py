@@ -238,6 +238,9 @@ class CustomDomWriter(DomWriter):
     else:
        self._nodeStack[-1].appendChild(CustomDomElement(new_element))
     return
+    
+  def getLastNode(self):
+    return self._nodeStack[-1]
 
 import unittest
 from Ft.Xml import InputSource

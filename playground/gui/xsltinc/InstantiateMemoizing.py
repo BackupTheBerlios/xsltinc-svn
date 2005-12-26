@@ -12,21 +12,30 @@ class InstantiateMemoizing(AbstractAspect):
         """
         AbstractAspect.__init__(self, pointcut)
         self.depth = 0
-
-    def before(self, wobj, context, *args, **kwargs):
-        """Before method : we have to store the context.
+        
+    def around(self, wobj, context, *args, **kwargs):
+        """
         """       
         XsltContext = copy(args[0])
         processor = args[1]
-        self.depth += 1
         
-        processor.contextTree.currentNode.appendChild(ContextTreeNode(context=XsltContext))
-        processor.contextTree.currentNode = processor.contextTree.currentNode.lastChild()
+        if (processor.first_pass == True):
+          self.depth += 1
         
-        print '-'*self.depth + '>' + str(XsltContext)        
+          processor.contextTree.currentNode.appendChild(ContextTreeNode(context=XsltContext))
+          processor.contextTree.currentNode = processor.contextTree.currentNode.lastChild()
+          
+          #print '-'*self.depth + '>' + str(XsltContext)
+          processor.contextTree.currentNode.targetNode = processor.writer.getLastNode()
+          #print '-'*self.depth + '>' + str(processor.contextTree.currentNode.targetNode)
         
-    def after(self, wobj, context, *args, **kwargs):        
-        processor = args[1]
-        self.depth -= 1
-        if processor.contextTree.currentNode:
+        met_name = context['method_name']
+        wclass = context['__class__']
+        ret = self._proceed(wobj, wclass, met_name, *args, **kwargs)
+      
+        if (processor.first_pass == True):
+          self.depth -= 1
+          if processor.contextTree.currentNode:
             processor.contextTree.currentNode = processor.contextTree.currentNode.parent
+
+        return ret

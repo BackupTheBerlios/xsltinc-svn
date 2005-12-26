@@ -13,7 +13,7 @@ class Observable:
     self.observers.append(obs)
 
   def notify_observers(self,obj,arg=None):
-    for  i in self.observers:
+    for i in self.observers:
       i.update(obj,arg)
 
 

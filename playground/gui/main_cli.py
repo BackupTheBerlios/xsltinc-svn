@@ -28,13 +28,15 @@ class DemoTransformer:
   def runInc(self):
    start = time.time()
    self.target = self.xsltproc.runNode(self.source)
-   print '='*75
    end = time.time()
 
 def main(args):
  demo = DemoTransformer()
+ print '='*75
+ #demo.source = xsltinc.Dom.CustomDomDocument(demo.source)
+ #demo.source.appendChild(demo.source.createElement('person'))
  demo.runInc()
-
+ print '='*75
 
 if __name__=="__main__":
    main(sys.argv)

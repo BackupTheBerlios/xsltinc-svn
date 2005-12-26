@@ -17,6 +17,7 @@ class ContextTreeNode:
   def __init__(self, context=None):
     self.context = context
     self.parent = None
+    self.targetNode = None
     self.childNodes = []
     
   def appendChild(self, child):

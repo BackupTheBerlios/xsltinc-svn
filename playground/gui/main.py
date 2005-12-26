@@ -116,6 +116,7 @@ class DemoTransformer(Observable):
    self.inctime = 0
    self.ready_for_inc = False
    weaving.weaveRuleCreator()
+   weaving.weaveContextSaving()
    self.runFirst()
 
   def isReadyForInc(self):

@@ -13,6 +13,8 @@ class IncrementalProcessor(Processor,Observer):
       Processor.__init__(self, stylesheetAltUris=stylesheetAltUris, 
                          documentReader=documentReader, implementation=implementation,
                          stylesheetIncPaths=stylesheetIncPaths)
+      self.first_pass = True
+
       Observer.__init__(self)
       self.changed_nodes = []
       self.contextTree = ContextTree() 
@@ -48,6 +50,7 @@ class IncrementalProcessor(Processor,Observer):
       writer = Dom.CustomDomWriter()
       Processor.runNode(self,DomNode,writer=writer)
       self.last_result = writer.getResult()
+      self.first_pass = False
       return writer.getResult()
  
     def check_the_rules(self,DomNode,currentRule= None):
