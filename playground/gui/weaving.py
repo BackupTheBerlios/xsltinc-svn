@@ -30,6 +30,7 @@ from Ft.Xml.Xslt.VariableElement import VariableElement
 
 from logilab.aspects.weaver import weaver, PointCut
 from xsltinc.InstantiateMemoizing import *
+from xsltinc.RuleCreatorAspect import *
 
 def weaveContextSaving():  
   # Weaving Memoizing Aspect with XSLTElement
@@ -65,3 +66,38 @@ def weaveContextSaving():
     pcut.add_method(e, 'instantiate')
   
   weaver.weave_pointcut(pcut, InstantiateMemoizing)
+
+def weaveRuleCreator():  
+  # Weaving Memoizing Aspect with XSLTElement
+   
+  xsltElements = [
+    XsltElement,
+    TemplateElement,  
+    ApplyImportsElement,
+    ApplyTemplatesElement,
+    CallTemplateElement,
+    ChooseElement,
+    ForEachElement,
+    IfElement,
+    SortElement,
+    OtherwiseElement,
+    WhenElement,
+    WithParamElement,
+    AttributeElement,
+    CommentElement,
+    CopyElement,
+    CopyOfElement,
+    ElementElement,
+    ProcessingInstructionElement,
+    NumberElement,
+    TextElement,
+    ValueOfElement,
+    ParamElement,
+    VariableElement
+  ]
+   
+  pcut = PointCut()
+  for e in xsltElements: 
+    pcut.add_method(e, 'instantiate')
+  
+  weaver.weave_pointcut(pcut, RuleCreator)

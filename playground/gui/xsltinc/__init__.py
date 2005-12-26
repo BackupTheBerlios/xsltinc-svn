@@ -7,7 +7,3 @@ from IncrementalProcessor import IncrementalProcessor
 
 from Ft.Xml.InputSource import DefaultFactory
 
-
-def fromDomToCustomDom(source):
-    return Dom.CustomDomDocument(source)
-

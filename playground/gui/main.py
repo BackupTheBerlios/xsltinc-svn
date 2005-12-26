@@ -8,10 +8,16 @@ from xsltinc.Observable import *
 import xsltinc
 import xsltinc.Dom
 
+import weaving
+
 class ObsListItem(QListViewItem,Observer):
   def __init__(self,parent,model,window):
-    text = model.localName
-    if not text: text = model.nodeValue
+    if hasattr(model,'nodeValue') or hasattr(model,'localName'):
+       text = model.nodeValue
+       if not text:
+        text = model.localName
+    else:
+       text = str(model)
     QListViewItem.__init__(self,parent,text)
     Observer.__init__(self)
     self.model = model
@@ -33,7 +39,6 @@ class ObsListItem(QListViewItem,Observer):
     """ called by the list when the user finished to edit the name"""
     self.model.deleteData(0,self.model.length)
     self.model.appendData("%s" % self.text(0))
-    print self.model
 
   def change_node(self):
     print "CHANGEMENT DU NOEUD!"
@@ -44,12 +49,12 @@ class ObsListItem(QListViewItem,Observer):
     self.model.notify_observers(self.model)
 
   def paintCell(self, p, cg, column, width, align ):
+    """ customized method to change the color of listitems"""
     cg = QColorGroup(cg)
     cg.setColor(QColorGroup.Text, QColor(self.colorName))
     QListViewItem.paintCell(self, p, cg, column,width,align)
 
   def create_childs(self):
-   #if len(self.model.childNodes) > 0: ObsListItem(self,self.model.childNodes[0])
    for node in self.model.childNodes:
         self.childs.append(ObsListItem(self,node,self.window))
 
@@ -59,7 +64,7 @@ class ObsListItem(QListViewItem,Observer):
        c.init_changed()
 
   def chooseColor(self):
-   if not self.changed:
+   if not self.changed and hasattr(self.model,'nodeType'):
      self.colorName = self.colors[self.model.nodeType]
    else:
      self.colorName = "red"
@@ -99,13 +104,6 @@ class ListItemMenu(QPopupMenu):
     self.item.delete_node()
 
 
-def QlistItemTreeFactory(qlistParent,domNode):
-   """ here we build the given listitem, then we run the same
-    method recursibely to build the childs."""
-
-
-
-     
 
 class DemoTransformer(Observable):
   def __init__(self):
@@ -117,6 +115,7 @@ class DemoTransformer(Observable):
    self.xsltproc.appendStylesheetNode(self.transfo)
    self.inctime = 0
    self.ready_for_inc = False
+   weaving.weaveRuleCreator()
    self.runFirst()
 
   def isReadyForInc(self):
@@ -135,22 +134,18 @@ class DemoTransformer(Observable):
    self.notify_observers(self)
 
   def runFirst(self):
-   writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
-   self.xsltproc.runNode(self.source,writer=writer)
+   self.target = self.xsltproc.runNode(self.source)
    end = time.time()
-   self.target = writer.getResult() 
    self.can_run_inc = True
    self.oldtime = (end-start)* 10000
    self.ready_for_inc = True
    self.notify_observers(self)
 
   def runInc(self):
-   writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
-   self.xsltproc.runNodeInc(self.source,writer=writer)
+   self.target = self.xsltproc.runNodeInc(self.source)
    end = time.time()
-   self.target = writer.getResult() 
    self.can_run_inc = True
    self.inctime = (end-start)* 10000
    self.notify_observers(self)
@@ -180,10 +175,12 @@ class MainWin(DemoView,Observer):
 
   def update(self,obj,args=None):
     print "model changed %s -> %s" % (self.model.oldtime,self.model.inctime)
+    if self.model.oldtime < self.model.inctime: self.model.inctime = self.model.oldtime
     self.TimeBar.setTotalSteps(self.model.oldtime)
     self.TimeBar.setProgress(self.model.inctime)
     self.ButtTransform2.setEnabled(self.model.isReadyForInc())
     self.update_target_view()
+    self.update_rules_view()
 
   def update_source_view(self):
     self.SourceListView.clear()
@@ -196,6 +193,11 @@ class MainWin(DemoView,Observer):
   def update_transfo_view(self):
     self.TransfoListView.clear()
     ObsListItem(self.TransfoListView,self.model.transfo,self)
+
+  def update_rules_view(self):
+    self.DepsListView.clear()
+    if self.model.xsltproc.currentRule:
+      ObsListItem(self.DepsListView,self.model.xsltproc.currentRule,self)
     
 
 def main(args):

@@ -21,19 +21,15 @@ class DemoTransformer:
    self.runFirst()
    
   def runFirst(self):
-   writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
-   self.xsltproc.runNode(self.source,writer=writer)
+   self.target = self.xsltproc.runNode(self.source)
    end = time.time()
-   self.target = writer.getResult() 
 
   def runInc(self):
-   writer = xsltinc.Dom.CustomDomWriter()
    start = time.time()
-   self.xsltproc.runNode(self.source,writer=writer)
+   self.target = self.xsltproc.runNode(self.source)
    print '='*75
    end = time.time()
-   self.target = writer.getResult() 
 
 def main(args):
  demo = DemoTransformer()

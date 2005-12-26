@@ -25,12 +25,19 @@ class CustomDomElement(Observer,Observable):
         retour = self.__memoized__(attr,retour)
       return retour
 
+  def get_first_nodetest(self):
+     # looking for the first parent having a type
+     parent = self.parentNode
+     while parent and parent.nodeType != 1:
+       print parent.nodeType
+       parent = parent.parentNode
+     return parent
+
   def sync_with_wrapped(self):
     self.nodeType = self.__cdomlette.nodeType
+    self.nodeName = self.__cdomlette.nodeName
     self.tagName = self.__cdomlette.tagName
     self.localName = self.__cdomlette.localName
-    self.firstChild = self.__memoized__(self.__cdomlette.firstChild)
-    self.lastChild = self.__memoized__(self__cdomlette.lastChild)
     self.xmlBase = self.__cdomlette.xmlBase
     self.nodeValue = self.__cdomlette.nodeValue
     self.attributes = self.__cdomlette.attributes
@@ -39,7 +46,10 @@ class CustomDomElement(Observer,Observable):
     if name in self.pv_memoizing.keys():
       if id(self.pv_memoizing[name][0]) == id(value):
          return self.pv_memoizing[name][1]
-    self.pv_memoizing[name] = (value,CustomDomElement(value))
+    if not isinstance(value,list):
+      self.pv_memoizing[name] = (value,CustomDomElement(value))
+    else:
+      self.pv_memoizing[name] = (value,value)
     return self.pv_memoizing[name][1]
 
   def update(self,obj,arg=None):
@@ -80,8 +90,6 @@ class CustomDomElement(Observer,Observable):
   def nextSibling(self):
     return self.__memoized__("nextSibling",self.pv_cdomlette.nextSibling())
 
-  def nodeName(self):
-    return self.pv_cdomlette.nodeName()
 
   def normalize(self):
     self.pv_cdomlette.normalize()
@@ -113,7 +121,7 @@ class CustomDomElement(Observer,Observable):
     pass
 
   def xpath(self,path):
-    return self.__memoized__("xpath",self.pv_cdomlette.xpath())
+    return self.__memoized__("xpath",self.pv_cdomlette.xpath(path))
 
 
 # FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'
