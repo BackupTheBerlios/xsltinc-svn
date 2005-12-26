@@ -49,6 +49,15 @@ class IncrementalProcessor(Processor,Observer):
       Processor.runNode(self,DomNode,writer=writer)
       self.last_result = writer.getResult()
       return writer.getResult()
+ 
+    def check_the_rules(self,DomNode,currentRule= None):
+      if not currentRule : currentRule = self.currentRule
+      if currentRule.match(DomNode):
+         currentRule.execute(DomNode)
+      else:
+         for rule in currentRule.childNodes:
+           self.check_the_rules(DomNode,currentRule=rule)
+     
 
     def runNodeInc(self,DomNode):
       """ incremental XSLT transformation """
@@ -61,7 +70,10 @@ class IncrementalProcessor(Processor,Observer):
       for n in self.changed_nodes:
          print "type of changed nodes : %s" % n[1].nodeName
          #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
-      return self.runNode(DomNode)
+         self.check_the_rules(n[0])
+      # FIXME: we should return the last generated tree but updated ;)
+      self.changed_nodes = []
+      return self.last_result
       
     def set_observing(self,domNode):
       """ this method make the processor "spy" the nodes for further changes"""

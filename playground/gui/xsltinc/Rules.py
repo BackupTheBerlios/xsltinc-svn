@@ -12,11 +12,21 @@ class ReevaluationRule:
   def match(self,node):
    """ return True if the given node match the rule """
    return True
+  
+  def execute(self,node):
+   pass
 
 class NodeTestRule(ReevaluationRule):
   def  __init__(self,name):
     ReevaluationRule.__init__(self)
     self.nodeTestName = name
+
+  def match(self,node):
+   """ return True if the given node match the rule """
+   return node.get_first_nodetest().localName == self.nodeTestName
+
+  def execute(self,node):
+    print "TODO incremental mise à ajour !"
   
   def __repr__(self):
     return ("Test de type de noeud : %s" % self.nodeTestName)
