@@ -73,12 +73,9 @@ class IncrementalProcessor(Processor,Observer):
          print "Aucun noeud n'a changé dans l'arbre source : rien à faire."
          return self.last_result
       print "Exécution : %s noeuds ont changés." % len(self.changed_nodes)
-      #now incremental transformation
       #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
       self.check_the_rules(self.changed_nodes)
-      # FIXME: we should return the last generated tree but updated ;)
       self.changed_nodes = []
-      self.our_writer.display_tree()
       #self.our_writer = Dom.CustomDomWriter()
       #Processor.runNode(self,DomNode,writer=self.our_writer)
       #self.last_result = self.our_writer.getResult()

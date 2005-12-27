@@ -288,13 +288,13 @@ class CustomDomWriter(DomWriter):
        for child in current_el.childNodes:
          self.find_element(element,current_el=child)
    
-    
-
   def save_state(self):
-    return copy(self._nodeStack)
+    return (self._currElement, self._currText,copy(self._nodeStack))
     
   def restore_state(self,new_state):
-    self._nodeStack = new_state
+    self._nodeStack = new_state[2]
+    self._currElement = new_state[0]
+    self._currText = new_state[1]
     
   def getLastNode(self):
     return self._nodeStack[-1]

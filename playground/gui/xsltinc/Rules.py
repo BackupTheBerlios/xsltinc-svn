@@ -36,9 +36,9 @@ class NodeTestRule(ReevaluationRule):
   def execute(self,node):
     self.targetNode.clearChilds()
     self.processor.our_writer.restore_state(self.writer_state)
-    self.processor.our_writer.startElement("pourVoir")
-    self.processor.our_writer.endElement("pourVoir")
-    #self.xsltNode.instantiate(self.context,self.processor)
+    self.processor.our_writer._nodeStack[-1].clearChilds()
+    self.xsltNode.instantiate(self.context,self.processor)
+    self.processor.our_writer._completeTextNode()
   
   def __repr__(self):
     return ("Test de type de noeud : %s le context %s" % (self.nodeTestName, self.context))
