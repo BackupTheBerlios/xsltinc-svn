@@ -113,10 +113,10 @@ class DemoTransformer(Observable):
    self.xsltproc = xsltinc.IncrementalProcessor()
    self.xsltproc.set_observing(self.source)
    self.xsltproc.appendStylesheetNode(self.transfo)
-   self.inctime = 0
+   self.inctime = 100000000000
    self.ready_for_inc = False
    weaving.weaveRuleCreator()
-   weaving.weaveContextSaving()
+   #weaving.weaveContextSaving()
    self.runFirst()
 
   def isReadyForInc(self):
@@ -137,6 +137,7 @@ class DemoTransformer(Observable):
   def runFirst(self):
    start = time.time()
    self.target = self.xsltproc.runNode(self.source)
+   Print(self.target)
    end = time.time()
    self.can_run_inc = True
    self.oldtime = (end-start)* 10000

@@ -1,6 +1,7 @@
 from Ft.Xml.Xslt.DomWriter import  DomWriter,EMPTY_NAMESPACE
 import Ft.Xml.cDomlette
 from Observable import *
+from copy import copy
 
 class CustomDomElement(Observer,Observable):
   """ This class extend the cDomlette Element adding an Observable behavior.
@@ -16,7 +17,7 @@ class CustomDomElement(Observer,Observable):
     self.childNodes = Olist(self.pv_cdomlette.childNodes)
 
   def __getattr__(self,attr):
-    if attr.startswith('pv_') : 
+    if attr.startswith('pv_') or attr == "childNodes" : 
       return getattr(self,attr)
     else:
       retour= getattr(self.pv_cdomlette,attr)
@@ -34,13 +35,8 @@ class CustomDomElement(Observer,Observable):
      return parent
 
   def sync_with_wrapped(self):
-    self.nodeType = self.__cdomlette.nodeType
-    self.nodeName = self.__cdomlette.nodeName
-    self.tagName = self.__cdomlette.tagName
-    self.localName = self.__cdomlette.localName
-    self.xmlBase = self.__cdomlette.xmlBase
-    self.nodeValue = self.__cdomlette.nodeValue
-    self.attributes = self.__cdomlette.attributes
+    if len(self.childNodes) != len(self.pv_cdomlette.childNodes):
+      print "~~~~~~~~~~~~~~~~~~~~~~~ERREUR ! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
   def __memoized__(self,name,value):
     if name in self.pv_memoizing.keys():
@@ -59,8 +55,10 @@ class CustomDomElement(Observer,Observable):
   def appendChild(self,child):
     self.childNodes.append(child)
     if 'pv_cdomlette' in dir(child):
+       #here we try to append an already wrapped node
        self.pv_cdomlette.appendChild(child.pv_cdomlette)
     else:
+       print "là"
        self.pv_cdomlette.appendChild(child)
     self.notify_observers(self)
 
@@ -104,6 +102,12 @@ class CustomDomElement(Observer,Observable):
   def removeAttributeNode(self,node):
     self.pv_cdomlette.removeAttributeNode(self,node)
 
+  def clearChilds(self):
+    for cchild  in self.pv_cdomlette.childNodes:
+       self.pv_cdomlette.removeChild(cchild)
+    self.childNodes.clear()
+    self.sync_with_wrapped
+
   def removeChild(self,child):
     self.pv_cdomlette.removeChild(child.cdomlette)
     self.sync_with_wrapped
@@ -122,7 +126,6 @@ class CustomDomElement(Observer,Observable):
 
   def xpath(self,path):
     return self.__memoized__("xpath",self.pv_cdomlette.xpath(path))
-
 
 # FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'
 
@@ -160,6 +163,15 @@ class Olist(Observable):
   
    def append(self,truc):
     self._contenu.append(truc)
+    #BUT ! if we append a customDom, then we have to return it  after ! take care of the memoizing stuff
+    #if 'pv_cdomlette' in dir(truc):
+    #   #here we try to append an already wrapped node
+    #   print "on doit memoizer ça ! "
+    #   self.pv_memoizing["getitem_%s" % (len(self._contenu)-1)] = truc
+    self.notify_observers(self)
+
+   def clear(self):
+    self._contenu = []
     self.notify_observers(self)
 
    def remove(self,truc):
@@ -191,6 +203,9 @@ class Olist(Observable):
     return self.pv_memoizing[name][1]
 
    def __getitem__(self,i): 
+     retour  = self._contenu.__getitem__(i)
+     if 'pv_cdomlette' in dir(retour):
+       return retour
      return self.__memoized__("getitem_%s" % i,self._contenu.__getitem__(i))
 
    def __contains__(self): return self._contenu.__contains__()
@@ -217,6 +232,7 @@ class Olist(Observable):
      self.notify_observers(self)
      return retour
 
+from Ft.Xml.Lib.XmlString import SplitQName
 
 class CustomDomWriter(DomWriter):
   """ This class is here in order to create special DOM instances from the parsers."""
@@ -229,15 +245,56 @@ class CustomDomWriter(DomWriter):
     self._ownerDoc = CustomDomDocument(self._ownerDoc)
 
 
+  def startElement(self, name, namespace=EMPTY_NAMESPACE, extraNss=None):
+     self._completeTextNode()
+     new_element = self._ownerDoc.createElementNS(namespace, name)
+     self._nodeStack.append(new_element)
+     extraNss = extraNss or {}
+     prefix, localName = SplitQName(name)
+     for prefix in extraNss.keys():
+         if prefix:
+             new_element.setAttributeNS(XMLNS_NAMESPACE,
+                                           'xmlns:'+prefix,
+                                          extraNss[prefix])
+         else:
+             new_element.setAttributeNS(XMLNS_NAMESPACE,
+                                        'xmlns',
+                                        extraNss[None] or u'')
+     return
+
   def endElement(self, name, namespace=EMPTY_NAMESPACE):
     self._completeTextNode()
     new_element = self._nodeStack[-1]
+    print "je supprime %s et " % id(self._nodeStack[-1])
     del self._nodeStack[-1]
-    if new_element.__class__ == CustomDomElement :
-       self._nodeStack[-1].appendChild((new_element))
-    else:
-       self._nodeStack[-1].appendChild(CustomDomElement(new_element))
+    print "le nouvel element est %s" % (id(new_element))
+    self._nodeStack[-1].appendChild((new_element))
+    print "après ajout %s" % (id(self._nodeStack[-1].childNodes[-1]))
     return
+
+  def display_tree(self,current_el=None,depth = 0):
+    if current_el == None : current_el = self._root
+    current_el.sync_with_wrapped()
+    print str(id(current_el)) + '-'*depth + '>' +str(current_el) + "en vrai %s enfants " % len(current_el.childNodes)
+    for child in current_el.childNodes:
+         self.display_tree(current_el=child,depth = depth +1)
+
+  def find_element(self,element,current_el=None):
+    if current_el == None : current_el = self._root
+    if id(current_el) == id(element) : 
+          print "TROUVE !!!!!!!!!!!!!!!!!!!"
+    else:
+       print "je cherche encore..."
+       for child in current_el.childNodes:
+         self.find_element(element,current_el=child)
+   
+    
+
+  def save_state(self):
+    return copy(self._nodeStack)
+    
+  def restore_state(self,new_state):
+    self._nodeStack = new_state
     
   def getLastNode(self):
     return self._nodeStack[-1]
@@ -264,6 +321,21 @@ class DomNodeTest(unittest.TestCase):
     docelement = doc.createElementNS(EMPTY_NAMESPACE, 'racine')
     sourcebis = CustomDomElement(docelement)
     self.NodeEqual(docelement,sourcebis)
+  
+   def testChilds(self):
+    doc = Ft.Xml.cDomlette.implementation.createRootNode('file:///article.xml')
+    docelement = doc.createElementNS(EMPTY_NAMESPACE, 'racine')
+    sourcebis = CustomDomElement(docelement)
+    self.NodeEqual(docelement,sourcebis)
+    sourcebis.appendChild(doc.createElementNS(EMPTY_NAMESPACE, 'fils1'))
+    sourcebis.appendChild(doc.createElementNS(EMPTY_NAMESPACE, 'fils2'))
+    sourcebis.appendChild(doc.createElementNS(EMPTY_NAMESPACE, 'fils3'))
+    sourcebis.appendChild(doc.createElementNS(EMPTY_NAMESPACE, 'fils4'))
+    self.assertEqual(len(sourcebis.childNodes),4)
+    sourcebis.clearChilds()
+    self.assertEqual(len(sourcebis.childNodes),0)
+    self.assertEqual(len(sourcebis.pv_cdomlette.childNodes),0)
+
 
    def testAppend(self):
     doc = Ft.Xml.cDomlette.implementation.createRootNode('file:///article.xml')

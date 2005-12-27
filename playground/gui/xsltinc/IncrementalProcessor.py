@@ -2,6 +2,7 @@
 import Dom
 from ContextTree import ContextTree, ContextTreeNode
 from Observable import *
+from Ft.Xml.Domlette import Print
 
 class IncrementalProcessor(Processor,Observer):
     
@@ -20,6 +21,7 @@ class IncrementalProcessor(Processor,Observer):
       self.contextTree = ContextTree() 
       self.last_result = None
       self.currentRule = None
+      self.our_writer = Dom.CustomDomWriter()
 
     def add_rule(self,rule):
      rule.parent = self.currentRule
@@ -41,42 +43,46 @@ class IncrementalProcessor(Processor,Observer):
     def update(self,obj,arg):
       #Called when an observed Node change and then will need re-evaluation
       print "un noeud qui a changé! !"
-      self.changed_nodes.append((obj,obj.get_first_nodetest()))
+      self.changed_nodes.append(obj.get_first_nodetest())
    
 
 
     def runNode(self,DomNode):
       """ classic XSLT transformation """
-      writer = Dom.CustomDomWriter()
-      Processor.runNode(self,DomNode,writer=writer)
-      self.last_result = writer.getResult()
+      self.first_pass = True
+      self.our_writer = Dom.CustomDomWriter()
+      Processor.runNode(self,DomNode,writer=self.our_writer)
+      self.last_result = self.our_writer.getResult()
       self.first_pass = False
-      return writer.getResult()
+      self.our_writer.display_tree()
+      return self.our_writer.getResult()
  
-    def check_the_rules(self,DomNode,currentRule= None):
+    def check_the_rules(self,DomNodes,currentRule= None):
       if not currentRule : currentRule = self.currentRule
-      if currentRule.match(DomNode):
-         currentRule.execute(DomNode)
-      else:
-         for rule in currentRule.childNodes:
-           self.check_the_rules(DomNode,currentRule=rule)
+      for node in DomNodes:
+        if currentRule.match(node):
+           currentRule.execute(node)
+      for rule in currentRule.childNodes:
+        self.check_the_rules(DomNodes,currentRule=rule)
      
 
     def runNodeInc(self,DomNode):
       """ incremental XSLT transformation """
-      writer = Dom.CustomDomWriter()
+      self.writers = [self.our_writer]
       if len(self.changed_nodes) == 0:
          print "Aucun noeud n'a changé dans l'arbre source : rien à faire."
          return self.last_result
       print "Exécution : %s noeuds ont changés." % len(self.changed_nodes)
       #now incremental transformation
-      for n in self.changed_nodes:
-         print "type of changed nodes : %s" % n[1].nodeName
-         #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
-         self.check_the_rules(n[0])
+      #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
+      self.check_the_rules(self.changed_nodes)
       # FIXME: we should return the last generated tree but updated ;)
       self.changed_nodes = []
-      return self.last_result
+      self.our_writer.display_tree()
+      #self.our_writer = Dom.CustomDomWriter()
+      #Processor.runNode(self,DomNode,writer=self.our_writer)
+      #self.last_result = self.our_writer.getResult()
+      return self.our_writer.getResult()
       
     def set_observing(self,domNode):
       """ this method make the processor "spy" the nodes for further changes"""
