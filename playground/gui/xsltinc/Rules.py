@@ -35,6 +35,9 @@ class AgregatedRule(ReevaluationRule):
     for r in self.rules:
        if r.match(node): return True
     return False
+ 
+  def __repr__(self):
+    return "Agregated rule %s and %s" % (self.rules[0].nodeTestName,self.rules[1].nodeTestName)
 
   def execute(self,node):
     self.processor.our_writer.restore_state(self.writer_state) # preparing the writer.
@@ -63,7 +66,7 @@ class NodeTestRule(ReevaluationRule):
     self.processor.our_writer._completeTextNode()
   
   def __repr__(self):
-    return ("Test de type de noeud : %s le context %s" % (self.nodeTestName, self.context))
+    return ("Test de type de noeud : %s " % (self.nodeTestName))
 
 class CountTestRule(NodeTestRule):
   def __init__(self,nodeType,size):

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<book><title>Titre du livre</title><authors><person><lastname>Normand</lastname><firstname>Nicolas</firstname></person><person><lastname>David</lastname><firstname>Jérôme</firstname></person><person><lastname>Lehn</lastname><firstname>Rémi</firstname></person><person><lastname>Brun</lastname><firstname>Cédric</firstname></person><person><lastname>Barbero</lastname><firstname>Mikaël</firstname></person><dog><name>Plutot</name></dog></authors>
+<book>
+<titre>Titre du livre</titre>
+<authors><person><lastname>Normand</lastname><firstname>Nicolas</firstname></person><person><lastname>David</lastname><firstname>Jérôme</firstname></person><person><lastname>Lehn</lastname><firstname>Rémi</firstname></person><person><lastname>Brun</lastname><firstname>Cédric</firstname></person><person><lastname>Barbero</lastname><firstname>Mikaël</firstname></person><dog><name>Plutot</name></dog></authors>
 <section>
   <title> Premier titre </title>
   <para>

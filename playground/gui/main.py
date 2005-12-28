@@ -7,6 +7,7 @@ from Ft.Xml.Domlette import Print
 from xsltinc.Observable import *
 import xsltinc
 import xsltinc.Dom
+from copy import copy
 
 import weaving
 
@@ -55,8 +56,12 @@ class ObsListItem(QListViewItem,Observer):
     QListViewItem.paintCell(self, p, cg, column,width,align)
 
   def create_childs(self):
-   for node in self.model.childNodes:
-        self.childs.append(ObsListItem(self,node,self.window))
+   # the following is a trick to keep the correct order
+   copie = []
+   for i in self.model.childNodes:
+      copie.append(i)
+   while len(copie) > 0:
+       self.childs.append(ObsListItem(self,copie.pop(),self.window))
 
   def init_changed(self):
     self.changed = False
@@ -69,9 +74,16 @@ class ObsListItem(QListViewItem,Observer):
    else:
      self.colorName = "red"
 
+  def delete_child(self,child):
+    self.model.removeChild(child.model)
+    self.takeItem(child)
+    #for i in range(0,len(self.childs)-1):
+    #  if id(self.childs[i]) == id(child):
+    #    self.childs[i].hide()
+     
 
   def delete_node(self):
-    pass
+    self.parent().delete_child(self)
 
   def add_node(self):
     pass
@@ -85,8 +97,8 @@ class ListItemMenu(QPopupMenu):
   def __init__(self):
     QPopupMenu.__init__(self)
     self.insertItem("Edit node",self.editSlot)
-    self.insertItem("Add  Node",self.addSlot)
-    self.insertItem("Delete Node",self.delSlot)
+    #self.insertItem("Add  Node",self.addSlot)
+    #self.insertItem("Delete Node",self.delSlot)
     self.item = None
 
   def display(self,item,position): #position is a QPoint
@@ -164,6 +176,10 @@ class MainWin(DemoView,Observer):
     self.ButtTransform2.connect(self.ButtTransform2,SIGNAL("clicked()"),self.model.runInc)
     self.connect(self.SourceListView,SIGNAL("contextMenuRequested(QListViewItem*, const QPoint&, int)"),self.open_context_menu)
     self.connect(self.SourceListView,SIGNAL("itemRenamed(QListViewItem* , int)"),self.item_renamed)
+    self.SourceListView.setSorting(-1)
+    self.TargetListView.setSorting(-1)
+    self.TransfoListView.setSorting(-1)
+    self.DepsListView.setSorting(-1)
     self.update_source_view()
     self.update_transfo_view()
     self.update(self.model,None)

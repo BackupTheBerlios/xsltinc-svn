@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'demo.ui'
 #
-# Created: mar nov 29 19:21:47 2005
+# Created: mer déc 28 16:00:22 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,9 +21,9 @@ class DemoView(QMainWindow):
 
 
         self.setCentralWidget(QWidget(self,"qt_central_widget"))
+        DemoViewLayout = QGridLayout(self.centralWidget(),1,1,11,6,"DemoViewLayout")
 
         self.groupBox1 = QGroupBox(self.centralWidget(),"groupBox1")
-        self.groupBox1.setGeometry(QRect(11,11,225,402))
         self.groupBox1.setColumnLayout(0,Qt.Vertical)
         self.groupBox1.layout().setSpacing(6)
         self.groupBox1.layout().setMargin(11)
@@ -35,18 +35,13 @@ class DemoView(QMainWindow):
         self.SourceListView.setAcceptDrops(1)
         groupBox1Layout.addWidget(self.SourceListView)
 
-        self.ButtTransform1 = QPushButton(self.centralWidget(),"ButtTransform1")
-        self.ButtTransform1.setGeometry(QRect(20,430,161,21))
+        DemoViewLayout.addMultiCellWidget(self.groupBox1,0,1,0,2)
 
         self.textLabel1 = QLabel(self.centralWidget(),"textLabel1")
-        self.textLabel1.setGeometry(QRect(20,490,40,20))
 
-        self.ButtTransform2 = QPushButton(self.centralWidget(),"ButtTransform2")
-        self.ButtTransform2.setEnabled(0)
-        self.ButtTransform2.setGeometry(QRect(20,459,161,21))
+        DemoViewLayout.addWidget(self.textLabel1,3,0)
 
         self.groupBox1_2 = QGroupBox(self.centralWidget(),"groupBox1_2")
-        self.groupBox1_2.setGeometry(QRect(560,10,225,402))
         self.groupBox1_2.setColumnLayout(0,Qt.Vertical)
         self.groupBox1_2.layout().setSpacing(6)
         self.groupBox1_2.layout().setMargin(11)
@@ -58,8 +53,9 @@ class DemoView(QMainWindow):
         self.TargetListView.setAcceptDrops(1)
         groupBox1_2Layout.addWidget(self.TargetListView)
 
+        DemoViewLayout.addMultiCellWidget(self.groupBox1_2,0,1,4,4)
+
         self.groupBox1_2_2 = QGroupBox(self.centralWidget(),"groupBox1_2_2")
-        self.groupBox1_2_2.setGeometry(QRect(240,10,320,190))
         self.groupBox1_2_2.setColumnLayout(0,Qt.Vertical)
         self.groupBox1_2_2.layout().setSpacing(6)
         self.groupBox1_2_2.layout().setMargin(11)
@@ -71,11 +67,9 @@ class DemoView(QMainWindow):
         self.TransfoListView.setAcceptDrops(1)
         groupBox1_2_2Layout.addWidget(self.TransfoListView)
 
-        self.TimeBar = QProgressBar(self.centralWidget(),"TimeBar")
-        self.TimeBar.setGeometry(QRect(70,490,710,22))
+        DemoViewLayout.addWidget(self.groupBox1_2_2,0,3)
 
         self.groupBox1_2_2_2 = QGroupBox(self.centralWidget(),"groupBox1_2_2_2")
-        self.groupBox1_2_2_2.setGeometry(QRect(240,200,320,210))
         self.groupBox1_2_2_2.setColumnLayout(0,Qt.Vertical)
         self.groupBox1_2_2_2.layout().setSpacing(6)
         self.groupBox1_2_2_2.layout().setMargin(11)
@@ -86,6 +80,22 @@ class DemoView(QMainWindow):
         self.DepsListView.addColumn(self.__tr("Rule"))
         self.DepsListView.setAcceptDrops(1)
         groupBox1_2_2_2Layout.addWidget(self.DepsListView)
+
+        DemoViewLayout.addWidget(self.groupBox1_2_2_2,1,3)
+
+        self.TimeBar = QProgressBar(self.centralWidget(),"TimeBar")
+        self.TimeBar.setProgress(50)
+
+        DemoViewLayout.addMultiCellWidget(self.TimeBar,3,3,1,4)
+
+        self.ButtTransform1 = QPushButton(self.centralWidget(),"ButtTransform1")
+
+        DemoViewLayout.addMultiCellWidget(self.ButtTransform1,2,2,0,1)
+
+        self.ButtTransform2 = QPushButton(self.centralWidget(),"ButtTransform2")
+        self.ButtTransform2.setEnabled(0)
+
+        DemoViewLayout.addMultiCellWidget(self.ButtTransform2,2,2,2,3)
 
 
 
@@ -99,15 +109,15 @@ class DemoView(QMainWindow):
         self.setCaption(self.__tr("XsltInc demonstration"))
         self.groupBox1.setTitle(self.__tr("Source tree"))
         self.SourceListView.header().setLabel(0,self.__tr("Node"))
-        self.ButtTransform1.setText(self.__tr("Initial transform"))
         self.textLabel1.setText(self.__tr("Time :"))
-        self.ButtTransform2.setText(self.__tr("Incremental transform"))
         self.groupBox1_2.setTitle(self.__tr("Target tree"))
         self.TargetListView.header().setLabel(0,self.__tr("Node"))
         self.groupBox1_2_2.setTitle(self.__tr("Transformation tree"))
         self.TransfoListView.header().setLabel(0,self.__tr("Node"))
         self.groupBox1_2_2_2.setTitle(self.__tr("Dependancies tree"))
         self.DepsListView.header().setLabel(0,self.__tr("Rule"))
+        self.ButtTransform1.setText(self.__tr("Initial transform"))
+        self.ButtTransform2.setText(self.__tr("Incremental transform"))
 
 
     def __tr(self,s,c = None):

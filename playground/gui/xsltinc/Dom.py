@@ -97,7 +97,11 @@ class CustomDomElement(Observable):
     self.childNodes.clear()
 
   def removeChild(self,child):
-    self.pv_cdomlette.removeChild(child.cdomlette)
+    self.pv_cdomlette.removeChild(child.pv_cdomlette)
+    for i in range(0,len(self.childNodes)-1):
+      if id(self.childNodes[i]) == id(child):
+       del self.childNodes[i]
+    self.notify_observers(self)
 
   def replaceChild(self,child):
     self.pv_cdomlette.replaceChild(child.cdomlette)
@@ -190,6 +194,9 @@ class Olist(Observable):
    def __delslice__(self,truc):
      self._contenu.__delslice__(truc)
      self.notify_observers(self)
+  
+   def __delitem__(self,item):
+     self._contenu.__delitem__(item)
 
    def __setitem__(self,truc):
      self._contenu.__setitem__(truc)

@@ -7,13 +7,20 @@
   </html>
 </xsl:template>
 
+
+<xsl:template match="book">
+   <h1><xsl:value-of select="titre"/></h1>
+      <xsl:apply-templates/>
+</xsl:template>
+
+
 <xsl:template match="authors">
    <h2>Auteurs</h2>
   <ul><xsl:apply-templates select="person"/></ul>
 </xsl:template>
 
 <xsl:template match="person">
-  <li><xsl:value-of select="firstname"/><xsl:text>_</xsl:text><xsl:value-of select="lastname"/></li>
+  <li><xsl:value-of select="firstname"/><xsl:text>~</xsl:text><xsl:value-of select="lastname"/></li>
 </xsl:template>
 
 <xsl:template match="section">
@@ -23,6 +30,9 @@
        <xsl:value-of select="para"/>
      </p>
   </div>
+</xsl:template>
+
+<xsl:template match="titre">
 </xsl:template>
 
 </xsl:stylesheet>

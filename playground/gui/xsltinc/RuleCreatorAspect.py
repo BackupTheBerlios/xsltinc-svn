@@ -17,7 +17,7 @@ class RuleCreator(AbstractAspect):
         self.depth = 0
 
     def before(self, wobj, context, *args, **kwargs):
-        """Before method : we have to store the context.
+        """Before method : This method is called before "instantiate". It create some reevaluation rules if needed.
         """       
         processor = args[1]
         if (processor.first_pass == True):
@@ -48,6 +48,6 @@ class RuleCreator(AbstractAspect):
         if processor.currentRule:
           processor.currentRule.endText = processor.our_writer._currText
         if (processor.first_pass == True):
-         if hasattr(wobj,'_select'): 
+         if hasattr(wobj,'_select') and wobj._select : 
           self.depth -= 1
           processor.upper_node()
