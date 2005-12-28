@@ -21,7 +21,7 @@ class RuleCreator(AbstractAspect):
         """       
         processor = args[1]
         if (processor.first_pass == True):
-         if hasattr(wobj,'_select'): # we have got a select attribute, then we can deduce rules.
+         if hasattr(wobj,'_select') and wobj._select: # we have got a select attribute, then we can deduce rules.
            #this is the concerned nodetype node_test_expr(wobj._select.original)
            XsltContext = copy(args[0])
            new_rule = NodeTestRule(XsltContext,wobj,processor,node_test_expr(str(wobj._select.original)))
@@ -45,7 +45,8 @@ class RuleCreator(AbstractAspect):
         
     def after(self, wobj, context, *args, **kwargs):        
         processor = args[1]
-        processor.currentRule.endText = processor.our_writer._currText
+        if processor.currentRule:
+          processor.currentRule.endText = processor.our_writer._currText
         if (processor.first_pass == True):
          if hasattr(wobj,'_select'): 
           self.depth -= 1

@@ -50,10 +50,8 @@ class IncrementalProcessor(Processor,Observer):
 
     def update(self,obj,arg):
       #Called when an observed Node change and then will need re-evaluation
-      print "un noeud qui a changé! !"
       self.changed_nodes.append(obj.get_first_nodetest())
    
-
 
     def runNode(self,DomNode):
       """ classic XSLT transformation """
@@ -62,7 +60,6 @@ class IncrementalProcessor(Processor,Observer):
       Processor.runNode(self,DomNode,writer=self.our_writer)
       self.last_result = self.our_writer.getResult()
       self.first_pass = False
-      #self.our_writer.display_tree()
       return self.our_writer.getResult()
  
     def check_the_rules(self,DomNodes,currentRule= None):
@@ -80,13 +77,10 @@ class IncrementalProcessor(Processor,Observer):
       if len(self.changed_nodes) == 0:
          print "Aucun noeud n'a changé dans l'arbre source : rien à faire."
          return self.last_result
-      print "Exécution : %s noeuds ont changés." % len(self.changed_nodes)
+      print "Exécution incrémentale: %s noeuds ont changés." % len(self.changed_nodes)
       #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
       self.check_the_rules(self.changed_nodes)
       self.changed_nodes = []
-      #self.our_writer = Dom.CustomDomWriter()
-      #Processor.runNode(self,DomNode,writer=self.our_writer)
-      #self.last_result = self.our_writer.getResult()
       return self.our_writer.getResult()
       
     def set_observing(self,domNode):

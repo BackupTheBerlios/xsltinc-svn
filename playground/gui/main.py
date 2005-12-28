@@ -106,10 +106,10 @@ class ListItemMenu(QPopupMenu):
 
 
 class DemoTransformer(Observable):
-  def __init__(self):
+  def __init__(self,source_file="persons.xml",transfo_file="persons_to_xhtml_list.xsl"):
    Observable.__init__(self)
-   self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open("persons.xml")))
-   self.transfo = xsltinc.NonvalidatingReader.parseStream(open("persons_to_xhtml_list.xsl"))
+   self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open(source_file)))
+   self.transfo = xsltinc.NonvalidatingReader.parseStream(open(transfo_file))
    self.xsltproc = xsltinc.IncrementalProcessor()
    self.xsltproc.set_observing(self.source)
    self.xsltproc.appendStylesheetNode(self.transfo)
@@ -204,7 +204,13 @@ class MainWin(DemoView,Observer):
 
 def main(args):
  app=QApplication(args)
- demo = DemoTransformer()
+ if len(args) ==1:
+   demo = DemoTransformer()
+ elif len(args) != 3:
+   print "USAGE : main.py xml_source_file xslt_stylesheet"
+   sys.exit(0)
+ else:
+   demo = DemoTransformer(args[1],args[2])
  mainWin = MainWin(demo)
  mainWin.show()
 

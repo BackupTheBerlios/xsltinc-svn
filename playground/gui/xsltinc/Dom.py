@@ -3,17 +3,14 @@ import Ft.Xml.cDomlette
 from Observable import *
 from copy import copy
 
-class CustomDomElement(Observer,Observable):
+class CustomDomElement(Observable):
   """ This class extend the cDomlette Element adding an Observable behavior.
-     It is an Observer because it keep an eye on it's childs
   """
   def __init__(self,cDomElement):
-    self.__wrapped_attributes = ["nodeType","tagName","localName"]
     Observable.__init__(self)
-    Observer.__init__(self)
-    self.pv_cdomlette= cDomElement
-    self.pv_memoizing=  dict() #t
-    self.sync_with_wrapped
+    self.pv_cdomlette= cDomElement # the wrapped builtin instance
+    self.pv_memoizing=  dict() #used to keep track of returned generated instance.
+                               #if firstChild() return an instance, it should return the same after.
     self.childNodes = Olist(self.pv_cdomlette.childNodes)
 
   def __getattr__(self,attr):
@@ -30,13 +27,8 @@ class CustomDomElement(Observer,Observable):
      # looking for the first parent having a type
      parent = self.parentNode
      while parent and parent.nodeType != 1:
-       print parent.nodeType
        parent = parent.parentNode
      return parent
-
-  def sync_with_wrapped(self):
-    if len(self.childNodes) != len(self.pv_cdomlette.childNodes):
-      print "~~~~~~~~~~~~~~~~~~~~~~~ERREUR ! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
   def __memoized__(self,name,value):
     if name in self.pv_memoizing.keys():
@@ -58,7 +50,6 @@ class CustomDomElement(Observer,Observable):
        #here we try to append an already wrapped node
        self.pv_cdomlette.appendChild(child.pv_cdomlette)
     else:
-       print "là"
        self.pv_cdomlette.appendChild(child)
     self.notify_observers(self)
 
@@ -79,7 +70,6 @@ class CustomDomElement(Observer,Observable):
 
   def insertBefore(self,node):
     self.pv_cdomlette.insertBefore(node)
-    self.sync_with_wrapped
 
   def isSameNode(self,node):
     return id(self) == id(node) or id(self.pv_cdomlette) == id(node)
@@ -97,7 +87,6 @@ class CustomDomElement(Observer,Observable):
 
   def removeAttributeNS(self):
     self.pv_cdomlette.removeAttributeNS()
-    self.sync_with_wrapped
 
   def removeAttributeNode(self,node):
     self.pv_cdomlette.removeAttributeNode(self,node)
@@ -106,17 +95,12 @@ class CustomDomElement(Observer,Observable):
     for cchild  in self.pv_cdomlette.childNodes:
        self.pv_cdomlette.removeChild(cchild)
     self.childNodes.clear()
-    self.sync_with_wrapped
 
   def removeChild(self,child):
     self.pv_cdomlette.removeChild(child.cdomlette)
-    self.sync_with_wrapped
 
   def replaceChild(self,child):
     self.pv_cdomlette.replaceChild(child.cdomlette)
-    self.sync_with_wrapped
-
-
 
   def setAttributeNS(self,attr,namespace):
     pass
@@ -126,8 +110,6 @@ class CustomDomElement(Observer,Observable):
 
   def xpath(self,path):
     return self.__memoized__("xpath",self.pv_cdomlette.xpath(path))
-
-# FIXME : all members are  - appendChild', 'attributes', 'baseURI', 'childNodes', 'cloneNode', 'firstChild', 'getAttributeNS', 'getAttributeNodeNS', 'hasAttributeNS', 'hasChildNodes', 'insertBefore', 'isSameNode', 'lastChild', 'localName', 'namespaceURI', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'normalize', 'ownerDocument', 'parentNode', 'prefix', 'previousSibling', 'removeAttributeNS', 'removeAttributeNode', 'removeChild', 'replaceChild', 'rootNode', 'setAttributeNS', 'setAttributeNodeNS', 'tagName', 'xmlBase', 'xpath', 'xpathAttributes', 'xpathNamespaces'
 
 
 class CustomDomDocument(CustomDomElement):
@@ -163,11 +145,6 @@ class Olist(Observable):
   
    def append(self,truc):
     self._contenu.append(truc)
-    #BUT ! if we append a customDom, then we have to return it  after ! take care of the memoizing stuff
-    #if 'pv_cdomlette' in dir(truc):
-    #   #here we try to append an already wrapped node
-    #   print "on doit memoizer ça ! "
-    #   self.pv_memoizing["getitem_%s" % (len(self._contenu)-1)] = truc
     self.notify_observers(self)
 
    def clear(self):
@@ -190,10 +167,10 @@ class Olist(Observable):
    def __lt__(self): return self._contenu.__lt__()
    def __ge__(self): return self._contenu.__ge__()
    def __gt__(self): return self._contenu.__gt__()
-   #def __iter__(self): 
-   #  print "#######  ITER ############"
-   #  return self.__memoized__("iter",self._contenu.__iter__())
+
    def __getslice__(self,i): return self._contenu.__getslice__(i)
+    
+   # __iter__ is tricky to wrap and not needed, only here for performances...
 
    def __memoized__(self,name,value):
     if name in self.pv_memoizing.keys():
@@ -272,7 +249,6 @@ class CustomDomWriter(DomWriter):
 
   def display_tree(self,current_el=None,depth = 0):
     if current_el == None : current_el = self._root
-    current_el.sync_with_wrapped()
     print str(id(current_el)) + '-'*depth + '>' +str(current_el) + "en vrai %s enfants " % len(current_el.childNodes)
     for child in current_el.childNodes:
          self.display_tree(current_el=child,depth = depth +1)
@@ -283,7 +259,7 @@ class CustomDomWriter(DomWriter):
   def restore_state(self,new_state):
     self._nodeStack = new_state[2]
     self._currElement = new_state[0]
-    self._currText = new_state[1] # if you restore this one you will crush the regenerated partial content
+    self._currText = new_state[1] 
     
   def getLastNode(self):
     return self._nodeStack[-1]
