@@ -12,6 +12,7 @@ class ReevaluationRule:
     self.xsltNode = xslt
     self.processor = processor
     self.writer_state = None
+    self.endText = ""
     self.nodeType = 1
 
   def match(self,node):
@@ -36,11 +37,13 @@ class AgregatedRule(ReevaluationRule):
     return False
 
   def execute(self,node):
-    self.processor.our_writer.restore_state(self.writer_state)
-    self.targetNode.clearChilds()
-    for r in self.rules:
-       r.xsltNode.instantiate(self.context,self.processor)
-    self.processor.our_writer._completeTextNode()
+    self.processor.our_writer.restore_state(self.writer_state) # preparing the writer.
+    self.targetNode.clearChilds() #cleaning the target node
+    diff = self.rules[1].endText.replace(self.rules[0].endText,'') #calculating the inter-nodes data
+    self.rules[0].xsltNode.instantiate(self.context,self.processor)
+    self.processor.our_writer._currText += diff # here we put back the interdata
+    self.rules[1].xsltNode.instantiate(self.context,self.processor)
+    self.processor.our_writer._completeTextNode() #finishing
 
 
 class NodeTestRule(ReevaluationRule):

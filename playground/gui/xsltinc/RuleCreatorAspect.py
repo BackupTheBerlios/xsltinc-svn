@@ -24,7 +24,6 @@ class RuleCreator(AbstractAspect):
          if hasattr(wobj,'_select'): # we have got a select attribute, then we can deduce rules.
            #this is the concerned nodetype node_test_expr(wobj._select.original)
            XsltContext = copy(args[0])
-           #slow down ! print dir(XsltContext)
            new_rule = NodeTestRule(XsltContext,wobj,processor,node_test_expr(str(wobj._select.original)))
            print node_test_expr(str(wobj._select.original))
            new_rule.targetNode =  processor.our_writer.getLastNode()
@@ -32,13 +31,13 @@ class RuleCreator(AbstractAspect):
            if (processor.our_writer.is_dependant()):
                print "AGREGATION DE REGLES"
                agreg_rule = AgregatedRule(processor.currentRule.childNodes[-1].context,wobj,processor)
+               new_rule.endText = processor.our_writer._currText #in order to keep generated inter-data
                agreg_rule.add_rule(processor.currentRule.childNodes[-1])
                agreg_rule.add_rule(new_rule)
                agreg_rule.writer_state = processor.currentRule.childNodes[-1].writer_state
                agreg_rule.targetNode = processor.currentRule.childNodes[-1].targetNode
                agreg_rule.parent = processor.currentRule.childNodes[-1].parent
                processor.replace_last_rule(agreg_rule)
-               #FIXME
            else:
                processor.add_rule(new_rule)
            self.depth += 1
@@ -46,8 +45,7 @@ class RuleCreator(AbstractAspect):
         
     def after(self, wobj, context, *args, **kwargs):        
         processor = args[1]
-        #print "final text : %s" % processor.our_writer._currText
-        #print "starting text = %s" % processor.currentRule.writer_state[1]
+        processor.currentRule.endText = processor.our_writer._currText
         if (processor.first_pass == True):
          if hasattr(wobj,'_select'): 
           self.depth -= 1

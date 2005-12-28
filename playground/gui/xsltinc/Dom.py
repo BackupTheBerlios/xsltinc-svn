@@ -226,7 +226,6 @@ class Olist(Observable):
      self._contenu.__reduce__(truc)
      self.notify_observers(self)
 
-
    def pop(self):
      retour = self._contenu.pop()
      self.notify_observers(self)
@@ -278,15 +277,6 @@ class CustomDomWriter(DomWriter):
     for child in current_el.childNodes:
          self.display_tree(current_el=child,depth = depth +1)
 
-  def find_element(self,element,current_el=None):
-    if current_el == None : current_el = self._root
-    if id(current_el) == id(element) : 
-          print "TROUVE !!!!!!!!!!!!!!!!!!!"
-    else:
-       print "je cherche encore..."
-       for child in current_el.childNodes:
-         self.find_element(element,current_el=child)
-   
   def save_state(self):
     return (self._currElement, self._currText,copy(self._nodeStack))
     
