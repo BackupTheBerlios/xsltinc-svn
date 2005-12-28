@@ -31,11 +31,19 @@ class IncrementalProcessor(Processor,Observer):
        rule.parent  = rule
      self.currentRule = rule
 
+    def replace_last_rule(self,rule):
+     """ replace the last added rule with a new one. """
+     # we have to replace currentRule with rule.
+     #first we should change it in the parent
+     del self.currentRule.parent.childNodes[-1]
+     self.currentRule.parent.childNodes.append(rule)
+     self.currentRule = self.currentRule.parent
+
     def upper_node(self):
-      self.currentRule = self.currentRule.parent
+     self.currentRule = self.currentRule.parent
 
     def clear_rules(self):
-      self.currentRule = None
+     self.currentRule = None
    
     def applyTemplates(self, context, params=None):
       Processor.applyTemplates(self, context, params=params)
@@ -54,7 +62,7 @@ class IncrementalProcessor(Processor,Observer):
       Processor.runNode(self,DomNode,writer=self.our_writer)
       self.last_result = self.our_writer.getResult()
       self.first_pass = False
-      self.our_writer.display_tree()
+      #self.our_writer.display_tree()
       return self.our_writer.getResult()
  
     def check_the_rules(self,DomNodes,currentRule= None):

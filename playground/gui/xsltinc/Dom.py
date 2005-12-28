@@ -244,6 +244,8 @@ class CustomDomWriter(DomWriter):
     self._currText = ''
     self._ownerDoc = CustomDomDocument(self._ownerDoc)
 
+  def is_dependant(self):
+    return self._currText != ""
 
   def startElement(self, name, namespace=EMPTY_NAMESPACE, extraNss=None):
      self._completeTextNode()
@@ -265,11 +267,8 @@ class CustomDomWriter(DomWriter):
   def endElement(self, name, namespace=EMPTY_NAMESPACE):
     self._completeTextNode()
     new_element = self._nodeStack[-1]
-    print "je supprime %s et " % id(self._nodeStack[-1])
     del self._nodeStack[-1]
-    print "le nouvel element est %s" % (id(new_element))
     self._nodeStack[-1].appendChild((new_element))
-    print "après ajout %s" % (id(self._nodeStack[-1].childNodes[-1]))
     return
 
   def display_tree(self,current_el=None,depth = 0):
@@ -294,7 +293,7 @@ class CustomDomWriter(DomWriter):
   def restore_state(self,new_state):
     self._nodeStack = new_state[2]
     self._currElement = new_state[0]
-    self._currText = new_state[1]
+    self._currText = new_state[1] # if you restore this one you will crush the regenerated partial content
     
   def getLastNode(self):
     return self._nodeStack[-1]

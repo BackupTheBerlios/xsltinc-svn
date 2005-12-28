@@ -22,6 +22,27 @@ class ReevaluationRule:
     pass
 
 
+class AgregatedRule(ReevaluationRule):
+  def  __init__(self,context,xslt,processor):
+    ReevaluationRule.__init__(self,context,xslt,processor)
+    self.rules = []
+
+  def add_rule(self,rule):
+    self.rules.append(rule)
+
+  def match(self,node):
+    for r in self.rules:
+       if r.match(node): return True
+    return False
+
+  def execute(self,node):
+    self.processor.our_writer.restore_state(self.writer_state)
+    self.targetNode.clearChilds()
+    for r in self.rules:
+       r.xsltNode.instantiate(self.context,self.processor)
+    self.processor.our_writer._completeTextNode()
+
+
 class NodeTestRule(ReevaluationRule):
   def  __init__(self,context,xslt,processor,name):
     ReevaluationRule.__init__(self,context,xslt,processor)
@@ -29,14 +50,12 @@ class NodeTestRule(ReevaluationRule):
 
   def match(self,node):
    """ return True if the given node match the rule """
-   if node.localName == self.nodeTestName:
-     print (node.localName, self.nodeTestName)
    return node.localName == self.nodeTestName
 
   def execute(self,node):
-    self.targetNode.clearChilds()
     self.processor.our_writer.restore_state(self.writer_state)
-    self.processor.our_writer._nodeStack[-1].clearChilds()
+    self.targetNode.clearChilds()
+    #self.processor.our_writer._nodeStack[-1].clearChilds()
     self.xsltNode.instantiate(self.context,self.processor)
     self.processor.our_writer._completeTextNode()
   
