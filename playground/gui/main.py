@@ -103,13 +103,13 @@ class ListItemMenu(QPopupMenu):
   def delSlot(self):
     self.item.delete_node()
 
-
+from Ft.Xml import EMPTY_NAMESPACE
 
 class DemoTransformer(Observable):
   def __init__(self,source_file="persons.xml",transfo_file="persons_to_xhtml_list.xsl"):
    Observable.__init__(self)
-   self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open(source_file)))
-   self.transfo = xsltinc.NonvalidatingReader.parseStream(open(transfo_file))
+   self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open(source_file),stripElements=[(EMPTY_NAMESPACE, '*', 1)]))
+   self.transfo = xsltinc.NonvalidatingReader.parseStream(open(transfo_file),stripElements=[(EMPTY_NAMESPACE, '*', 1)])
    self.xsltproc = xsltinc.IncrementalProcessor()
    self.xsltproc.set_observing(self.source)
    self.xsltproc.appendStylesheetNode(self.transfo)
