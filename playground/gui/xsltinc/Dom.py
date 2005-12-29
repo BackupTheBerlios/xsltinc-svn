@@ -12,6 +12,8 @@ class CustomDomElement(Observable):
     self.pv_memoizing=  dict() #used to keep track of returned generated instance.
                                #if firstChild() return an instance, it should return the same after.
     self.childNodes = Olist(self.pv_cdomlette.childNodes)
+    self.pv_deleted = False
+    self.pv_last_generator = None
 
   def __getattr__(self,attr):
     if attr.startswith('pv_') or attr == "childNodes" : 
@@ -100,7 +102,11 @@ class CustomDomElement(Observable):
     self.pv_cdomlette.removeChild(child.pv_cdomlette)
     for i in range(0,len(self.childNodes)-1):
       if id(self.childNodes[i]) == id(child):
+       toto = self.childNodes[i]
+       toto.pv_deleted = True
+       self.notify_observers(toto)
        del self.childNodes[i]
+       print "coucou %s" % toto
     self.notify_observers(self)
 
   def replaceChild(self,child):

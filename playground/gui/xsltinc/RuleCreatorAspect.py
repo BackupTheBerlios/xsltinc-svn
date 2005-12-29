@@ -27,6 +27,7 @@ class RuleCreator(AbstractAspect):
            new_rule = NodeTestRule(XsltContext,wobj,processor,node_test_expr(str(wobj._select.original)))
            print node_test_expr(str(wobj._select.original))
            new_rule.targetNode =  processor.our_writer.getLastNode()
+           XsltContext.node.pv_last_generator =  new_rule.targetNode
            new_rule.writer_state =  processor.our_writer.save_state()
            if (processor.our_writer.is_dependant()):
                print "AGREGATION DE REGLES"
@@ -36,6 +37,7 @@ class RuleCreator(AbstractAspect):
                agreg_rule.add_rule(new_rule)
                agreg_rule.writer_state = processor.currentRule.childNodes[-1].writer_state
                agreg_rule.targetNode = processor.currentRule.childNodes[-1].targetNode
+               XsltContext.node.pv_last_generator =  agreg_rule.targetNode
                agreg_rule.parent = processor.currentRule.childNodes[-1].parent
                processor.replace_last_rule(agreg_rule)
            else:

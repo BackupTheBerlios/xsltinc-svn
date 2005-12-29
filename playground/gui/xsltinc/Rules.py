@@ -49,6 +49,7 @@ class AgregatedRule(ReevaluationRule):
     self.processor.our_writer._completeTextNode() #finishing
 
 
+
 class NodeTestRule(ReevaluationRule):
   def  __init__(self,context,xslt,processor,name):
     ReevaluationRule.__init__(self,context,xslt,processor)
@@ -61,7 +62,6 @@ class NodeTestRule(ReevaluationRule):
   def execute(self,node):
     self.processor.our_writer.restore_state(self.writer_state)
     self.targetNode.clearChilds()
-    #self.processor.our_writer._nodeStack[-1].clearChilds()
     self.xsltNode.instantiate(self.context,self.processor)
     self.processor.our_writer._completeTextNode()
   

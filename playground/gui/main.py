@@ -98,7 +98,7 @@ class ListItemMenu(QPopupMenu):
     QPopupMenu.__init__(self)
     self.insertItem("Edit node",self.editSlot)
     #self.insertItem("Add  Node",self.addSlot)
-    #self.insertItem("Delete Node",self.delSlot)
+    self.insertItem("Delete Node",self.delSlot)
     self.item = None
 
   def display(self,item,position): #position is a QPoint

@@ -69,13 +69,25 @@ class IncrementalProcessor(Processor,Observer):
     def clear_rules(self):
      self.currentRule = None
    
-  #  def applyTemplates(self, context, params=None):
-  #    Processor.applyTemplates(self, context, params=params)
+    def add_tree(self,current):
+      current.pv_deleted = True
+      self.changed_nodes.append(current)
+      for child in current.childNodes:
+        self.add_tree(child)
+
 
     def update(self,obj,arg):
       """ Called when an observed Node change and then will need re-evaluation"""
       print "un noeud à changé"
-      self.changed_nodes.append(obj.get_first_nodetest())
+      if obj.pv_deleted: #we should put all the deleted tree
+        self.add_tree(current=obj)
+      else:
+        nodetest = obj.get_first_nodetest()
+        if nodetest :
+         self.changed_nodes.append(nodetest)
+        else:
+         self.changed_nodes.append(obj)
+         
    
 
     def runNode(self,DomNode):
@@ -101,6 +113,13 @@ class IncrementalProcessor(Processor,Observer):
            currentRule.execute(node)
       for rule in currentRule.childNodes:
         self.check_the_rules(DomNodes,currentRule=rule)
+
+
+    def delete_node(self,tree,node):
+      for c in tree.childNodes:
+        if node == c:
+         tree.removeChild(node)
+        self.delete_node(c,node)
      
 
     def runNodeInc(self,DomNode):
@@ -110,9 +129,15 @@ class IncrementalProcessor(Processor,Observer):
          print "Aucun noeud n'a changé dans l'arbre source : rien à faire."
          return self.last_result
       print "Exécution incrémentale: %s noeuds ont changés." % len(self.changed_nodes)
+      print self.changed_nodes
       #for each changed node, we have to check all the rules..If one of them match, then We have to run all the execution tree, else, we should check the other rules
       self.go_to_root_rule()
+      #first we look for deleted nodes..
       self.check_the_rules(self.changed_nodes)
+      for c in self.changed_nodes:
+         if hasattr(c,'pv_deleted') and c.pv_deleted and c.pv_last_generator:
+            print "il faudrait supprimer %s" % c.pv_last_generator
+            self.delete_node(self.last_result,c.pv_last_generator)
       self.changed_nodes = []
       self.last_result = self.our_writer.getResult()
       return self.last_result
