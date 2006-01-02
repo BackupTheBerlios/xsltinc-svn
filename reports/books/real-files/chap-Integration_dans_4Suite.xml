@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="integration_dans_4suite">
+	<title>Intégration dans 4Suite</title>
+
+  <para>
+    Introduction...
+  </para>
+
+	<section>
+		<title>Présentation du module 4Suite</title>
+		<para>
+		  ...
+		</para>
+		<section>
+		  <title>4XML</title>
+		</section>
+		<section>
+		  <title>4XSLT</title>
+		</section>
+	</section>
+	
+	<section>
+	  <title>Greffon incrémental</title>
+	  <para>
+	    ...
+	  </para>
+	  <section>
+	    <title>Wrapping des éléments DOM</title>
+	  </section>
+	  <section>
+	    <title>Mémorisation du contexte</title>
+	  </section>
+	  <section>
+	    <title>Règles de ré-évaluation</title>
+	  </section>
+	  <section>
+	    <title>Le processeur incrémental</title>
+	  </section>
+	</section>
+
+</chapter>

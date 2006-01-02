@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="technologies_utilises">
+	<title>Technologies utilisées</title>
+
+  <para>
+    Introduction...  
+  </para>
+	
+	<section>
+	  <title>Python</title>
+	  <para>
+	    Une tite introduction...
+	  </para>
+	  <section>
+	    <title>Un langage dynamique à typage fort</title>
+	  </section>
+	  <section>
+	    <title>Python et l'introspection</title>
+	  </section>
+	</section>
+	
+	<section>
+	  <title>Programmation orientée aspect</title>
+	  <para>
+	    Pourquoi ...
+	  </para>
+	  <section>
+	    <title>Principes</title>
+	  </section>
+	  <section>
+	    <title>Aspect/J</title>
+	  </section>
+	  <section>
+	    <title>Module Aspect de Logilab</title>
+	  </section>
+	</section>
+	
+	<section>
+	  <title>Le cadriciel graphique Qt</title>
+	  <para>
+	    De qui, de quoi ?
+	  </para>
+	  <section>
+	    <title>Présentation générale</title>
+	  </section>
+	  <section>
+	    <title>Le lien Python : PyQt</title>
+	  </section>
+	</section>
+
+</chapter>

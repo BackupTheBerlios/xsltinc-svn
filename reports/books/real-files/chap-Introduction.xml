@@ -1,0 +1,23 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="Introduction">
+	<title>Introduction</title>
+
+	<section>
+		<title>Rappel de la problématique</title>
+		
+		<para>
+			La taille des documents numériques ne cessent de croître. En effet depuis l'avènement du tout numérique, la croissance des données à stocker évolue de manière exponentielle. Bien souvent, ces données nécessitent de multiples traitements afin de les rendre disponibles sur l'éventail des supports actuellement à notre disposition. Or, il est courant que les données d'origine soient amenés à être modifiées, corrigées. Les traitements sont donc totalement ré-exécutés pour de prendre en compte ces modifications. Afin de ne pas considérer les premières applications des traitements comme pure perte de temps, l'idée est de ré-utiliser les résultats précédents et de les mettre à jour de manière intelligente. Ceci est la problématique générale et l'idée que nous souhaitons mettre en oeuvre. Regardons maintenant cette problématique dans le domaine d'application de ce projet, à savoir le génie documentaire.
+		</para>
+		
+		<section>
+		  <title>Le génie documentaire</title>
+		  <para>
+		    Les génie documentaire est un savoir faire...
+		  </para>
+		</section>
+	</section>
+
+</chapter>

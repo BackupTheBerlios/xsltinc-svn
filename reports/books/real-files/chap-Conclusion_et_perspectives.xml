@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="conclusion_et_perspectives">
+	<title>Conclusion et perspectives</title>
+
+  <section>
+    <title>Rappel des objectifs</title>
+  </section>
+
+	<section>
+		<title>Rappel du travail effectué</title>
+	  <section>
+	    <title>Phase 1 : bilbiographie</title>
+	  </section>
+	  <section>
+	    <title>Phase 2 : conception</title>
+	  </section>
+	  <section>
+	    <title>Phase 3 : réalisation</title>
+	  </section>	  
+	</section>
+	
+	<section>
+	  <title>Évaluation</title>
+	</section>
+	
+	<section>
+	  <title>Perspectives</title>
+	</section>
+	
+	<section>
+	  <title>Conclusion</title>
+	</section>
+
+</chapter>

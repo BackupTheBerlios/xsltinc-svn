@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" 
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+                      
+<chapter id="gestion_de_projet">
+	<title>Gestion de projet</title>
+
+	<section>
+		<title>Méthode de développement</title>
+		
+		<para>
+		</para>
+
+	</section>
+	
+	<section>
+	 <title>Répartition des tâches</title>
+	   <para>
+	   
+	   </para>
+	</section>
+	
+	<section>
+	 <title>Diagramme de Gantt</title>
+	</section>
+
+</chapter>

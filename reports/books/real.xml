@@ -11,9 +11,12 @@
 
 	<!-- ===== Main Matter ===== -->
 
-  <!--
-	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Introduction.xml"/>
-	-->
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Introduction.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Technologies_Utilisees.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Integration_dans_4Suite.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Tests_et_validation.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Gestion_de_projet.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/chap-Conclusion_et_perspectives.xml"/>
 	
 	<!-- ===== Back Matter ===== -->
 	
