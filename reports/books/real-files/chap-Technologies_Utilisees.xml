@@ -6,48 +6,183 @@
 	<title>Technologies utilisées</title>
 
   <para>
-    Introduction...  
+    TODO : Introduction...  
   </para>
 	
 	<section>
 	  <title>Python</title>
 	  <para>
-	    Une tite introduction...
+	  Python est un langage de programmation orienté objet, portable et interprété. Son développement a débuté en 1990 au CWI à Amsterdam et continue sour l'égide de la <foreignphrase>Python Software Foundation</foreignphrase>. Le langage à une syntaxe élégante (mais simplifié à outrance) avec un petit nombre de type de haut niveau pré-codé. Python peut-être très facilement étendu en ajoutant de nouveaux modules implémentés dans un langage compilé tel que C ou C++. De telles extensions peuvent définir de nouvelles fonctions et variables ainsi que de nouveaux types d'objets.
 	  </para>
+	  <para>
+	  Python possède un jeu complet d'opérations sur les chaînes de caractères (y compris l'utilisation des expressions régulières) et libère l'utilisateur de la galère de la gestion de la mémoire. Ceci permet entre autre à Python d'en faire un langage idéal pour développer des prototypes et autres tâches de programmation ad-hoc.
+</para>
+<para>
+Python a aussi les capacités suffisantes pour rendre possible l'écriture de grands programmes et ce même s'il n'effectue pas la plupart des vérfications habituellement faite lors de la compilation : un programme peut-être construit par assemblage de nombreux modules, chacun définissant son espace de nommage, et les modules définissant des classes qui encore plus d'encapsulation. La gestion des exceptions rend possible de récupérer les erreurs où cela est requis sans encombrer le code avec de la vérification d'erreur.
+</para>
+<para>
+Un grand nombre de modules d'extensions ont déja été développés pour Python. Certains font partis de la bibliothèque standard utilisable dans n'importe quel programme (par exemple la bibliotèque mathématique). D'autre sont spécifiques à une plate-forme ou un environnement particulier (réseau IP, Unix, X11) ou fournissent des fonctionnalité spécifique à des applications (traitements de l'image et du son).
+</para>
+<para>
+Python fournit aussi des services permettant l'introspection ce qui permet d'écrire un dévermineur ou un profileur (ou tout autre outils de développement) pour Python en Python lui-même. Il y a aussi une façon générique de convertir un objet en un flux d'octets et inversement qui peut-être utilisé pour implémenter la persistance des objets de même que des modèles distribué d'objets.
+	  </para>
+	  <para>
+	     Pour résumer, Python peut se décrire selon les quelques points suivants :
+	  </para>
+	  <itemizedlist>
+	   <listitem><para>langage de script orienté objet,</para></listitem>
+	   <listitem><para>langage dynamique à typage fort,</para></listitem>
+	   <listitem><para>facile à utiliser,</para></listitem>
+	   <listitem><para>facile à lire,</para></listitem>
+	   <listitem><para>multi plate-forme,</para></listitem>
+	   <listitem><para>structure de base du language très puissante,</para></listitem>
+	   <listitem><para>modèle objet clair,</para></listitem>
+	   <listitem><para>open-source et communauté très active.</para></listitem>
+	  </itemizedlist>
+	  <para>
+	  Après cette petite introduction, regardons de plus près les fonctionnalités que nous allons utiliser.
+	  </para>
+	  
 	  <section>
 	    <title>Un langage dynamique à typage fort</title>
+	    <para>
+	      Une des particularités du langage Python est son traitement des types de données (vérification et force). Nous allons essayer de survoler un peu ces caractéristiques et expliquer comment celles-ci nous ont été utiles lors de ce projet. Il nous faut tout d'abord rappeler ce que signifie langage dynamique et typage fort.
+	    </para>
+	    <section>
+	      <title>Langage dynamique vs. langage statique</title>
+	      <para>
+	        La dynamicité (reciproquement la staticité) d'un langage est sa capacité à évaluer lors de l'exécution le type des exécution. En fait, tout langage dont on n'a nulle besoin de préciser les types des variables, paramètres et autres code de retour lors de l'écriture de code est un langage dynamique. Ainsi les langages interprétés tel que Python, Ruby ou encore PHP sont dynamiques. En revanche les langage tel que C/C++, Java ou C# sont statiques.
+	      </para>
+	      <para>
+	        Attention au terme dynamique qui ne se rapporte aucunement au mécanisme de liaison dynamique des langages à objets. C'est le terme employé dans la littérature mais pour être plus précis il faudrait plutôt dire <foreignphrase>langage à évaluation de type automatique lors de l'exécution</foreignphrase> alors que les langages statiques sont quant à eux des <foreignphrase>langages paresseux qui demandent aux programmeurs de préciser les types tout le temps</foreignphrase>.
+	      </para>
+	    </section>
+	    <section>
+	      <title>Typage fort vs. typage faible</title>
+	      <para>
+	        Encore un sujet a polémique. Ces discussions abondent sur les newsgroup dès qu'il s'agit de défendre la paroisse de son langage préféré. La force (appelons la comme ça) d'un typage détermine si le langage inhérent accepte ou non d'envoyer des messages incorrects aux objets<footnote><para>dans le cas d'un langage à objets. Dans le cas d'un langage procédural classique (C par exemple), cela consiterai a passer des paramètres du mauvais type.</para></footnote>. Ainsi, on peut voir C et C++ comme des langages à typage faible puisqu'ils acceptent l'opération de transtypage (dit <foreignphrase>cast</foreignphrase>) vers un mauvais type. Java quant à lui est un langage à typage fort. Il vérifie que toute opération se fait avec des types correctes.
+	      </para>
+	      <para>
+	        Du coté des langages dynamiques, les deux types de typages (<foreignphrase>sic</foreignphrase>) coexistent. Par exemple, PHP possède un typage faible en ce sens où si un objet de possède pas le bon type, l'interpréteur va effectuer le transtypage automatiquement selon des règles prédéfinis. En Python ainsi qu'en Ruby, il faudra par contre obligatoirement envoyer des messages valides.
+	      </para>
+	    </section>
+	    <section>
+	      <title>Conclusion</title>
+	      <para>
+	        Python est donc un langage dynamique à typage fort. Très bien me direz-vous, et alors ? En réalité, ces différentes caractéristiques nous ont été très utiles puisqu'elle permette un développement rapide, robuste et maintenable. En effet, la dynamicité du langage nous assure un développement rapide et maintenable. La robustesse est quant à elle assuré par les différents tests unitaires réalisés.
+	      </para>
+	    </section>
 	  </section>
 	  <section>
-	    <title>Python et l'introspection</title>
+	    <title>Introspection et réflexivité</title>
+	    <para>
+	      Introspection et réflexivité sont souvent confondus à tord. Dans la vie de tout les jours, l'introspection est l'acte de s'auto-analyser. L'introspection réfère à l'examen des de ses propres pensées, sentiments, motivations et actions. Socrate, le philosophe bien connu, a passé la plupart de sa vie a s'auto-analyser encourageant ses congénaires Athéniens à en faire autant. Il clamait même que, pour lui, <foreignphrase>une vie non analysée ne vaut pas d'être vécu</foreignphrase>. 
+	      </para>
+	     <para>Certes, la comparaison avec la philosophie est un peu cavalière, mais qu'importe. En informatique, l'introspection fait référence à la capacité d'examiner un objet afin de déterminer ce qu'il est, ce qu'il sait et ce qu'il est capable de faire. On l'appel aussi reification puisque l'introspection consiste à transformer un concept (le programme interprété) en un objet. L'introspection donne au programmeur une grande flexibilité ainsi qu'un large contrôle. Après avoir travaillé avec un langage qui supporte l'introspection, vous penserez un peu comme Socrate : <foreignphrase>un objet non analysé ne merite pas d'être instancié</foreignphrase>.	      
+	    </para>
+	    <para>
+	      Parlons maintenant un peu de la réflexivité. Nous avons dit au début que introspection et réflexivité étaient différentes. En effet, la réflexivité est la capacité pour un système de modifier son comportement. C'est le mécanisme d'intercession qui consiste à transformer un objet, des données en programme interprété.
+	    </para>
+	    <para>
+	      Ces deux caractéristiques rendent Python extrèmement flexible et nous ont permis de nous greffer sur le module 4Suite sans modification de ce code. En effet, en plus des possibilités de la programmation objet telles que l'héritage et le polymorphisme, nous avons utilisé de la programmation par aspect afin de se greffer sur le code de 4Suite de manière non intrusive et totalement indépendante de son implémentation interne. La seule dépendance qui existe est son API<footnote><para>Application Programming Interface</para></footnote> qui est dans tout le cas la plus petite dépendance requise.
+	    </para>
 	  </section>
 	</section>
 	
 	<section>
 	  <title>Programmation orientée aspect</title>
 	  <para>
-	    Pourquoi ...
+	    Comme dit précédement, nous nous sommes greffer de manière non intrusive sur 4Suite essentiellement grâce à de la programmation par aspect. Afin de présenter de façon claire cette intégration dans le chapitre suivant, nous allons introduire dans la suite de ce texte la programmation orienté aspect.
 	  </para>
 	  <section>
-	    <title>Principes</title>
+	    <title>Introduction</title>
+	    <para>
+	      La programmation orientée aspect est un paradigme de programmation qui permet de réduire fortement les couplages entre les différents aspects techniques d'un logiciel. La programmation orientée aspect est une technologie transverse et n'est pas liée à un langage particulier mais peut être mise en œuvre aussi bien avec un langage orienté objet comme Java qu'avec un langage impératif comme le C, le seul prérequis étant l'existence d'un tisseur d'aspect pour le langage cible.
+	    </para>
+	    <para>
+	     Les techniques actuelles de conception logicielles et de programmation amènent à découper un logiciel en modules techniques a priori indépendants les uns des autres car gérant des aspects différents du système conçu. Par exemple, on aura différents modules pour gérer le gestion des utilisateurs, la persistance etc. Dans la pratique, on s'aperçoit que ces modules sont en fait intimement liés : c'est l'entrecroisement des aspects techniques (aussi nommé préoccupation).
+	    </para>
+	    <para>
+	    Ainsi, une couche logicielle initiallement dédiée à gérer la logique métier applicative, va se retrouver dépendante de modules gérant les aspects transactionnels, journalisation, etc., conduisant à une complexification du code, de son développement et de sa maintenance.
+	    </para>
 	  </section>
 	  <section>
-	    <title>Aspect/J</title>
+	    <title>Principe</title>
+	    <para>
+	      Ainsi, au lieu d'avoir un appel direct à un module technique depuis un module métier, ou entre deux modules techniques différents, en programmation par aspect, le code du module en cours de développement est concentré sur le but poursuivi, tandis qu'un aspect est spécifié de façon autonome, prenant en charge de faire appel au module technique requis à un certain point d'exécution du système.
+	    </para>
+	    <para>
+        Bien sûr, si chaque aspect créé devait lui-même effectuer un appel au modules technique à un point d'exécution explicite, c'est à dire par exemple avec une dépendance directe vers le module métier où devra s'intercaller le code technique, on n'aurait alors fait que décaler le problème.
+      </para>
+      <para>
+        Aussi, l'astuce particulière de la programmation par aspect consiste à utiliser un système d'expressions régulières pour préciser à quel points d'exécution (en anglais, joinpoint) du système l'aspect spécifié devra être activé. Un aspect permet donc de spécifier :
+      </para>
+      <itemizedlist>
+      <listitem>
+        <para>
+        	les points d'action (poincut), qui définissent les points de jonction satisfaisants aux conditions d'activation de l'aspect, donc le ou les moments où l'interaction va avoir lieu,
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          les greffons c'est à dire les programmes (advice) qui seront activés avant, autour de ou après les points d'action définis.
+	      </para>
+	    </listitem>
+	    </itemizedlist>
+	    <para>
+	      Il existe deux grand type de tisseurs d'aspects. Les tisseurs statiques qui ne sont en fait que des générateurs de code ou de pseudo-code comme c'est le cas pour le pionnier est la matière : Aspect/J. Le langage Java n'offrant pas de capacités de d'intercession, il est naturel que Aspect/J soit un tisseur statique. L'autre catégorie de tisseurs comprend les tisseurs dynamiques. C'est le cas du module Aspect de Logilab pour le langage que nous avons utilisé.
+	    </para>
 	  </section>
 	  <section>
 	    <title>Module Aspect de Logilab</title>
+	    <para>
+	      Le module aspect de Logilab<footnote><para>http://www.logilab.org</para></footnote> qui fournit un ensemble minimal de méthode permettant de créer et de tisser des aspects avec du code Python. Le tisseur se base fortement sur les capacités d'introspection et d'intercession de Python. En effet, son tisseur permet de rajouter un comportement avant, autour ou après une méthode particulière d'une classe précise ou pour toutes les méthode d'une classe ou d'un module. Les joinpoints sont donc limité dans leur pouvoir d'expression mais nous n'avions pas besoin de plus.
+	    </para>
+	    <para>
+	      Les aspects quant à eux sont de simples classes héritant de la classe <foreignphrase>AbstractAspect</foreignphrase> permettant de définir les méthodes <emphasis>before()</emphasis>, <emphasis>after()</emphasis> et <emphasis>around()</emphasis> classiquement proposées dans les modules d'aspects. Pour plus d'information concernant ce module, nous renvoyons le lecteur sur le site Web de ce module disponible à l'adresse http://www.logilab.org/projects/aspects
+	    </para>
 	  </section>
 	</section>
 	
 	<section>
 	  <title>Le cadriciel graphique Qt</title>
 	  <para>
-	    De qui, de quoi ?
+	    Qt est une cadriciel (framework en anglais) offrant essentiellement des composants d'interface graphique (widgets), mais également des composants d'accès aux données, de connexions réseaux, de gestion des fils d'exécution, etc. Elle a été développée en C++ par la société Trolltech et est disponible pour les environnements Unix (dont Linux), Windows et Mac OS.
 	  </para>
 	  <section>
 	    <title>Présentation générale</title>
+	    <para>
+	    L'innovation apporté par Qt lors de sa première sortie reposait sur quelques concepts clés toujours valables.
+	    </para>
+      <formalpara>
+        <title>Abstraction complète de l'interface graphique utilisateur</title>
+        <para>
+          Qt utilise son propre moteur de rendu et ses propres contrôleurs. Il émule l'aspect visuel des différentes plate-forme sur lesquelles il tourne. Celà rend le port plus aisé parceque peu de classes dans Qt dépendent réellement de la plate-forme cible. L'inconvénient est bien entendu que Qt se doit d'émuler précisément l'aspect visuel des différentes plate-formes. Celui-ci n'a d'ailleurs plus lieu d'être puisque les nouvelles versions de Qt utilisent les interfaces de styles natives sur les plate-formes cibles pour dessiner les contrôles Qt. 
+        </para>
+      </formalpara>
+      <formalpara>
+        <title>Meta Object Compiler</title>
+        <para>
+          Connu sous le doux nom de moc, cet outil doit-être appliquer sur les sources d'un programme Qt avant sa compilation. Il génère les méta-informations sur les classes utilisés dans le programme. Ces informations sont utilisées par Qt pour fournir des facilités de programmation qui ne sont pas disponibles en C++ : l'introspection et le système de signaux et de slots.
+        </para>
+        <para>
+          L'utilisation d'un outil additionnel a été critiqué par la communauté C++, statuant que la programmation Qt n'était plus du C++. En particulier, le choix d'une implémentation basé sur des macros a été vivement déploré pour son absence de vérification de types et la pollution de l'espace de nommage. Cependant, ceci est vu par Trolltech comme un compromis nécessaire pour fournir l'introspection et la génération dynamique des couples signaux / slots. De plus, lorsque Qt 1 est sorti, les implémentations des templates C++ par les compilateurs n'était pas uniforme et ne pouvait donc pas être raisonnablement utilisé.
+        </para>
+	    </formalpara>
 	  </section>
 	  <section>
 	    <title>Le lien Python : PyQt</title>
+	    <para>
+	      Comme nous le verrons dans le chapitre <foreignphrase>Tests et validations</foreignphrase>, nous avons réalisé une petite application graphique afin de valider visuellement les effets d'une transformation incrémentale. PyQt s'est imposé naturellement comme lien entre notre programme Python et le cadriciel Qt.
+	    </para>
+	    <para>
+	    PyQt est un ensemble de liens Python pour le cadriciel Qt. Les liens sont implémentés comme un ensemble de modules Python : qt, qtcanvas, qtgl, qtnetwork, qtsql, qttable, qtui et qtxml. Ils contiennent environ 300 classes et plus de 5750 méthodes.
+	    </para>
+	    <para>
+	    PyQt combine donc tout les avantages de Qt et de Python. Leur portabilité en font un couple puissant et simple d'utilisation.
+	    <para>
+	    PyQt unclus l'outil pyuic qui est le pendant l'outil uic qui convertis les descriptions d'interfaces en C++ mais les convertis dans leur équivalent Python. Cela rend PyQt particulièrement véloce pour prototyper rapidement une application, ce qui nous interressait au plus haut point.
+	    </para>
 	  </section>
 	</section>
 
