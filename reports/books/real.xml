@@ -20,9 +20,8 @@
 	
 	<!-- ===== Back Matter ===== -->
 	
-	<!--
-	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bm-files/app-A.xml"/>
-	-->
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/app-Manuel_d_installation.xml"/>	
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="real-files/app-Jeux_de_tests.xml"/>
 
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common-files/glossary.xml"/>
 	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="common-files/bibliography.xml"/>

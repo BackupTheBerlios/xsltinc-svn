@@ -180,6 +180,7 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	    </para>
 	    <para>
 	    PyQt combine donc tout les avantages de Qt et de Python. Leur portabilité en font un couple puissant et simple d'utilisation.
+	    </para>
 	    <para>
 	    PyQt unclus l'outil pyuic qui est le pendant l'outil uic qui convertis les descriptions d'interfaces en C++ mais les convertis dans leur équivalent Python. Cela rend PyQt particulièrement véloce pour prototyper rapidement une application, ce qui nous interressait au plus haut point.
 	    </para>
