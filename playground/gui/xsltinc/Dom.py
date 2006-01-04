@@ -122,6 +122,17 @@ class CustomDomElement(Observable):
     return self.__memoized__("xpath",self.pv_cdomlette.xpath(path))
 
 
+def getElementByLocalName(current_node,localName):
+  if current_node.localName == localName:
+    return current_node
+  else:
+    for c in current_node.childNodes:
+        toto = getElementByLocalName(c,localName)
+        if toto:
+         return toto
+  return None
+
+
 class CustomDomDocument(CustomDomElement):
   def __init__(self,cDomDocument):
     CustomDomElement.__init__(self,cDomDocument)
