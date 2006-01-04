@@ -112,6 +112,11 @@ class CustomDomElement(Observable):
   def replaceChild(self,child):
     self.pv_cdomlette.replaceChild(child.cdomlette)
 
+  def replaceData(self,newdata):
+   self.deleteData(0,self.length)
+   self.appendData(newdata)
+   self.notify_observers(self,None)
+
   def setAttributeNS(self,attr,namespace):
     pass
 

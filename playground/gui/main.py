@@ -38,8 +38,9 @@ class ObsListItem(QListViewItem,Observer):
 
   def changeName(self):
     """ called by the list when the user finished to edit the name"""
-    self.model.deleteData(0,self.model.length)
-    self.model.appendData("%s" % self.text(0))
+    self.model.replaceData("%s" % self.text(0))
+    #self.model.deleteData(0,self.model.length)
+    #self.model.appendData("%s" % self.text(0))
 
   def change_node(self):
     print "CHANGEMENT DU NOEUD!"
@@ -47,7 +48,7 @@ class ObsListItem(QListViewItem,Observer):
     if self.model.nodeType == 3: 
       self.setRenameEnabled(0,True)
       self.startRename(0)
-    self.model.notify_observers(self.model)
+    #self.model.notify_observers(self.model)
 
   def paintCell(self, p, cg, column, width, align ):
     """ customized method to change the color of listitems"""
