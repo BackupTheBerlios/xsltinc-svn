@@ -17,7 +17,8 @@ class DemoTransformer:
    self.source =  xsltinc.Dom.CustomDomDocument(xsltinc.NonvalidatingReader.parseStream(open(source_file),stripElements=[(EMPTY_NAMESPACE, '*', 1)]))
    self.transfo = xsltinc.NonvalidatingReader.parseStream(open(transfo_file),stripElements=[(EMPTY_NAMESPACE, '*', 1)])
    self.xsltproc = xsltinc.IncrementalProcessor()
-   self.xsltproc.set_observing(self.source)
+   self.source.setObserving(self.xsltproc)
+   #self.xsltproc.set_observing(self.source)
    self.xsltproc.appendStylesheetNode(self.transfo)
    self.inctime = 100000000000
    self.ready_for_inc = False
@@ -64,11 +65,10 @@ def main(args):
 
  print "First Run : %d" % demo.oldtime
  
+
  fn = demo.source.getElementByLocalName("firstname")
- print fn.childNodes[0]
  fn.childNodes[0].replaceData("titi")
  print fn.childNodes[0]
- 
  demo.runInc()
  
  print "Inc Run : %d" %demo.inctime

@@ -164,6 +164,13 @@ class CustomDomDocument(CustomDomElement):
            return toto
     return None
 
+  def setObserving(self,observer, current_node=None):
+    if current_node == None:
+      current_node = self.rootNode
+    current_node.add_observer(observer)
+    for c in current_node.childNodes:
+       self.setObserving(observer, c)
+
 class Olist(Observable):
    def __init__(self,l=[]):
     Observable.__init__(self)
