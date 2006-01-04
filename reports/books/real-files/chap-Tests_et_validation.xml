@@ -7,20 +7,58 @@
 
 	<section>
 		<title>Présentation du protocole de test</title>
+		<para>
+		  Les tests réalisés pour le projet sont extrèmement classiques. Ils sont composés de tests unitaires réalisé en Python grace au module "unittest" fourni en standard avec Python. A coté de ces tests unitaires sont réalisés des tests de performances simples, c'est à dire un simple calcul du temps d'exécution de la transformation incrémentale par rapport à la transformation initiale complète. Nous présenterons donc un tableau récapitulant ces données dans la partie consacrée à ces tests. Enfin, afin de valider le prototype réaliser, nous avons réalisé une petite application graphique qui permet de visualiser très rapidement les effets de la transformation incrémentale.
+		</para>
 	</section>
 	
 	<section>
 	 <title>Tests unitaires</title>
+	   <para>
+	     Les tests unitaires sont directement programmé dans les modules du projet. A la manière de la définition d'une méthode "main" dans une classe Java, il est possible de tester si un module Python est exécuté de manière autonome et s'il doit donc lancer ses tests unitaires.
+	   </para>
+	   <para>
+	     Ceux-ci sont codé grâce au module standard unittest. Il fournit un certain nombre de méthode qui facilite l'écriture de tests unitaires très complets. Pour réaliser un "test case", il suffit alors d'étendre la classe "unittest.TestCase" et de créer des méthodes dont le nom commence par le mot "test". 
+	   </para>
+	   <para>
+	     Les méthodes commencant par le mot "test" désigne donc un test unitaire qu'il convient de faire soigneusement. Un certain nombre de méthodes de la super classe "TestCase" permettent de définir des assertions sur le comportement attendu sur le test. Par exemple, "assertEqual" attend que les deux paramètres qui lui sont fournit soit égaux, sinon il fais échouer le test unitaire. De même "assertRaises" vérifie que l'appel d'une méthode avec certains paramètres lèvent bien les exceptions attendues.
+	   </para>
+	   <para>
+	     Afin de permettre à ces tests de se lancer lorsque le module est lancé de manière autonome, il convient d'écrire ce petit bout de code classique en Python :
+	   </para>
+	   <programlisting>if __name__ == "__main__":
+  unittest.main()</programlisting>
+	   <para>
+	     Celui-ci vérifie en fait que le nom du module courant est "main" (ce qui est le cas uniquement lorsque c'est ce module qui est invoqué) et fait alors appel à la méthode main() du module "unittest". Grâce aux capacités d'introspection de Python, il regarde toutes les classes présente dans le module et lance chaque méthode de ces classes commencant par "test". On voit ici encore le pouvoir de l'introspection en Python.
+	   </para>
+	   <para>
+	      Ces tests ont été lancés régulièrement tout au long du développement afin de s'assurer que les modifications faites aux modules de réalisait pas de régression par rapport aux fonctionnalités attendues. Enfin, lorsqu'un bogue était découvert, un test unitaire était développé afin de le faire apparaitre et ensuite corrigé. Cette méthode permet d'obtenir un jeu de test le plus couvrant possible.
+	   </para>
+	   <para>
+	     TODO : Sortie finale des tests unitaires.
+	   </para>
 	</section>
 	
 	<section>
-	 <title>Test de performances</title>
+	 <title>Tests de performances</title>
+	   <para>
+	     Les tests de performances sont critiques lors de la mise en version incrémentale d'un algorithme. En effet, cette mise à jour nécessite de rajouter du comportement par rapport à celui d'origine et a donc un coût en terme de temps de calcul. Or le but de la version incrémentale de notre projet était bien de fournir une version qui optimisait ce coût de calcul. Il ne faut donc pas que le coût supplémentaire induit par les fonctionnalités supplémentaires fassent que la version incrémentale se révèlent plus couteuse que la version d'origine. 
+	   </para>
+	   <para>
+	     Dans ce but, des tests on été réalisé tout au long du développement afin de s'assurer de ce principe. Bien entendu, ils ont été réalisé avec des tailles de documents variables mais aussi des types et des nombres de modifications divers que nous vous présentons dans le tableau ci-dessous de manière synthétique.
+	   </para>
 	</section>
 	
 	<section>
 	 <title>Validation</title>
 	 <para>
-	   La GUI
+	   Afin de valider le prototype proposé et avoir une version de démonstration visuelle, nous avons décidé de réaliser un petite interface graphique qui montre les différents objets que nous traitons, à savoir : le document source, le document cible, la feuille de transformation, l'arbre de dépendance et enfin le temps d'exécution comparativement à la transformation d'origine.
+	 </para>
+	 <para>
+	   Elle fournit aussi deux contrôleurs permettant de lancer, au choix, une transormation classique (complète), ou alors sa version incrémentale. De même, elle offre la possibilité à l'utilisateur d'éditer et / ou supprimer des noeuds textes.
+	 </para>
+	 <para>
+	   TODO : sshots sous KDE et MacOSx
 	 </para>
 	</section>
 

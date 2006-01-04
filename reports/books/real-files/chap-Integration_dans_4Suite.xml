@@ -12,10 +12,45 @@
 	<section>
 		<title>Présentation du module 4Suite</title>
 		<para>
-		  ...
+		  4Suite est une suite d'outils de traitement XML. Elle est implémentée en Python avec certaines extensions critiques en C. 
 		</para>
+		<para>
+		  Le noyau de 4Suite est une bilbiothèque d'outils intégrés et de programmes en ligne commande associés pour le traitement de documents XML. Il implémente des technologies ouvertes telles que DOM, RDF, XSLT, XInclude, XPointer, XLink, XPath, XUpdate, RELAX NG, et XML/SGML Catalogues. Au dessus de celà, repose un serveur et un dépot de données XML et RDF.
+		</para>
+		<para>
+		  4Suite est organisé en modules (c'est à dire des paquetages au sens Python) et d'une bibliothèque commune (<emphasis>Ft.lib</emphasis>). Les principaux autres modules sont : 
+		</para>
+		<itemizedlist>
+		  <listitem>
+		    <para>
+		      4XML (<emphasis>Ft.Xml</emphasis>). C'est le module de premier niveau regroupant les autres modules et offrant les fonctions de gestion DOM, le lecteur écrivain SAX, le catalogue XML et les recommandations XUpdate (mise à jour de documents XML) et XInclude (transclusion de documents).
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      4Xpath (<emphasis>Ft.Xml.XPath</emphasis>). Ce module gère la lecture et l'analyse des expressions XPath qui peuvent-être présentes dans des documents XSLT ou XUpdate. Il retourne un arbre d'évaluation de l'expression lors de l'analyse de celle-ci. A noter qu'une partie de ce module est codé en langage C lui assurant une grande vélocité.
+		    </para>
+		  </listitem>
+      <listitem>
+        <para>
+          4XSLT (<emphasis>Ft.Xml.Xslt</emphasis>). C'est le principal module que nous allons utiliser. Il gère la norme XSLT 1.0 de manière quasi complète. Il composé d'un ensemble de classes (une pour chaque élément XSLT), d'un processeur de transformation et d'écrivains DOM et Sax.
+        </para>
+      </listitem>
+		</itemizedlist>
 		<section>
 		  <title>4XML</title>
+		  <para>
+		    Ce module est donc le module de plus haut niveau de la bibliothèque 4Suite. Il fournit les fonctionnalités de base pour le traitement XML, i.e. la lecture et l'écriture de documents. Ces opérations sont disponible via deux API : une semblable à DOM nommée Domlette et une semblable à Sax nommée Saxlette. Ces deux interfaces ne se réclament pas conforme totalement aux spécifications qui leur sont relatives puisqu'elles implémentent ce spécification dans une "pythonic way".
+		  </para>
+		  <para>
+		    TODO : diagramme 4XML Domlette et Saxlette
+		  </para>
+		</section>
+		<section>
+		  <title>4XPath</title>
+		  <para>
+		  
+		  </para>
 		</section>
 		<section>
 		  <title>4XSLT</title>
@@ -25,7 +60,7 @@
 	<section>
 	  <title>Greffon incrémental</title>
 	  <para>
-	    ...
+	    TODO : introduction greffon incrementale
 	  </para>
 	  <section>
 	    <title>Wrapping des éléments DOM</title>
@@ -46,11 +81,14 @@
             <para>
               Tout ceci est possible et aisément réalisable grâce aux caractéristiques du langage Python, en particulier cette dernière : tout appel réalisé sur une instance, par exemple "monObjet.nom" est traduit par un appel "monObjet.__getattr__('nom')". De la même façon tout appel du type "monObjet.nom = "monNom" est traduit par un appel "monObjet.__setattr__('nom','monNom')". Par conséquent il suffit de redéfinir ces méthodes pour transformer le comportement intrinsèque de l'objet.
             </para>
-            <para> Ces instance étant aux coeur de tous les traitements on peut qualifier le wrapping de point critique de l'implémentation. Afin de s'assurer de sa correction un certain nombre de tests unitaires ont été rédigés pour cette classe.         
+            <para> Ces instances étant aux coeur de tous les traitements on peut qualifier le wrapping de point critique de l'implémentation. Afin de s'assurer de sa correction un certain nombre de tests unitaires ont été rédigés pour cette classe.         
             </para>
 	  </section>
 	  <section>
 	    <title>Mémorisation du contexte</title>
+	     <para>
+	       La mémorisation du contexte est une étape essentielle pour réaliser le traitement incrémentale. 
+	     </para>
 	  </section>
 	  <section>
 	    <title>Règles de ré-évaluation</title>

@@ -5,20 +5,132 @@
 <chapter id="gestion_de_projet">
 	<title>Gestion de projet</title>
 
+  <para>
+    Introduction
+  </para>
+
 	<section>
 		<title>Méthode de développement</title>
-		
 		<para>
-		Depot, doc...
+		  La méthode de développement choisi en début de projet était un classique modèle en spirale avec une validation de chaque étape par passage d'un certain nombre de tests unitaires. Le cas échéant, d'autres tests unitaires étaient rédigés afin de compléter et faire ressortir un bogue détecté.
 		</para>
-
+		<para>
+		  Du fait du développement de ce projet sous une licence libre<footnote><para>le choix n'était de toute façon pas possible étant donnée l'utilisation et la modification de logiciels auparavant sous licence GPL, nous devions en faire autant.</para></footnote>, nous avons décidé de mettre en place un environnement de développement typique pour ce genre de projet. En effet, les logiciels libres sont bien souvent développés dans un modèle communataire et démocratique. Pour ce faire, il faut disposer d'un certains nombre d'outils de communication en ligne et de moyen de mise à disposition du code source.
+		</para>
+		<para>
+		  Des sites Internet permettent d'obtenir cet ensemble d'outils dédiés au développement de logiciels libres. D'ailleurs, la plupart d'entres eux n'acceptent pas d'héberger des projets non libres. Citons par exemple le célèbre SourceForge, pionner en la matière, le français TuxFamily ou encore Berlios qui lui est hébergé en Allemagne. Notre choix s'est porté sur ce dernier pour sa fiabilité reconnue et sa large gamme d'outils.
+		</para>
+		<para>
+		  Ainsi, nous pu mettre en place un nombre impressionnant de services qui permettront au projet de continuer à vivre après la fin de ce projet. En voici une liste non exhaustive :
+		</para>
+		<itemizedlist>
+		  <listitem>
+		    <para>
+		      <emphasis role="strong">Un dépôt SubVersion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développé en parallèle sur le projet ainsi qu'écrire ce rapport sans le problèmes récurrents tels que les fusions de documents ou les incompatiblité entre versions étant donné que ceci est géré de manière automatique par le système.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      <emphasis role="strong">Une mailing-list.</emphasis> Même si celle-ci n'a pas été très active au cours de ce projet, elle sera utile aux utilisateurs pour poster leur remarques et participer aux discussions sur les futurs développements du projet.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      <emphasis role="strong">Un gestionnaire de bogues.</emphasis> Non encore utilisé pour cause de non sortie de première version utilisable, elle permettra aux utilisateurs de poster les bogues qu'ils trouveront pendant leur utilisation du projet.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      <emphasis role="strong">Un gestionnaire de tâches.</emphasis> Ce module permet de créer des tâches et des sous-projets et de les affecter à des développeur enregistrés auprès du site.
+		    </para>
+		  </listitem>
+		</itemizedlist>
 	</section>
 	
 	<section>
-	 <title>Répartition des tâches</title>
+	 <title>Découpage des tâches</title>
 	   <para>
-	   
-	   </para>
+	     Le projet a été divisé en début de phase de réalisation en quatre étapes qui ont conduit successivement à l'élaboration d'un prototype non fonctionnel, fonctionnel puis fonctionnel optimisé. 
+	    </para>
+	    <para>
+	     La première étape avait pour but de se brancher sur 4XSLT et de mettre en place l'interface du moteur incrémental. La seconde consistait en la création de l'interface graphique pour la validation du prototype. À la fin de cette deuxième étape, nous avons obtenu notre premier prototype non fonctionnel. Avant dernière étape, la troisième  avait pour but d'implémenter un premier moteur incrémental basique et de mettre à jour l'interface graphique afin de la rendre cohérente avec ces nouvelles fonctionnalités. Enfin, la quatrième et dernière étape consitait en une amélioration du prototype précédement obtenu notamment en ce qui concerne l'optimisation afin de n'exécuter que ce qui est strictement nécessaire. Nous allons voir maintenant la liste des différentes étapes de manière détaillée.
+	     </para>
+	     
+	   <section>
+	     <title>Étape 1</title> 
+       <itemizedlist>
+         <listitem>
+           <para>
+             Wrapping des éléments DOM du module cDomlette avec ajout de la capacité d'observateur et d'observable.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Wrapping des éléments XSLT. Rajout de l'aspect de mémorisation du contexte autour des méthodes "instanciate".
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Encapsulation du moteur standard pour mettre en place l'interface du moteur incrémental.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Faire en sorte que la méthode instanciate() des éléments XSLT modifie les noeuds déjà créés lors d'une précédente exécution.
+           </para>
+         </listitem>
+       </itemizedlist>
+     </section>
+     <section>
+       <title>Étape 2</title>
+       <itemizedlist>
+         <listitem>
+           <para>
+             Création d'une interface d'édition des noeuds source.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Augmentation de l'interface graphique pour permettre l'exécution de la transformation XSLT et affichage du temps d'exécution.
+           </para>
+         </listitem>
+       </itemizedlist>       
+     </section>
+     <section>
+       <title>Étape 3</title>
+       <itemizedlist>
+         <listitem>
+           <para>
+             Création des règles de dépendances lors de la première transformation.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Mise en place de l'évaluation des regles de dépendances.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Mise à jour de l'interface graphique pour afficher les règles de dépendances.
+           </para>
+         </listitem>
+       </itemizedlist>       
+     </section>     
+     <section>
+       <title>Étape 4</title>
+       <itemizedlist>
+         <listitem>
+           <para>
+             Reconstruire le contexte au lieu de le stocker lors des exécutions incrémentales.
+           </para>
+         </listitem>
+         <listitem>
+           <para>
+             Gestion des dependances entre "apply-templates" pour désactiver certaines regles.
+           </para>
+         </listitem>
+       </itemizedlist>       
+     </section>	        
 	</section>
 	
 	<section>
