@@ -29,6 +29,25 @@
 	  </para>
 	  <section>
 	    <title>Wrapping des éléments DOM</title>
+            <para>
+  		4Suite utilise une implémentation DOM nommée Domlette, cette dernière est complète et propose même l'évaluation d'expressions XPath. Elle est réalisée en langage C lui-même encapsulé dans des classes Python pour des questions de performances. Cette dernière caractéristique entraîne quelques limitations, en particulier le fait que l'on ne puisse pas modifier dynamiquement, à l'exécution, le comportement des classe. Or ceci nous est nécessaire afin d'augmenter cette implémentation de DOM d'un comportement de type "Observeur/Observable". Après prise de contact avec l'auteur principal de 4Suite : "Uche Ogbuji" il s'avère que la meilleure solution est d'encapsuler les instances DOM dans des enveloppes nous permettant ainsi de greffer nos traitements spécifiques. On parle de "wrapping".
+	    </para>
+                <figure>
+                 <title>Wrapping des éléments DOM</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Wrapping.png"/></imageobject>
+                 </mediaobject>
+                </figure>
+            <para>
+		Le wrapping réalisé dans ce projet repose en grande partie sur l'introspection possible avec Python. Une instance "CustomDomElement" est une enveloppe pour une instance de "cDomELement". Chaque appel visant à récupérer la valeur d'un attribut effectué sur l'instance enveloppe se retrouve repercuté sur l'instance envelloppée et renvoi si necessaire une instance elle-aussi enveloppée. Afin de renvoyer la même instance sur deux appels consécutifs de "firstChild()" par exemple, l'instance enveloppe dispose d'un tableau associant le resultat de l'appel "firstChild()" sur l'objet enveloppé avec le premier objet renvoyé par l'enveloppe.</para>
+            <para>          
+ Chaque appel visant à définir la valeur d'un attribut effectué sur l'instance enveloppe se retrouve repercuté sur l'instance enveloppée et lance un evenement indiquant que l'objet à changé d'état.
+	    </para>
+            <para>
+              Tout ceci est possible et aisément réalisable grâce aux caractéristiques du langage Python, en particulier cette dernière : tout appel réalisé sur une instance, par exemple "monObjet.nom" est traduit par un appel "monObjet.__getattr__('nom')". De la même façon tout appel du type "monObjet.nom = "monNom" est traduit par un appel "monObjet.__setattr__('nom','monNom')". Par conséquent il suffit de redéfinir ces méthodes pour transformer le comportement intrinsèque de l'objet.
+            </para>
+            <para> Ces instance étant aux coeur de tous les traitements on peut qualifier le wrapping de point critique de l'implémentation. Afin de s'assurer de sa correction un certain nombre de tests unitaires ont été rédigés pour cette classe.         
+            </para>
 	  </section>
 	  <section>
 	    <title>Mémorisation du contexte</title>
