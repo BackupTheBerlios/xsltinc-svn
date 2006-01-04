@@ -26,6 +26,7 @@ class CustomDomElement(Observable):
       return retour
 
   def get_first_nodetest(self):
+     """ return the first parent nodetest """
      # looking for the first parent having a type
      parent = self.parentNode
      while parent and parent.nodeType != 1:
@@ -33,6 +34,7 @@ class CustomDomElement(Observable):
      return parent
 
   def __memoized__(self,name,value):
+    """ return with a key a new wrapped element or an old one if it has already been returned """
     if name in self.pv_memoizing.keys():
       if id(self.pv_memoizing[name][0]) == id(value):
          return self.pv_memoizing[name][1]
@@ -43,10 +45,12 @@ class CustomDomElement(Observable):
     return self.pv_memoizing[name][1]
 
   def update(self,obj,arg=None):
+    """ called when a child changed"""
     #update from a child
     self.notify_observers(self)
 
   def appendChild(self,child):
+    """ add a new child to this node """
     self.childNodes.append(child)
     if 'pv_cdomlette' in dir(child):
        #here we try to append an already wrapped node
@@ -56,9 +60,11 @@ class CustomDomElement(Observable):
     self.notify_observers(self)
 
   def cloneNode(self):
+     """ return a new node with same values as this one """
      return CustomDomElement(self.pv_cdomlette.cloneNode())
 
   def getAttributeNS(self):
+    """ return the namespace attribute """
     return self.pv_cdomlette.getAttributeNS()
 
   def getAttributeNodeNS(self):
@@ -76,10 +82,8 @@ class CustomDomElement(Observable):
   def isSameNode(self,node):
     return id(self) == id(node) or id(self.pv_cdomlette) == id(node)
 
-
   def nextSibling(self):
     return self.__memoized__("nextSibling",self.pv_cdomlette.nextSibling())
-
 
   def normalize(self):
     self.pv_cdomlette.normalize()
@@ -94,11 +98,13 @@ class CustomDomElement(Observable):
     self.pv_cdomlette.removeAttributeNode(self,node)
 
   def clearChilds(self):
+    """ clear all childs from a node."""
     for cchild  in self.pv_cdomlette.childNodes:
        self.pv_cdomlette.removeChild(cchild)
     self.childNodes.clear()
 
   def removeChild(self,child):
+    """ remove a given child"""
     self.pv_cdomlette.removeChild(child.pv_cdomlette)
     for i in range(0,len(self.childNodes)-1):
       if id(self.childNodes[i]) == id(child):
@@ -128,31 +134,40 @@ class CustomDomElement(Observable):
 
 
 class CustomDomDocument(CustomDomElement):
+  """ Custom Dom document, using wrapping and observable"""
   def __init__(self,cDomDocument):
     CustomDomElement.__init__(self,cDomDocument)
 
   def createDocumentFragment(self):
+    """ create a piece of document """
     return CustomDomElement(self.pv_cdomlette.createDocumentFragment())
 
   def createElementNS(self,a,b):
+    """ create a new element with a namespace"""
     return CustomDomElement(self.pv_cdomlette.createElementNS(a,b))
 
   def createElement(self,a,b):
+    """ create a new element """
     return CustomDomElement(self.pv_cdomlette.createElement(a,b))
  
   def createProcessingInstruction(self):
+    """ create a processing instruction """
     return CustomDomElement(self.pv_cdomlette.createProcessingInstruction())
 
   def createAttributeNS(self):
+    """ create a new attribute with a namespace """
     return CustomDomElement(self.pv_cdomlette.createAttributeNS())
 
   def createComment(self):
+    """ create a new comment"""
     return CustomDomElement(self.pv_cdomlette.createComment())
 
   def createTextNode(self,t):
+    """ create a new textNode"""
     return CustomDomElement(self.pv_cdomlette.createTextNode(t))
 
   def getElementByLocalName(self,localName, current_node=None):
+    """ return an element from hist localName """
     if current_node == None:
       current_node = self.rootNode
     if current_node.localName == localName:
@@ -165,6 +180,7 @@ class CustomDomDocument(CustomDomElement):
     return None
 
   def setObserving(self,observer, current_node=None):
+    """ this method set an observer to a whole nodes tree."""
     if current_node == None:
       current_node = self.rootNode
     current_node.add_observer(observer)
@@ -172,6 +188,7 @@ class CustomDomDocument(CustomDomElement):
        self.setObserving(observer, c)
 
 class Olist(Observable):
+   """ Olist is a special list, it returns only wrapped elements"""
    def __init__(self,l=[]):
     Observable.__init__(self)
     self._contenu = list(l)

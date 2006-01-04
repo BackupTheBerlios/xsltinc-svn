@@ -14,23 +14,23 @@ class IncrementalProcessor(Processor,Observer):
                  documentReader=None, implementation=None,
                  stylesheetIncPaths=None):
       """ Optional constructor arguments are:
- |
- |    stylesheetAltUris: a list of alternative base URIs to use when
- |      resolving relative hrefs in xsl:import/xsl:include instructions.
- |      These URIs are only tried when the standard XSLT behavior of
- |      using the base URI of the xsl:import/include element itself
- |      fails to result in retrieval of a document.
- |
- |    documentReader: an object that will be used to parse XML source
- |      documents (not stylesheets). It defaults to
- |      Ft.Xml.Domlette.NonvalidatingReader, but it can be any object
- |      that has a parse() method that returns a DOM or Domlette tree.
- |
- |    implementation: a DOM implementation instance that will be used
- |      by the processor to create new source tree nodes, such as when
- |      generating result tree fragments or duplicating the source tree
- |      when runNode(node, preserveSrc=1) is called. Defaults to
- |      Ft.Xml.Domlette.implementation. Needs to have a
+ 
+     stylesheetAltUris: a list of alternative base URIs to use when
+      resolving relative hrefs in xsl:import/xsl:include instructions.
+       These URIs are only tried when the standard XSLT behavior of
+       using the base URI of the xsl:import/include element itself
+       fails to result in retrieval of a document.
+ 
+   documentReader: an object that will be used to parse XML source
+       documents (not stylesheets). It defaults to
+      Ft.Xml.Domlette.NonvalidatingReader, but it can be any object
+       that has a parse() method that returns a DOM or Domlette tree.
+ 
+     implementation: a DOM implementation instance that will be used
+       by the processor to create new source tree nodes, such as when
+       generating result tree fragments or duplicating the source tree
+       when runNode(node, preserveSrc=1) is called. Defaults to
+       Ft.Xml.Domlette.implementation. Needs to have a
            createRootNode() method.
       """
                  
@@ -116,6 +116,7 @@ class IncrementalProcessor(Processor,Observer):
 
 
     def delete_node(self,tree,node):
+      """ remove nodes from the tree"""
       for c in tree.childNodes:
         if node == c:
          tree.removeChild(node)
