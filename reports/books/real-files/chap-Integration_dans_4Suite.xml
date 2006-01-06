@@ -104,6 +104,18 @@
 	  </section>
 	  <section>
 	    <title>Le processeur incrémental</title>
+	    <para>
+	      Le processeur incrémental est une surcharge (par héritage) du processeur de transformation XSLT présent dans 4Suite. C'est lui qui portera principalement le comportement incrémental de l'application. Afin de lui permettre de détecter les modifications qui ont lieu sur les noeuds du document source, le processeur incrémental est aussi un observateur qui écoute les noeuds et qui est averti de toute modification.
+	    </para>
+	    <para>
+	      Lorsqu'une modification intervient, la méthode "update()" du processeur est appelé. A ce momemt la, il faut testé si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeud modifié et marqué comme étant effacer. Dans le cas où il est juste supprimer, il est seulement ajouté dans cette liste.
+	    </para>
+	    <para>
+	      Ces opérations 
+	    </para>
+	    <para>
+	      TODO : diagramme de sequence.
+	    </para>
 	  </section>
 	</section>
 
