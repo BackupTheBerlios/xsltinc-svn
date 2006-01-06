@@ -35,8 +35,9 @@
 	      Ces tests ont été lancés régulièrement tout au long du développement afin de s'assurer que les modifications faites aux modules de réalisait pas de régression par rapport aux fonctionnalités attendues. Enfin, lorsqu'un bogue était découvert, un test unitaire était développé afin de le faire apparaitre et ensuite corrigé. Cette méthode permet d'obtenir un jeu de test le plus couvrant possible.
 	   </para>
 	   <para>
-	     TODO : Sortie finale des tests unitaires.
+	     Afin de lancer tout les tests unitaires, il suffit de lancer la commande suivante dans le répertoire du module xsltinc :
 	   </para>
+	   <programlisting>find ./ -name "*.py" -exec python {} \;</programlisting>
 	</section>
 	
 	<section>
@@ -47,6 +48,38 @@
 	   <para>
 	     Dans ce but, des tests on été réalisé tout au long du développement afin de s'assurer de ce principe. Bien entendu, ils ont été réalisé avec des tailles de documents variables mais aussi des types et des nombres de modifications divers que nous vous présentons dans le tableau ci-dessous de manière synthétique.
 	   </para>
+     <table frame='all'>
+       <title>Temps d'exécution de la transformation incrémentales comparativement à la première</title>
+<tgroup cols='3' align='left' colsep='1' rowsep='1'>
+<colspec colname='c1'/>
+<colspec colname='c2'/>
+<colspec colname='c3'/>
+<thead>
+<row>
+  <entry>Modifications</entry>
+  <entry>Petit document (5 éléments)</entry>
+  <entry>Grand document (2000 éléments)</entry>
+</row>
+</thead>
+<tbody>
+<row>
+  <entry>aucune</entry>
+  <entry>0,98%</entry>
+  <entry>0,01%</entry>
+</row>
+<row>
+  <entry>1</entry>
+  <entry>16,54%</entry>
+  <entry>33,79%</entry>
+</row>
+<row>
+  <entry>2 + 1 suppresion</entry>
+  <entry>29,3%</entry>
+  <entry>55,42%</entry>
+</row>
+</tbody>
+</tgroup>
+</table>	
 	</section>
 	
 	<section>
@@ -58,8 +91,24 @@
 	   Elle fournit aussi deux contrôleurs permettant de lancer, au choix, une transormation classique (complète), ou alors sa version incrémentale. De même, elle offre la possibilité à l'utilisateur d'éditer et / ou supprimer des noeuds textes.
 	 </para>
 	 <para>
-	   TODO : sshots sous KDE et MacOSx
+	   Voici deux captures d'écran montrant l'interface graphique du prototype réalisé. On voit ici l'intéret de la portabilité du langage Python ainsi que du cadriciel graphique Qt.
 	 </para>
+   <figure>
+    <title>Capture d'écran du prototype sous KDE</title>
+     <mediaobject>
+      <imageobject>
+        <imagedata format="PNG" fileref="images/sshot_kde.png"/>
+      </imageobject>
+     </mediaobject>
+    </figure>	 
+   <figure>
+    <title>Capture d'écran du prototype sous MacOSX</title>
+     <mediaobject>
+      <imageobject>
+        <imagedata format="PNG" fileref="images/sshot_macosx.png"/>
+      </imageobject>
+     </mediaobject>
+    </figure>	     
 	</section>
 
 </chapter>
