@@ -101,6 +101,9 @@
 	  </section>
 	  <section>
 	    <title>Règles de ré-évaluation</title>
+	    <para>
+	       TODO : règles de reevaluation.
+	    </para>
 	  </section>
 	  <section>
 	    <title>Le processeur incrémental</title>
@@ -108,10 +111,13 @@
 	      Le processeur incrémental est une surcharge (par héritage) du processeur de transformation XSLT présent dans 4Suite. C'est lui qui portera principalement le comportement incrémental de l'application. Afin de lui permettre de détecter les modifications qui ont lieu sur les noeuds du document source, le processeur incrémental est aussi un observateur qui écoute les noeuds et qui est averti de toute modification.
 	    </para>
 	    <para>
-	      Lorsqu'une modification intervient, la méthode "update()" du processeur est appelé. A ce momemt la, il faut testé si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeud modifié et marqué comme étant effacer. Dans le cas où il est juste supprimer, il est seulement ajouté dans cette liste.
+	      Lorsqu'une modification intervient, la méthode "update()" du processeur est appelé. A ce momemt la, il faut testé si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeud modifié et marqué comme étant effacer. Dans le cas où il est juste supprimer, il est seulement ajouté dans cette liste. Ces opérations peuvent intervenir plusieurs fois d'affilé. Les noeuds modifiés / supprimés sont donc ajouter à la liste des modifications.
 	    </para>
 	    <para>
-	      Ces opérations 
+	      Lorsque la transformation incrémentale est exécuté via la méthode "runNodeInc()", le processeur teste la présence de modifications dans la liste précédement citée. Si elle est vide, il ne fais rien (sic). Dans le cas contraire, il parcours cette liste en vérifiant si chaque élément correspond à une règle de ré-évaluation. Dans ce cas, il est retraiter via l'appel de la méthode instanciate() propre à la règle de ré-évaluation. Le résultat est ensuite intégré au document cible.
+	    </para>
+	    <para>
+	      Enfin, les noeuds à supprimer sont parcourus et les noeuds cibles dont ils dépendent sont supprimer. 
 	    </para>
 	    <para>
 	      TODO : diagramme de sequence.
