@@ -106,9 +106,6 @@
 	       La mémorisation du contexte est une étape essentielle pour réaliser le traitement incrémentale. Rappelons que l'exécution d'une transformation XSLT produit un arbre d'exécution dont les noeuds sont le contexte d'exécution d'une règle. XSLT étant un langage sans effet de bords, les contextes d'exécution ne sont dépendant que de la liste de ses ancêtres. Lors de l'exécution d'une transformation incrémentale, l'idée est donc de récupérer le contexte qui a servi à créer les noeuds du document cible en rapport avec le ou les noeuds modifiés dans le document source. Pour effectuer cette récupération, il est donc essentiel de conserver cet arbre de contexte.
 	     </para>
 	     <para>
-	       TODO: schema montrant la dépendance du contexte avec le noeud source et cible
-	     </para>
-	     <para>
 	       Lors de l'exécution d'une transformation, un processus dit d'instanciation se produit. Ce processus d'instanciation est en réalité l'exécution d'un noeud de traitement XSLT tel que "xsl:value-of". Ce processus réalise une copie du contexte courant, effectue le traitement avec le nouveau contexte (qui peut lui-même être copié si d'autres traitements sont effectués dans la suite) et retourne dans le programme principal avec l'ancien contexte. 
 	     </para>
 	     <para>
