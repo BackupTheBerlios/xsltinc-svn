@@ -6,7 +6,7 @@
 	<title>Intégration dans 4Suite</title>
 
   <para>
-    TODO : Introduction...
+    Ce chapitre va présenter en détail le travail réalisé lors de ce projet. Nous commencerons par une présentation du module 4Suite et plus particulièrement de 4XSLT qui constitue notre base de travail. Ensuite nous introduirons les différents rajouts que nous réalisés ainsi que la manière dont ils s'intègrent dans 4Suite.
   </para>
 
 	<section>
@@ -35,6 +35,9 @@
         <para>
           4XSLT (<emphasis>Ft.Xml.Xslt</emphasis>). C'est le principal module que nous allons utiliser. Il gère la norme XSLT 1.0 de manière quasi complète. Il composé d'un ensemble de classes (une pour chaque élément XSLT), d'un processeur de transformation et d'écrivains DOM et Sax.
         </para>
+        <para>
+          TODO : diagrammes des packages 4Suite.
+        </para>
       </listitem>
 		</itemizedlist>
 		<section>
@@ -43,24 +46,30 @@
 		    Ce module est donc le module de plus haut niveau de la bibliothèque 4Suite. Il fournit les fonctionnalités de base pour le traitement XML, i.e. la lecture et l'écriture de documents. Ces opérations sont disponible via deux API : une semblable à DOM nommée Domlette et une semblable à Sax nommée Saxlette. Ces deux interfaces ne se réclament pas conforme totalement aux spécifications qui leur sont relatives puisqu'elles implémentent celles-ci dans une "pythonic way".
 		  </para>
 		  <para>
-		    TODO : diagramme 4XML Domlette et Saxlette
+		    TODO : diagramme 4XML Domlette et Saxlette. 
 		  </para>
 		</section>
 		<section>
 		  <title>4XPath</title>
 		  <para>
-		  
+		    Le module 4Xpath est un sous module du module 4Xml. Il est décomposé en deux parties : une partie analyse d'une expression XPath qui retourne un arbre d'évaluation et une partie recherche selon cet arbre d'évaluation qui permet de récupérer les noeuds Domlette qui correspondent à une expression XPath précédement analysé. Seuls la partie analyse sera utilisé dans la partie règle de ré-évaluation afin de récupérer l'arbre d'évaluation d'une expression XPath et ainsi réaliser nos traitements sur les instructions de mise en correspondance ("match").
 		  </para>
 		</section>
 		<section>
 		  <title>4XSLT</title>
+		  <para>
+		    Ce module est aussi un sous module de 4Xml. Il est composé d'un ensemble de classes étendant la classe XsltElement et qui implémentent le comportement de chacun des éléments XSLT 1.0. Il possède aussi ses propres écrivains Domlette et Saxlette qui ont la capacité d'écrire des fragments de documents XML. Cette écriture par fragment est obligatoire étant donné le comportement d'une transformation XSLT. Il dispose aussi d'un lecteur de feuille XSLT qui est en réalité un lecteur SAX particulier pour créer l'arbre de la feuille de transformation. Ensuite il définit une classe de contexte ("XsltContext") qui étend le context d'évaluation d'une expression XPath. Ce contexte est passé entre appel de la méthode d'instanciation de chaque élément XSLT lors de la transformation. Enfin, le processeur de traitement est aussi définit ici sous la forme d'une classe 
+		  </para>
+		  <para>
+		    TODO: diagramme de classe 4XSLT.
+		  </para>
 		</section>
 	</section>
 	
 	<section>
 	  <title>Greffon incrémental</title>
 	  <para>
-	    TODO : introduction greffon incrementale
+	    Notre travail consiste en la réalisation de ce greffon. Notre objectif était de le réaliser sans avoir à intervenir sur le code de 4Suite afin d'en être relativement indépendant. Cela signifiait qu'il ne nous fallait ni modifier ce code, ni effectuer de copier-coller de comportement, sans quoi nous n'étions plus dépendant de l'API seule mais aussi de l'implémentation. Pour ce faire, il nous a fallu mettre en oeuvre de nouveaux paradigmes de programmation, à savoir la programmation par aspect.
 	  </para>
 	  <section>
 	    <title>Wrapping des éléments DOM</title>
@@ -120,7 +129,7 @@
 	      Enfin, les noeuds à supprimer sont parcourus et les noeuds cibles dont ils dépendent sont supprimer. 
 	    </para>
 	    <para>
-	      TODO : diagramme de sequence.
+	      TODO : diagramme de sequence et classe.
 	    </para>
 	  </section>
 	</section>

@@ -7,31 +7,111 @@
 
   <section>
     <title>Rappel des objectifs</title>
+    <para>
+      Nous avons abordé dans ce rapport le problème de la transformation incrémentale 
+des structures XML. L’énoncé du problème peut être synthétisé ainsi : étant donné un 
+document XML et une transformation, après que le document cible a été produit, le 
+document source peut subir des modifications ; nous cherchons alors à mettre à jour le 
+document cible de manière optimale. 
+    </para>
+    <para>
+      L'objectif de ce projet était de réaliser un moteur de transformation XSLT incrémental. Ce problème d’optimisation s’inscrit dans un contexte industriel où l’utilisation de 
+documents de grande taille est d’actualité. Un exemple parmi d’autres est le NASDAQ qui emploie des documents XML pour représenter le taux de cloture quotidien des actions. Le document XML représentant les taux de cloture de l’année 1999 contient plus de 1,3 million d’éléments XML. Lorsque ce type de document est transformé, toute optimisation de performance de la transformation est la bienvenue. En particulier, on cherche à éviter les calculs redondants.
+    </para>
+    <para>
+    Ce problème s’inscrit également dans un domaine scientifique en plein essor qui a 
+pour but d’améliorer la performance des transformations de manière à pouvoir conce- 
+voir de nouvelles applications, dynamiques. 
+    </para>
   </section>
 
 	<section>
 		<title>Rappel du travail effectué</title>
 	  <section>
 	    <title>Phase 1 : bilbiographie</title>
+	    <para>
+	     Lors de la phase de bibliographie, nous nous sommes attardés à étudié la notion de document puisque c'était la base de notre travail. Cette étude à porté sur une définition de cette notion ainsi qu'une présentation de son évolution. Nous sommes arrivés à la définition des documents balisé extensible représenté aujourd'hui dans sa majorité par XML. Les technologies XML étant vraiment centrale dans ce projet, nous y avons consacré une longue étude via un historique et une étude approfondie.
+	    </para>
+	    <para>
+	      L'étape suivante de cette phase a été de travailler sur les transformation de documents XML, leurs principes et enfin un cas particulier qui constitue l'outil utilisé dans ce projet, à savoir XSL et plus particulièrement les deux composantes qui nous interressait dans cette norme : XPath et XSLT. 
+	    </para>
+	    <para>
+	      L'objectif de ce projet était de proposé un moteur de transformation XSLT incrémental. L'incrémentalité est une problématique qui est déja étudié depuis de nombreuses années dans différents domaines tels que la programmation dynamique, la compilation des programmes ou encore les résolveurs de contraintes. Afin de ne pas ré-inventer la roue, il nous semblait indispensable de faire un tour d'horizon de ces méthodes et ainsi s'inspirer de solutions existantes lors de la conception. En particulier, un projet nommé incXSLT a déja été réalisé par Lionel Villard et Nabil Layaïda. Il était donc incontournable de lui consacrer une étude exhaustive et critique afin de récupérer les bonnes idées et identifier les erreurs et points faibles eventuels de cette conception.
+	    </para>
+	    <para>
+	      Enfin, nous avons conclu cette phase par une ouverture de ce qui peut-être réalisé grâce à un moteur de transformation incrémentale. En effet, la problématique de transformation inverse peut-alors être résolu de manière efficace. C'est cette étude que nous avons réalisée.
+	    </para>
 	  </section>
 	  <section>
 	    <title>Phase 2 : conception</title>
+	    <para>
+	      La phase de conception a été divisé en trois parties. La première a été composé d'une étude des moteurs de transformations XSLT qui avait pour objectifs de déterminer notre plate-forme de réalisation. Ce choix a été réalisé sur différents critères tels que :
+	    </para>
+	    <itemizedlist>
+	      <listitem>
+	        <para>Qualité du code</para>
+	      </listitem>
+	      <listitem>
+	        <para>Extensibilité</para>
+	      </listitem>
+	      <listitem>
+	        <para>Robustesse</para>
+	      </listitem>
+	      <listitem>
+	        <para>Conformité</para>
+	      </listitem>
+	      <listitem>
+	        <para>Licence</para>
+	      </listitem>
+	    </itemizedlist>
+	    <para>
+	       Le compromis qui nous a semblé le plus judicieux a été le processeur XSLT de la suite d'outils de traitements XML 4Suite.
+	    </para>
+	    <para>
+	      Logiquement, la partie suivante de cette phase de conception était d'étudié et d'analysé en profondeur 4Suite et plus particulièrement 4XSLT. Une fois faite, il ne nous restait plus qu'a spécifier l'intégration de l'aspect incrémental sur 4Suite.
+	    </para>
 	  </section>
 	  <section>
 	    <title>Phase 3 : réalisation</title>
+	    <para>
+	      Phase finale de ce projet, la phase de réalisation fut semé d'embûches. Elle a été composé d'une partie mettant en place l'environnement de développement et de choix de technologies annexes, surtout afin de se greffer dynamiquement sur 4Suite.
+	    </para>
+	    <para>
+	      Elle a ensuite été très incrémentale, avec une suite de séquences type implémentation, tests, deboguage. Nous arrivons en fin de projet avec un prototype très expérimental mais qui fonctionne pour les quelques cas testés. Il dispose d'une interface graphique afin de réaliser des tests de manière intuitive.
+	    </para>
 	  </section>	  
 	</section>
 	
 	<section>
 	  <title>Évaluation</title>
+	  <para>
+  	  Notre approche est sensiblement proche de celle développée dans incXSLT. Elle visait à rendre incrémental un processeur de transformation XSLT existant et non incrémental. 
+  	</para>
+  	<para>
+  	  Cependant, en l'état actuelle des choses, notre modèle est sévèrement limité dans ses fonctionnalités. Il s'agit d'un prototype, certe fonctionnel, mais limité dans son champ d'application. En effet, d'un nous ne supporterons pas l'opération d'ajout dans un document XML et de deux, les performances sont assez moyennes mais cela ne nous effraie pas puisque le module incrémentale n'a subit aucune espèce d'optimisation. Enfin, notons que dans notre modèle, certaines modifications élémentaires  peuvent nécessiter de remettre en cause la majeure partie de l’historique d’exécution. Des cas extrêmes sont donc à prévoir où les algorithmes proposés ne sont pas plus efficaces que la réexécution complète de la transformation. Aussi, un complément de ce travail serait une partie complète de détermination des cas où les algorithmes mis en place sont significativement plus efficaces que la réexécution complète de la transformation. 
+  	</para>
 	</section>
 	
 	<section>
 	  <title>Perspectives</title>
-	</section>
-	
-	<section>
-	  <title>Conclusion</title>
+	  <para>
+	    Les perspectives à court terme de ce projet sont synthétisés ci-après.
+	  </para>
+	  <formalpara>
+	    <title>Analyse de performance</title>
+	    <para>
+	      Il est nécessaire de réaliser une évaluation complète du modèle, de façon à déterminer précisément les cas où les techniques mises en places (en particulier le modèle d’exécution proposé et les algorithmes incrémentaux proposés) sont significativement plus efficaces que la réexécution de la transformation dans sa globalité.
+	    </para>
+	  </formalpara>
+	  <formalpara>
+	     <title>Support de l'ajout dans un document</title>
+	     <para>
+	       Afin de supporter toutes les modifications possibles dans un document source, il est obligatoire de rajouter l'ajout de noeuds dans celui-ci. Cela nécessitera certainement la ré-écriture d'une partie des règles de ré-évaluation, car celles-ci ne le prennent pas du tout en compte.
+	     </para>
+	  </formalpara>
+	  <para>
+	    A plus ou moins long terme, les principales perspectives de ce travail concernent la mise en place d'un véritable moteur de transformation incrémental qui ne nécessite pas de rester en mémoire à écouter le document source. Il consisterai en un outil en ligne de commande qui, à la premiere exécution, stockerai son arbre de contexte dans un fichier. Lorsqu'il est ré-exécuter, il récupèrerai son arbre de contexte et détecteai les modifications dans le document source via une différence XML (XMLDiff).
+	  </para>
 	</section>
 
 </chapter>

@@ -4,5 +4,115 @@
                       
 <appendix id="jeux_de_tests">
 	<title>Jeux de tests</title>
+  <section>
+    <title>Document XML source</title>
+<programlisting><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+  <titre>Titre du livre</titre>
+  <authors>
+    <person>
+      <lastname>Normand</lastname>
+      <firstname>Nicolas</firstname>
+    </person>
+    <person>
+      <lastname>David</lastname>
+      <firstname>Jérôme</firstname>
+    </person>
+    <person> 
+      <lastname>Lehn</lastname>
+      <firstname>Rémi</firstname>
+    </person>
+    <person>
+      <lastname>Brun</lastname>
+      <firstname>Cédric</firstname>
+    </person>
+    <person>
+      <lastname>Barbero</lastname>
+      <firstname>Mikaël</firstname>
+    </person>
+    <dog>
+      <name>Plutot</name>
+    </dog>
+  </authors>
+  <section>
+    <title> Premier titre </title>
+    <para>
+      Des infos
+    </para>
+  </section>
+  <section>
+    <title> Second titre </title>
+    <para>
+      Des infos
+    </para>
+  </section>
+  <section>
+    <title> Troisième titre </title>
+    <para>
+      Des infos
+    </para>
+  </section>
+  <section>
+    <title> Dernier titre </title>
+    <para>
+      Des infos
+    </para>
+  </section>
+</book>     
+]]>
+</programlisting>
+  </section>
+
+<section>
+  <title>Feuille de transformation</title>
+<programlisting><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?> 
+<xsl:stylesheet version="1.0" 
+     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
+  <xsl:template match="/">
+    <html>
+      <body>
+        <xsl:apply-templates/>
+      </body>
+    </html>
+  </xsl:template>
+
+
+  <xsl:template match="book">
+    <h1><xsl:value-of select="titre"/></h1>
+      <xsl:apply-templates/>
+  </xsl:template>
+
+
+  <xsl:template match="authors">
+    <h2>Auteurs</h2>
+      <ul><xsl:apply-templates select="person"/></ul>
+    </xsl:template>
+
+  <xsl:template match="person">
+    <li>
+    <xsl:value-of select="firstname"/>
+    <xsl:text>~</xsl:text>
+    <xsl:value-of select="lastname"/>
+    </li>
+  </xsl:template>
+
+  <xsl:template match="section">
+    <div>
+      <h3><xsl:value-of select="title"/></h3>
+      <p>
+        <xsl:value-of select="para"/>
+      </p>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="titre">
+  </xsl:template>
+
+</xsl:stylesheet>
+]]>
+</programlisting>  
+</section>
 
 </appendix>

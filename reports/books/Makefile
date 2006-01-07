@@ -12,7 +12,7 @@ XSL_XHTML-COMMON=$(DIRNAME_CUSTOM_XSL)/xhtml-common.xsl
 XSL_COMMON=$(DIRNAME_CUSTOM_XSL)/common.xsl
 XSL_FO=$(DIRNAME_CUSTOM_XSL)/fo.xsl
 
-XSLT_ENGINE=xsltproc --xinclude
+XSLT_ENGINE=xsltproc --xinclude --nonet
 FO_ENGINE=fop -q 
 
 all: clean
