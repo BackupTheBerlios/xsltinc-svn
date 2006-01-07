@@ -118,8 +118,29 @@
 	  <section>
 	    <title>Règles de ré-évaluation</title>
 	    <para>
-	       TODO : règles de reevaluation.
+              Les règles de ré-évaluation sont des entités construites lors de la première exécution de la transformation XSLT. C'est leur évaluation qui permettra par la suite une exécution incrémentale. Les règles de ré-évaluation représentent une condition qu'il faut satisfaire afin d'enclencher la mise à jour d'une partie de l'arbre cible. Par conséquent elles disposent de toutes les informations nécessaires afin de ré-exécuter un sous arbre de l'arbre d'exécution original. En l'occurence elles disposent du contexte d'évaluation XSLT ainsi que du contexte de l'écrivain lors de leur création. (État du buffer de sortie, noeud cible courant..)
 	    </para>
+               <figure>
+                 <title>Règles de ré-évaluation</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Rule.png"/></imageobject>
+                 </mediaobject>
+                </figure>
+            <para>
+              Lors de la première évaluation de l'arbre XSLT, l'aspect "RuleCreatorAspect" construit une hierarchie de règles qui à globalement la même structure que l'arbre d'éxécution.
+             </para>
+               <figure>
+                 <title>Création des règles</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Exec-Flow_to_rules.png"/></imageobject>
+                 </mediaobject>
+                </figure>
+              <para>
+                Chaque noeud XSLT utilisant des noeuds du document source lors de son instantiation entraîne la création d'une règle de ré-évaluation dite "de type de noeud". Cette règle stocke le type du noeud source concerné ( par exemple ici dans un premier temps "article"). Lors de la seconde exécution, si un noeud modifié est du type article, il entrainera la ré-exécution de cette règle.
+              </para>
+              <para>
+                Certaines règles peuvent avoir le même noeud pour noeud cible, par exemple un noeud de type texte concaténant le nom d'un auteur et son prénom. Ceci entraine la création de 2 règles distinctes, "firstname" et "lastname" qui pourtant sont dépendantes : on ne peut en ré-exécuter une sans ré-exécuter l'autre. Le générateur de règles détecte ces cas précis et les résoud en générant une règle d'aggrégation qui va rassembler ces deux règles en une seule. Dans le cas de 3 règles il aggrègera une règle aggrégée avec la règle suivante, et ainsi de suite.
+              </para>
 	  </section>
 	  <section>
 	    <title>Le processeur incrémental</title>
@@ -127,7 +148,7 @@
 	      Le processeur incrémental est une surcharge (par héritage) du processeur de transformation XSLT présent dans 4Suite. C'est lui qui portera principalement le comportement incrémental de l'application. Afin de lui permettre de détecter les modifications qui ont lieu sur les noeuds du document source, le processeur incrémental est aussi un observateur qui écoute les noeuds et qui est averti de toute modification.
 	    </para>
 	    <para>
-	      Lorsqu'une modification intervient, la méthode "update()" du processeur est appelé. A ce momemt la, il faut testé si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeud modifié et marqué comme étant effacer. Dans le cas où il est juste supprimer, il est seulement ajouté dans cette liste. Ces opérations peuvent intervenir plusieurs fois d'affilé. Les noeuds modifiés / supprimés sont donc ajouter à la liste des modifications.
+	      Lorsqu'une modification intervient, la méthode "update()" du processeur est appelé. A ce momemt la, il faut tester si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeud modifié et marqué comme étant effacer. Dans le cas où il est juste supprimer, il est seulement ajouté dans cette liste. Ces opérations peuvent intervenir plusieurs fois d'affilé. Les noeuds modifiés / supprimés sont donc ajouter à la liste des modifications.
 	    </para>
 	    <para>
 	      Lorsque la transformation incrémentale est exécuté via la méthode "runNodeInc()", le processeur teste la présence de modifications dans la liste précédement citée. Si elle est vide, il ne fais rien (sic). Dans le cas contraire, il parcours cette liste en vérifiant si chaque élément correspond à une règle de ré-évaluation. Dans ce cas, il est retraiter via l'appel de la méthode instanciate() propre à la règle de ré-évaluation. Le résultat est ensuite intégré au document cible.
