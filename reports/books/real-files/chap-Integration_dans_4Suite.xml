@@ -36,7 +36,12 @@
           4XSLT (<emphasis>Ft.Xml.Xslt</emphasis>). C'est le principal module que nous allons utiliser. Il gère la norme XSLT 1.0 de manière quasi complète. Il composé d'un ensemble de classes (une pour chaque élément XSLT), d'un processeur de transformation et d'écrivains DOM et Sax.
         </para>
         <para>
-          TODO : diagrammes des packages 4Suite.
+                          <figure>
+                 <title>Diagramme des paquetages 4Suite</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Packages 4Suite.png"/></imageobject>
+                 </mediaobject>
+                </figure>
         </para>
       </listitem>
 		</itemizedlist>
@@ -44,9 +49,6 @@
 		  <title>4XML</title>
 		  <para>
 		    Ce module est donc le module de plus haut niveau de la bibliothèque 4Suite. Il fournit les fonctionnalités de base pour le traitement XML, i.e. la lecture et l'écriture de documents. Ces opérations sont disponible via deux API : une semblable à DOM nommée Domlette et une semblable à Sax nommée Saxlette. Ces deux interfaces ne se réclament pas conforme totalement aux spécifications qui leur sont relatives puisqu'elles implémentent celles-ci dans une "pythonic way".
-		  </para>
-		  <para>
-		    TODO : diagramme 4XML Domlette et Saxlette. 
 		  </para>
 		</section>
 		<section>
@@ -61,7 +63,12 @@
 		    Ce module est aussi un sous module de 4Xml. Il est composé d'un ensemble de classes étendant la classe XsltElement et qui implémentent le comportement de chacun des éléments XSLT 1.0. Il possède aussi ses propres écrivains Domlette et Saxlette qui ont la capacité d'écrire des fragments de documents XML. Cette écriture par fragment est obligatoire étant donné le comportement d'une transformation XSLT. Il dispose aussi d'un lecteur de feuille XSLT qui est en réalité un lecteur SAX particulier pour créer l'arbre de la feuille de transformation. Ensuite il définit une classe de contexte ("XsltContext") qui étend le context d'évaluation d'une expression XPath. Ce contexte est passé entre appel de la méthode d'instanciation de chaque élément XSLT lors de la transformation. Enfin, le processeur de traitement est aussi définit ici sous la forme d'une classe 
 		  </para>
 		  <para>
-		    TODO: diagramme de classe 4XSLT.
+                <figure>
+                 <title>Diagrame de classes XSLT</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Classes 4Xslt.png"/></imageobject>
+                 </mediaobject>
+                </figure>
 		  </para>
 		</section>
 	</section>
@@ -129,7 +136,12 @@
 	      Enfin, les noeuds à supprimer sont parcourus et les noeuds cibles dont ils dépendent sont supprimer. 
 	    </para>
 	    <para>
-	      TODO : diagramme de sequence et classe.
+                <figure>
+                 <title>Intégration du processeur incrémental avec 4Suite (diagramme de classes)</title>
+                 <mediaobject>
+                     <imageobject><imagedata format="PNG" fileref="images/Classes Processor inc.png"/></imageobject>
+                 </mediaobject>
+                </figure>	      
 	    </para>
 	  </section>
 	</section>
