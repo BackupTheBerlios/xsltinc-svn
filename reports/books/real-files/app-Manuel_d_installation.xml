@@ -7,7 +7,7 @@
         <section>
            <title>Installation des dépendances </title>
            <para>
-             Le module xsltinc dépend de deux autres modules Python. Le premier est 4Suite-XML, disponnible sur le site <ulink url="www.4suite.org">www.4suite.org</ulink>.
+             Le module xsltinc dépend de deux autres modules Python. Le premier est 4Suite-XML, disponnible sur le site <ulink url="http://www.4suite.org">www.4suite.org</ulink>.
              Téléchargez-le et décompressez le. Le module s'installe de manière standard via les commandes :
             </para>
            <programlisting>
