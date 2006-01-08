@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="49" startdate="05/12/2005" stopdate="11/12/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Écriture d'une API permettant de tester les expressions XPath pour les règles de ré-évaluations.
+	</done>
+	<done>
+	  Début d'implémentation des règles de ré-évaluation.
+	</done>
+	<done>
+	  Le processeur incrémentale garde en mémoire la liste des noeuds modifiés et ne fait rien lorsqu'aucune modificiation.
+	</done>
+
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Continuer le travail sur les règles de ré-évaluation
+  </todo>
+  <todo>
+     Mise à jour de l'interface graphique pour afficher les règles de dépendances. 
+  </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

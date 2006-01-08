@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="01" startdate="02/01/2006" stopdate="08/01/2006">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Fin rédaction du rapport.
+	</done>
+	<done>
+	  Relecture du rapport.
+	</done>
+ 	</donelist>
+  
+<!-- 
+
+  <todolist>
+  <todo>Finition rapport de bibliographie.
+  </todo>
+  <todo>Préparation de la présentation de soutenance.</todo>
+  </todolist>
+	
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

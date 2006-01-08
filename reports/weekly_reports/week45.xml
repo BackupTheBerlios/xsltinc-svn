@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="45" startdate="07/11/2005" stopdate="13/11/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Wrapping des éléments DOM (80% effectué).
+	</done>
+	<done> 
+	  Programmation de l'aspect de memoizing de sauvegarde du contexte.
+	</done>
+	<done>
+	  Affichage de l'arbre d'exécution.
+	</done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Finir le wrapping des éléments DOM.
+  </todo>
+  <todo>
+    Analyse de l'écrivain dans XSLT.
+  </todo>
+  </todolist>
+	
+	<issues>
+	<issue>
+    Le module aspect de Logilab est un Singleton. Les références aux paramètres des méthodes tissées se recouvre. Il nous a fallu du temps pour identifier ce comportement et ainsi résoudre les problèmes rencontré lors de l'implémentation l'aspect memoizing.
+	</issue>	
+	</issues>
+
+</weekly_report>

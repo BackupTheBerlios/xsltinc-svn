@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="47" startdate="21/11/2005" stopdate="27/11/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Fin la modification de instanciate().
+  </done>
+  <done>
+    Début de la création de l'interface graphique (design)
+  </done>
+  <done>
+    Implémentation de l'interface du processeur incrémentale.
+  </done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Implémentation de la transformation XSLT dans l'interface graphique.
+  </todo>
+  <todo>
+    Fin du design de l'interface graphique (affichage temps d'exécution relatif).
+  </todo>
+  <todo>
+    Début de la gestion des règles de ré-évaluations.
+  </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

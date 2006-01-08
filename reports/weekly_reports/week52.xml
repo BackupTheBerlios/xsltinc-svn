@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="52" startdate="26/12/2005" stopdate="01/01/2006">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Implémentation des règles de ré-évaluation agrégées.
+	</done>
+	<done>
+	  Rédaction de rapport.
+	</done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Finir rédaction du rapport.
+  </todo>
+  <todo>
+    Relecture du rapport.
+  </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

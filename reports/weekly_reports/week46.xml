@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="46" startdate="14/11/2005" stopdate="20/11/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Fin du wrapping des éléments DOM.
+	</done>
+	<done>
+    Déboguage la sauvegarde du contexte (aspect memoizing)
+	</done>	
+	<done>
+    Début de la modification de instanciate() lors de la ré-exécution de la transformation afin de modifier les noeuds cible au lieu d'en créer de nouveau.
+	</done>	
+ 	</donelist>
+  
+  <todolist>
+    <todo>
+      Tests de la première étape.
+    </todo>
+    <todo>
+      Création de l'interface graphique
+    </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

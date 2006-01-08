@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="50" startdate="12/12/2005" stopdate="18/12/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Fin implémentation règles de ré-évaluation
+	</done>
+	<done>
+	  Utilisation des règles de ré-évaluation dans le processeur incrémentale.
+	</done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Implémentation d'agrégats de règles afin de gérer les dépendances entre les noeuds cibles.
+  </todo>
+
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="48" startdate="28/11/2005" stopdate="04/12/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Interface graphique permet d'exécuter les transformations XSLT.
+	</done>
+	<done>
+	  Fin du design de l'interface graphique.
+	</done>
+	<done>
+	  Création de l'interface des règles de ré-évaluations.
+	</done>
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Analyse des expressions XPath.
+  </todo>
+  <todo>
+    Début d'implémentation des règles de ré-évaluation.
+  </todo>
+  <todo>
+    Implémentation d'un protoype de la méthode runNodeInc du processeur afin qu'il prenne en compte les règles de dépendances et de ré-évaluation.
+  </todo>
+  </todolist>
+	
+<!-- 
+	<issues>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>
+	<issue>
+		issue issue issue issue issue issue issue issue
+		issue issue issue issue issue issue issue issue
+	</issue>		
+	</issues>
+ -->
+
+</weekly_report>

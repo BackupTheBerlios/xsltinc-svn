@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weekly_report week="44" startdate="31/10/2005" stopdate="06/11/2005">
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="reportinfo.xml"/>
+  
+	<donelist>
+	<done>
+    Étude exhaustive de 4Suite / 4XSLT
+	</done>
+	<done>
+	  Écriture des jeux de tests pour l'application. 
+	</done>
+	<done>
+	  Utilisation de 4XSLT sur les jeux de tests.
+	</done>
+	<done>
+	  Prise de contact avec Uche Obuji (créateur de 4XSLT).
+	</done>
+	<done>
+	  Début de wrapping des éléments DOM.
+	</done>
+
+ 	</donelist>
+  
+  <todolist>
+  <todo>
+    Fin wrapping éléments DOM.
+  </todo>
+  <todo>
+    Sauvegarde de l'arbre d'exécution (arbre de contexte) grâce au module aspect de Logilab.
+  </todo>
+  </todolist>
+	 
+	<issues>
+	<issue>
+    Les éléments DOM sont codés en C et ne sont donc pas extensible de manière classique. Nous avons pris contact avec Uche Obuji pour connaitre son avis sur la meilleure manière pour ce faire.
+	</issue>	
+	</issues>
+
+</weekly_report>
