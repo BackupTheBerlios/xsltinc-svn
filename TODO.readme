@@ -1,12 +1,12 @@
-I - Mettre en place l'extension
-	- wrapping DOM avec observable
-	- wrapping noeuds XSLT avec "hook" des méthodes
-	- mise en place du moteur incrémental et de son interface (encapsulation du moteur classique)
+I - Mettre en place l'extension ... Done
+	- wrapping DOM avec observable ... Done
+	- wrapping noeuds XSLT avec "hook" des méthodes ... Done
+	- mise en place du moteur incrémental et de son interface (encapsulation du moteur classique) ... Done
  	- faire en sorte que instantiate(contexte) modifie les noeuds déjà existants dans le cible (et n'en génère pas de nouveaux)
 
 II - Mise en place du contexte de démonstration
 	- GUI édition d'un noeud source
-	-GUI transfo XSLT et comparaison des temps
+	- GUI transfo XSLT et comparaison des temps
 
 I+II => prototype non fonctionnel.
 

@@ -146,6 +146,9 @@
           </imageobject>
         </mediaobject>
       </figure>
+      <para>
+        
+      </para>
 	   <figure>
         <title>Diagramme de Gantt du planning prévisionnelles</title>
         <mediaobject>
@@ -154,6 +157,9 @@
           </imageobject>
         </mediaobject>
       </figure>      
+      <para>
+        Malheureusement, nous n'avons pas pu tenir ce planning qui nous semblait pourtant réalisable. En effet, nous avons eu beaucoup de difficultés lors de l'étape 3. La réalisation des règles de ré-évaluations comprenais en réalité beaucoup plus de problème technique que nous ne l'avions prévu. Ceci nous a obligé a déborder sur la phase 4 jusqu'à la réduire à zéro. La réalisation de cette étape fait donc parti des perspectives à court termes que nous allons présenter dans le prochain chapitre.
+      </para>
 	</section>
 
 </chapter>

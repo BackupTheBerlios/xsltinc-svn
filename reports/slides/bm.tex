@@ -2,16 +2,9 @@
 
 \mode<article> % only for the article version
 {
+  \usepackage{beamerarticle}
   \usepackage{fullpage}
   \usepackage{hyperref}
-}
-
-\mode<presentation>
-{
-  \setbeamercovered{transparent}
-
-  \usetheme{Warsaw}
-  \usefonttheme[onlysmall]{structurebold}
 }
 
 \usepackage[french]{babel}
@@ -48,7 +41,7 @@
   \tableofcontents[pausesections]
 \end{frame}
 
-\AtBeginSection[]
+\AtBeginSubsection[]
 {
   \begin{frame}<beamer>
     \frametitle{Plan de la présentation}
@@ -156,9 +149,9 @@
         \item 4 principaux objectifs :
           \begin{itemize}
             \item L'interopérabilité doit-être assurée,
-            \item l'écriture de programmes de traitements doit-être aisé,
+            \item l'écriture de programmes de traitements doit-être aisée,
             \item la définition de XML doit-être formelle et concise,
-            \item La verbosité des document n'est pas un problème.
+            \item La verbosité des documents n'est pas un problème.
           \end{itemize}   
       \end{itemize}
     \end{frame}
@@ -234,15 +227,15 @@
     \begin{frame}
       \frametitle{XML}
       \framesubtitle{Transformation de documents XML}
-      
+      \begin{center}
        \includegraphics[scale=0.10]{../books/bm-files/images/TransformationXML.png}
-      
+      \end{center}
       \begin{itemize}
-        \item 4 classes de transformations XML
+        \item 4 classes de transformations XML :
         \begin{itemize}
-          \item En bloc, comme XSLT,
-          \item En "streaming", 
-          \item Incrémentales,
+          \item en bloc, comme XSLT,
+          \item en "streaming", 
+          \item incrémentales,
           \item inversibles.
         \end{itemize}
       \end{itemize}
@@ -276,7 +269,7 @@
   \item chaque étape peut se voir adjoindre un prédicat
   \end{itemize}
   \begin{Example}
-    child::chapter/descendant::para[position()=1]
+    child::chapter/para[position()=1]
   \end{Example}
 \end{itemize}
 }
@@ -293,9 +286,9 @@
   \frametitle{XSL}
   \framesubtitle{XSLT, Introduction}
   \begin{itemize}
-    \item Langage déclaratif sans effet de bords.
+    \item Langage déclaratif sans effet de bord.
     \item Notion d'arbre source et résultat.
-    \item Une règle de transformation est nommé "template".
+    \item Une règle de transformation est nommée "template".
     \item Se base sur XPath pour identifier les sous-ensembles de l'arbre source.
   \end{itemize}
 \end{frame} 
@@ -314,18 +307,20 @@
 \begin{frame}
   \frametitle{XSL}
   \framesubtitle{XSLT, Processus d'instanciation}
-   \includegraphics[scale=0.20]{../books/bm-files/images/instanciation.png}
+   \includegraphics[scale=0.25]{../books/bm-files/images/instanciation.png}
    \begin{itemize}
     \item Sélection de la règle la plus spécifique au noeud courant.
-    \item Éxecution de la règle.
-    \item Un apply-template change la liste des noeuds courants.
+    \item Exécution de la règle.
+    \item Un "apply-templates" change la liste des noeuds courants.
    \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{XSL}
   \framesubtitle{XSLT, Arbre d'exécution}
+    \begin{center}
      \includegraphics[scale=0.20]{../books/bm-files/images/ExecFlowTree.png}
+     \end{center}
 \end{frame}
 
   %% Cédric
@@ -348,7 +343,7 @@
     \item<1-> Méthode de recalcul sélectif
       \begin{itemize}
         \item Technique de memoizing
-        \item Problème : stockage des résultats intermédiaires dans le cas d'un langage avec effet de bords.
+        \item Problème : stockage des résultats intermédiaires dans le cas d'un langage avec effets de bords.
       \end{itemize}
     \item<2-> Méthode par différence finie
       \begin{itemize}
@@ -369,7 +364,7 @@
     \item<1-> Traduction incrémentale
       \begin{itemize}
         \item Traduction d'arbre (algorithme de Lindén). 
-        \item Repose sur les grammaire d'entrée et de sortie.
+        \item Repose sur les grammaires d'entrée et de sortie.
       \end{itemize}
     \item<2-> Traitement au plus tard
       \begin{itemize}
@@ -403,8 +398,9 @@
     \frametitle{Transformations Inverses}
     \framesubtitle{Principes}
     \begin{itemize}
-      \item Répercuter les modification de l'arbre cible dans l'arbre source.
-      \item Soit f et f' resp. les transformation inverse et S et T resp. les arbres source et cible tel que f(S) = T et f'(T)=S.
+      \item Répercuter les modifications de l'arbre cible dans l'arbre source.
+      \item Soit f et f' resp. une transformation et son inverse,
+      \item et S et T resp. les arbres source et cible tel que f(S) = T et f'(T)=S.
       \item On souhaite que f(f'(T)) = T et f'(f(S)) = S
       \item Reviens à une détection d'isomorphisme.
     \end{itemize}
@@ -414,10 +410,10 @@
     \frametitle{Transformations Inverses}
     \framesubtitle{Solutions possibles via XSLT}
     \begin{itemize}
-      \item Détecter les sous arbres de la transformations qui sont des isomorphismes.
+      \item Détecter les sous arbres de la transformation qui sont des isomorphismes.
       \item Classifier les éléments XSLT de production.
-      \item Garder les liens entre les noeuds générés, les noeuds source et les noeuds de production.
-      \item Classifier les types de modifications possibles dans l'arbre résultats.
+      \item Garder les liens entre les noeuds générés, les noeuds sources et les noeuds de productions.
+      \item Classifier les types de modifications possibles dans l'arbre résultat.
     \end{itemize}
   \end{frame}
   
@@ -562,35 +558,35 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
     \frametitle{Modélisation}
     \framesubtitle{Introduction}
     \begin{itemize}
-      \item 4 classes d'instructions XSLT à greffer sur 4XSLT.
+      \item Surcharge de 4XSLT par 4 classes d'instructions XSLT.
       \item Ajout de la capacité de renvoyer les règles de ré-évaluation le concernant.
-      \item Conservation de l'abre d'exécution
-      \item Mettre en place un processus d'instanciation incrémental.
+      \item Conservation de l'abre d'exécution.
+      \item Mise en place d'un processus d'instanciation incrémental.
     \end{itemize}
   \end{frame}
 
   \begin{frame}
     \frametitle{Modélisation}
     \framesubtitle{Ré-évaluation}
+    \begin{center}
     \includegraphics[scale=0.30]{../books/bm-files/images/xsltIncDiagClassBasic.png}
+    \end{center}
   \end{frame}
 
   \begin{frame}
     \frametitle{Modélisation}
     \framesubtitle{Instanciation incrémentale}
+    \begin{center}
     \includegraphics[scale=0.30]{../books/bm-files/images/xsltIncDiagSeqBasic.png}
+    \end{center}
   \end{frame}
-
-  \begin{frame}
-    \frametitle{Modélisation}
-    \framesubtitle{Instanciation incrémentale}
-    \includegraphics[scale=0.30]{../books/bm-files/images/ContextAndProcessor.png}
-  \end{frame}  
 
   \begin{frame}
     \frametitle{Modélisation}
     \framesubtitle{Intégration dans 4XSLT}
+    \begin{center}
     \includegraphics[scale=0.20]{../books/bm-files/images/xsltIncClassDiagElements.png}
+    \end{center}
   \end{frame}
   
 %% Cédric  
@@ -629,7 +625,7 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
       \item Analyse des solutions de traitements incrémentaux.
       \item Recherche de la possibilité de rendre inversible des transformations.
       \item Étude approfondie de XSLT et XPath.
-      \item Proposition d'une solution répondant à nos problématique.
+      \item Proposition d'une solution répondant à nos problématiques.
     \end{itemize}
   \end{frame}
 
@@ -639,7 +635,7 @@ XsltProc repose sur la bibliothèque \alert{libxslt}.
     \begin{itemize}
       \item Validation du prototype.
       \item Augmentation du prototype mise en conformité avec les objectifs.
-      \item Synthétiser choix et erreurs.
+      \item Synthése des choix effectués et des erreurs commises.
     \end{itemize}
   \end{frame}
 

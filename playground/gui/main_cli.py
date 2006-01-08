@@ -63,12 +63,17 @@ def main(args):
  else:
    demo = DemoTransformer(args[1],args[2])
 
+ print ""
  print "First Run : %d" % demo.oldtime
  
 
- fn = demo.source.getElementByLocalName("firstname")
+ #fn = demo.source.getElementByLocalName("firstname")
+ #fn.childNodes[0].replaceData("titi")
+ #print fn.childNodes[0]
+ fn = demo.source.getElementByLocalName("lastname")
  fn.childNodes[0].replaceData("titi")
- print fn.childNodes[0]
+ demo.source.getElementByLocalName("persons").childNodes[50]
+ #print fn.childNodes[0]
  demo.runInc()
  
  print "Inc Run : %d" %demo.inctime
