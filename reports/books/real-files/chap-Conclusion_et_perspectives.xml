@@ -98,6 +98,12 @@ voir de nouvelles applications, dynamiques.
 	    Les perspectives à court terme de ce projet sont synthétisés ci-après.
 	  </para>
 	  <formalpara>
+	    <title>Finir les phases non réalisées</title>
+	    <para>
+        Étant donné notre retard sur le planning, la première perspective est donc bien de terminer ce qui était prévu et notamment les différentes optimisation quant à la sauvegarde du contexte.
+	    </para>
+	  </formalpara>	  
+	  <formalpara>
 	    <title>Analyse de performance</title>
 	    <para>
 	      Il est nécessaire de réaliser une évaluation complète du modèle, de façon à déterminer précisément les cas où les techniques mises en places (en particulier le modèle d’exécution proposé et les algorithmes incrémentaux proposés) sont significativement plus efficaces que la réexécution de la transformation dans sa globalité.
