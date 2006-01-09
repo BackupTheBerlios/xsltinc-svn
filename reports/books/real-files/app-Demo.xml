@@ -7,7 +7,7 @@
         <section>
            <title>Démarrage</title>
            <para>
-             Le programme de démonstration de xsltinc choisi les fichier XML source et de transformation via les paramètres passés via la ligne de commande. Tappez donc :
+             Le programme de démonstration de xsltinc choisi les fichier XML source et de transformation via les paramètres passés via la ligne de commande. Tapez donc :
             </para>
              <programlisting>
               python main.py book.xml book2html.xsl
@@ -16,7 +16,7 @@
                Le programme lance alors automatiquement une première exécution de la transformation. L'interface est alors similaire à l'image suivante :
                </para>
                 <figure>
-                 <title>État initial du programm</title>
+                 <title>État initial du programme</title>
                  <mediaobject>
                      <imageobject><imagedata format="PNG" fileref="images/demo2.png"/></imageobject>
                  </mediaobject>
@@ -26,7 +26,7 @@
          <section>
              <title>Modification des noeuds</title>
                <para>
-                L'opération suivante montre la modification d'un noeud du document source, en l'occurence le titre de l'ouvrage. Puis la modification du prénom d'un des auteurs. L'exécution incrémentale à mis 8% du temps de la première exécution pour mettre à jour le document cible.
+                L'opération suivante montre la modification d'un noeud du document source, en l'occurrence le titre de l'ouvrage. Puis la modification du prénom d'un des auteurs. L'exécution incrémentale à mis 8% du temps de la première exécution pour mettre à jour le document cible.
                </para>
                 <figure>
                  <title>Changement d'un des noeuds source</title>
@@ -53,7 +53,7 @@
          <section>
              <title>Suppression de noeuds</title>
                <para>
-                 Nous supprimons maintenant une branche entière dans l'arbre source, en l'occurence la liste des auteurs, ce qui représente 29 noeuds. On remarque alors que la mise à jour ce fait bien, cependant à un coût supérieur à une transformation non incrémentale. (en l'occurence le coût est double)
+                 Nous supprimons maintenant une branche entière dans l'arbre source, en l'occurrence la liste des auteurs, ce qui représente 29 noeuds. On remarque alors que la mise à jour ce fait bien, cependant à un coût supérieur à une transformation non incrémentale. (en l'occurrence le coût est double)
                </para>
                 <figure>
                  <title>Suppression des auteurs</title>

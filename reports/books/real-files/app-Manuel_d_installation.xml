@@ -7,7 +7,7 @@
         <section>
            <title>Installation des dépendances </title>
            <para>
-             Le module xsltinc dépend de deux autres modules Python. Le premier est 4Suite-XML, disponnible sur le site <ulink url="http://www.4suite.org">www.4suite.org</ulink>.
+             Le module xsltinc dépend de deux autres modules Python. Le premier est 4Suite-XML, disponible sur le site <ulink url="http://www.4suite.org">www.4suite.org</ulink>.
              Téléchargez-le et décompressez le. Le module s'installe de manière standard via les commandes :
             </para>
            <programlisting>
@@ -18,7 +18,7 @@
           sudo python setup.py install
           </programlisting>
           <para>
-           Il faut ensuite télécharger le module "Aspect" de Logilab. Il est disponnible à cette adresse <ulink url="http://www.logilab.org/projects/aspects">http://www.logilab.org/projects/aspects</ulink>. La procédure est la même que pour le module 4suite:
+           Il faut ensuite télécharger le module "Aspect" de Logilab. Il est disponible à cette adresse <ulink url="http://www.logilab.org/projects/aspects">http://www.logilab.org/projects/aspects</ulink>. La procédure est la même que pour le module 4suite:
           </para>
            <programlisting>
           python setup.py build
@@ -28,7 +28,7 @@
           sudo python setup.py install
           </programlisting>
           <para>
-           Afin de démarrer l'éditeur graphique fourni en exemple, il faut de plus installer le module PyQT disponnible ici : <ulink url="http://www.riverbankcomputing.co.uk/pyqt/">http://www.riverbankcomputing.co.uk/pyqt/</ulink>. Je vous invite à vous reporter aux instructions disponnible sur ce site pour installer PyQT, ou bien à utiliser les paquetages de votre distribution.
+           Afin de démarrer l'éditeur graphique fourni en exemple, il faut de plus installer le module PyQT disponible ici : <ulink url="http://www.riverbankcomputing.co.uk/pyqt/">http://www.riverbankcomputing.co.uk/pyqt/</ulink>. Je vous invite à vous reporter aux instructions disponible sur ce site pour installer PyQT, ou bien à utiliser les paquetages de votre distribution.
           </para>
         </section>
         <section>
@@ -38,7 +38,7 @@
            <programlisting>
           python setup.py build
           </programlisting>
-          <para> puis tappez: </para>
+          <para> puis tapez: </para>
            <programlisting>
           sudo python setup.py install
           </programlisting>

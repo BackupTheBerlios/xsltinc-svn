@@ -6,7 +6,7 @@
 	<title>Gestion de projet</title>
 
   <para>
-    Dans ce chapitre nous allons nous interresser à l'aspect gestion de projet de ce travail. Nous débuterons par la méthode de développement choisie et les outils qui nous ont permis de la suivre. Ensuite, nous ferons une présentation détaillée des différentes tâches que nous avions identifiées en début de phase de conception. Enfin, nous présenterons le diagramme de Gantt montrant le planning de réalisation prévisionel que nous commenterons.
+    Dans ce chapitre nous allons nous intéresser à l'aspect gestion de projet de ce travail. Nous débuterons par la méthode de développement choisie et les outils qui nous ont permis de la suivre. Ensuite, nous ferons une présentation détaillée des différentes tâches que nous avions identifiées en début de phase de conception. Enfin, nous présenterons le diagramme de Gantt montrant le planning de réalisation prévisionnel que nous commenterons.
   </para>
 
 	<section>
@@ -15,7 +15,7 @@
 		  La méthode de développement choisi en début de projet était un classique modèle en spirale avec une validation de chaque étape par passage d'un certain nombre de tests unitaires. Le cas échéant, d'autres tests unitaires étaient rédigés afin de compléter et faire ressortir un bogue détecté.
 		</para>
 		<para>
-		  Du fait du développement de ce projet sous une licence libre<footnote><para>le choix n'était de toute façon pas possible étant donnée l'utilisation et la modification de logiciels auparavant sous licence GPL, nous devions en faire autant.</para></footnote>, nous avons décidé de mettre en place un environnement de développement typique pour ce genre de projet. En effet, les logiciels libres sont bien souvent développés dans un modèle communataire et démocratique. Pour ce faire, il faut disposer d'un certain nombre d'outils de communication en ligne et de moyens de mise à disposition du code source.
+		  Du fait du développement de ce projet sous une licence libre<footnote><para>le choix n'était de toute façon pas possible étant donnée l'utilisation et la modification de logiciels auparavant sous licence GPL, nous devions en faire autant.</para></footnote>, nous avons décidé de mettre en place un environnement de développement typique pour ce genre de projet. En effet, les logiciels libres sont bien souvent développés dans un modèle communautaire et démocratique. Pour ce faire, il faut disposer d'un certain nombre d'outils de communication en ligne et de moyens de mise à disposition du code source.
 		</para>
 		<para>
 		  Des sites Internet permettent d'obtenir cet ensemble d'outils dédiés au développement de logiciels libres. D'ailleurs, la plupart d'entres eux n'acceptent pas d'héberger des projets non libres. Citons par exemple le célèbre SourceForge, pionner en la matière, le français TuxFamily ou encore Berlios qui lui est hébergé en Allemagne. Notre choix s'est porté sur ce dernier pour sa fiabilité reconnue et sa large gamme d'outils.
@@ -26,7 +26,7 @@
 		<itemizedlist>
 		  <listitem>
 		    <para>
-		      <emphasis role="strong">Un dépôt SubVersion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développer en parallèle sur le projet ainsi qu'écrire ce rapport sans les problèmes récurrents tels que les fusions de documents ou les incompatiblités entre versions étant donné que ceci est géré de manière automatique par le système.
+		      <emphasis role="strong">Un dépôt Subversion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développer en parallèle sur le projet ainsi qu'écrire ce rapport sans les problèmes récurrents tels que les fusions de documents ou les incompatibilités entre versions étant donné que ceci est géré de manière automatique par le système.
 		    </para>
 		  </listitem>
 		  <listitem>
@@ -53,7 +53,7 @@
 	     Le projet a été divisé en début de phase de réalisation en quatre étapes qui ont conduit successivement à l'élaboration d'un prototype non fonctionnel, fonctionnel puis fonctionnel optimisé. 
 	    </para>
 	    <para>
-	     La première étape avait pour but de se brancher sur 4XSLT et de mettre en place l'interface du moteur incrémental. La seconde consistait en la création de l'interface graphique pour la validation du prototype. À la fin de cette deuxième étape, nous avons obtenu notre premier prototype non fonctionnel. Avant dernière étape, la troisième  avait pour but d'implémenter un premier moteur incrémental basique et de mettre à jour l'interface graphique afin de la rendre cohérente avec ces nouvelles fonctionnalités. Enfin, la quatrième et dernière étape consitait en une amélioration du prototype précédement obtenu notamment en ce qui concerne l'optimisation afin de n'exécuter que ce qui est strictement nécessaire. Nous allons voir maintenant la liste des différentes étapes de manière détaillée.
+	     La première étape avait pour but de se brancher sur 4XSLT et de mettre en place l'interface du moteur incrémental. La seconde consistait en la création de l'interface graphique pour la validation du prototype. À la fin de cette deuxième étape, nous avons obtenu notre premier prototype non fonctionnel. Avant dernière étape, la troisième  avait pour but d'implémenter un premier moteur incrémental basique et de mettre à jour l'interface graphique afin de la rendre cohérente avec ces nouvelles fonctionnalités. Enfin, la quatrième et dernière étape consistait en une amélioration du prototype précédemment obtenu notamment en ce qui concerne l'optimisation afin de n'exécuter que ce qui est strictement nécessaire. Nous allons voir maintenant la liste des différentes étapes de manière détaillée.
 	     </para>
 	     
 	   <section>
@@ -136,7 +136,7 @@
 	<section>
 	 <title>Planning de réalisation</title>
 	   <para>
-	     Veuiller trouver-ci dessous le diagramme de Gantt présentant notre planning de réalisation prévisionnel.
+	     Veuillez trouver ci dessous le diagramme de Gantt présentant notre planning de réalisation prévisionnel.
 	   </para>
 	   <figure>
         <title>Liste des tâches prévisionnelles</title>
@@ -158,7 +158,7 @@
         </mediaobject>
       </figure>      
       <para>
-        Malheureusement, nous n'avons pas pu tenir ce planning qui nous semblait pourtant réalisable. En effet, nous avons eu beaucoup de difficultés lors de l'étape 3. La réalisation des règles de ré-évaluations comprenait en réalité beaucoup plus de problèmes techniques que nous ne l'avions prévu. Ceci nous a obligé à déborder sur la phase 4 jusqu'à la réduire à zéro. La réalisation de cette étape fait donc parti des perspectives à court terme que nous allons présenter dans le prochain chapitre.
+        Malheureusement, nous n'avons pas pu tenir ce planning qui nous semblait pourtant réalisable. En effet, nous avons eu beaucoup de difficultés lors de l'étape 3. La réalisation des règles de réévaluation comprenait en réalité beaucoup plus de problèmes techniques que nous ne l'avions prévu. Ceci nous a obligé à déborder sur la phase 4 jusqu'à la réduire à zéro. La réalisation de cette étape fait donc parti des perspectives à court terme que nous allons présenter dans le prochain chapitre.
       </para>
 	</section>
 

@@ -15,7 +15,7 @@
 		  4Suite est une suite d'outils de traitement XML. Elle est implémentée en Python avec certaines extensions critiques en C. 
 		</para>
 		<para>
-		  Le noyau de 4Suite est une bilbiothèque d'outils intégrés et de programmes en ligne commande associés pour le traitement de documents XML. Il implémente des technologies ouvertes telles que DOM, RDF, XSLT, XInclude, XPointer, XLink, XPath, XUpdate, RELAX NG, et XML/SGML Catalogues. Au dessus de celà repose un serveur et un dépôt de données XML et RDF.
+		  Le noyau de 4Suite est une bibliothèque d'outils intégrés et de programmes en ligne commande associés pour le traitement de documents XML. Il implémente des technologies ouvertes telles que DOM, RDF, XSLT, XInclude, XPointer, XLink, XPath, XUpdate, RELAX NG, et XML/SGML Catalogues. Au dessus de cela repose un serveur et un dépôt de données XML et RDF.
 		</para>
 		<para>
 		  4Suite est organisé en modules (c'est à dire des paquetages dans la terminologie Java) avec une bibliothèque commune (<emphasis>Ft.lib</emphasis>). Les principaux autres modules sont : 
@@ -54,7 +54,7 @@
 		<section>
 		  <title>4XPath</title>
 		  <para>
-		    Le module 4XPath est un sous module du module 4XML. Il est décomposé en deux parties : une partie analyse d'une expression XPath qui retourne un arbre d'évaluation et une partie recherche qui permet de récupérer les noeuds Domlette qui correspondent à une expression XPath précédement analysé. Seule la partie analyse sera utilisée dans la partie règles de ré-évaluation afin de récupérer l'arbre d'évaluation d'une expression XPath et ainsi réaliser nos traitements sur les instructions de mise en correspondance ("<emphasis>match</emphasis>").
+		    Le module 4XPath est un sous module du module 4XML. Il est décomposé en deux parties : une partie analyse d'une expression XPath qui retourne un arbre d'évaluation et une partie recherche qui permet de récupérer les noeuds Domlette qui correspondent à une expression XPath précédemment analysé. Seule la partie analyse sera utilisée dans la partie règles de réévaluation afin de récupérer l'arbre d'évaluation d'une expression XPath et ainsi réaliser nos traitements sur les instructions de mise en correspondance ("<emphasis>match</emphasis>").
 		  </para>
 		</section>
 		<section>
@@ -64,7 +64,7 @@
 		  </para>
 		  <para>
                 <figure>
-                 <title>Diagrame de classes XSLT</title>
+                 <title>Diagramme de classes XSLT</title>
                  <mediaobject>
                      <imageobject><imagedata format="PNG" fileref="images/Classes 4Xslt.png"/></imageobject>
                  </mediaobject>
@@ -90,9 +90,9 @@
                  </mediaobject>
                 </figure>
             <para>
-		Le wrapping réalisé dans ce projet repose en grande partie sur l'introspection possible avec Python. Une instance "<emphasis>CustomDomElement</emphasis>" est une enveloppe pour une instance de "<emphasis>cDomELement</emphasis>". Chaque appel visant à récupérer la valeur d'un attribut effectué sur l'enveloppe se retrouve repercuté sur l'instance enveloppée et renvoie, si nécessaire, une instance elle-aussi enveloppée. Afin de renvoyer la même instance sur deux appels consécutifs de "<emphasis>firstChild()</emphasis>" par exemple, l'instance enveloppe dispose d'un tableau associant le resultat de l'appel "firstChild()" sur l'objet enveloppé avec le premier objet renvoyé par l'enveloppe.</para>
+		Le wrapping réalisé dans ce projet repose en grande partie sur l'introspection possible avec Python. Une instance "<emphasis>CustomDomElement</emphasis>" est une enveloppe pour une instance de "<emphasis>cDomELement</emphasis>". Chaque appel visant à récupérer la valeur d'un attribut effectué sur l'enveloppe se retrouve répercuté sur l'instance enveloppée et renvoie, si nécessaire, une instance elle-aussi enveloppée. Afin de renvoyer la même instance sur deux appels consécutifs de "<emphasis>firstChild()</emphasis>" par exemple, l'instance enveloppe dispose d'un tableau associant le résultat de l'appel "firstChild()" sur l'objet enveloppé avec le premier objet renvoyé par l'enveloppe.</para>
             <para>          
- Chaque appel visant à définir la valeur d'un attribut effectué sur l'instance enveloppe se retrouve repercuté sur l'instance enveloppée et lance un évènement indiquant que l'objet à changé d'état.
+ Chaque appel visant à définir la valeur d'un attribut effectué sur l'instance enveloppe se retrouve répercuté sur l'instance enveloppée et lance un évènement indiquant que l'objet à changé d'état.
 	    </para>
             <para>
               Tout ceci est possible et aisément réalisable grâce aux caractéristiques du langage Python, en particulier cette dernière : tout appel réalisé sur une instance, par exemple "<emphasis>monObjet.nom</emphasis>" est traduit par un appel "<emphasis>monObjet.__getattr__('nom')</emphasis>". De la même façon tout appel du type "<emphasis>monObjet.nom = "monNom"</emphasis>" est traduit par un appel "<emphasis>monObjet.__setattr__('nom','monNom')</emphasis>". Par conséquent il suffit de redéfinir ces méthodes pour transformer le comportement intrinsèque de l'objet.
@@ -109,22 +109,22 @@
 	       Lors de l'exécution d'une transformation, un processus dit d'instanciation se produit. Ce processus d'instanciation est en réalité l'exécution d'un noeud de traitement XSLT tel que "<emphasis>xsl:value-of</emphasis>". Ce processus réalise une copie du contexte courant, effectue le traitement avec le nouveau contexte (qui peut lui-même être copié si d'autres traitements sont effectués dans la suite) et retourne dans le programme principal avec l'ancien contexte. 
 	     </para>
 	     <para>
-	       En résumé, il nous fallait pouvoir récupérer le contexte avant l'appel de la méthode "<emphasis>instanciate()</emphasis>" de tout les éléments XSLT qui modifiaient ce contexte<footnote><para>La liste de ces éléments a été précisée dans le rapport de réalisation, nous ne la répéterons donc pas ici.</para></footnote>. Cette récupération s'est faite grâce à un aspect de mémorisation que l'on pourrait caractérisé de memoizing<footnote><para>Issue de la programmation dynamique, le memoizing est une technique qui consiste à stocker les résultats d'une fonction pour ré-utilisation ultérieure.</para></footnote>. Nous avons donc tissé cet aspect sur toutes les méthodes "<emphasis>instanciate()</emphasis>" des éléments XSLT de production. Pour des raisons de commodité, nous avons stocké ce contexte dans les règles de ré-évaluation que nous allons présenter ci-après.
+	       En résumé, il nous fallait pouvoir récupérer le contexte avant l'appel de la méthode "<emphasis>instanciate()</emphasis>" de tout les éléments XSLT qui modifiaient ce contexte<footnote><para>La liste de ces éléments a été précisée dans le rapport de réalisation, nous ne la répéterons donc pas ici.</para></footnote>. Cette récupération s'est faite grâce à un aspect de mémorisation que l'on pourrait caractérisé de memoizing<footnote><para>Issue de la programmation dynamique, le memoizing est une technique qui consiste à stocker les résultats d'une fonction pour réutilisation ultérieure.</para></footnote>. Nous avons donc tissé cet aspect sur toutes les méthodes "<emphasis>instanciate()</emphasis>" des éléments XSLT de production. Pour des raisons de commodité, nous avons stocké ce contexte dans les règles de réévaluation que nous allons présenter ci-après.
 	     </para>
 	  </section>
 	  <section>
-	    <title>Règles de ré-évaluation</title>
+	    <title>Règles de réévaluation</title>
 	    <para>
-              Les règles de ré-évaluation sont des entités construites lors de la première exécution de la transformation XSLT. C'est leur évaluation qui permettra par la suite une exécution incrémentale. Les règles de ré-évaluation représentent une condition qu'il faut satisfaire afin d'enclencher la mise à jour d'une partie de l'arbre cible. Par conséquent elles disposent de toutes les informations nécessaires afin de ré-exécuter un sous arbre de l'arbre d'exécution original. En l'occurence, elles disposent du contexte d'évaluation XSLT ainsi que du contexte de l'écrivain lors de leur création (état du buffer de sortie, noeud cible courant...).
+              Les règles de réévaluation sont des entités construites lors de la première exécution de la transformation XSLT. C'est leur évaluation qui permettra par la suite une exécution incrémentale. Les règles de réévaluation représentent une condition qu'il faut satisfaire afin d'enclencher la mise à jour d'une partie de l'arbre cible. Par conséquent elles disposent de toutes les informations nécessaires afin de ré-exécuter un sous arbre de l'arbre d'exécution original. En l'occurrence, elles disposent du contexte d'évaluation XSLT ainsi que du contexte de l'écrivain lors de leur création (état du buffer de sortie, noeud cible courant...).
 	    </para>
                <figure>
-                 <title>Règles de ré-évaluation</title>
+                 <title>Règles de réévaluation</title>
                  <mediaobject>
                      <imageobject><imagedata format="PNG" fileref="images/Rule.png"/></imageobject>
                  </mediaobject>
                 </figure>
             <para>
-              Lors de la première évaluation de l'arbre XSLT, l'aspect "<emphasis>RuleCreatorAspect</emphasis>" construit une hiérarchie de règles qui a globalement la même structure que l'arbre d'éxécution.
+              Lors de la première évaluation de l'arbre XSLT, l'aspect "<emphasis>RuleCreatorAspect</emphasis>" construit une hiérarchie de règles qui a globalement la même structure que l'arbre d'exécution.
              </para>
                <figure>
                  <title>Création des règles</title>
@@ -133,10 +133,10 @@
                  </mediaobject>
                 </figure>
               <para>
-                Chaque noeud XSLT utilisant des noeuds du document source lors de son instanciation entraîne la génération d'une règle de ré-évaluation dite "de type de noeud". Cette règle stocke le type du noeud source concerné (par exemple ici dans un premier temps "<emphasis>article</emphasis>"). Lors de la seconde exécution, si un noeud modifié est du type article, il entrainera la ré-exécution de cette règle.
+                Chaque noeud XSLT utilisant des noeuds du document source lors de son instanciation entraîne la génération d'une règle de réévaluation dite "de type de noeud". Cette règle stocke le type du noeud source concerné (par exemple ici dans un premier temps "<emphasis>article</emphasis>"). Lors de la seconde exécution, si un noeud modifié est du type article, il entraînera la ré-exécution de cette règle.
               </para>
               <para>
-                Certaines règles peuvent avoir le même noeud pour noeud cible comme, par exemple, un noeud de type texte concaténant le nom d'un auteur et son prénom. Ceci entraine la création de 2 règles distinctes, "firstname" et "lastname" qui pourtant sont dépendantes : on ne peut en ré-exécuter une sans ré-exécuter l'autre. Le générateur de règles détecte ces cas précis et les résoud en générant une règle d'agrégation qui va rassembler ces deux règles en une seule. Dans le cas de 3 règles il agrègera une règle agrégée avec la règle suivante, et ainsi de suite.
+                Certaines règles peuvent avoir le même noeud pour noeud cible comme, par exemple, un noeud de type texte concaténant le nom d'un auteur et son prénom. Ceci entraîne la création de 2 règles distinctes, "firstname" et "lastname" qui pourtant sont dépendantes : on ne peut en ré-exécuter une sans ré-exécuter l'autre. Le générateur de règles détecte ces cas précis et les résout en générant une règle d'agrégation qui va rassembler ces deux règles en une seule. Dans le cas de 3 règles il agrégera une règle agrégée avec la règle suivante, et ainsi de suite.
               </para>
 	  </section>
 	  <section>
@@ -148,7 +148,7 @@
 	      Lorsqu'une modification intervient, la méthode "<emphasis>update()</emphasis>" du processeur est appelé. A ce moment là, il faut tester si le noeud a été supprimé du document ou seulement modifié. Dans le cas ou il est supprimé, ce noeud est rajouté dans la liste des noeuds modifiés et marqué comme étant effacé. Dans le cas où il est juste supprimé, il est seulement ajouté dans cette liste. Ces opérations peuvent intervenir plusieurs fois consécutives. Les noeuds modifiés / supprimés sont donc ajoutés à la liste des modifications.
 	    </para>
 	    <para>
-	      Lorsque la transformation incrémentale est exécutée via la méthode "<emphasis>runNodeInc()</emphasis>", le processeur teste la présence de modifications dans la liste précédement citée. Si elle est vide, il ne fait rien (sic). Dans le cas contraire, il parcours cette liste en vérifiant si chaque élément correspond à une règle de ré-évaluation. Dans ce cas, il est retraité via l'appel de la méthode <emphasis>instanciate()</emphasis> propre à la règle de ré-évaluation. Le résultat est ensuite intégré au document cible.
+	      Lorsque la transformation incrémentale est exécutée via la méthode "<emphasis>runNodeInc()</emphasis>", le processeur teste la présence de modifications dans la liste précédemment citée. Si elle est vide, il ne fait rien (sic). Dans le cas contraire, il parcours cette liste en vérifiant si chaque élément correspond à une règle de réévaluation. Dans ce cas, il est retraité via l'appel de la méthode <emphasis>instanciate()</emphasis> propre à la règle de réévaluation. Le résultat est ensuite intégré au document cible.
 	    </para>
 	    <para>
 	      Enfin, les noeuds à supprimer sont parcourus et les noeuds cibles dont ils dépendent sont supprimés. 

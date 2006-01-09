@@ -21,7 +21,7 @@
 	     Ceux-ci sont codés grâce au module standard "<emphasis>unittest</emphasis>". Il fournit un certain nombre de méthodes qui facilitent l'écriture de tests unitaires très complets. Pour réaliser un "<emphasis>test case</emphasis>", il suffit alors d'étendre la classe "<emphasis>unittest.TestCase</emphasis>" et de créer des méthodes dont le nom commence par le mot "test". 
 	   </para>
 	   <para>
-	     Les méthodes commencant par le mot "test" désignent donc un test unitaire qu'il convient de faire soigneusement. Un certain nombre de méthodes de la super classe "TestCase" permettent de définir des assertions sur le comportement attendu sur le test. Par exemple, "<emphasis>assertEqual</emphasis>" attend que les deux paramètres qui lui sont fournit soient égaux, sinon il fait échouer le test unitaire. De même "<emphasis>assertRaises</emphasis>" vérifie que l'appel d'une méthode avec certains paramètres lève bien les exceptions attendues.
+	     Les méthodes commençant par le mot "test" désignent donc un test unitaire qu'il convient de faire soigneusement. Un certain nombre de méthodes de la super classe "TestCase" permettent de définir des assertions sur le comportement attendu sur le test. Par exemple, "<emphasis>assertEqual</emphasis>" attend que les deux paramètres qui lui sont fournit soient égaux, sinon il fait échouer le test unitaire. De même "<emphasis>assertRaises</emphasis>" vérifie que l'appel d'une méthode avec certains paramètres lève bien les exceptions attendues.
 	   </para>
 	   <para>
 	     Afin de permettre à ces tests de se lancer lorsque le module est exécuté de manière autonome, il convient d'écrire ce petit bout de code classique en Python :
@@ -29,10 +29,10 @@
 	   <programlisting>if __name__ == "__main__":
   unittest.main()</programlisting>
 	   <para>
-	     Celui-ci vérifie en fait que le nom du module courant est "<emphasis>main</emphasis>" (ce qui est le cas uniquement lorsque c'est ce module qui est invoqué) et fait alors appel à la méthode <emphasis>main()</emphasis> du module "<emphasis>unittest</emphasis>". Grâce aux capacités d'introspection de Python, il regarde toutes les sous-classes de <emphasis>unittest.TestCase</emphasis> présentes dans le module et lance chaque méthode de ces classes commencant par "test". On voit ici encore le pouvoir de l'introspection en Python.
+	     Celui-ci vérifie en fait que le nom du module courant est "<emphasis>main</emphasis>" (ce qui est le cas uniquement lorsque c'est ce module qui est invoqué) et fait alors appel à la méthode <emphasis>main()</emphasis> du module "<emphasis>unittest</emphasis>". Grâce aux capacités d'introspection de Python, il regarde toutes les sous-classes de <emphasis>unittest.TestCase</emphasis> présentes dans le module et lance chaque méthode de ces classes commençant par "test". On voit ici encore le pouvoir de l'introspection en Python.
 	   </para>
 	   <para>
-	      Ces tests ont été lancés régulièrement tout au long du développement afin de s'assurer que les modifications faites aux modules ne réalisaient pas de régression par rapport aux fonctionnalités attendues. Enfin, lorsqu'un bogue était découvert, un test unitaire était développé afin de le faire apparaitre. Ils pouvaient ensuite être corrigés. Cette méthode permet d'obtenir un jeu de tests le plus couvrant possible.
+	      Ces tests ont été lancés régulièrement tout au long du développement afin de s'assurer que les modifications faites aux modules ne réalisaient pas de régression par rapport aux fonctionnalités attendues. Enfin, lorsqu'un bogue était découvert, un test unitaire était développé afin de le faire apparaître. Ils pouvaient ensuite être corrigés. Cette méthode permet d'obtenir un jeu de tests le plus couvrant possible.
 	   </para>
 	   <para>
 	     Afin de lancer tout les tests unitaires, il suffit de lancer la commande suivante dans le répertoire du module xsltinc :
@@ -43,7 +43,7 @@
 	<section>
 	 <title>Tests de performances</title>
 	   <para>
-	     Les tests de performances sont critiques lors de la mise en version incrémentale d'un algorithme. En effet, cette mise à jour nécessite de rajouter du comportement par rapport à celui d'origine et a donc un coût en terme de temps de calcul. Or le but de la version incrémentale de notre projet était bien de fournir une version qui optimisait ce coût de calcul. Il ne faut donc pas que le coût supplémentaire induit par les fonctionnalités supplémentaires fassent que la version incrémentale se révèlent plus couteuse que la version d'origine. 
+	     Les tests de performances sont critiques lors de la mise en version incrémentale d'un algorithme. En effet, cette mise à jour nécessite de rajouter du comportement par rapport à celui d'origine et a donc un coût en terme de temps de calcul. Or le but de la version incrémentale de notre projet était bien de fournir une version qui optimisait ce coût de calcul. Il ne faut donc pas que le coût supplémentaire induit par les fonctionnalités supplémentaires fassent que la version incrémentale se révèlent plus coûteuse que la version d'origine. 
 	   </para>
 	   <para>
 	     Dans ce but, des tests ont été réalisé tout au long du développement afin de s'assurer de ce principe. Bien entendu, ils ont été réalisé avec des tailles de documents variables mais aussi des types et des nombres de modifications divers que nous vous présentons dans le tableau ci-dessous de manière synthétique.
@@ -73,7 +73,7 @@
   <entry>33,79%</entry>
 </row>
 <row>
-  <entry>2 + 1 suppresion</entry>
+  <entry>2 + 1 suppression</entry>
   <entry>29,3%</entry>
   <entry>55,42%</entry>
 </row>
@@ -85,13 +85,13 @@
 	<section>
 	 <title>Validation</title>
 	 <para>
-	   Afin de valider le prototype proposé et avoir une version de démonstration visuelle, nous avons décidé de réaliser un petite interface graphique qui montre les différents objets que nous traitons, à savoir : le document source, le document cible, la feuille de transformation, l'arbre de dépendance et enfin le temps d'exécution proportionnelement à la transformation d'origine.
+	   Afin de valider le prototype proposé et avoir une version de démonstration visuelle, nous avons décidé de réaliser un petite interface graphique qui montre les différents objets que nous traitons, à savoir : le document source, le document cible, la feuille de transformation, l'arbre de dépendance et enfin le temps d'exécution proportionnellement à la transformation d'origine.
 	 </para>
 	 <para>
-	   Elle fournit aussi deux contrôleurs permettant de lancer, au choix, une transormation classique (complète), ou alors sa version incrémentale. De même, elle offre la possibilité à l'utilisateur d'éditer et / ou supprimer des noeuds textes.
+	   Elle fournit aussi deux contrôleurs permettant de lancer, au choix, une transformation classique (complète), ou alors sa version incrémentale. De même, elle offre la possibilité à l'utilisateur d'éditer et / ou supprimer des noeuds textes.
 	 </para>
 	 <para>
-	   Voici deux captures d'écran montrant l'interface graphique du prototype réalisé. On voit ici l'intéret de la portabilité du langage Python ainsi que du cadriciel graphique Qt.
+	   Voici deux captures d'écran montrant l'interface graphique du prototype réalisé. On voit ici l'intérêt de la portabilité du langage Python ainsi que du cadriciel graphique Qt.
 	 </para>
    <figure>
     <title>Capture d'écran du prototype sous KDE</title>
