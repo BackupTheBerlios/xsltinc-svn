@@ -18,7 +18,7 @@
 	  Python possède un jeu complet d'opérations sur les chaînes de caractères (y compris l'utilisation des expressions régulières) et libère l'utilisateur de la galère de la gestion de la mémoire. Ceci permet entre autre à Python d'en faire un langage idéal pour développer des prototypes et autres tâches de programmation ad-hoc.
 </para>
 <para>
-Python a aussi les capacités suffisantes pour rendre possible l'écriture de programmes imposants et ce, même s'il n'effectue pas la plupart des vérfications habituellement faites lors de la compilation : un programme peut-être construit par assemblage de nombreux modules, chacun définissant son espace de nommage, et les modules définissant des classes qui fournissent encore plus d'encapsulation. La gestion des exceptions rend possible de récupérer les erreurs où cela est requis sans encombrer le code avec de la vérification d'erreur.
+Python a aussi les capacités suffisantes pour rendre possible l'écriture de programmes imposants et ce, même s'il n'effectue pas la plupart des vérifications habituellement faites lors de la compilation : un programme peut-être construit par assemblage de nombreux modules, chacun définissant son espace de nommage, et les modules définissant des classes qui fournissent encore plus d'encapsulation. La gestion des exceptions rend possible de récupérer les erreurs où cela est requis sans encombrer le code avec de la vérification d'erreur.
 </para>
 <para>
 Un grand nombre de modules d'extensions ont déjà été développés pour Python. Certains font partis de la bibliothèque standard et sont utilisable dans n'importe quel programme (par exemple la bibliotèque mathématique). D'autre sont spécifiques à une plate-forme ou un environnement particulier (réseau IP, Unix, X11) ou fournissent des fonctionnalités spécifiques à des applications (traitements de l'image et du son).
@@ -60,7 +60,7 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	    <section>
 	      <title>Typage fort vs. typage faible</title>
 	      <para>
-	        Encore un sujet a polémique. Ces discussions abondent sur les newsgroup dès qu'il s'agit de défendre la paroisse de son langage préféré. La force (oui, la force, appelons la comme ça) d'un typage détermine si le langage inhérent accepte ou non d'envoyer des messages incorrects aux objets<footnote><para>dans le cas d'un langage à objets. Dans le cas d'un langage procédural classique (C par exemple), cela consiterai a passer des paramètres du mauvais type.</para></footnote>. Ainsi, on peut voir C et C++ comme des langages à typage faible puisqu'ils acceptent l'opération de transtypage (dit <foreignphrase>cast</foreignphrase>) vers un mauvais type. Java quant à lui est un langage à typage fort. Il vérifie que toute opération se fait avec des types correctes.
+	        Encore un sujet a polémique. Ces discussions abondent sur les newsgroup dès qu'il s'agit de défendre la paroisse de son langage préféré. La force (oui, la force, appelons la comme ça) d'un typage détermine si le langage inhérent accepte ou non d'envoyer des messages incorrects aux objets<footnote><para>dans le cas d'un langage à objets. Dans le cas d'un langage procédural classique (C par exemple), cela consiterai a passer des paramètres du mauvais type.</para></footnote>. Ainsi, on peut voir C et C++ comme des langages à typage faible puisqu'ils acceptent l'opération de transtypage (dite <foreignphrase>cast</foreignphrase>) vers un mauvais type. Java quant à lui est un langage à typage fort. Il vérifie que toute opération se fait avec des types correctes.
 	      </para>
 	      <para>
 	        Du coté des langages dynamiques, les deux types de typages (<foreignphrase>sic</foreignphrase>) coexistent. Par exemple, PHP possède un typage faible en ce sens où, si un objet ne possède pas le bon type, l'interpréteur va effectuer le transtypage automatiquement selon des règles prédéfinis. En Python ainsi qu'en Ruby, il faudra par contre obligatoirement envoyer des messages valides.
@@ -76,15 +76,15 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	  <section>
 	    <title>Introspection et réflexivité</title>
 	    <para>
-	      Introspection et réflexivité sont souvent confondus à tord. Dans la vie de tout les jours, l'introspection est l'acte de s'auto-analyser. L'introspection réfère à l'examen des de ses propres pensées, sentiments, motivations et actions. Socrate, le philosophe bien connu, a passé la plupart de sa vie a s'auto-analyser encourageant ses congénaires Athéniens à en faire autant. Il clamait même que, pour lui, <foreignphrase>une vie non analysée ne vaut pas d'être vécu</foreignphrase>. 
+	      Introspection et réflexivité sont souvent confondus à tord. Dans la vie de tout les jours, l'introspection est l'acte de s'auto-analyser. L'introspection réfère à l'examen de ses propres pensées, sentiments, motivations et actions. Socrate, le philosophe bien connu, a passé la plupart de sa vie a s'auto-analyser tout en encourageant ses congénaires Athéniens à en faire autant. Il clamait même que, pour lui, <foreignphrase>une vie non analysée ne vaut pas d'être vécu</foreignphrase>. 
 	      </para>
-	     <para>Certes, la comparaison avec la philosophie est un peu cavalière, mais qu'importe. En informatique, l'introspection fait référence à la capacité d'examiner un objet afin de déterminer ce qu'il est, ce qu'il sait et ce qu'il est capable de faire. On l'appel aussi reification puisque l'introspection consiste à transformer un concept (le programme interprété) en un objet. L'introspection donne au programmeur une grande flexibilité ainsi qu'un large contrôle. Après avoir travaillé avec un langage qui supporte l'introspection, vous penserez un peu comme Socrate : <foreignphrase>un objet non analysé ne merite pas d'être instancié</foreignphrase>.	      
+	     <para>Certes, la comparaison avec la philosophie est un peu cavalière, mais qu'importe. En informatique, l'introspection fait référence à la capacité d'examiner un objet afin de déterminer ce qu'il est, ce qu'il sait et ce qu'il est capable de faire. On l'appel aussi réification puisque l'introspection consiste à transformer un concept (le programme interprété) en un objet. L'introspection donne au programmeur une grande flexibilité ainsi qu'un large contrôle. Après avoir travaillé avec un langage qui supporte l'introspection, vous penserez un peu comme Socrate : <foreignphrase>un objet non analysé ne mérite pas d'être instancié</foreignphrase>.	      
 	    </para>
 	    <para>
 	      Parlons maintenant un peu de la réflexivité. Nous avons dit au début que introspection et réflexivité étaient différentes. En effet, la réflexivité est la capacité pour un système de modifier son comportement. C'est le mécanisme d'intercession qui consiste à transformer un objet, des données en un programme interprété.
 	    </para>
 	    <para>
-	      Ces deux caractéristiques rendent Python extrèmement flexible et nous ont permis de nous greffer sur le module 4Suite sans modification de ce code. En effet, en plus des possibilités de la programmation objet telles que l'héritage et le polymorphisme, nous avons utilisé de la programmation par aspect afin de se greffer sur le code de 4Suite de manière non intrusive et totalement indépendante de son implémentation interne. La seule dépendance qui existe est son API<footnote><para>Application Programming Interface</para></footnote> qui est, dans tout le cas, la plus petite dépendance requise.
+	      Ces deux caractéristiques rendent Python extrêmement flexible et nous ont permis de nous greffer sur le module 4Suite sans modification de ce code. En effet, en plus des possibilités de la programmation objet telles que l'héritage et le polymorphisme, nous avons utilisé de la programmation par aspect afin de se greffer sur le code de 4Suite de manière non intrusive et totalement indépendante de son implémentation interne. La seule dépendance qui existe est son API<footnote><para>Application Programming Interface</para></footnote> qui est, dans tout le cas, la plus petite dépendance requise.
 	    </para>
 	  </section>
 	</section>
@@ -92,7 +92,7 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	<section>
 	  <title>Programmation orientée aspect</title>
 	  <para>
-	    Comme dit précédement, nous nous sommes greffer de manière non intrusive sur 4Suite essentiellement grâce à de la programmation par aspect. Afin de présenter de façon claire cette intégration dans le chapitre suivant, nous allons introduire dans la suite de ce texte la programmation orienté aspect.
+	    Comme dit précédement, nous nous sommes greffé de manière non intrusive sur 4Suite essentiellement grâce à de la programmation par aspect. Afin de présenter de façon claire cette intégration dans le chapitre suivant, nous allons introduire dans la suite de ce texte la programmation orienté aspect.
 	  </para>
 	  <section>
 	    <title>Introduction</title>
@@ -130,16 +130,16 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	    </listitem>
 	    </itemizedlist>
 	    <para>
-	      Il existe deux grand type de tisseurs d'aspects. Les tisseurs statiques qui ne sont en fait que des générateurs de code ou de pseudo-code comme c'est le cas pour le pionnier en la matière : Aspect/J. Le langage Java n'offrant pas de capacités d'intercession, il est naturel que Aspect/J soit un tisseur statique. L'autre catégorie de tisseurs comprend les tisseurs dynamiques. C'est le cas du module Aspect de Logilab pour le langage que nous avons utilisé.
+	      Il existe deux grand types de tisseurs d'aspects. Les tisseurs statiques qui ne sont en fait que des générateurs de code ou de pseudo-code comme c'est le cas pour le pionnier en la matière : Aspect/J. Le langage Java n'offrant pas de capacités d'intercession, il est naturel que Aspect/J soit un tisseur statique. L'autre catégorie de tisseurs comprend les tisseurs dynamiques. C'est le cas du module Aspect de Logilab pour le langage que nous avons utilisé.
 	    </para>
 	  </section>
 	  <section>
 	    <title>Module Aspect de Logilab</title>
 	    <para>
-	      Le module aspect de Logilab<footnote><para>http://www.logilab.org</para></footnote> fournit un ensemble minimal de méthode permettant de créer et de tisser des aspects avec du code Python. Le tisseur se base fortement sur les capacités d'introspection et d'intercession de Python. En effet, son tisseur permet de rajouter un comportement avant, autour ou après une méthode particulière d'une classe précise ou pour toutes les méthode d'une classe ou d'un module. Les joinpoints sont donc limité dans leur pouvoir d'expression mais nous n'avions pas besoin de plus.
+	      Le module aspect de Logilab<footnote><para>http://www.logilab.org</para></footnote> fournit un ensemble minimal de méthode permettant de créer et de tisser des aspects avec du code Python. Le tisseur se base fortement sur les capacités d'introspection et d'intercession de Python. En effet, son tisseur permet de rajouter un comportement avant, autour ou après une méthode particulière d'une classe précise ou pour toutes les méthode d'une classe ou d'un module. Les joinpoints sont donc limités dans leur pouvoir d'expression mais nous n'avions pas besoin de plus.
 	    </para>
 	    <para>
-	      Les aspects quant à eux sont de simples classes héritant de la classe <foreignphrase>AbstractAspect</foreignphrase> permettant de définir les méthodes <emphasis>before()</emphasis>, <emphasis>after()</emphasis> et <emphasis>around()</emphasis>,  classiquement proposées dans les modules d'aspects. Pour plus d'information concernant ce module, nous renvoyons le lecteur sur le site Web de ce module disponible à l'adresse http://www.logilab.org/projects/aspects
+	      Les aspects quant à eux sont de simples classes héritant de la classe <foreignphrase>AbstractAspect</foreignphrase> permettant de définir les méthodes <emphasis>before()</emphasis>, <emphasis>after()</emphasis> et <emphasis>around()</emphasis>,  classiquement proposées dans les modules d'aspects. Pour plus d'information concernant ce module, nous renvoyons le lecteur sur son site Web disponible à l'adresse http://www.logilab.org/projects/aspects
 	    </para>
 	  </section>
 	</section>
@@ -182,7 +182,7 @@ Python fournit aussi des services permettant l'introspection ce qui permet d'éc
 	    PyQt combine donc tout les avantages de Qt et de Python. Leur portabilité en font un couple puissant et simple d'utilisation.
 	    </para>
 	    <para>
-	    PyQt unclus l'outil pyuic qui est l'équivalent Python de l'outil uic qui convertis les descriptions d'interfaces en C++. Pyuic traduit bien évidemment ces desciptions en Python. Cela rend PyQt particulièrement véloce pour prototyper rapidement une application, ce qui nous interressait au plus haut point.
+	    PyQt unclus l'outil pyuic qui est l'équivalent Python de l'outil uic qui converti les descriptions d'interfaces en C++. Pyuic traduit bien évidemment ces descriptions en Python. Cela rend PyQt particulièrement véloce pour prototyper rapidement une application, ce qui nous interressait au plus haut point.
 	    </para>
 	  </section>
 	</section>
