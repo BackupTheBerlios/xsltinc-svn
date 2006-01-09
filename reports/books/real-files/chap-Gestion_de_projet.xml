@@ -6,7 +6,7 @@
 	<title>Gestion de projet</title>
 
   <para>
-    Dans ce chapitre nous allons nous interresser à l'aspect gestion de projet de ce travail. Nous débuterons par la méthode de développement choisi et les outils qui nous ont permis de la suivre. Ensuite, nous ferons une présentation détaillée des différentes tâches que nous avions identifiées en début de phase de conception. Enfin, nous présenterons le diagramme de Gantt montrant le planning de réalisation prévisionel que nous commenterons.
+    Dans ce chapitre nous allons nous interresser à l'aspect gestion de projet de ce travail. Nous débuterons par la méthode de développement choisie et les outils qui nous ont permis de la suivre. Ensuite, nous ferons une présentation détaillée des différentes tâches que nous avions identifiées en début de phase de conception. Enfin, nous présenterons le diagramme de Gantt montrant le planning de réalisation prévisionel que nous commenterons.
   </para>
 
 	<section>
@@ -15,23 +15,23 @@
 		  La méthode de développement choisi en début de projet était un classique modèle en spirale avec une validation de chaque étape par passage d'un certain nombre de tests unitaires. Le cas échéant, d'autres tests unitaires étaient rédigés afin de compléter et faire ressortir un bogue détecté.
 		</para>
 		<para>
-		  Du fait du développement de ce projet sous une licence libre<footnote><para>le choix n'était de toute façon pas possible étant donnée l'utilisation et la modification de logiciels auparavant sous licence GPL, nous devions en faire autant.</para></footnote>, nous avons décidé de mettre en place un environnement de développement typique pour ce genre de projet. En effet, les logiciels libres sont bien souvent développés dans un modèle communataire et démocratique. Pour ce faire, il faut disposer d'un certains nombre d'outils de communication en ligne et de moyen de mise à disposition du code source.
+		  Du fait du développement de ce projet sous une licence libre<footnote><para>le choix n'était de toute façon pas possible étant donnée l'utilisation et la modification de logiciels auparavant sous licence GPL, nous devions en faire autant.</para></footnote>, nous avons décidé de mettre en place un environnement de développement typique pour ce genre de projet. En effet, les logiciels libres sont bien souvent développés dans un modèle communataire et démocratique. Pour ce faire, il faut disposer d'un certain nombre d'outils de communication en ligne et de moyens de mise à disposition du code source.
 		</para>
 		<para>
 		  Des sites Internet permettent d'obtenir cet ensemble d'outils dédiés au développement de logiciels libres. D'ailleurs, la plupart d'entres eux n'acceptent pas d'héberger des projets non libres. Citons par exemple le célèbre SourceForge, pionner en la matière, le français TuxFamily ou encore Berlios qui lui est hébergé en Allemagne. Notre choix s'est porté sur ce dernier pour sa fiabilité reconnue et sa large gamme d'outils.
 		</para>
 		<para>
-		  Ainsi, nous pu mettre en place un nombre impressionnant de services qui permettront au projet de continuer à vivre après la fin de ce projet. En voici une liste non exhaustive :
+		  Ainsi, nous avons pu mettre en place un nombre impressionnant de services qui permettront au projet de continuer à vivre après la fin de ce projet. En voici une liste non exhaustive :
 		</para>
 		<itemizedlist>
 		  <listitem>
 		    <para>
-		      <emphasis role="strong">Un dépôt SubVersion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développé en parallèle sur le projet ainsi qu'écrire ce rapport sans le problèmes récurrents tels que les fusions de documents ou les incompatiblité entre versions étant donné que ceci est géré de manière automatique par le système.
+		      <emphasis role="strong">Un dépôt SubVersion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développer en parallèle sur le projet ainsi qu'écrire ce rapport sans les problèmes récurrents tels que les fusions de documents ou les incompatiblités entre versions étant donné que ceci est géré de manière automatique par le système.
 		    </para>
 		  </listitem>
 		  <listitem>
 		    <para>
-		      <emphasis role="strong">Une mailing-list.</emphasis> Même si celle-ci n'a pas été très active au cours de ce projet, elle sera utile aux utilisateurs pour poster leur remarques et participer aux discussions sur les futurs développements du projet.
+		      <emphasis role="strong">Une mailing-list.</emphasis> Même si celle-ci n'a pas été très active au cours de ce projet, elle sera utile aux utilisateurs pour envoyer leurs remarques et participer aux discussions sur les futurs développements du projet.
 		    </para>
 		  </listitem>
 		  <listitem>
@@ -41,7 +41,7 @@
 		  </listitem>
 		  <listitem>
 		    <para>
-		      <emphasis role="strong">Un gestionnaire de tâches.</emphasis> Ce module permet de créer des tâches et des sous-projets et de les affecter à des développeur enregistrés auprès du site.
+		      <emphasis role="strong">Un gestionnaire de tâches.</emphasis> Ce module permet de créer des tâches et des sous-projets et de les affecter à des développeurs enregistrés auprès du site.
 		    </para>
 		  </listitem>
 		</itemizedlist>
@@ -86,7 +86,7 @@
        <itemizedlist>
          <listitem>
            <para>
-             Création d'une interface graphique d'édition des noeuds source.
+             Création d'une interface graphique d'édition des noeuds sources.
            </para>
          </listitem>
          <listitem>
@@ -106,7 +106,7 @@
          </listitem>
          <listitem>
            <para>
-             Mise en place de l'évaluation des regles de dépendances.
+             Mise en place de l'évaluation des règles de dépendances.
            </para>
          </listitem>
          <listitem>
@@ -126,7 +126,7 @@
          </listitem>
          <listitem>
            <para>
-             Gestion des dependances entre "apply-templates" pour désactiver certaines regles.
+             Gestion des dépendances entre "<emphasis>apply-templates</emphasis>" pour désactiver certaines règles.
            </para>
          </listitem>
        </itemizedlist>       
@@ -158,7 +158,7 @@
         </mediaobject>
       </figure>      
       <para>
-        Malheureusement, nous n'avons pas pu tenir ce planning qui nous semblait pourtant réalisable. En effet, nous avons eu beaucoup de difficultés lors de l'étape 3. La réalisation des règles de ré-évaluations comprenais en réalité beaucoup plus de problème technique que nous ne l'avions prévu. Ceci nous a obligé a déborder sur la phase 4 jusqu'à la réduire à zéro. La réalisation de cette étape fait donc parti des perspectives à court termes que nous allons présenter dans le prochain chapitre.
+        Malheureusement, nous n'avons pas pu tenir ce planning qui nous semblait pourtant réalisable. En effet, nous avons eu beaucoup de difficultés lors de l'étape 3. La réalisation des règles de ré-évaluations comprenait en réalité beaucoup plus de problèmes techniques que nous ne l'avions prévu. Ceci nous a obligé à déborder sur la phase 4 jusqu'à la réduire à zéro. La réalisation de cette étape fait donc parti des perspectives à court terme que nous allons présenter dans le prochain chapitre.
       </para>
 	</section>
 
