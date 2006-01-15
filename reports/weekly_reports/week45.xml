@@ -26,7 +26,7 @@
 	
 	<issues>
 	<issue>
-    Le module aspect de Logilab est un Singleton. Les références aux paramètres des méthodes tissées se recouvre. Il nous a fallu du temps pour identifier ce comportement et ainsi résoudre les problèmes rencontré lors de l'implémentation l'aspect memoizing.
+    Le module aspect de Logilab est un Singleton. Les références aux paramètres des méthodes tissées se recouvrent. Il nous a fallu du temps pour identifier ce comportement et ainsi résoudre les problèmes rencontrés lors de l'implémentation l'aspect memoizing.
 	</issue>	
 	</issues>
 

@@ -33,7 +33,7 @@
 	 
 	<issues>
 	<issue>
-    Les éléments DOM sont codés en C et ne sont donc pas extensible de manière classique. Nous avons pris contact avec Uche Obuji pour connaitre son avis sur la meilleure manière pour ce faire.
+    Les éléments DOM sont codés en C et ne sont donc pas extensibles de manière classique. Nous avons pris contact avec Uche Obuji pour connaitre son avis sur la meilleure manière pour ce faire.
 	</issue>	
 	</issues>
 

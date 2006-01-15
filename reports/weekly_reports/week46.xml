@@ -11,7 +11,7 @@
     Déboguage la sauvegarde du contexte (aspect memoizing)
 	</done>	
 	<done>
-    Début de la modification de instanciate() lors de la ré-exécution de la transformation afin de modifier les noeuds cible au lieu d'en créer de nouveau.
+    Début de la modification de instanciate() lors de la ré-exécution de la transformation afin de modifier les noeuds cibles au lieu d'en créer de nouveau.
 	</done>	
  	</donelist>
   

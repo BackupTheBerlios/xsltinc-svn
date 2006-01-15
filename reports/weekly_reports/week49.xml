@@ -11,7 +11,7 @@
 	  Début d'implémentation des règles de ré-évaluation.
 	</done>
 	<done>
-	  Le processeur incrémentale garde en mémoire la liste des noeuds modifiés et ne fait rien lorsqu'aucune modificiation.
+	  Le processeur incrémental garde en mémoire la liste des noeuds modifiés et ne fait rien lorsqu'aucune modificiation.
 	</done>
 
  	</donelist>
