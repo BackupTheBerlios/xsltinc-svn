@@ -29,22 +29,22 @@ pour but d’améliorer la performance des transformations de manière à pouvoi
 	  <section>
 	    <title>Phase 1 : bibliographie</title>
 	    <para>
-	     Lors de la phase de bibliographie, nous nous sommes attardés à étudier la notion de document puisque c'était la base de notre travail. Cette étude à porté sur une définition de cette notion ainsi qu'une présentation de son évolution. Nous sommes arrivés à la définition des documents balisés extensibles représentés aujourd'hui dans leur majorité par XML. Les technologies XML étant vraiment centrale dans ce projet, nous y avons consacré une longue analyse via un historique et une étude approfondie.
+	     Lors de la phase de bibliographie, nous nous sommes attardés à étudier la notion de document puisque c'était la base de notre travail. Cette étude a porté sur une définition de cette notion ainsi qu'une présentation de son évolution. Nous sommes arrivés à la définition des documents balisés extensibles représentés aujourd'hui dans leur majorité par XML. Les technologies XML étant vraiment centrales dans ce projet, nous y avons consacré une longue analyse via un historique et une étude approfondie.
 	    </para>
 	    <para>
 	      L'étape suivante de cette phase a été de travailler sur les transformations de documents XML, leurs principes et enfin un cas particulier qui constitue l'outil utilisé dans ce projet, à savoir XSL et plus particulièrement les deux composantes qui nous intéressaient dans cette norme : XPath et XSLT. 
 	    </para>
 	    <para>
-	      L'objectif de ce projet était de proposer un moteur de transformation XSLT incrémental. L'incrémentalité est une problématique qui est déjà étudié depuis de nombreuses années dans différents domaines tels que la programmation dynamique, la compilation des programmes ou encore les résolveurs de contraintes. Afin de ne pas réinventer la roue, il nous semblait indispensable de faire un tour d'horizon de ces méthodes et ainsi s'inspirer de solutions existantes lors de la conception. En particulier, un projet nommé incXSLT a déjà été réalisé par Lionel Villard et Nabil Layaïda. Il était donc incontournable de lui consacrer une étude exhaustive et critique afin de récupérer les bonnes idées et identifier les erreurs et points faibles éventuels de cette conception.
+	      L'objectif de ce projet était de proposer un moteur de transformation XSLT incrémental. L'incrémentalité est une problématique qui est déjà étudiée depuis de nombreuses années dans différents domaines tels que la programmation dynamique, la compilation des programmes ou encore les résolveurs de contraintes. Afin de ne pas réinventer la roue, il nous semblait indispensable de faire un tour d'horizon de ces méthodes et ainsi s'inspirer de solutions existantes lors de la conception. En particulier, un projet nommé incXSLT a déjà été réalisé par Lionel Villard et Nabil Layaïda. Il était donc incontournable de lui consacrer une étude exhaustive et critique afin de récupérer les bonnes idées et identifier les erreurs et points faibles éventuels de cette conception.
 	    </para>
 	    <para>
-	      Enfin, nous avons conclu cette phase par une ouverture de ce qui peut-être réalisé grâce à un moteur de transformation incrémentale. En effet, la problématique de transformation inverse peut alors être résolu de manière efficace. C'est cette étude que nous avons réalisée.
+	      Enfin, nous avons conclu cette phase par une ouverture de ce qui peut-être réalisé grâce à un moteur de transformation incrémentale. En effet, la problématique de transformation inverse peut alors être résolue de manière efficace. C'est cette étude que nous avons réalisée.
 	    </para>
 	  </section>
 	  <section>
 	    <title>Phase 2 : conception</title>
 	    <para>
-	      La phase de conception a été divisé en trois parties. La première a été composé d'une étude des moteurs de transformations XSLT qui avait pour objectifs de déterminer notre plate-forme de réalisation. Ce choix a été réalisé sur différents critères tels que :
+	      La phase de conception a été divisée en trois parties. La première a été composé d'une étude des moteurs de transformations XSLT qui avait pour objectifs de déterminer notre plate-forme de réalisation. Ce choix a été réalisé sur différents critères tels que :
 	    </para>
 	    <itemizedlist>
 	      <listitem>
@@ -67,13 +67,13 @@ pour but d’améliorer la performance des transformations de manière à pouvoi
 	       Le compromis qui nous a semblé le plus judicieux a été le processeur XSLT de la suite d'outils de traitements XML 4Suite.
 	    </para>
 	    <para>
-	      Logiquement, la partie suivante de cette phase de conception était d'étudier et d'analyser en profondeur 4Suite et plus particulièrement 4XSLT. Une fois faite, il ne nous restait plus qu'a spécifier l'intégration de l'aspect incrémental sur 4Suite.
+	      Logiquement, la partie suivante de cette phase de conception était d'étudier et d'analyser en profondeur 4Suite et plus particulièrement 4XSLT. Une fois faite, il ne nous restait plus qu'à spécifier l'intégration de l'aspect incrémental sur 4Suite.
 	    </para>
 	  </section>
 	  <section>
 	    <title>Phase 3 : réalisation</title>
 	    <para>
-	      Phase finale de ce projet, la phase de réalisation fut semé d'embûches. Elle a été composé d'une partie mettant en place l'environnement de développement et de choix de technologies annexes, surtout afin de se greffer dynamiquement sur 4Suite.
+	      Phase finale de ce projet, la phase de réalisation fut semée d'embûches. Elle a été composée d'une partie mettant en place l'environnement de développement et de choix de technologies annexes, surtout afin de se greffer dynamiquement sur 4Suite.
 	    </para>
 	    <para>
 	      Elle a ensuite été très incrémentale, avec une suite de séquences types : implémentation, tests, deboguage. Nous arrivons en fin de projet avec un prototype très expérimental mais qui fonctionne pour les quelques cas testés. Il dispose d'une interface graphique afin de réaliser des tests de manière intuitive.
@@ -87,7 +87,7 @@ pour but d’améliorer la performance des transformations de manière à pouvoi
   	  Notre approche est sensiblement proche de celle développée dans incXSLT. Elle visait à rendre incrémental un processeur de transformation XSLT existant. 
   	</para>
   	<para>
-  	  Cependant, en l'état actuelle des choses, notre modèle est sévèrement limité dans ses fonctionnalités. Il s'agit d'un prototype, certes fonctionnel, mais limité dans son champ d'application. En effet, d'un nous ne supportons pas l'opération d'ajout dans un document XML et de deux, les performances sont assez moyennes. Mais cela ne nous effraie pas outre mesure puisque le module incrémental n'a subit aucune espèce d'optimisation. Enfin, notons que dans notre modèle, certaines modifications élémentaires  peuvent nécessiter de remettre en cause la majeure partie de l’historique d’exécution. Des cas extrêmes sont donc à prévoir où les algorithmes proposés ne sont pas plus efficaces que la ré-exécution complète de la transformation. Aussi, un complément de ce travail serait une partie complète de détermination des cas où les algorithmes mis en place sont significativement plus efficaces que la ré-exécution complète de la transformation. 
+  	  Cependant, en l'état actuel des choses, notre modèle est sévèrement limité dans ses fonctionnalités. Il s'agit d'un prototype, certes fonctionnel, mais limité dans son champ d'application. En effet, d'un nous ne supportons pas l'opération d'ajout dans un document XML et de deux, les performances sont assez moyennes. Mais cela ne nous effraie pas outre mesure puisque le module incrémental n'a subit aucune espèce d'optimisation. Enfin, notons que dans notre modèle, certaines modifications élémentaires  peuvent nécessiter de remettre en cause la majeure partie de l’historique d’exécution. Des cas extrêmes sont donc à prévoir où les algorithmes proposés ne sont pas plus efficaces que la ré-exécution complète de la transformation. Aussi, un complément de ce travail serait une partie complète de détermination des cas où les algorithmes mis en place sont significativement plus efficaces que la ré-exécution complète de la transformation. 
   	</para>
 	</section>
 	
@@ -115,7 +115,7 @@ pour but d’améliorer la performance des transformations de manière à pouvoi
 	     </para>
 	  </formalpara>
 	  <para>
-	    A plus ou moins long terme, les principales perspectives de ce travail concernent la mise en place d'un véritable moteur de transformation incrémental qui ne nécessite pas de rester en mémoire à écouter le document source. Il consisterai en un outil en ligne de commande qui, à la première exécution, stockerais son arbre de contexte dans un fichier. Lorsqu'il est ré-exécuter, il récupérerai son arbre de contexte et détecterai les modifications dans le document source via une différence XML (XMLDiff).
+	    À plus ou moins long terme, les principales perspectives de ce travail concernent la mise en place d'un véritable moteur de transformation incrémental qui ne nécessite pas de rester en mémoire à écouter le document source. Il consisterai en un outil en ligne de commande qui, à la première exécution, stockerai son arbre de contexte dans un fichier. Lorsqu'il est ré-exécuter, il récupérerai son arbre de contexte et détecterai les modifications dans le document source via une différence XML (XMLDiff).
 	  </para>
 	</section>
 

@@ -26,7 +26,7 @@
 		<itemizedlist>
 		  <listitem>
 		    <para>
-		      <emphasis role="strong">Un dépôt Subversion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stocké au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développer en parallèle sur le projet ainsi qu'écrire ce rapport sans les problèmes récurrents tels que les fusions de documents ou les incompatibilités entre versions étant donné que ceci est géré de manière automatique par le système.
+		      <emphasis role="strong">Un dépôt Subversion.</emphasis> Subversion est un gestionnaire de révisions permettant le travail en groupe sur des fichiers textes ce qui ne le limite pas au seul code source mais aussi à de la documentation stockée au format texte tel que ce rapport qui est du DocBook XML. Nous avons pu ainsi développer en parallèle sur le projet ainsi qu'écrire ce rapport sans les problèmes récurrents tels que les fusions de documents ou les incompatibilités entre versions étant donné que ceci est géré de manière automatique par le système.
 		    </para>
 		  </listitem>
 		  <listitem>

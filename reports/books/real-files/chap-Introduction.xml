@@ -9,14 +9,14 @@
 		<title>Rappel de la problématique</title>
 		
 		<para>
-			La taille des documents numériques ne cesse de croître. En effet depuis l'avènement du tout numérique, la croissance de la taille des données évolue de manière exponentielle. Bien souvent, ces données nécessitent de multiples traitements afin de les rendre disponibles sur l'éventail des supports actuellement à notre disposition. Or, il est courant que les données d'origines soient amenées à être modifiées, corrigées. Les traitements sont donc totalement t'exécuter pour prendre en compte ces modifications. Afin de ne pas considérer les premières applications des traitements comme pure perte de temps, l'idée est de réutiliser les résultats précédents et de les mettre à jour de manière intelligente. Ceci est la problématique générale de ce projet et l'idée que nous souhaitons mettre en oeuvre. Regardons maintenant cette problématique dans le domaine d'application de ce projet, à savoir le génie documentaire.
+			La taille des documents numériques ne cesse de croître. En effet depuis l'avènement du tout numérique, la croissance de la taille des données évolue de manière exponentielle. Bien souvent, ces données nécessitent de multiples traitements afin de les rendre disponibles sur l'éventail des supports actuellement à notre disposition. Or, il est courant que les données d'origines soient amenées à être modifiées, corrigées. Les traitements sont donc totalement exécutés pour prendre en compte ces modifications. Afin de ne pas considérer les premières applications des traitements comme pure perte de temps, l'idée est de réutiliser les résultats précédents et de les mettre à jour de manière intelligente. Ceci est la problématique générale de ce projet et l'idée que nous souhaitons mettre en oeuvre. Regardons maintenant cette problématique dans le domaine d'application de ce projet, à savoir le génie documentaire.
 		</para>
     </section>
 		
 		<section>
 		  <title>Application au génie documentaire</title>
 		  <para>
-		    Le génie documentaire est un savoir faire qui s’intéresse aux principes, aux outils et aux processus permettant d’améliorer la capacité à créer, à gérer et à maintenir d’importants ensembles de documents. Comme nous le soulignions précédemment, ce savoir faire se heurte à l'inexorable augmentation de la masse des données. De plus, avec l'internet et le multimédia, les supports de diffusion se sont multipliés. Ces faits conjugués contraignent les documents à subir de multiples traitements. 
+		    Le génie documentaire est un savoir faire qui s’intéresse aux principes, aux outils et aux processus permettant d’améliorer la capacité à créer, à gérer et à maintenir d’importants ensembles de documents. Comme nous le soulignions précédemment, ce savoir faire se heurte à l'inexorable augmentation de la masse des données. De plus, avec l'Internet et le multimédia, les supports de diffusion se sont multipliés. Ces faits conjugués contraignent les documents à subir de multiples traitements. 
 		  </para>
 		  <para>
 		    Pour le moment, le paysage que nous avons dressé est plutôt sombre. Cependant, les différentes avancées que le génie documentaire a connu ces dernières années ont pour objectifs de gérer ces différents problèmes de taille et de multi-support. Le principal apport dans ce domaine vient du langage XML et de XSLT, son langage de transformation associé. Grâce à ces deux composants, il est possible de ne gérer qu'un seul document d'origine et de le transformer en autant de documents cibles prêts à être distribués.
@@ -49,7 +49,7 @@ identiques.
 		    On comprendra qu'étant donné le volume, il est intéressant de ne gérer qu'une seule et même source afin de générer les documents de manière automatique en fonction de la cible. Mais un autre problème se pose alors, c'est le temps de traitement. En effet, si une modification doit intervenir pour correction ou pour une autre raison, il est dommage de devoir ré-éxécuter la transformation dans sa totalité. Ainsi, une optimisation qui consisterai en une opération de mise en conformité du document déjà généré avec le source modifié serait d'un grand confort.
 		  </para>
 		  <para>
-		    Le cadre de notre travail est donc là : fournir un moteur de transformation XSLT incrémental, capable de transformer un document source XML en un document cible définit par l'utilisateur et de mettre en conformité ce document cible suite à une ou plusieurs modifications du document source. Cette opération de mise en conformité devra bien entendu être faite dans un soucis d'optimalité.
+		    Le cadre de notre travail est donc là : fournir un moteur de transformation XSLT incrémental, capable de transformer un document source XML en un document cible définit par l'utilisateur et de mettre en conformité ce document cible suite à une ou plusieurs modifications du document source. Cette opération de mise en conformité devra bien entendu être faite dans un souci d'optimalité.
 		  </para>
 	</section>
 

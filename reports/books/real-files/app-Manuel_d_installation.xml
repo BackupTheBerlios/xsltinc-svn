@@ -8,7 +8,7 @@
            <title>Installation des dépendances </title>
            <para>
              Le module xsltinc dépend de deux autres modules Python. Le premier est 4Suite-XML, disponible sur le site <ulink url="http://www.4suite.org">www.4suite.org</ulink>.
-             Téléchargez-le et décompressez le. Le module s'installe de manière standard via les commandes :
+             Téléchargez-le et décompressez-le. Le module s'installe de manière standard via les commandes :
             </para>
            <programlisting>
           python setup.py build
@@ -28,7 +28,7 @@
           sudo python setup.py install
           </programlisting>
           <para>
-           Afin de démarrer l'éditeur graphique fourni en exemple, il faut de plus installer le module PyQT disponible ici : <ulink url="http://www.riverbankcomputing.co.uk/pyqt/">http://www.riverbankcomputing.co.uk/pyqt/</ulink>. Je vous invite à vous reporter aux instructions disponible sur ce site pour installer PyQT, ou bien à utiliser les paquetages de votre distribution.
+           Afin de démarrer l'éditeur graphique fourni en exemple, il faut de plus installer le module PyQT disponible ici : <ulink url="http://www.riverbankcomputing.co.uk/pyqt/">http://www.riverbankcomputing.co.uk/pyqt/</ulink>. Je vous invite à vous reporter aux instructions disponibles sur ce site pour installer PyQT, ou bien à utiliser les paquetages de votre distribution.
           </para>
         </section>
         <section>

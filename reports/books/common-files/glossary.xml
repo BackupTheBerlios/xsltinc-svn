@@ -32,7 +32,7 @@
 	<glossentry>
 		<glossterm>RDF</glossterm>
 		<glossdef>
-                   <para>Resource Description Framework (RDF) est un modèle de graphes pour décrire les (méta-)données et permettre un certain traitement automatique des métadonnées. Une des syntaxes (sérialisation) de ce langage est RDF/XML. Il s'agit d'un dialecte XML développée par le consortium W3C.
+                   <para>Resource Description Framework (RDF) est un modèle de graphes pour décrire les (méta-)données et permettre un certain traitement automatique des métadonnées. Une des syntaxes (sérialisation) de ce langage est RDF/XML. Il s'agit d'un dialecte XML développé par le consortium W3C.
 		   </para>
                 </glossdef>
 	</glossentry>
