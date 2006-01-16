@@ -1,0 +1,98 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \setbeamertemplate{background canvas}[vertical shading][bottom=red!10,top=blue!10]
+
+  \usetheme{Warsaw}
+  \usefonttheme[onlysmall]{structurebold}
+}
+
+\usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+\title 
+{Bureau Numérique : Transformations Incrémentales}
+
+\subtitle
+{Phase 2 : Réalisation}
+
+\author
+{Mikaël~Barbero \and Cédric~Brun}
+
+\institute
+{
+	École Polytechnique de l'université de Nantes\\
+	Département Informatique}
+
+\date
+{Projet de recherche 2005, 2006\\
+ Présenté le 18 janvier 2006}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Plan de la présentation}
+  \tableofcontents[pausesections]
+\end{frame}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan de la présentation}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section{Motivations et objectifs}
+
+  \begin{frame}
+    \frametitle{Rappel de la problématique}
+    \framesubtitle{Le traitement des documents numériques}
+    \begin{itemize}
+    \item
+			tata
+    \item
+			tutu
+    \item
+			titi
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+    \frametitle{Rappel de la problématique}
+    \framesubtitle{Le traitement des documents XML}
+    \begin{block}{Besoin}<1->
+      Améliorer l'expérience utilisateur.
+    \end{block}
+
+    \begin{alertblock}{Problème}<2->
+      Comment permettre l'édition des documents résultant d'une transformation ?
+    \end{alertblock}
+
+    \begin{exampleblock}{Solution}<3->
+      Rendre les tranformations inversibles.
+    \end{exampleblock}  
+  \end{frame}  
+  
+\section{Travail effectué}
+
+\section{Démonstration}
+
+\section{Perspectives}
+
+\section{Conclusion}
+
+\section{Annexe : technologies utilisées}
+
+	\subsection{Introspection et réflexion}
+	
+	\subsection{Programmation orientée aspect}
+
+\end{document}
