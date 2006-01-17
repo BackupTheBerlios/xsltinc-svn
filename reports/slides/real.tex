@@ -57,42 +57,80 @@
     \framesubtitle{Le traitement des documents numériques}
     \begin{itemize}
     \item
-			tata
+			Taille de plus en plus importante.
     \item
-			tutu
+			Des supports de diffusion toujours plus nombreux.
     \item
-			titi
+			Des mises à jour de plus en plus fréquentes.
     \end{itemize}
   \end{frame}
   
   \begin{frame}
-    \frametitle{Rappel de la problématique}
-    \framesubtitle{Le traitement des documents XML}
-    \begin{block}{Besoin}<1->
-      Améliorer l'expérience utilisateur.
-    \end{block}
-
-    \begin{alertblock}{Problème}<2->
-      Comment permettre l'édition des documents résultant d'une transformation ?
+  	\frametitle{Rappel de la problématique}
+  	\framesubtitle{Un exemple : la documentation d'un Airbus A320}
+  	\begin{itemize}
+  	\item<1->
+  		39 manuels différents (documentation opérationnelle, technique et d'entretien)
+  	\item<2->
+  		800 000 pages en tout soit 3 tonnes de papier.
+  	\item<3->
+  		Une documentation personnalisé pour chaque avion livré en fonction de la compagnie aérienne acheteuse.
+  	\end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+  	\frametitle{Rappel de la problématique}
+  	\framesubtitle{Les technologies du génie documentaire}
+  	\begin{itemize}
+  		\item<1->
+  			Les données sont uniques et subissent des transformations afin de les publier.
+  		\item<1->
+  			80\% de ces données sont décrites en XML.
+  		\item<1->
+  			Des feuilles de style XSLT sont utilisées pour les transformations.
+  	\end{itemize}
+  	\begin{alertblock}{Problème}<2->
+      Ces transformations sont lourdes et doivent-être exécutées à chaque fois complètement.
     \end{alertblock}
-
     \begin{exampleblock}{Solution}<3->
-      Rendre les tranformations inversibles.
-    \end{exampleblock}  
-  \end{frame}  
+      Disposer d'un moteur de transformation incrémental.
+    \end{exampleblock} 
+  \end{frame}
+  
+  \begin{frame}
+  	\frametitle{Moteur de transformation incrémental}
+  	\framesubtitle{Principe}
+  	\begin{itemize}
+  		\item<1->
+  			Ré-utiliser le résultat d'une transformation précédente et ne faire que ce qui est nécessaire pour mettre en conformité le résultat.
+  	\end{itemize}
+  	\begin{block}{Formulation mathématique}<2->
+  		Étant donnés un programme $f$ et une opération $ \oplus $, un programme $ f' $ est appelé une version incrémentale de $ f $ par rapport à $ \oplus $ si $ f' $ calcule $ f(x \oplus \Delta x ) $ de façon efficace en utilisant $ f(x) $. 
+  	\end{block}
+  \end{frame}
+
+\section{Gestion de projet}
+	\begin{frame}
+	\end{frame}
   
 \section{Travail effectué}
+	\begin{frame}
+	\end{frame}
 
 \section{Démonstration}
+	\begin{frame}
+		\frametitle{XSLTInc en direct}
+		\begin{itemize}
+			\item Merci de patienter le temps du changement d'affichage...
+		\end{itemize}
+	\end{frame}
 
 \section{Perspectives}
+	\begin{frame}
+	\end{frame}
 
 \section{Conclusion}
-
-\section{Annexe : technologies utilisées}
-
-	\subsection{Introspection et réflexion}
-	
-	\subsection{Programmation orientée aspect}
+	\begin{frame}
+	\end{frame}
 
 \end{document}
