@@ -201,6 +201,17 @@
     \end{itemize}
   \end{frame}
 
+  \begin{frame}
+    \frametitle{Bilan des performances}
+     \begin{tabular}{|c|c|c|}
+\hline
+Modifications & Petit document (5) & Grand document (2000)\\ \hline
+aucune   & 0.98\% & 0.01 \% \\
+1        & 16.5\% & 33.8 \% \\
+2 + 1 suppression   & 29.3\% & 55.4 \% \\ \hline
+\end{tabular}
+  \end{frame}
+
 \subsection{Fonctionnement global}
   \begin{frame}
     \frametitle{Architecture de xsltinc}
@@ -276,12 +287,54 @@
 		\end{itemize}
 	\end{frame}
 
-\section{Perspectives}
+\section{Conclusion et perspectives}
+
+\subsection{Conclusion}
+
+
 	\begin{frame}
+	\frametitle{Rappel des objectifs}
+	\begin{itemize}
+			\item Réaliser un moteur de transformation XSLT incrémental
+			\item Évaluer les possibilités de transformation inverses
+         \end{itemize}
+
 	\end{frame}
 
-\section{Conclusion}
+
 	\begin{frame}
+	\frametitle{Rappel du travail réalisé}
+         Bibliographie
+        \begin{itemize}
+         \item Étude des concepts fondamentaux du génie documentaire.
+         \item Analyse des solutions de traitements incrémentaux.
+         \item Proposition d'une solution répondant à nos problématiques.
+         \end{itemize}
+          Conception
+        \begin{itemize}
+         \item Choix d'une plateforme technologique
+         \item Conception du prototype
+         \end{itemize}
+          Réalisation
+        \begin{itemize}
+         \item Réalisation d'un prototype fonctionnel
+         \item Réalisation d'un outil de démonstration
+         \end{itemize}
 	\end{frame}
 
+\subsection{Perspectives}
+	\begin{frame}
+	\frametitle{Fonctionnalités à compléter}
+		\begin{itemize}
+			\item Support de l'ajout de noeuds
+			\item Optimisation de l'évaluation des règles
+			\item Reconstruire le contexte au lieu de le stocker
+			\item Supporter l'utilisation en deux temps : stockage de l'arbre de règles et détection des noeuds modifiés via XMLDiff
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+	\frametitle{Fin}
+          Merci pour votre attention.
+	\end{frame}
 \end{document}
