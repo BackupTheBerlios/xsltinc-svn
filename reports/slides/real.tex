@@ -49,7 +49,6 @@
     \tableofcontents[currentsection]
   \end{frame}
 }
-
 \section{Motivations et objectifs}
 
   \begin{frame}
@@ -112,10 +111,87 @@
 \section{Gestion de projet}
 	\begin{frame}
 	\end{frame}
+
   
 \section{Travail effectué}
-	\begin{frame}
-	\end{frame}
+\subsection{Bilan des fonctionnalités}
+  \begin{frame}
+    \frametitle{Bilan des fonctionnalités}
+    %\framesubtitle{sous-modules}
+    \begin{itemize}
+        \item Intégration non-intrusive avec le cadriciel 4Suite
+        \item Édition des noeuds textes suivie de la mise à jour incrémentale de l'arbre cible
+        \item La suppression de noeuds dans l'arbre source.
+        \item Application graphique de démonstration
+    \end{itemize}
+  \end{frame}
+
+\subsection{Fonctionnement global}
+  \begin{frame}
+    \frametitle{Architecture de xsltinc}
+    \framesubtitle{sous-modules}
+     Le module xsltinc est divisé en plusieurs sous-modules:
+    \begin{itemize}
+        \item IncrementalProcessor : le processeur de transformation incrémental
+        \item Observable : les classes nécessaires à l'utilisation du pattern "Observer"
+        \item Rules : les règles de ré-évaluation 
+        \item RuleCreatorAspect : l'aspect qui génère les règles de ré-évaluation
+        \item ParseXPath : un module d'aide à l'analyse d'expressions XPath
+        \item Dom : la classe d'enveloppe des éléments DOM
+        \item weaving : le tisseur d'aspect
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Fonctionnement global}
+    \framesubtitle{Première exécution}
+      \begin{center}
+       \includegraphics[scale=0.18]{../books/real-files/images/FirstExec.png}
+      \end{center}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Fonctionnement global}
+    \framesubtitle{Seconde exécution}
+      \begin{center}
+       \includegraphics[scale=0.18]{../books/real-files/images/SecondExec.png}
+      \end{center}
+  \end{frame}
+
+\subsection{Focus sur l'enveloppe et la création des règles}
+  \begin{frame}
+    \frametitle{L'enveloppe DOM}
+      \begin{alertblock}{Problème rencontré}<1->
+        On ne peut modifier les noeuds DOM de 4Suite afin de leur adjoindre un comportement de type "Observer" .
+      \end{alertblock}
+      \begin{block}{Action corrective}<2->
+         Prise de contact avec Uche Ogbuji pour évaluer les différentes solutions possibles.
+      \end{block} 
+      \begin{exampleblock}{Solution}<3->
+        Créer une enveloppe pour les éléments DOM grâce à l'instrospection et la reflexivité de Python.
+      \end{exampleblock}  
+  \end{frame}
+  \begin{frame}
+    \frametitle{L'enveloppe DOM (suite)}
+       \includegraphics[scale=0.23]{../books/real-files/images/Wrapping.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{La création des règles}
+    \begin{itemize}
+        \item Ajout de nos routines de notre traitement spécifique pour chaque instantiation de noeud
+        \item Pour chaque instanciation, on vérifie si le noeud XSLT fait appel à un noeud de l'arbre source
+        \item Si oui on crée une nouvelle règle
+        \item On vérifie si oui ou non cette règle est dépendante d'une règle précédente
+        \item Si oui on agrège les deux règles
+     \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}
+    \frametitle{La création des règles (suite)}
+      \begin{center}
+       \includegraphics[scale=0.23]{../books/real-files/images/Exec-Flow_to_rules.png}
+      \end{center}
+  \end{frame}
 
 \section{Démonstration}
 	\begin{frame}
