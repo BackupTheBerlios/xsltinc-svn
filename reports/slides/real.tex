@@ -42,13 +42,14 @@
   \tableofcontents[pausesections]
 \end{frame}
 
-\AtBeginSubsection[]
+\AtBeginSection[*]
 {
   \begin{frame}<beamer>
     \frametitle{Plan de la présentation}
     \tableofcontents[currentsection]
   \end{frame}
 }
+
 \section{Motivations et objectifs}
 
   \begin{frame}
@@ -110,8 +111,82 @@
 
 \section{Gestion de projet}
 	\begin{frame}
+		\frametitle{Méthode de développement}
+		\framesubtitle{Modèle}
+		\begin{itemize}
+			\item 
+				Modèle en spirale.
+			\item 
+				Validation de chaque étape par des tests unitaires.
+			\item 
+				Logiciel libre développé dans le respect des us et coutumes de ce type de projet.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Méthode de développement}
+		\framesubtitle{Outils de développement}
+		\begin{itemize}
+			\item 
+				Projet hébergé chez Berlios (le SourceForge Européen).
+			\item 
+				Mise à disposition d'outils fiables et reconnues :
+			\begin{itemize}
+				\item Subversion, le gestionnaire de révisions,
+				\item Mailling-list,
+				\item Gestionnaire de bogues,
+				\item Gestionnaire de tâches.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Planning de réalisation}
+		\framesubtitle{Découpage des tâches (1)}
+		\begin{itemize}
+			\item Étape 1
+			\begin{itemize}
+				\item Wrapping des éléments DOM.
+				\item Wrapping des éléments XSLT.
+				\item Sauvegarde du contexte par AOP.
+				\item La méthode $ instanciate() $ modifie les noeuds XSLT existant.
+				\item Tests.
+			\end{itemize}
+			\item Étape 2
+			\begin{itemize}
+				\item Création de l'interface graphique.
+				\item Interface graphique : affichage du temps d'exécution et possibilité d'exécuter une transformation XSLT.
+				\item Tests.
+			\end{itemize}
+		\end{itemize}
 	\end{frame}
 
+	\begin{frame}
+		\frametitle{Planning de réalisation}
+		\framesubtitle{Découpage des tâches (2)}
+		\begin{itemize}
+			\item Étape 3
+			\begin{itemize}
+				\item Création des règles de dépendances.
+				\item Évaluation des règles de dépendances.
+				\item Affichage des règles de dépendances dans l'interface graphique.
+				\item Tests.
+			\end{itemize}
+			\item Étape 4
+			\begin{itemize}
+				\item Possibilité de reconstruire le contexte au lieu de le stocker.
+				\item Gestion des dépendances entre les règles XSLT.
+				\item Tests.
+			\end{itemize}
+			\item Rédaction et relecture du rapport.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Planning de réalisation}
+		\framesubtitle{Diagramme de Gantt}
+		\includegraphics[scale=0.3]{../books/real-files/images/gantt.png}
+	\end{frame}	
   
 \section{Travail effectué}
 \subsection{Bilan des fonctionnalités}
