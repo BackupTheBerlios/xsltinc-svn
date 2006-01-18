@@ -220,21 +220,6 @@ aucune   & 0.98\% & 0.01 \% \\
 
 \subsection{Fonctionnement global}
   \begin{frame}
-    \frametitle{Architecture de XSLTInc }
-    \framesubtitle{sous-modules}
-     Le module XSLTInc est divisé en plusieurs sous-modules:
-    \begin{itemize}
-        \item $ IncrementalProcessor $: le processeur de transformation incrémentale
-        \item $ Observable $: les classes nécessaires à l'utilisation du pattern "Observer"
-        \item $ Rules $: les règles de ré-évaluation 
-        \item $ RuleCreatorAspect $: l'aspect qui génère les règles de ré-évaluation
-        \item $ ParseXPath $: un module d'aide à l'analyse d'expressions XPath
-        \item $ Dom $: la classe d'enveloppe des éléments DOM
-        \item $ weaving $: le tisseur d'aspect
-    \end{itemize}
-  \end{frame}
-
-  \begin{frame}
     \frametitle{Fonctionnement global}
     \framesubtitle{Première exécution}
       \begin{center}
@@ -248,6 +233,21 @@ aucune   & 0.98\% & 0.01 \% \\
        \includegraphics[scale=0.18]{../books/real-files/images/SecondExec.png}
       \end{center}
   \end{frame}
+  
+  \begin{frame}
+    \frametitle{Architecture de XSLTInc }
+    \framesubtitle{sous-modules}
+     Le module XSLTInc est divisé en plusieurs sous-modules:
+    \begin{itemize}
+        \item $ IncrementalProcessor $: le processeur de transformation incrémentale
+        \item $ Observable $: les classes nécessaires à l'utilisation du pattern "Observer"
+        \item $ Rules $: les règles de ré-évaluation 
+        \item $ RuleCreatorAspect $: l'aspect qui génère les règles de ré-évaluation
+        \item $ ParseXPath $: un module d'aide à l'analyse d'expressions XPath
+        \item $ Dom $: la classe d'enveloppe des éléments DOM
+        \item $ weaving $: le tisseur d'aspect
+    \end{itemize}
+  \end{frame}  
 
 \subsection{Focus sur l'enveloppe et la création des règles}
   \begin{frame}
@@ -266,8 +266,16 @@ aucune   & 0.98\% & 0.01 \% \\
     \frametitle{L'enveloppe DOM (suite)}
        \includegraphics[scale=0.23]{../books/real-files/images/Wrapping.png}
   \end{frame}
+
   \begin{frame}
-    \frametitle{La création des règles}
+    \frametitle{La création des règles (1)}
+      \begin{center}
+       \includegraphics[scale=0.23]{../books/real-files/images/Exec-Flow_to_rules.png}
+      \end{center}
+  \end{frame}
+  
+  \begin{frame}
+    \frametitle{La création des règles (2)}
     \begin{itemize}
         \item Ajout de nos routines de traitement spécifique pour chaque instantiation de noeud.
         \item Pour chaque instanciation, on vérifie si le noeud XSLT fait appel à un noeud de l'arbre source
@@ -275,15 +283,7 @@ aucune   & 0.98\% & 0.01 \% \\
         \item On vérifie cette règle est dépendante ou non d'une règle précédente
         \item Si oui, on agrège les deux règles
      \end{itemize}
-  \end{frame}
-
-
-  \begin{frame}
-    \frametitle{La création des règles (suite)}
-      \begin{center}
-       \includegraphics[scale=0.23]{../books/real-files/images/Exec-Flow_to_rules.png}
-      \end{center}
-  \end{frame}
+  \end{frame}  
 
 \section{Démonstration}
 	\begin{frame}
