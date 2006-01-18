@@ -167,15 +167,16 @@
 		\begin{itemize}
 			\item Étape 3
 			\begin{itemize}
-				\item Création des règles de dépendances.
-				\item Évaluation des règles de dépendances.
-				\item Affichage des règles de dépendances dans l'interface graphique.
+				\item Création des règles de ré-évaluation.
+				\item Évaluation des règles de ré-évaluation.
+				\item Affichage des règles de ré-évaluation dans l'interface graphique.
 				\item Tests.
 			\end{itemize}
 			\item Étape 4
 			\begin{itemize}
 				\item Possibilité de reconstruire le contexte au lieu de le stocker.
 				\item Gestion des dépendances entre les règles XSLT.
+				\item Optimisation de l'évaluation des règles.
 				\item Tests.
 			\end{itemize}
 			\item Rédaction et relecture du rapport.
@@ -214,17 +215,17 @@ aucune   & 0.98\% & 0.01 \% \\
 
 \subsection{Fonctionnement global}
   \begin{frame}
-    \frametitle{Architecture de xsltinc}
+    \frametitle{Architecture de XSLTInc }
     \framesubtitle{sous-modules}
-     Le module xsltinc est divisé en plusieurs sous-modules:
+     Le module XSLTInc est divisé en plusieurs sous-modules:
     \begin{itemize}
-        \item IncrementalProcessor : le processeur de transformation incrémental
-        \item Observable : les classes nécessaires à l'utilisation du pattern "Observer"
-        \item Rules : les règles de ré-évaluation 
-        \item RuleCreatorAspect : l'aspect qui génère les règles de ré-évaluation
-        \item ParseXPath : un module d'aide à l'analyse d'expressions XPath
-        \item Dom : la classe d'enveloppe des éléments DOM
-        \item weaving : le tisseur d'aspect
+        \item $ IncrementalProcessor $: le processeur de transformation incrémental
+        \item $ Observable $: les classes nécessaires à l'utilisation du pattern "Observer"
+        \item $ Rules $: les règles de ré-évaluation 
+        \item $ RuleCreatorAspect $: l'aspect qui génère les règles de ré-évaluation
+        \item $ ParseXPath $: un module d'aide à l'analyse d'expressions XPath
+        \item $ Dom $: la classe d'enveloppe des éléments DOM
+        \item $ weaving $: le tisseur d'aspect
     \end{itemize}
   \end{frame}
 
