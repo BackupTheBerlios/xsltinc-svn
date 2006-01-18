@@ -57,7 +57,7 @@
     \framesubtitle{Le traitement des documents numériques}
     \begin{itemize}
     \item
-			Taille de plus en plus importante.
+			Taille des documents de plus en plus importante.
     \item
 			Des supports de diffusion toujours plus nombreux.
     \item
@@ -74,7 +74,7 @@
   	\item<2->
   		800 000 pages en tout soit 3 tonnes de papier.
   	\item<3->
-  		Une documentation personnalisé pour chaque avion livré en fonction de la compagnie aérienne acheteuse.
+  		Une documentation personnalisée pour chaque avion livré en fonction de la compagnie aérienne acheteuse.
   	\end{itemize}
   \end{frame}
   
@@ -130,7 +130,7 @@
 			\item 
 				Projet hébergé chez Berlios (le SourceForge Européen).
 			\item 
-				Mise à disposition d'outils fiables et reconnues :
+				Mise à disposition d'outils fiables et reconnus :
 			\begin{itemize}
 				\item Subversion, le gestionnaire de révisions,
 				\item Mailling-list,
@@ -144,7 +144,8 @@
 		\frametitle{Planning de réalisation}
 		\framesubtitle{Découpage des tâches (1)}
 		\begin{itemize}
-			\item Étape 1
+			\item<1->
+				Étape 1
 			\begin{itemize}
 				\item Wrapping des éléments DOM.
 				\item Wrapping des éléments XSLT.
@@ -152,7 +153,8 @@
 				\item La méthode $ instanciate() $ modifie les noeuds XSLT existant.
 				\item Tests.
 			\end{itemize}
-			\item Étape 2
+			\item<2->
+				Étape 2
 			\begin{itemize}
 				\item Création de l'interface graphique.
 				\item Interface graphique : affichage du temps d'exécution et possibilité d'exécuter une transformation XSLT.
@@ -165,21 +167,24 @@
 		\frametitle{Planning de réalisation}
 		\framesubtitle{Découpage des tâches (2)}
 		\begin{itemize}
-			\item Étape 3
+			\item<1->
+				Étape 3
 			\begin{itemize}
 				\item Création des règles de ré-évaluation.
 				\item Évaluation des règles de ré-évaluation.
 				\item Affichage des règles de ré-évaluation dans l'interface graphique.
 				\item Tests.
 			\end{itemize}
-			\item Étape 4
+			\item<2->
+				Étape 4
 			\begin{itemize}
 				\item Possibilité de reconstruire le contexte au lieu de le stocker.
 				\item Gestion des dépendances entre les règles XSLT.
 				\item Optimisation de l'évaluation des règles.
 				\item Tests.
 			\end{itemize}
-			\item Rédaction et relecture du rapport.
+			\item<3->
+				Rédaction et relecture du rapport.
 		\end{itemize}
 	\end{frame}
 	
@@ -195,10 +200,10 @@
     \frametitle{Bilan des fonctionnalités}
     %\framesubtitle{sous-modules}
     \begin{itemize}
-        \item Intégration non-intrusive avec le cadriciel 4Suite
-        \item Édition des noeuds textes suivie de la mise à jour incrémentale de l'arbre cible
+        \item Intégration non-intrusive avec le cadriciel 4Suite.
+        \item Édition des noeuds textes suivie de la mise à jour incrémentale de l'arbre cible.
         \item La suppression de noeuds dans l'arbre source.
-        \item Application graphique de démonstration
+        \item Application graphique de démonstration.
     \end{itemize}
   \end{frame}
 
@@ -219,7 +224,7 @@ aucune   & 0.98\% & 0.01 \% \\
     \framesubtitle{sous-modules}
      Le module XSLTInc est divisé en plusieurs sous-modules:
     \begin{itemize}
-        \item $ IncrementalProcessor $: le processeur de transformation incrémental
+        \item $ IncrementalProcessor $: le processeur de transformation incrémentale
         \item $ Observable $: les classes nécessaires à l'utilisation du pattern "Observer"
         \item $ Rules $: les règles de ré-évaluation 
         \item $ RuleCreatorAspect $: l'aspect qui génère les règles de ré-évaluation
@@ -248,7 +253,7 @@ aucune   & 0.98\% & 0.01 \% \\
   \begin{frame}
     \frametitle{L'enveloppe DOM}
       \begin{alertblock}{Problème rencontré}<1->
-        On ne peut modifier les noeuds DOM de 4Suite afin de leur adjoindre un comportement de type "Observer" .
+        On ne peut pas modifier les noeuds DOM de 4Suite afin de leur adjoindre un comportement de type "Observer" .
       \end{alertblock}
       \begin{block}{Action corrective}<2->
          Prise de contact avec Uche Ogbuji pour évaluer les différentes solutions possibles.
@@ -264,11 +269,11 @@ aucune   & 0.98\% & 0.01 \% \\
   \begin{frame}
     \frametitle{La création des règles}
     \begin{itemize}
-        \item Ajout de nos routines de notre traitement spécifique pour chaque instantiation de noeud
+        \item Ajout de nos routines de traitement spécifique pour chaque instantiation de noeud.
         \item Pour chaque instanciation, on vérifie si le noeud XSLT fait appel à un noeud de l'arbre source
-        \item Si oui on crée une nouvelle règle
-        \item On vérifie si oui ou non cette règle est dépendante d'une règle précédente
-        \item Si oui on agrège les deux règles
+        \item Si oui, on crée une nouvelle règle
+        \item On vérifie cette règle est dépendante ou non d'une règle précédente
+        \item Si oui, on agrège les deux règles
      \end{itemize}
   \end{frame}
 
@@ -297,7 +302,7 @@ aucune   & 0.98\% & 0.01 \% \\
 	\frametitle{Rappel des objectifs}
 	\begin{itemize}
 			\item Réaliser un moteur de transformation XSLT incrémental
-			\item Évaluer les possibilités de transformation inverses
+			\item Évaluer les possibilités de transformations inverses
          \end{itemize}
 
 	\end{frame}
@@ -313,13 +318,13 @@ aucune   & 0.98\% & 0.01 \% \\
          \end{itemize}
           Conception
         \begin{itemize}
-         \item Choix d'une plateforme technologique
-         \item Conception du prototype
+         \item Choix d'une plateforme technologique.
+         \item Conception du prototype.
          \end{itemize}
           Réalisation
         \begin{itemize}
-         \item Réalisation d'un prototype fonctionnel
-         \item Réalisation d'un outil de démonstration
+         \item Réalisation d'un prototype fonctionnel.
+         \item Réalisation d'un outil de démonstration.
          \end{itemize}
 	\end{frame}
 
@@ -327,10 +332,10 @@ aucune   & 0.98\% & 0.01 \% \\
 	\begin{frame}
 	\frametitle{Fonctionnalités à compléter}
 		\begin{itemize}
-			\item Support de l'ajout de noeuds
-			\item Optimisation de l'évaluation des règles
-			\item Reconstruire le contexte au lieu de le stocker
-			\item Supporter l'utilisation en deux temps : stockage de l'arbre de règles et détection des noeuds modifiés via XMLDiff
+			\item Support de l'opération d'ajout de noeuds.
+			\item Optimisation de l'évaluation des règles.
+			\item Reconstruire le contexte au lieu de le stocker.
+			\item Supporter l'utilisation en deux temps : stockage de l'arbre de règles et détection des noeuds modifiés (par exemple via XMLDiff).
 		\end{itemize}
 	\end{frame}
 
